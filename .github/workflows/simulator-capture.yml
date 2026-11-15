@@ -69,6 +69,7 @@ jobs:
         run: |
           cd "$OUTPUT_DIR"
           rm -rf TestResults.xcresult
+          find . -type f -size +95M -print -delete
           git init -q -b "$CAPTURES_BRANCH"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

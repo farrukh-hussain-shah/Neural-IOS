@@ -100,7 +100,25 @@ xcrun simctl spawn "$UDID" log stream --level debug --style compact \
   --predicate 'process == "NeuralKey"' > "$OUTPUT_DIR/logs/app.log" 2>&1 &
 LOG_PID=$!
 
-xcrun simctl io "$UDID" recordVideo --codec=h264 --force "$OUTPUT_DIR/video/simulator-flow.mp4" \
+RAW_VIDEO="$OUTPUT_DIR/video/simulator-flow-raw.mp4"
+FINAL_VIDEO="$OUTPUT_DIR/video/simulator-flow.mp4"
+MAX_VIDEO_BYTES=$((90 * 1024 * 1024))
+
+compress_video() {
+  for preset in PresetHEVC1920x1080 Preset1280x720 Preset960x540; do
+    rm -f "$FINAL_VIDEO"
+    if avconvert --preset "$preset" --source "$RAW_VIDEO" --output "$FINAL_VIDEO" --replace >/dev/null 2>&1 \
+      && [[ -s "$FINAL_VIDEO" ]] && [[ "$(stat -f%z "$FINAL_VIDEO")" -le "$MAX_VIDEO_BYTES" ]]; then
+      echo "Video compressed with $preset: $(stat -f%z "$FINAL_VIDEO") bytes"
+      rm -f "$RAW_VIDEO"
+      return
+    fi
+  done
+  echo "Video compression failed; keeping the original recording"
+  mv -f "$RAW_VIDEO" "$FINAL_VIDEO"
+}
+
+xcrun simctl io "$UDID" recordVideo --codec=h264 --force "$RAW_VIDEO" \
   > "$OUTPUT_DIR/logs/video.log" 2>&1 &
 VIDEO_PID=$!
 sleep 3
@@ -123,6 +141,7 @@ sleep 2
 kill -INT "$VIDEO_PID" || true
 wait "$VIDEO_PID" || true
 VIDEO_PID=""
+compress_video
 
 EXTRA_DEVICE_LIST=()
 if [[ -n "$EXTRA_DEVICES" ]]; then
