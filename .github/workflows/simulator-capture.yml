@@ -19,6 +19,8 @@ env:
   SCHEME: NeuralKey
   OUTPUT_DIR: ${{ github.workspace }}/simulator-captures
   CAPTURES_BRANCH: simulator-captures
+  CAPTURE_TESTS: NeuralKeyUITests/ScreenCaptureTests/test05SettingsAndAITones
+  RECORD_VIDEO: "false"
 
 jobs:
   capture:

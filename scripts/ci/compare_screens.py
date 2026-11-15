@@ -144,8 +144,9 @@ def write_report(results, output_dir):
     ]
     if run_url:
         lines.append(f"- Workflow run: {run_url}")
+    if (output_dir / "video" / "simulator-flow.mp4").exists():
+        lines.append("- Video of the run: [video/simulator-flow.mp4](video/simulator-flow.mp4)")
     lines += [
-        "- Video of the full flow: [video/simulator-flow.mp4](video/simulator-flow.mp4)",
         f"- Mismatch = share of pixels whose colour differs by more than {PIXEL_THRESHOLD}/255, "
         f"excluding the status bar ({STATUS_BAR_POINTS} pt) and home indicator ({HOME_INDICATOR_POINTS} pt).",
         "- Home, Settings and AI Tones follow the Android screenshots (Home ad removed), scaled to 390 pt and aligned to the iOS status bar.",
@@ -187,7 +188,11 @@ def main():
     for folder in ("comparison", "design"):
         (args.output / folder).mkdir(parents=True, exist_ok=True)
 
-    results = [compare_screen(key, title, args.design, actual_dir, args.output) for key, title, _ in SCREENS]
+    results = [
+        compare_screen(key, title, args.design, actual_dir, args.output)
+        for key, title, _ in SCREENS
+        if (actual_dir / f"{key}.png").exists()
+    ]
     print(write_report(results, args.output))
 
 

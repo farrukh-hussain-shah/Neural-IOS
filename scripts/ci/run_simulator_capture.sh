@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # Builds the app, boots an iPhone Pro Max simulator (newest available model first), runs the
-# screen-capture UI tests while recording the simulator screen, and collects screenshots,
-# video, logs and the .xcresult bundle into $OUTPUT_DIR. Optionally, the same tests then run on
-# each comma-separated device in $EXTRA_DEVICES, with screenshots in screenshots/<device>/.
+# screen-capture UI tests and collects screenshots, logs and the .xcresult bundle into
+# $OUTPUT_DIR.
+#   CAPTURE_TESTS  comma-separated -only-testing identifiers; empty runs every UI test.
+#   RECORD_VIDEO   true records and compresses a video of the run (off by default).
+#   EXTRA_DEVICES  comma-separated simulators that rerun the same tests (screenshots/<device>/).
 set -euo pipefail
 
 PROJECT="${PROJECT:-NeuralKey.xcodeproj}"
@@ -11,6 +13,16 @@ OUTPUT_DIR="${OUTPUT_DIR:-$PWD/simulator-captures}"
 DERIVED_DATA="${DERIVED_DATA:-$PWD/.build/DerivedData}"
 PREFERRED_DEVICES="${PREFERRED_DEVICES:-iPhone 18 Pro Max,iPhone 17 Pro Max,iPhone 16 Pro Max}"
 EXTRA_DEVICES="${EXTRA_DEVICES:-}"
+CAPTURE_TESTS="${CAPTURE_TESTS:-}"
+RECORD_VIDEO="${RECORD_VIDEO:-false}"
+
+ONLY_TESTING_ARGS=()
+if [[ -n "$CAPTURE_TESTS" ]]; then
+  IFS=',' read -r -a CAPTURE_TEST_LIST <<< "$CAPTURE_TESTS"
+  for capture_test in "${CAPTURE_TEST_LIST[@]}"; do
+    ONLY_TESTING_ARGS+=("-only-testing:$capture_test")
+  done
+fi
 
 mkdir -p "$OUTPUT_DIR/screenshots" "$OUTPUT_DIR/video" "$OUTPUT_DIR/logs"
 rm -rf "$OUTPUT_DIR/TestResults.xcresult"
@@ -118,10 +130,12 @@ compress_video() {
   mv -f "$RAW_VIDEO" "$FINAL_VIDEO"
 }
 
-xcrun simctl io "$UDID" recordVideo --codec=h264 --force "$RAW_VIDEO" \
-  > "$OUTPUT_DIR/logs/video.log" 2>&1 &
-VIDEO_PID=$!
-sleep 3
+if [[ "$RECORD_VIDEO" == "true" ]]; then
+  xcrun simctl io "$UDID" recordVideo --codec=h264 --force "$RAW_VIDEO" \
+    > "$OUTPUT_DIR/logs/video.log" 2>&1 &
+  VIDEO_PID=$!
+  sleep 3
+fi
 
 set +e
 TEST_RUNNER_NK_CAPTURE_DIR="$OUTPUT_DIR/screenshots" xcodebuild test-without-building \
@@ -132,16 +146,21 @@ TEST_RUNNER_NK_CAPTURE_DIR="$OUTPUT_DIR/screenshots" xcodebuild test-without-bui
   -derivedDataPath "$DERIVED_DATA" \
   -resultBundlePath "$OUTPUT_DIR/TestResults.xcresult" \
   -parallel-testing-enabled NO \
+  ${ONLY_TESTING_ARGS[@]+"${ONLY_TESTING_ARGS[@]}"} \
   CODE_SIGNING_ALLOWED=NO \
   2>&1 | tee "$OUTPUT_DIR/logs/test.log"
 TEST_STATUS=${PIPESTATUS[0]}
 set -e
 
-sleep 2
-kill -INT "$VIDEO_PID" || true
-wait "$VIDEO_PID" || true
-VIDEO_PID=""
-compress_video
+if [[ -n "$VIDEO_PID" ]]; then
+  sleep 2
+  kill -INT "$VIDEO_PID" || true
+  wait "$VIDEO_PID" || true
+  VIDEO_PID=""
+  compress_video
+else
+  rmdir "$OUTPUT_DIR/video" 2>/dev/null || true
+fi
 
 EXTRA_DEVICE_LIST=()
 if [[ -n "$EXTRA_DEVICES" ]]; then
@@ -166,6 +185,7 @@ for extra_name in ${EXTRA_DEVICE_LIST[@]+"${EXTRA_DEVICE_LIST[@]}"}; do
     -destination "id=$EXTRA_UDID" \
     -derivedDataPath "$DERIVED_DATA" \
     -parallel-testing-enabled NO \
+    ${ONLY_TESTING_ARGS[@]+"${ONLY_TESTING_ARGS[@]}"} \
     CODE_SIGNING_ALLOWED=NO \
     2>&1 | tee "$OUTPUT_DIR/logs/test-$extra_slug.log"
   extra_status=${PIPESTATUS[0]}
