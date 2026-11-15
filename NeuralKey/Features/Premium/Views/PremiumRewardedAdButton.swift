@@ -19,8 +19,9 @@ struct PremiumRewardedAdButton: View {
                     Text(subtitle)
                         .textStyle(.premiumAdSubtitle)
                 }
+                .lineLimit(1)
+                .fixedSize()
                 .padding(.top, Layout.textTop)
-                Spacer(minLength: 0)
             }
             .foregroundStyle(AppColor.textPrimary)
             .padding(.leading, Layout.leadingPadding)
