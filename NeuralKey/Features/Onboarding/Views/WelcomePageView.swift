@@ -38,10 +38,14 @@ private struct FeatureCard: View {
             }
             Spacer(minLength: 0)
         }
-        .padding(.horizontal, AppSpacing.s16)
+        .padding(.horizontal, Layout.horizontalPadding)
         .frame(minHeight: AppSize.featureCardHeight)
         .background(RoundedRectangle(cornerRadius: AppRadius.xl).fill(AppColor.cardSurface))
         .overlay(RoundedRectangle(cornerRadius: AppRadius.xl).strokeBorder(AppColor.cardBorder, lineWidth: 1))
         .accessibilityElement(children: .combine)
+    }
+
+    private enum Layout {
+        static let horizontalPadding: CGFloat = 17
     }
 }

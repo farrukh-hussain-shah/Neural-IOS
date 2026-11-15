@@ -62,12 +62,12 @@ extension AppTextStyle {
 
     // MARK: Splash
 
-    static let splashTitle = AppTextStyle(weight: .bold, size: 38)
+    static let splashTitle = AppTextStyle(weight: .bold, size: 38, tracking: -1.08)
     static let splashTagline = AppTextStyle(weight: .semibold, size: 13, tracking: 2)
 
     // MARK: Onboarding
 
-    static let headline = AppTextStyle(weight: .bold, size: 34, lineHeight: 38)
+    static let headline = AppTextStyle(weight: .bold, size: 34, lineHeight: 38, tracking: -0.34)
     static let eyebrow = AppTextStyle(weight: .semibold, size: 13, tracking: 1)
     static let bodyLarge = AppTextStyle(weight: .regular, size: 16, lineHeight: 24)
     static let body = AppTextStyle(weight: .regular, size: 14, lineHeight: 21)
@@ -80,16 +80,16 @@ extension AppTextStyle {
 
     // MARK: Home
 
-    static let brandName = AppTextStyle(weight: .bold, size: 18)
+    static let brandName = AppTextStyle(weight: .bold, size: 18, tracking: 0.48)
     static let homeTitle = AppTextStyle(weight: .bold, size: 30)
-    static let homeSubtitle = AppTextStyle(weight: .regular, size: 16, lineHeight: 22)
-    static let sectionLabel = AppTextStyle(weight: .medium, size: 12, tracking: 0.5)
-    static let sectionLabelStrong = AppTextStyle(weight: .bold, size: 12, tracking: 0.5)
+    static let homeSubtitle = AppTextStyle(weight: .regular, size: 14, lineHeight: 23)
+    static let sectionLabel = AppTextStyle(weight: .medium, size: 12)
+    static let sectionLabelStrong = AppTextStyle(weight: .bold, size: 12, tracking: 0.6)
     static let input = AppTextStyle(weight: .regular, size: 16)
     static let rowTitle = AppTextStyle(weight: .medium, size: 16)
     static let rowSubtitle = AppTextStyle(weight: .regular, size: 12)
-    static let rewritesLabel = AppTextStyle(weight: .medium, size: 15)
-    static let chip = AppTextStyle(weight: .bold, size: 12, tracking: 0.4)
+    static let rewritesLabel = AppTextStyle(weight: .medium, size: 15, tracking: 0.25)
+    static let chip = AppTextStyle(weight: .bold, size: 12)
 
     // MARK: Shared
 

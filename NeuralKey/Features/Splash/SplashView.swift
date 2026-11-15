@@ -78,7 +78,7 @@ private struct SplashProgressView: View {
     let progress: Double
 
     var body: some View {
-        VStack(spacing: AppSpacing.s10) {
+        VStack(spacing: Layout.labelToBar) {
             HStack {
                 Text("Initializing Neural Network")
                     .textStyle(.caption)
@@ -104,6 +104,10 @@ private struct SplashProgressView: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("Initializing Neural Network"))
         .accessibilityValue(Text(progress, format: .percent.precision(.fractionLength(0))))
+    }
+
+    private enum Layout {
+        static let labelToBar: CGFloat = 9
     }
 }
 

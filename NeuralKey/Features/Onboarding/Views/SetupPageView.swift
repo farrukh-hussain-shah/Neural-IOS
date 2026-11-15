@@ -19,6 +19,11 @@ struct SetupPageView: View {
             }
             .padding(.top, AppSpacing.s32)
         }
+        .padding(.top, Layout.pageTopInset)
+    }
+
+    private enum Layout {
+        static let pageTopInset: CGFloat = 3
     }
 }
 
@@ -51,25 +56,35 @@ private struct SetupStepRow: View {
             Text(step.title)
                 .textStyle(isActive ? .stepTitle : .stepTitleInactive)
                 .foregroundStyle(isActive ? AppColor.textPrimary : AppColor.textMuted)
+                .offset(y: isActive ? Layout.activeTitleNudge : 0)
                 .frame(minHeight: AppSize.stepMarker, alignment: .leading)
                 .accessibilityAddTraits(isActive ? .isHeader : [])
 
             Text(step.detail)
                 .textStyle(isActive ? .body : .caption)
                 .foregroundStyle(isActive ? AppColor.textSecondary : AppColor.textTertiary)
-                .padding(.top, AppSpacing.s2)
+                .padding(.trailing, isActive ? -Layout.activeDetailOverhang : 0)
+                .padding(.top, isActive ? Layout.activeDetailSpacing : 0)
 
             if isActive, let toggleTitle = step.toggleTitle {
                 SetupToggleCard(title: toggleTitle)
-                    .padding(.top, AppSpacing.s16)
+                    .padding(.top, Layout.toggleCardSpacing)
             }
 
             if isActive, let note = step.note {
                 SetupNote(text: note)
-                    .padding(.top, AppSpacing.s14)
+                    .padding(.top, Layout.noteSpacing)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private enum Layout {
+        static let activeTitleNudge: CGFloat = 1.5
+        static let activeDetailSpacing: CGFloat = 1.5
+        static let activeDetailOverhang: CGFloat = 4
+        static let toggleCardSpacing: CGFloat = 16.5
+        static let noteSpacing: CGFloat = 13.5
     }
 }
 
@@ -118,11 +133,14 @@ private struct SetupToggleCard: View {
                 .foregroundStyle(AppColor.textPrimary)
         }
         .toggleStyle(.appSwitch(.standard))
-        .padding(.leading, AppSpacing.s18)
-        .padding(.trailing, AppSpacing.s16)
+        .padding(.horizontal, Layout.horizontalPadding)
         .frame(height: AppSize.toggleCardHeight)
         .background(RoundedRectangle(cornerRadius: AppRadius.xl).fill(AppColor.selectedSurface))
         .overlay(RoundedRectangle(cornerRadius: AppRadius.xl).strokeBorder(AppColor.primary, lineWidth: 1))
+    }
+
+    private enum Layout {
+        static let horizontalPadding: CGFloat = 17
     }
 }
 

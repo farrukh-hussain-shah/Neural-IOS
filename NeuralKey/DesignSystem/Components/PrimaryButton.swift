@@ -20,11 +20,8 @@ struct PrimaryButton: View {
             .foregroundStyle(AppColor.textPrimary)
             .frame(maxWidth: .infinity)
             .frame(height: AppSize.primaryButtonHeight)
-            .background {
-                RoundedRectangle(cornerRadius: AppRadius.lg)
-                    .fill(AppColor.primary)
-                    .appShadow(.primaryButton)
-            }
+            .background(RoundedRectangle(cornerRadius: AppRadius.lg).fill(AppColor.primary))
+            .appShadow(.primaryButton, in: RoundedRectangle(cornerRadius: AppRadius.lg))
         }
         .buttonStyle(.pressable)
     }

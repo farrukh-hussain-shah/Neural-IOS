@@ -36,7 +36,7 @@ private struct HomeRowLabel: View {
     let subtitle: LocalizedStringKey
 
     var body: some View {
-        HStack(spacing: AppSpacing.s12) {
+        HStack(spacing: RowLayout.iconToText) {
             IconTile(icon: icon, style: .setting)
             VStack(alignment: .leading, spacing: AppSpacing.s2) {
                 Text(title)
@@ -121,9 +121,14 @@ private struct RewritesFooter: View {
     }
 }
 
+private enum RowLayout {
+    static let horizontalPadding: CGFloat = 15
+    static let iconToText: CGFloat = 13
+}
+
 private extension View {
     func homeRowLayout() -> some View {
-        padding(.horizontal, AppSpacing.s16)
+        padding(.horizontal, RowLayout.horizontalPadding)
             .frame(height: AppSize.settingRowHeight)
     }
 }

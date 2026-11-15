@@ -12,18 +12,18 @@ struct OnboardingScaffold<Content: View, Footnote: View>: View {
             VStack(alignment: .leading, spacing: 0) {
                 PageIndicator(count: AppConfiguration.Onboarding.pageCount, currentIndex: pageIndex)
                     .accessibilityIdentifier(AccessibilityID.onboardingPageIndicator)
-                    .padding(.top, AppSpacing.s24)
+                    .padding(.top, Layout.indicatorTop)
 
                 ScrollView {
                     content
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top, AppSpacing.s28)
+                        .padding(.top, Layout.contentTop)
                         .padding(.bottom, AppSpacing.s24)
                 }
                 .scrollIndicators(.hidden)
                 .scrollBounceBehavior(.basedOnSize)
 
-                VStack(spacing: AppSpacing.s12) {
+                VStack(spacing: Layout.footnoteToButton) {
                     footnote
                         .textStyle(.caption)
                         .foregroundStyle(AppColor.textSecondary)
@@ -38,6 +38,12 @@ struct OnboardingScaffold<Content: View, Footnote: View>: View {
         }
         .background { OnboardingBackground() }
     }
+}
+
+private enum Layout {
+    static let indicatorTop: CGFloat = 25
+    static let contentTop: CGFloat = 26
+    static let footnoteToButton: CGFloat = 13
 }
 
 struct OnboardingFootnoteView: View {

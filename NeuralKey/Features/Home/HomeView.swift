@@ -11,28 +11,31 @@ struct HomeView: View {
                     .padding(.top, AppSpacing.s20)
 
                 hero
-                    .padding(.horizontal, AppSpacing.s32)
-                    .padding(.top, AppSpacing.s40)
+                    .padding(.leading, Layout.heroLeading)
+                    .padding(.trailing, AppSpacing.screenHorizontal)
+                    .padding(.top, Layout.heroTop)
 
                 Text("TEST YOUR KEYBOARD")
                     .textStyle(.sectionLabel)
                     .foregroundStyle(AppColor.textSecondary)
-                    .padding(.horizontal, AppSpacing.s32)
-                    .padding(.top, AppSpacing.s20)
+                    .padding(.leading, Layout.testLabelLeading)
+                    .padding(.top, Layout.testLabelTop)
 
                 KeyboardTestField(text: $viewModel.testText)
-                    .padding(.horizontal, AppSpacing.screenHorizontal)
-                    .padding(.top, AppSpacing.s12)
+                    .padding(.leading, Layout.fieldLeading)
+                    .padding(.trailing, Layout.fieldTrailing)
+                    .padding(.top, Layout.fieldTop)
 
                 Text("TYPING & FEEDBACK")
                     .textStyle(.sectionLabelStrong)
                     .foregroundStyle(AppColor.textSubdued)
-                    .padding(.horizontal, AppSpacing.s28)
-                    .padding(.top, AppSpacing.s36)
+                    .padding(.leading, Layout.feedbackLabelLeading)
+                    .padding(.top, Layout.feedbackLabelTop)
 
                 HomeSettingsCard(viewModel: viewModel)
-                    .padding(.horizontal, AppSpacing.s16)
-                    .padding(.top, AppSpacing.s8)
+                    .padding(.leading, Layout.cardLeading)
+                    .padding(.trailing, Layout.cardTrailing)
+                    .padding(.top, Layout.cardTop)
             }
             .padding(.bottom, AppSpacing.s32)
         }
@@ -42,8 +45,24 @@ struct HomeView: View {
         .background { HomeBackground() }
     }
 
+    private enum Layout {
+        static let heroTop: CGFloat = 42.5
+        static let heroLeading: CGFloat = 31
+        static let heroSubtitleSpacing: CGFloat = 6
+        static let testLabelTop: CGFloat = 33
+        static let testLabelLeading: CGFloat = 35
+        static let fieldTop: CGFloat = 12.5
+        static let fieldLeading: CGFloat = 31
+        static let fieldTrailing: CGFloat = 17
+        static let feedbackLabelTop: CGFloat = 35
+        static let feedbackLabelLeading: CGFloat = 27
+        static let cardTop: CGFloat = 8.5
+        static let cardLeading: CGFloat = 23
+        static let cardTrailing: CGFloat = 9
+    }
+
     private var hero: some View {
-        VStack(alignment: .leading, spacing: AppSpacing.s8) {
+        VStack(alignment: .leading, spacing: Layout.heroSubtitleSpacing) {
             (Text("NeuralBoard ") + Text("AI").foregroundStyle(AppColor.royal))
                 .textStyle(.homeTitle)
                 .foregroundStyle(AppColor.textPrimary)
