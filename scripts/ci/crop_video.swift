@@ -49,7 +49,7 @@ func panelVisible(in image: CGImage) -> Bool {
         }
         guard drawn else { return false }
         let channels = pixel[0..<3].map(Int.init)
-        guard let low = channels.min(), let high = channels.max(), low >= 200, high <= 245, high - low <= 10 else {
+        guard let low = channels.min(), let high = channels.max(), low >= 185, high <= 250, high - low <= 16 else {
             return false
         }
     }
@@ -81,6 +81,7 @@ while time < duration {
 if let start = rangeStart {
     ranges.append(CMTimeRange(start: CMTime(seconds: start, preferredTimescale: 600), end: asset.duration))
 }
+print("Sampled \(Int(duration / step)) frames, keyboard visible in \(ranges.count) segments")
 guard !ranges.isEmpty else { fail("keyboard never visible in the recording") }
 
 let composition = AVMutableComposition()

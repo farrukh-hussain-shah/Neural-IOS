@@ -119,7 +119,7 @@ FINAL_VIDEO="$OUTPUT_DIR/video/simulator-flow.mp4"
 MAX_VIDEO_BYTES=$((90 * 1024 * 1024))
 
 compress_video() {
-  if [[ -n "$VIDEO_CROP_RATIO" ]] && xcrun swift "$(dirname "$0")/crop_video.swift" "$RAW_VIDEO" "$FINAL_VIDEO" "$VIDEO_CROP_RATIO" \
+  if [[ -n "$VIDEO_CROP_RATIO" ]] && xcrun swift "$(dirname "$0")/crop_video.swift" "$RAW_VIDEO" "$FINAL_VIDEO" "$VIDEO_CROP_RATIO" > "$OUTPUT_DIR/logs/video-crop.log" 2>&1 \
     && [[ -s "$FINAL_VIDEO" ]] && [[ "$(stat -f%z "$FINAL_VIDEO")" -le "$MAX_VIDEO_BYTES" ]]; then
     rm -f "$RAW_VIDEO"
     return
