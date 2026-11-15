@@ -19,7 +19,15 @@ struct SplashView: View {
         }
         .background { SplashBackground() }
         .ignoresSafeArea()
-        .task { await runLoading() }
+        .task {
+            #if DEBUG
+            if let frozenProgress = LaunchOverrides.frozenSplashProgress {
+                progress = frozenProgress
+                return
+            }
+            #endif
+            await runLoading()
+        }
     }
 
     private var brand: some View {
@@ -41,6 +49,7 @@ struct SplashView: View {
                 .padding(.top, AppSpacing.s6)
         }
         .accessibilityElement(children: .combine)
+        .accessibilityIdentifier(AccessibilityID.splashBrand)
     }
 
     private func runLoading() async {

@@ -8,3 +8,5 @@ build/
 *.ipa
 *.dSYM.zip
 *.dSYM
+.build/
+simulator-captures/

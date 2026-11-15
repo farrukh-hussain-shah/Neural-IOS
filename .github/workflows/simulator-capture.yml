@@ -1,0 +1,78 @@
+name: Simulator Capture
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: simulator-capture-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+env:
+  XCODE_VERSION: "16.4"
+  PROJECT: NeuralKey.xcodeproj
+  SCHEME: NeuralKey
+  OUTPUT_DIR: ${{ github.workspace }}/simulator-captures
+  CAPTURES_BRANCH: simulator-captures
+
+jobs:
+  capture:
+    name: Run on simulator, record and compare
+    runs-on: macos-15
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Select Xcode ${{ env.XCODE_VERSION }}
+        run: sudo xcode-select --switch "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
+
+      - name: Run UI tests on simulator and record video
+        id: capture
+        run: bash scripts/ci/run_simulator_capture.sh
+
+      - name: Compare screenshots with designs
+        if: always()
+        run: |
+          python3 -m venv "$RUNNER_TEMP/venv"
+          "$RUNNER_TEMP/venv/bin/pip" install --quiet pillow
+          "$RUNNER_TEMP/venv/bin/python" scripts/ci/compare_screens.py --design DesignReference --output "$OUTPUT_DIR"
+          cat "$OUTPUT_DIR/README.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Report failures as annotations
+        if: failure()
+        run: |
+          grep -hE "error:|\*\* (BUILD|TEST)[A-Z -]* FAILED|Test Case .* failed|XCTAssert|Testing failed" \
+            "$OUTPUT_DIR"/logs/*.log 2>/dev/null | head -10 | while IFS= read -r line; do
+            line="${line//'%'/%25}"
+            echo "::error::${line}"
+          done
+
+      - name: Upload captures
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: simulator-captures
+          path: ${{ env.OUTPUT_DIR }}
+          if-no-files-found: warn
+
+      - name: Publish captures to branch
+        if: always() && github.event_name != 'pull_request' && hashFiles('simulator-captures/README.md') != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd "$OUTPUT_DIR"
+          rm -rf TestResults.xcresult
+          git init -q -b "$CAPTURES_BRANCH"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Simulator captures for ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${CAPTURES_BRANCH}"
+          echo "Captures: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${CAPTURES_BRANCH}" >> "$GITHUB_STEP_SUMMARY"

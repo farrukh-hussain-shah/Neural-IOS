@@ -14,6 +14,7 @@ struct PrimaryButton: View {
                     Image(trailingIcon)
                         .resizable()
                         .frame(width: AppSize.Icon.medium, height: AppSize.Icon.medium)
+                        .accessibilityHidden(true)
                 }
             }
             .foregroundStyle(AppColor.textPrimary)

@@ -11,6 +11,7 @@ struct OnboardingScaffold<Content: View, Footnote: View>: View {
         GeometryReader { proxy in
             VStack(alignment: .leading, spacing: 0) {
                 PageIndicator(count: AppConfiguration.Onboarding.pageCount, currentIndex: pageIndex)
+                    .accessibilityIdentifier(AccessibilityID.onboardingPageIndicator)
                     .padding(.top, AppSpacing.s24)
 
                 ScrollView {
@@ -29,6 +30,7 @@ struct OnboardingScaffold<Content: View, Footnote: View>: View {
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity)
                     PrimaryButton(title: action.title, trailingIcon: action.icon, action: onAction)
+                        .accessibilityIdentifier(AccessibilityID.onboardingPrimaryAction)
                 }
                 .padding(.bottom, proxy.safeAreaInsets.bottom > 0 ? 0 : AppSpacing.s16)
             }

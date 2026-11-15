@@ -48,6 +48,7 @@ struct HomeView: View {
                 .textStyle(.homeTitle)
                 .foregroundStyle(AppColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
+                .accessibilityIdentifier(AccessibilityID.homeTitle)
             Text("Smart Typing. AI Powered.\nPerfectly Personalized.")
                 .textStyle(.homeSubtitle)
                 .foregroundStyle(AppColor.textSecondary)
