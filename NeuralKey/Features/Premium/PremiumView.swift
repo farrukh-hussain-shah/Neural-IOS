@@ -10,30 +10,34 @@ struct PremiumView: View {
 
     var body: some View {
         GeometryReader { proxy in
-            let screenHeight = proxy.size.height + proxy.safeAreaInsets.bottom
+            let safeAreaTop = proxy.safeAreaInsets.top
+            let heightBelowSafeTop = proxy.size.height + proxy.safeAreaInsets.bottom
 
             ZStack(alignment: .topTrailing) {
-                PremiumBackground(topInsetDelta: proxy.safeAreaInsets.top - Layout.designSafeAreaTop)
+                PremiumBackground()
 
-                if screenHeight >= Layout.minimumScreenHeight {
-                    screen
-                        .frame(height: screenHeight, alignment: .top)
+                if heightBelowSafeTop + safeAreaTop >= Layout.minimumScreenHeight {
+                    screen(safeAreaTop: safeAreaTop)
+                        .frame(height: heightBelowSafeTop, alignment: .top)
                 } else {
                     ScrollView {
-                        screen
+                        screen(safeAreaTop: safeAreaTop)
                     }
                     .scrollIndicators(.hidden)
                 }
 
-                closeButton
+                closeButton(safeAreaTop: safeAreaTop)
             }
         }
     }
 
-    private var screen: some View {
+    private func screen(safeAreaTop: CGFloat) -> some View {
         VStack(spacing: 0) {
             header
-                .padding(.top, Layout.titleTop)
+                .padding(
+                    .top,
+                    AppScale.safeAreaAlignedTop(Layout.titleDesignTop, safeAreaTop: safeAreaTop, reference: .premium)
+                )
 
             PremiumRewardedAdButton(title: content.rewardedAdTitle, subtitle: content.rewardedAdSubtitle)
                 .padding(.top, Layout.subtitleToAdButton)
@@ -114,11 +118,15 @@ struct PremiumView: View {
         }
     }
 
-    private var closeButton: some View {
-        Button(action: onClose) {
+    private func closeButton(safeAreaTop: CGFloat) -> some View {
+        let top = max(
+            AppScale.safeAreaAlignedTop(Layout.closeDesignTop, safeAreaTop: safeAreaTop, reference: .premium),
+            Layout.closeMinimumTop
+        )
+        return Button(action: onClose) {
             Image(.close)
                 .resizable()
-                .frame(width: AppSize.Icon.regular, height: AppSize.Icon.regular)
+                .frame(width: Layout.closeIconSize, height: Layout.closeIconSize)
                 .foregroundStyle(AppColor.textPrimary)
                 .frame(width: Layout.closeSize, height: Layout.closeSize)
                 .background(RoundedRectangle(cornerRadius: Layout.closeCornerRadius).fill(AppColor.premiumSurface))
@@ -128,40 +136,41 @@ struct PremiumView: View {
         .buttonStyle(.pressable)
         .accessibilityLabel(Text("Close"))
         .accessibilityIdentifier(AccessibilityID.premiumClose)
-        .padding(.top, Layout.closeTop - Layout.closeHitSlop)
+        .padding(.top, top - Layout.closeHitSlop)
         .padding(.trailing, Layout.closeTrailing - Layout.closeHitSlop)
     }
 
     private enum Layout {
-        static let designSafeAreaTop: CGFloat = 44
-        static let minimumScreenHeight: CGFloat = 761
+        static let minimumScreenHeight: CGFloat = 805.premiumScaled
 
-        static let closeTop: CGFloat = 6
-        static let closeTrailing: CGFloat = 16
-        static let closeSize: CGFloat = 24
-        static let closeCornerRadius: CGFloat = 5
-        static let closeHitSlop: CGFloat = 10
+        static let closeDesignTop: CGFloat = 50
+        static let closeMinimumTop: CGFloat = 6.premiumScaled
+        static let closeTrailing: CGFloat = 16.premiumScaled
+        static let closeSize: CGFloat = 24.premiumScaled
+        static let closeIconSize: CGFloat = 20.premiumScaled
+        static let closeCornerRadius: CGFloat = 5.premiumScaled
+        static let closeHitSlop: CGFloat = 10.premiumScaled
 
-        static let titleTop: CGFloat = 214.3
-        static let titleToSubtitle: CGFloat = 3.2
-        static let sparklesSize = CGSize(width: 21, height: 21.5)
-        static let sparklesGap: CGFloat = 1.4
-        static let sparklesRise: CGFloat = 1.3
+        static let titleDesignTop: CGFloat = 258.3
+        static let titleToSubtitle: CGFloat = 3.2.premiumScaled
+        static let sparklesSize = CGSize(width: 21.premiumScaled, height: 21.5.premiumScaled)
+        static let sparklesGap: CGFloat = 1.4.premiumScaled
+        static let sparklesRise: CGFloat = 1.3.premiumScaled
 
-        static let subtitleToAdButton: CGFloat = 16.4
-        static let adButtonToFeatures: CGFloat = 20
-        static let featuresLeading: CGFloat = 17
-        static let featuresTrailing: CGFloat = 13
-        static let featuresToPlans: CGFloat = 39
-        static let plansHorizontal: CGFloat = 18
-        static let planSpacing: CGFloat = 13.5
-        static let plansToRenewalNote: CGFloat = 16.8
+        static let subtitleToAdButton: CGFloat = 16.4.premiumScaled
+        static let adButtonToFeatures: CGFloat = 20.premiumScaled
+        static let featuresLeading: CGFloat = 17.premiumScaled
+        static let featuresTrailing: CGFloat = 13.premiumScaled
+        static let featuresToPlans: CGFloat = 39.premiumScaled
+        static let plansHorizontal: CGFloat = 18.premiumScaled
+        static let planSpacing: CGFloat = 13.5.premiumScaled
+        static let plansToRenewalNote: CGFloat = 16.8.premiumScaled
 
-        static let minimumMiddleSpacing: CGFloat = 16
-        static let disclaimerToSubscribe: CGFloat = 18.8
-        static let subscribeHorizontal: CGFloat = 16
-        static let subscribeToLinks: CGFloat = 20.4
-        static let linksBottom: CGFloat = 14.7
+        static let minimumMiddleSpacing: CGFloat = 16.premiumScaled
+        static let disclaimerToSubscribe: CGFloat = 18.8.premiumScaled
+        static let subscribeHorizontal: CGFloat = 16.premiumScaled
+        static let subscribeToLinks: CGFloat = 20.4.premiumScaled
+        static let linksBottom: CGFloat = 14.7.premiumScaled
     }
 }
 

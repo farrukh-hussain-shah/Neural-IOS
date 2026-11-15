@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct PremiumBackground: View {
-    let topInsetDelta: CGFloat
-
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .topLeading) {
@@ -11,21 +9,21 @@ struct PremiumBackground: View {
                 ForEach(Glow.all) { glow in
                     Ellipse()
                         .fill(AppColor.premiumGlow)
-                        .frame(width: glow.size.width, height: glow.size.height)
-                        .blur(radius: glow.blur)
+                        .frame(width: glow.size.width.premiumScaled, height: glow.size.height.premiumScaled)
+                        .blur(radius: glow.blur.premiumScaled)
                         .opacity(glow.opacity)
                         .position(
-                            x: proxy.size.width / 2 + glow.center.x - Layout.designCenterX,
-                            y: glow.center.y + topInsetDelta
+                            x: proxy.size.width / 2 + (glow.center.x - Layout.designCenterX).premiumScaled,
+                            y: glow.center.y.premiumScaled
                         )
                 }
 
                 Image(AppImage.premiumNetwork)
                     .resizable()
                     .scaledToFill()
-                    .frame(width: proxy.size.width, height: Layout.networkHeight)
+                    .frame(width: Layout.networkSide, height: Layout.networkSide)
                     .clipped()
-                    .offset(x: Layout.networkOrigin.x, y: Layout.networkOrigin.y + topInsetDelta)
+                    .offset(x: Layout.networkOrigin.x, y: Layout.networkOrigin.y)
 
                 scrim
             }
@@ -38,7 +36,7 @@ struct PremiumBackground: View {
         VStack(spacing: 0) {
             AppColor.premiumBackground
                 .opacity(Layout.scrimBaseOpacity)
-                .frame(height: max(Layout.scrimFadeStart + topInsetDelta, 0))
+                .frame(height: Layout.scrimFadeStart)
             LinearGradient(
                 stops: [
                     .init(color: AppColor.premiumBackground.opacity(Layout.scrimBaseOpacity), location: 0),
@@ -56,11 +54,11 @@ struct PremiumBackground: View {
 
     private enum Layout {
         static let designCenterX: CGFloat = 187.5
-        static let networkOrigin = CGPoint(x: -2, y: 4)
-        static let networkHeight: CGFloat = 375
+        static let networkOrigin = CGPoint(x: (-2).premiumScaled, y: 4.premiumScaled)
+        static let networkSide: CGFloat = 375.premiumScaled
         static let scrimBaseOpacity: Double = 0.6
-        static let scrimFadeStart: CGFloat = 351.8
-        static let scrimFadeLength: CGFloat = 103.5
+        static let scrimFadeStart: CGFloat = 351.8.premiumScaled
+        static let scrimFadeLength: CGFloat = 103.5.premiumScaled
     }
 
     private struct Glow: Identifiable {

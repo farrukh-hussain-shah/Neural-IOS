@@ -23,7 +23,7 @@ struct SetupPageView: View {
     }
 
     private enum Layout {
-        static let pageTopInset: CGFloat = 3
+        static let pageTopInset: CGFloat = 3.scaled
     }
 }
 
@@ -84,13 +84,13 @@ private struct SetupStepRow: View {
     }
 
     private enum Layout {
-        static let rowSpacing: CGFloat = 26
-        static let completedRowSpacing: CGFloat = 25.3
-        static let activeTitleNudge: CGFloat = 1.5
-        static let activeDetailSpacing: CGFloat = 1.5
-        static let activeDetailOverhang: CGFloat = 4
-        static let toggleCardSpacing: CGFloat = 16.5
-        static let noteSpacing: CGFloat = 13.5
+        static let rowSpacing: CGFloat = 26.scaled
+        static let completedRowSpacing: CGFloat = 25.3.scaled
+        static let activeTitleNudge: CGFloat = 1.5.scaled
+        static let activeDetailSpacing: CGFloat = 1.5.scaled
+        static let activeDetailOverhang: CGFloat = 4.scaled
+        static let toggleCardSpacing: CGFloat = 16.5.scaled
+        static let noteSpacing: CGFloat = 13.5.scaled
     }
 }
 
@@ -146,7 +146,7 @@ private struct SetupToggleCard: View {
     }
 
     private enum Layout {
-        static let horizontalPadding: CGFloat = 17
+        static let horizontalPadding: CGFloat = 17.scaled
     }
 }
 

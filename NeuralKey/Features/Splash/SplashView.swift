@@ -101,7 +101,7 @@ private struct SplashProgressView: View {
     }
 
     private enum Layout {
-        static let labelToBar: CGFloat = 9
+        static let labelToBar: CGFloat = 9.scaled
     }
 }
 

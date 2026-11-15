@@ -97,17 +97,17 @@ struct PremiumPlanCard: View {
     private static let selectionHighlightID = "premium.selectionHighlight"
 
     private enum Layout {
-        static let height: CGFloat = 113
-        static let titleTop: CGFloat = 11.5
-        static let titleToDivider: CGFloat = 11.9
-        static let dividerThickness: CGFloat = 0.5
-        static let dividerInset: CGFloat = 12
-        static let dividerToPrice: CGFloat = 11.75
-        static let priceInset: CGFloat = 13
-        static let priceHeight: CGFloat = 26
-        static let priceToSavings: CGFloat = 12.6
-        static let radioTop: CGFloat = 8.3
-        static let radioTrailing: CGFloat = 8.1
+        static let height: CGFloat = 113.premiumScaled
+        static let titleTop: CGFloat = 11.5.premiumScaled
+        static let titleToDivider: CGFloat = 11.9.premiumScaled
+        static let dividerThickness: CGFloat = 0.5.premiumScaled
+        static let dividerInset: CGFloat = 12.premiumScaled
+        static let dividerToPrice: CGFloat = 11.75.premiumScaled
+        static let priceInset: CGFloat = 13.premiumScaled
+        static let priceHeight: CGFloat = 26.premiumScaled
+        static let priceToSavings: CGFloat = 12.6.premiumScaled
+        static let radioTop: CGFloat = 8.3.premiumScaled
+        static let radioTrailing: CGFloat = 8.1.premiumScaled
     }
 }
 
@@ -129,14 +129,14 @@ private struct PremiumRadio: View {
     }
 
     private enum Layout {
-        static let diameter: CGFloat = 12.5
-        static let ringWidth: CGFloat = 1.25
-        static let dotDiameter: CGFloat = 7.5
+        static let diameter: CGFloat = 12.5.premiumScaled
+        static let ringWidth: CGFloat = 1.25.premiumScaled
+        static let dotDiameter: CGFloat = 7.5.premiumScaled
     }
 }
 
 private struct PremiumBadge: View {
-    static let height: CGFloat = 18
+    static let height: CGFloat = 18.premiumScaled
 
     let title: LocalizedStringKey
 
@@ -149,6 +149,6 @@ private struct PremiumBadge: View {
     }
 
     private enum Layout {
-        static let width: CGFloat = 54
+        static let width: CGFloat = 54.premiumScaled
     }
 }

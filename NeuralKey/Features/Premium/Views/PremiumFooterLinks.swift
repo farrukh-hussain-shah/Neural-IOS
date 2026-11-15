@@ -41,11 +41,11 @@ struct PremiumFooterLinks: View {
     }
 
     private enum Layout {
-        static let separatorSize = CGSize(width: 1, height: 7)
-        static let separatorNudge: CGFloat = 1.1
-        static let firstSeparatorLeading: CGFloat = 6
-        static let firstSeparatorTrailing: CGFloat = 1.4
-        static let secondSeparatorLeading: CGFloat = 5.4
-        static let secondSeparatorTrailing: CGFloat = 3
+        static let separatorSize = CGSize(width: 1.premiumScaled, height: 7.premiumScaled)
+        static let separatorNudge: CGFloat = 1.1.premiumScaled
+        static let firstSeparatorLeading: CGFloat = 6.premiumScaled
+        static let firstSeparatorTrailing: CGFloat = 1.4.premiumScaled
+        static let secondSeparatorLeading: CGFloat = 5.4.premiumScaled
+        static let secondSeparatorTrailing: CGFloat = 3.premiumScaled
     }
 }

@@ -6,11 +6,18 @@ struct HomeView: View {
     @State private var viewModel = HomeViewModel()
 
     var body: some View {
+        GeometryReader { proxy in
+            content(safeAreaTop: proxy.safeAreaInsets.top)
+        }
+        .background { HomeBackground() }
+    }
+
+    private func content(safeAreaTop: CGFloat) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 HomeHeader(onPremium: onPremium)
                     .padding(.horizontal, AppSpacing.screenHorizontal)
-                    .padding(.top, AppSpacing.s20)
+                    .padding(.top, AppScale.safeAreaAlignedTop(Layout.headerDesignTop, safeAreaTop: safeAreaTop))
 
                 hero
                     .padding(.leading, Layout.heroLeading)
@@ -44,23 +51,23 @@ struct HomeView: View {
         .scrollIndicators(.hidden)
         .scrollBounceBehavior(.basedOnSize)
         .scrollDismissesKeyboard(.interactively)
-        .background { HomeBackground() }
     }
 
     private enum Layout {
-        static let heroTop: CGFloat = 42.5
-        static let heroLeading: CGFloat = 31
-        static let heroSubtitleSpacing: CGFloat = 6
-        static let testLabelTop: CGFloat = 33
-        static let testLabelLeading: CGFloat = 35
-        static let fieldTop: CGFloat = 12.5
-        static let fieldLeading: CGFloat = 31
-        static let fieldTrailing: CGFloat = 17
-        static let feedbackLabelTop: CGFloat = 35
-        static let feedbackLabelLeading: CGFloat = 27
-        static let cardTop: CGFloat = 8.5
-        static let cardLeading: CGFloat = 23
-        static let cardTrailing: CGFloat = 9
+        static let headerDesignTop: CGFloat = AppScale.designStatusBarHeight + 20
+        static let heroTop: CGFloat = 42.5.scaled
+        static let heroLeading: CGFloat = 31.scaled
+        static let heroSubtitleSpacing: CGFloat = 6.scaled
+        static let testLabelTop: CGFloat = 33.scaled
+        static let testLabelLeading: CGFloat = 35.scaled
+        static let fieldTop: CGFloat = 12.5.scaled
+        static let fieldLeading: CGFloat = 31.scaled
+        static let fieldTrailing: CGFloat = 17.scaled
+        static let feedbackLabelTop: CGFloat = 35.scaled
+        static let feedbackLabelLeading: CGFloat = 27.scaled
+        static let cardTop: CGFloat = 8.5.scaled
+        static let cardLeading: CGFloat = 23.scaled
+        static let cardTrailing: CGFloat = 9.scaled
     }
 
     private var hero: some View {
@@ -91,11 +98,11 @@ private struct HomeBackground: View {
     }
 
     private enum Layout {
-        static let glowSize = CGSize(width: 273, height: 477.5)
-        static let glowOffset = CGSize(width: -78, height: -191)
-        static let glowCornerRadius: CGFloat = 136.5
+        static let glowSize = CGSize(width: 273.scaled, height: 477.5.scaled)
+        static let glowOffset = CGSize(width: (-78).scaled, height: (-191).scaled)
+        static let glowCornerRadius: CGFloat = 136.5.scaled
         static let glowOpacity: Double = 0.19
-        static let glowBlur: CGFloat = 50
+        static let glowBlur: CGFloat = 50.scaled
     }
 }
 

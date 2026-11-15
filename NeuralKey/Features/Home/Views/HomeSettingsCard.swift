@@ -122,9 +122,9 @@ private struct RewritesFooter: View {
 }
 
 private enum RowLayout {
-    static let horizontalPadding: CGFloat = 15
-    static let iconToText: CGFloat = 12
-    static let chipHorizontalPadding: CGFloat = 17.6
+    static let horizontalPadding: CGFloat = 15.scaled
+    static let iconToText: CGFloat = 12.scaled
+    static let chipHorizontalPadding: CGFloat = 17.6.scaled
 }
 
 private extension View {

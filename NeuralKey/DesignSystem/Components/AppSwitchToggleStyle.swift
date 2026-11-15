@@ -11,16 +11,16 @@ struct AppSwitchToggleStyle: ToggleStyle {
         var knobInset: CGFloat { (trackSize.height - knobDiameter) / 2 }
 
         static let standard = Metrics(
-            trackSize: CGSize(width: 48, height: 28),
-            knobDiameter: 24,
+            trackSize: CGSize(width: 48.scaled, height: 28.scaled),
+            knobDiameter: 24.scaled,
             onColor: AppColor.primary,
             offColor: AppColor.indicatorInactive,
             knobBorderWhenOff: nil
         )
 
         static let compact = Metrics(
-            trackSize: CGSize(width: 44, height: 24),
-            knobDiameter: 19,
+            trackSize: CGSize(width: 44.scaled, height: 24.scaled),
+            knobDiameter: 19.scaled,
             onColor: AppColor.azure,
             offColor: AppColor.switchTrackOff,
             knobBorderWhenOff: AppColor.switchKnobBorder

@@ -47,13 +47,15 @@ struct AppTextStyle {
         weight: AppFontWeight,
         size: CGFloat,
         lineHeight: CGFloat? = nil,
-        tracking: CGFloat = 0
+        tracking: CGFloat = 0,
+        reference: AppScale.Reference = .standard
     ) {
+        let scale = AppScale.scaleFactor(for: reference)
         self.family = family
         self.weight = weight
-        self.size = size
-        self.lineHeight = lineHeight
-        self.tracking = tracking
+        self.size = size * scale
+        self.lineHeight = lineHeight.map { $0 * scale }
+        self.tracking = tracking * scale
     }
 
     var uiFont: UIFont {
@@ -116,21 +118,21 @@ extension AppTextStyle {
 
     // MARK: Premium
 
-    static let premiumTitle = AppTextStyle(weight: .bold, size: 26)
-    static let premiumSubtitle = AppTextStyle(weight: .regular, size: 14, tracking: -0.6)
-    static let premiumAdTitle = AppTextStyle(family: .system, weight: .bold, size: 13)
-    static let premiumAdSubtitle = AppTextStyle(family: .system, weight: .regular, size: 8.5)
-    static let premiumFeature = AppTextStyle(weight: .medium, size: 10, tracking: -0.55)
-    static let premiumBadge = AppTextStyle(weight: .regular, size: 8, tracking: 0.3)
-    static let premiumPlanTitle = AppTextStyle(family: .system, weight: .semibold, size: 12)
-    static let premiumPlanPrice = AppTextStyle(family: .system, weight: .medium, size: 11)
-    static let premiumPlanPriceSelected = AppTextStyle(family: .system, weight: .semibold, size: 11)
-    static let premiumPlanUnit = AppTextStyle(family: .system, weight: .regular, size: 8)
-    static let premiumPlanSaving = AppTextStyle(family: .system, weight: .medium, size: 10)
-    static let premiumFinePrint = AppTextStyle(family: .system, weight: .light, size: 9.5)
-    static let premiumDisclaimer = AppTextStyle(weight: .regular, size: 11, lineHeight: 16)
-    static let premiumButton = AppTextStyle(weight: .semibold, size: 16, tracking: -0.65)
-    static let premiumLink = AppTextStyle(family: .system, weight: .regular, size: 10)
+    static let premiumTitle = AppTextStyle(weight: .bold, size: 26, reference: .premium)
+    static let premiumSubtitle = AppTextStyle(weight: .regular, size: 14, tracking: -0.6, reference: .premium)
+    static let premiumAdTitle = AppTextStyle(family: .system, weight: .bold, size: 13, reference: .premium)
+    static let premiumAdSubtitle = AppTextStyle(family: .system, weight: .regular, size: 8.5, reference: .premium)
+    static let premiumFeature = AppTextStyle(weight: .medium, size: 10, tracking: -0.55, reference: .premium)
+    static let premiumBadge = AppTextStyle(weight: .regular, size: 8, tracking: 0.3, reference: .premium)
+    static let premiumPlanTitle = AppTextStyle(family: .system, weight: .semibold, size: 12, reference: .premium)
+    static let premiumPlanPrice = AppTextStyle(family: .system, weight: .medium, size: 11, reference: .premium)
+    static let premiumPlanPriceSelected = AppTextStyle(family: .system, weight: .semibold, size: 11, reference: .premium)
+    static let premiumPlanUnit = AppTextStyle(family: .system, weight: .regular, size: 8, reference: .premium)
+    static let premiumPlanSaving = AppTextStyle(family: .system, weight: .medium, size: 10, reference: .premium)
+    static let premiumFinePrint = AppTextStyle(family: .system, weight: .light, size: 9.5, reference: .premium)
+    static let premiumDisclaimer = AppTextStyle(weight: .regular, size: 11, lineHeight: 16, reference: .premium)
+    static let premiumButton = AppTextStyle(weight: .semibold, size: 16, tracking: -0.65, reference: .premium)
+    static let premiumLink = AppTextStyle(family: .system, weight: .regular, size: 10, reference: .premium)
 
     // MARK: Shared
 

@@ -13,7 +13,7 @@ struct OnboardingScaffold<Content: View, Footnote: View>: View {
             VStack(alignment: .leading, spacing: 0) {
                 PageIndicator(count: pageCount, currentIndex: pageIndex)
                     .accessibilityIdentifier(AccessibilityID.onboardingPageIndicator)
-                    .padding(.top, Layout.indicatorTop)
+                    .padding(.top, AppScale.safeAreaAlignedTop(Layout.indicatorDesignTop, safeAreaTop: proxy.safeAreaInsets.top))
                     .padding(.horizontal, AppSpacing.screenHorizontal)
 
                 ZStack(alignment: .topLeading) {
@@ -55,9 +55,9 @@ struct OnboardingScaffold<Content: View, Footnote: View>: View {
 }
 
 private enum Layout {
-    static let indicatorTop: CGFloat = 25
-    static let contentTop: CGFloat = 26
-    static let footnoteToButton: CGFloat = 13
+    static let indicatorDesignTop: CGFloat = AppScale.designStatusBarHeight + 25
+    static let contentTop: CGFloat = 26.scaled
+    static let footnoteToButton: CGFloat = 13.scaled
 }
 
 struct OnboardingFootnoteView: View {

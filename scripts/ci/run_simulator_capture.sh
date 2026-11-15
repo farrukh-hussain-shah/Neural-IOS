@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Builds the app, boots a 390x844 pt iPhone simulator (the design frame size), runs the
+# Builds the app, boots an iPhone Pro Max simulator (newest available model first), runs the
 # screen-capture UI tests while recording the simulator screen, and collects screenshots,
 # video, logs and the .xcresult bundle into $OUTPUT_DIR.
 set -euo pipefail
@@ -8,7 +8,7 @@ PROJECT="${PROJECT:-NeuralKey.xcodeproj}"
 SCHEME="${SCHEME:-NeuralKey}"
 OUTPUT_DIR="${OUTPUT_DIR:-$PWD/simulator-captures}"
 DERIVED_DATA="${DERIVED_DATA:-$PWD/.build/DerivedData}"
-PREFERRED_DEVICES="${PREFERRED_DEVICES:-iPhone 16e,iPhone 14,iPhone 13}"
+PREFERRED_DEVICES="${PREFERRED_DEVICES:-iPhone 18 Pro Max,iPhone 17 Pro Max,iPhone 16 Pro Max}"
 
 mkdir -p "$OUTPUT_DIR/screenshots" "$OUTPUT_DIR/video" "$OUTPUT_DIR/logs"
 rm -rf "$OUTPUT_DIR/TestResults.xcresult"

@@ -22,7 +22,7 @@ struct WelcomePageView: View {
     }
 
     private enum Layout {
-        static let messageTop: CGFloat = 13
+        static let messageTop: CGFloat = 13.scaled
     }
 }
 
@@ -50,6 +50,6 @@ private struct FeatureCard: View {
     }
 
     private enum Layout {
-        static let horizontalPadding: CGFloat = 17
+        static let horizontalPadding: CGFloat = 17.scaled
     }
 }
