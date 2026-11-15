@@ -24,6 +24,7 @@ enum AppImage: String {
     case premiumNetwork = "PremiumNetwork"
     case premiumSparkles = "PremiumSparkles"
     case premiumFeatureBullet = "PremiumFeatureBullet"
+    case ditherNoise = "DitherNoise"
 }
 
 extension Image {

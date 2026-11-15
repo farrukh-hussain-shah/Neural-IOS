@@ -11,12 +11,14 @@ struct HomeSettingsCard: View {
                 subtitle: "Allow full access in settings",
                 isOn: $viewModel.isKeyboardEnabled
             )
+            HomeRowDivider()
             HomeToggleRow(
                 icon: .keyboard,
                 title: "Allow Full Access",
                 subtitle: "Allow full access in settings",
                 isOn: $viewModel.isFullAccessAllowed
             )
+            HomeRowDivider()
             HomeNavigationRow(
                 icon: .globe,
                 title: "Select Keyboard",
@@ -27,6 +29,16 @@ struct HomeSettingsCard: View {
         .background(AppColor.groupedSurface)
         .clipShape(RoundedRectangle(cornerRadius: AppRadius.md))
         .overlay(RoundedRectangle(cornerRadius: AppRadius.md).strokeBorder(AppColor.groupedBorder, lineWidth: 1))
+    }
+}
+
+private struct HomeRowDivider: View {
+    var body: some View {
+        Rectangle()
+            .fill(AppColor.groupedDivider)
+            .frame(height: RowLayout.dividerThickness)
+            .padding(.horizontal, RowLayout.horizontalPadding)
+            .accessibilityHidden(true)
     }
 }
 
@@ -125,6 +137,7 @@ private enum RowLayout {
     static let horizontalPadding: CGFloat = 15.scaled
     static let iconToText: CGFloat = 12.scaled
     static let chipHorizontalPadding: CGFloat = 17.6.scaled
+    static let dividerThickness: CGFloat = 0.5
 }
 
 private extension View {

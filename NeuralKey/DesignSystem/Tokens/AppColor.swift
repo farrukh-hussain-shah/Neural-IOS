@@ -44,6 +44,7 @@ enum AppColor {
     static let controlSurface = Color(hex: 0x1E1F24)
     static let groupedSurface = Color.white.opacity(0.05)
     static let groupedBorder = Color.white.opacity(0.05)
+    static let groupedDivider = Color.white.opacity(0.08)
     static let groupedFooter = Color(hex: 0x1A202C, opacity: 0.6)
     static let tintedTile = Color(hex: 0x06B6D4, opacity: 0.1)
     static let progressTrack = Color(hex: 0x1C2331)
@@ -87,6 +88,22 @@ enum AppGradient {
         startPoint: .leading,
         endPoint: .trailing
     )
+
+    static func smoothFalloff(
+        _ color: Color,
+        peakOpacity: Double,
+        endLocation: CGFloat,
+        steps: Int = 16
+    ) -> [Gradient.Stop] {
+        (0...steps).map { step in
+            let progress = Double(step) / Double(steps)
+            let falloff = (1 - progress) * (1 - progress) * (1 + 2 * progress)
+            return Gradient.Stop(
+                color: color.opacity(peakOpacity * falloff),
+                location: endLocation * CGFloat(progress)
+            )
+        }
+    }
 }
 
 extension Color {

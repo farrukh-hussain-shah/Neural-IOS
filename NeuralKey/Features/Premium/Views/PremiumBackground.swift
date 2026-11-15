@@ -27,6 +27,7 @@ struct PremiumBackground: View {
 
                 scrim
             }
+            .dithered()
         }
         .ignoresSafeArea()
         .accessibilityHidden(true)

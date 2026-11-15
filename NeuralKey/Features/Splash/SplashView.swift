@@ -109,22 +109,26 @@ private struct SplashBackground: View {
     var body: some View {
         GeometryReader { proxy in
             RadialGradient(
-                stops: [
-                    .init(color: AppColor.primary.opacity(0.26), location: 0),
-                    .init(color: AppColor.primary.opacity(0), location: 0.72)
-                ],
+                stops: AppGradient.smoothFalloff(
+                    AppColor.primary,
+                    peakOpacity: Layout.glowOpacity,
+                    endLocation: Layout.glowFadeEnd
+                ),
                 center: Layout.glowCenter,
                 startRadius: 0,
                 endRadius: proxy.size.width * Layout.glowRadiusRatio
             )
         }
         .background(AppColor.splashBackground)
+        .dithered()
         .ignoresSafeArea()
     }
 
     private enum Layout {
         static let glowCenter = UnitPoint(x: 0.5, y: 362.92 / 844)
         static let glowRadiusRatio: CGFloat = 300 / 390
+        static let glowOpacity: Double = 0.26
+        static let glowFadeEnd: CGFloat = 0.72
     }
 }
 

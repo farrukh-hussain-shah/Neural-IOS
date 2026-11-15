@@ -80,21 +80,20 @@ private struct OnboardingBackground: View {
     var body: some View {
         GeometryReader { proxy in
             RadialGradient(
-                stops: [
-                    .init(color: AppColor.onboardingGlow, location: 0),
-                    .init(color: AppColor.onboardingBackground, location: 0.75)
-                ],
+                stops: AppGradient.smoothFalloff(AppColor.onboardingGlow, peakOpacity: 1, endLocation: Layout.glowFadeEnd),
                 center: Layout.glowCenter,
                 startRadius: 0,
                 endRadius: proxy.size.width * Layout.glowRadiusRatio
             )
         }
         .background(AppColor.onboardingBackground)
+        .dithered()
         .ignoresSafeArea()
     }
 
     private enum Layout {
         static let glowCenter = UnitPoint(x: 331.5 / 390, y: 0)
         static let glowRadiusRatio: CGFloat = 351 / 390
+        static let glowFadeEnd: CGFloat = 0.75
     }
 }
