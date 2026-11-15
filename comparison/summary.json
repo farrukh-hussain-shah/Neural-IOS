@@ -1,0 +1,30 @@
+[
+  {
+    "key": "13-keyboard-letters",
+    "title": "Keyboard \u2013 Letters",
+    "status": "compared",
+    "mismatch": 2.88,
+    "note": "simulator 1320x1136 resized to 1206x1038"
+  },
+  {
+    "key": "14-keyboard-numbers",
+    "title": "Keyboard \u2013 Numbers",
+    "status": "compared",
+    "mismatch": 2.69,
+    "note": "simulator 1320x1005 resized to 1206x918"
+  },
+  {
+    "key": "15-keyboard-go",
+    "title": "Keyboard \u2013 Go key",
+    "status": "compared",
+    "mismatch": 2.51,
+    "note": "simulator 1320x1005 resized to 1206x918"
+  },
+  {
+    "key": "16-keyboard-phone",
+    "title": "Keyboard \u2013 Number pad",
+    "status": "compared",
+    "mismatch": 2.98,
+    "note": "simulator 1320x1018 resized to 1206x930"
+  }
+]

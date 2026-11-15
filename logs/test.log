@@ -1,0 +1,364 @@
+Command line invocation:
+    /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/xcodebuild test-without-building -project NeuralKey.xcodeproj -scheme NeuralKey -configuration Debug -destination id=88E17E8C-A3E1-4FA6-AC58-7726FF026B4C -derivedDataPath /Users/runner/work/Neural-IOS/Neural-IOS/.build/DerivedData -resultBundlePath /Users/runner/work/Neural-IOS/Neural-IOS/simulator-captures/TestResults.xcresult -parallel-testing-enabled NO "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test06InAppKeyboard" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test07KeyboardDesignStates" CODE_SIGNING_ALLOWED=NO
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+Writing result bundle at path:
+	/Users/runner/work/Neural-IOS/Neural-IOS/simulator-captures/TestResults.xcresult
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:88E17E8C-A3E1-4FA6-AC58-7726FF026B4C, OS:26.2, name:NeuralKey Capture }
+{ platform:iOS Simulator, arch:x86_64, id:88E17E8C-A3E1-4FA6-AC58-7726FF026B4C, OS:26.2, name:NeuralKey Capture }
+2026-11-15 21:05:40.212788+0000 NeuralKeyUITests-Runner[8609:29265] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-15 21:05:40.241824+0000 NeuralKeyUITests-Runner[8609:29265] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-11-15 21:05:48.540.
+Test Suite 'NeuralKeyUITests.xctest' started at 2026-11-15 21:05:48.541.
+Test Suite 'ScreenCaptureTests' started at 2026-11-15 21:05:48.541.
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test06InAppKeyboard]' started.
+    t =     0.00s Start Test at 2026-11-15 21:05:48.541
+    t =     0.54s Set Up
+    t =     0.54s Open com.neuralkey.app
+    t =     0.54s     Launch com.neuralkey.app
+    t =     9.67s         Setting up automation session
+    t =     9.76s         Wait for com.neuralkey.app to idle
+    t =    12.17s Waiting 15.0s for "home.testField" TextField to exist
+    t =    13.18s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =    13.18s         Checking existence of `"home.testField" TextField`
+    t =    13.43s Tap "home.testField" TextField
+    t =    13.43s     Wait for com.neuralkey.app to idle
+    t =    13.43s     Find the "home.testField" TextField
+    t =    13.49s     Check for interrupting elements affecting "home.testField" TextField
+    t =    13.58s     Synthesize event
+    t =    14.03s     Wait for com.neuralkey.app to idle
+    t =    15.71s Waiting 10.0s for "keyboard.key.q" Any to exist
+    t =    16.72s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    16.72s         Checking existence of `"keyboard.key.q" Any`
+    t =    16.93s Find the "keyboard.key.q" Any
+    t =    17.01s Tap "keyboard.key.h" Any
+    t =    17.01s     Wait for com.neuralkey.app to idle
+    t =    17.04s     Find the "keyboard.key.h" Any
+    t =    17.12s     Check for interrupting elements affecting "keyboard.key.h" Key
+    t =    17.25s     Synthesize event
+    t =    17.55s     Wait for com.neuralkey.app to idle
+    t =    17.56s Tap "keyboard.key.e" Any
+    t =    17.56s     Wait for com.neuralkey.app to idle
+    t =    17.60s     Find the "keyboard.key.e" Any
+    t =    17.76s     Check for interrupting elements affecting "keyboard.key.e" Key
+    t =    17.90s     Synthesize event
+    t =    18.23s     Wait for com.neuralkey.app to idle
+    t =    18.24s Tap "keyboard.key.l" Any
+    t =    18.24s     Wait for com.neuralkey.app to idle
+    t =    18.24s     Find the "keyboard.key.l" Any
+    t =    18.44s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    18.57s     Synthesize event
+    t =    18.91s     Wait for com.neuralkey.app to idle
+    t =    18.91s Tap "keyboard.key.l" Any
+    t =    18.91s     Wait for com.neuralkey.app to idle
+    t =    18.93s     Find the "keyboard.key.l" Any
+    t =    19.10s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    19.24s     Synthesize event
+    t =    19.77s     Wait for com.neuralkey.app to idle
+    t =    19.77s Tap "keyboard.key.o" Any
+    t =    19.77s     Wait for com.neuralkey.app to idle
+    t =    19.84s     Find the "keyboard.key.o" Any
+    t =    20.82s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    21.05s     Synthesize event
+    t =    21.41s     Wait for com.neuralkey.app to idle
+    t =    21.44s Find the "home.testField" TextField
+    t =    21.90s Find the "keyboard.suggestion.0" Button
+    t =    22.42s Tap "keyboard.suggestion.0" Button
+    t =    22.42s     Wait for com.neuralkey.app to idle
+    t =    22.43s     Find the "keyboard.suggestion.0" Button
+    t =    23.17s     Check for interrupting elements affecting "keyboard.suggestion.0" Button
+    t =    23.48s     Synthesize event
+    t =    23.83s     Wait for com.neuralkey.app to idle
+    t =    23.84s Find the "home.testField" TextField
+    t =    24.42s Tap "keyboard.key.w" Any
+    t =    24.42s     Wait for com.neuralkey.app to idle
+    t =    24.45s     Find the "keyboard.key.w" Any
+    t =    27.00s     Check for interrupting elements affecting "keyboard.key.w" Key
+    t =    29.60s     Synthesize event
+    t =    30.45s     Wait for com.neuralkey.app to idle
+    t =    30.46s Tap "keyboard.key.o" Any
+    t =    30.46s     Wait for com.neuralkey.app to idle
+    t =    30.86s     Find the "keyboard.key.o" Any
+    t =    32.70s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    35.02s     Synthesize event
+    t =    35.51s     Wait for com.neuralkey.app to idle
+    t =    35.52s Tap "keyboard.key.r" Any
+    t =    35.52s     Wait for com.neuralkey.app to idle
+    t =    35.54s     Find the "keyboard.key.r" Any
+    t =    37.53s     Check for interrupting elements affecting "keyboard.key.r" Key
+    t =    38.94s     Synthesize event
+    t =    39.51s     Wait for com.neuralkey.app to idle
+    t =    39.62s Tap "keyboard.key.l" Any
+    t =    39.62s     Wait for com.neuralkey.app to idle
+    t =    39.63s     Find the "keyboard.key.l" Any
+    t =    40.83s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    41.16s     Synthesize event
+    t =    41.57s     Wait for com.neuralkey.app to idle
+    t =    41.57s Tap "keyboard.key.delete" Any
+    t =    41.57s     Wait for com.neuralkey.app to idle
+    t =    41.58s     Find the "keyboard.key.delete" Any
+    t =    42.00s     Check for interrupting elements affecting "keyboard.key.delete" Key
+    t =    42.54s     Synthesize event
+    t =    43.01s     Wait for com.neuralkey.app to idle
+    t =    43.01s Find the "home.testField" TextField
+    t =    43.34s Tap "keyboard.key.shift" Any
+    t =    43.34s     Wait for com.neuralkey.app to idle
+    t =    43.34s     Find the "keyboard.key.shift" Any
+    t =    43.80s     Check for interrupting elements affecting "keyboard.key.shift" Key
+    t =    43.99s     Synthesize event
+    t =    44.37s     Wait for com.neuralkey.app to idle
+    t =    44.38s Find the "keyboard.key.l" Any
+    t =    44.54s Tap "keyboard.key.l" Any
+    t =    44.54s     Wait for com.neuralkey.app to idle
+    t =    44.56s     Find the "keyboard.key.l" Any
+    t =    44.69s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    44.86s     Synthesize event
+    t =    45.23s     Wait for com.neuralkey.app to idle
+    t =    45.25s Find the "keyboard.key.d" Any
+    t =    45.46s Tap "keyboard.key.d" Any
+    t =    45.46s     Wait for com.neuralkey.app to idle
+    t =    45.47s     Find the "keyboard.key.d" Any
+    t =    46.31s     Check for interrupting elements affecting "keyboard.key.d" Key
+    t =    46.86s     Synthesize event
+    t =    47.21s     Wait for com.neuralkey.app to idle
+    t =    47.21s Find the "home.testField" TextField
+    t =    47.51s Double tap "keyboard.key.shift" Any
+    t =    47.51s     Wait for com.neuralkey.app to idle
+    t =    47.51s     Find the "keyboard.key.shift" Any
+    t =    48.17s     Check for interrupting elements affecting "keyboard.key.shift" Key
+    t =    48.36s     Synthesize event
+    t =    48.79s     Wait for com.neuralkey.app to idle
+    t =    48.80s Tap "keyboard.key.a" Any
+    t =    48.80s     Wait for com.neuralkey.app to idle
+    t =    48.83s     Find the "keyboard.key.a" Any
+    t =    49.15s     Check for interrupting elements affecting "keyboard.key.a" Key
+    t =    49.45s     Synthesize event
+    t =    49.78s     Wait for com.neuralkey.app to idle
+    t =    49.78s Tap "keyboard.key.b" Any
+    t =    49.78s     Wait for com.neuralkey.app to idle
+    t =    49.79s     Find the "keyboard.key.b" Any
+    t =    49.93s     Check for interrupting elements affecting "keyboard.key.b" Key
+    t =    50.06s     Synthesize event
+    t =    50.41s     Wait for com.neuralkey.app to idle
+    t =    50.42s Find the "home.testField" TextField
+    t =    50.56s Tap "keyboard.key.shift" Any
+    t =    50.56s     Wait for com.neuralkey.app to idle
+    t =    50.57s     Find the "keyboard.key.shift" Any
+    t =    50.73s     Check for interrupting elements affecting "keyboard.key.shift" Key
+    t =    50.98s     Synthesize event
+    t =    51.32s     Wait for com.neuralkey.app to idle
+    t =    51.33s Find the "keyboard.key.c" Any
+    t =    51.56s Tap "keyboard.key.layer.123" Any
+    t =    51.56s     Wait for com.neuralkey.app to idle
+    t =    51.57s     Find the "keyboard.key.layer.123" Any
+    t =    51.84s     Check for interrupting elements affecting "keyboard.key.layer.123" Key
+    t =    52.03s     Synthesize event
+    t =    52.44s     Wait for com.neuralkey.app to idle
+    t =    52.44s Waiting 10.0s for "keyboard.key.1" Any to exist
+    t =    53.46s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.1" Any`
+    t =    53.46s         Checking existence of `"keyboard.key.1" Any`
+    t =    53.63s Tap "keyboard.key.7" Any
+    t =    53.63s     Wait for com.neuralkey.app to idle
+    t =    53.64s     Find the "keyboard.key.7" Any
+    t =    53.78s     Check for interrupting elements affecting "keyboard.key.7" Key
+    t =    53.98s     Synthesize event
+    t =    54.31s     Wait for com.neuralkey.app to idle
+    t =    54.33s Tap "keyboard.key.layer.#+=" Any
+    t =    54.33s     Wait for com.neuralkey.app to idle
+    t =    54.42s     Find the "keyboard.key.layer.#+=" Any
+    t =    54.56s     Check for interrupting elements affecting "keyboard.key.layer.#+=" Key
+    t =    54.66s     Synthesize event
+    t =    55.02s     Wait for com.neuralkey.app to idle
+    t =    55.04s Waiting 10.0s for "keyboard.key.[" Any to exist
+    t =    56.09s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.[" Any`
+    t =    56.09s         Checking existence of `"keyboard.key.[" Any`
+    t =    58.22s Added attachment named '18-keyboard-symbols'
+    t =    58.23s Tap "keyboard.key.#" Any
+    t =    58.23s     Wait for com.neuralkey.app to idle
+    t =    58.24s     Find the "keyboard.key.#" Any
+    t =    58.45s     Check for interrupting elements affecting "keyboard.key.#" Key
+    t =    58.64s     Synthesize event
+    t =    58.99s     Wait for com.neuralkey.app to idle
+    t =    59.00s Tap "keyboard.key.space" Any
+    t =    59.00s     Wait for com.neuralkey.app to idle
+    t =    59.00s     Find the "keyboard.key.space" Any
+    t =    59.15s     Check for interrupting elements affecting "keyboard.key.space" Key
+    t =    59.27s     Synthesize event
+    t =    59.61s     Wait for com.neuralkey.app to idle
+    t =    59.61s Waiting 10.0s for "keyboard.key.q" Any to exist
+    t =    60.65s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    60.65s         Checking existence of `"keyboard.key.q" Any`
+    t =    60.78s Find the "home.testField" TextField
+    t =    60.89s Tap "keyboard.key.o" Any
+    t =    60.89s     Wait for com.neuralkey.app to idle
+    t =    60.90s     Find the "keyboard.key.o" Any
+    t =    61.08s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    61.14s     Synthesize event
+    t =    61.49s     Wait for com.neuralkey.app to idle
+    t =    61.49s Tap "keyboard.key.k" Any
+    t =    61.49s     Wait for com.neuralkey.app to idle
+    t =    61.50s     Find the "keyboard.key.k" Any
+    t =    61.59s     Check for interrupting elements affecting "keyboard.key.k" Key
+    t =    61.73s     Synthesize event
+    t =    62.03s     Wait for com.neuralkey.app to idle
+    t =    62.04s Double tap "keyboard.key.space" Any
+    t =    62.04s     Wait for com.neuralkey.app to idle
+    t =    62.05s     Find the "keyboard.key.space" Any
+    t =    62.16s     Check for interrupting elements affecting "keyboard.key.space" Key
+    t =    62.22s     Synthesize event
+    t =    62.57s     Wait for com.neuralkey.app to idle
+    t =    62.57s Find the "home.testField" TextField
+    t =    62.64s Find the "keyboard.key.q" Any
+    t =    62.74s Press "keyboard.key.e" Any for 1.2 seconds
+    t =    62.74s     Wait for com.neuralkey.app to idle
+    t =    62.74s     Find the "keyboard.key.e" Any
+    t =    62.88s     Check for interrupting elements affecting "keyboard.key.e" Key
+    t =    62.97s     Synthesize event
+    t =    64.42s     Wait for com.neuralkey.app to idle
+    t =    64.42s Find the "home.testField" TextField
+    t =    64.52s Tap "keyboard.key.return" Any
+    t =    64.52s     Wait for com.neuralkey.app to idle
+    t =    64.52s     Find the "keyboard.key.return" Any
+    t =    64.60s     Check for interrupting elements affecting "keyboard.key.return" Key
+    t =    64.67s     Synthesize event
+    t =    64.96s     Wait for com.neuralkey.app to idle
+    t =    65.96s Checking `Expect predicate `exists == 0` for object "keyboard.key.q" Any`
+    t =    65.97s     Checking existence of `"keyboard.key.q" Any`
+    t =    66.08s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test06InAppKeyboard]' passed (66.800 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test07KeyboardDesignStates]' started.
+    t =     0.00s Start Test at 2026-11-15 21:06:55.343
+    t =     0.15s Set Up
+    t =     0.16s Open com.neuralkey.app
+    t =     0.16s     Launch com.neuralkey.app
+    t =     0.16s         Terminate com.neuralkey.app:9119
+    t =     3.48s         Setting up automation session
+    t =     6.66s         Wait for com.neuralkey.app to idle
+    t =     9.23s Waiting 15.0s for "home.testField" TextField to exist
+    t =    10.25s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =    10.26s         Checking existence of `"home.testField" TextField`
+    t =    10.54s Tap "home.testField" TextField
+    t =    10.54s     Wait for com.neuralkey.app to idle
+    t =    10.58s     Find the "home.testField" TextField
+    t =    10.66s     Check for interrupting elements affecting "home.testField" TextField
+    t =    10.71s     Synthesize event
+    t =    11.04s     Wait for com.neuralkey.app to idle
+    t =    11.69s Waiting 10.0s for "keyboard.key.delete" Any to exist
+    t =    12.72s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.delete" Any`
+    t =    12.72s         Checking existence of `"keyboard.key.delete" Any`
+    t =    14.63s Added attachment named '13-keyboard-letters'
+    t =    14.64s Terminate com.neuralkey.app:10592
+    t =    15.67s Open com.neuralkey.app
+    t =    15.67s     Launch com.neuralkey.app
+    t =    16.40s         Setting up automation session
+    t =    18.41s         Wait for com.neuralkey.app to idle
+    t =    20.45s Waiting 15.0s for "home.testField" TextField to exist
+    t =    21.45s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =    21.45s         Checking existence of `"home.testField" TextField`
+    t =    21.65s Tap "home.testField" TextField
+    t =    21.65s     Wait for com.neuralkey.app to idle
+    t =    21.66s     Find the "home.testField" TextField
+    t =    21.72s     Check for interrupting elements affecting "home.testField" TextField
+    t =    21.77s     Synthesize event
+    t =    22.09s     Wait for com.neuralkey.app to idle
+    t =    22.37s Waiting 10.0s for "keyboard.key.delete" Any to exist
+    t =    23.40s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.delete" Any`
+    t =    23.41s         Checking existence of `"keyboard.key.delete" Any`
+    t =    23.49s Tap "keyboard.key.layer.123" Any
+    t =    23.49s     Wait for com.neuralkey.app to idle
+    t =    23.49s     Find the "keyboard.key.layer.123" Any
+    t =    23.55s     Check for interrupting elements affecting "keyboard.key.layer.123" Key
+    t =    23.63s     Synthesize event
+    t =    23.93s     Wait for com.neuralkey.app to idle
+    t =    25.66s Added attachment named '14-keyboard-numbers'
+    t =    25.67s Terminate com.neuralkey.app:11013
+    t =    26.74s Open com.neuralkey.app
+    t =    26.74s     Launch com.neuralkey.app
+    t =    27.65s         Setting up automation session
+    t =    29.22s         Wait for com.neuralkey.app to idle
+    t =    31.05s Waiting 15.0s for "home.testField" TextField to exist
+    t =    32.05s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =    32.06s         Checking existence of `"home.testField" TextField`
+    t =    32.22s Tap "home.testField" TextField
+    t =    32.22s     Wait for com.neuralkey.app to idle
+    t =    32.23s     Find the "home.testField" TextField
+    t =    32.31s     Check for interrupting elements affecting "home.testField" TextField
+    t =    32.44s     Synthesize event
+    t =    32.81s     Wait for com.neuralkey.app to idle
+    t =    33.11s Waiting 10.0s for "keyboard.key.delete" Any to exist
+    t =    34.18s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.delete" Any`
+    t =    34.19s         Checking existence of `"keyboard.key.delete" Any`
+    t =    36.12s Added attachment named '15-keyboard-go'
+    t =    36.13s Terminate com.neuralkey.app:11274
+    t =    37.14s Open com.neuralkey.app
+    t =    37.14s     Launch com.neuralkey.app
+    t =    37.90s         Setting up automation session
+    t =    39.75s         Wait for com.neuralkey.app to idle
+    t =    41.55s Waiting 15.0s for "home.testField" TextField to exist
+    t =    42.58s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =    42.59s         Checking existence of `"home.testField" TextField`
+    t =    42.73s Tap "home.testField" TextField
+    t =    42.73s     Wait for com.neuralkey.app to idle
+    t =    42.74s     Find the "home.testField" TextField
+    t =    42.80s     Check for interrupting elements affecting "home.testField" TextField
+    t =    42.88s     Synthesize event
+    t =    43.18s     Wait for com.neuralkey.app to idle
+    t =    43.46s Waiting 10.0s for "keyboard.key.delete" Any to exist
+    t =    44.50s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.delete" Any`
+    t =    44.50s         Checking existence of `"keyboard.key.delete" Any`
+    t =    44.68s Tap "keyboard.key.5" Any
+    t =    44.68s     Wait for com.neuralkey.app to idle
+    t =    44.68s     Find the "keyboard.key.5" Any
+    t =    44.73s     Check for interrupting elements affecting "keyboard.key.5" Key
+    t =    44.79s     Synthesize event
+    t =    45.09s     Wait for com.neuralkey.app to idle
+    t =    45.10s Find the "home.testField" TextField
+    t =    45.15s Tap "keyboard.key.delete" Any
+    t =    45.15s     Wait for com.neuralkey.app to idle
+    t =    45.16s     Find the "keyboard.key.delete" Any
+    t =    45.23s     Check for interrupting elements affecting "keyboard.key.delete" Key
+    t =    45.30s     Synthesize event
+    t =    45.64s     Wait for com.neuralkey.app to idle
+    t =    47.52s Added attachment named '16-keyboard-phone'
+    t =    47.53s Terminate com.neuralkey.app:11547
+    t =    48.63s Open com.neuralkey.app
+    t =    48.63s     Launch com.neuralkey.app
+    t =    49.74s         Setting up automation session
+    t =    50.79s         Wait for com.neuralkey.app to idle
+    t =    52.47s Waiting 15.0s for "home.testField" TextField to exist
+    t =    53.51s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =    53.51s         Checking existence of `"home.testField" TextField`
+    t =    53.67s Tap "home.testField" TextField
+    t =    53.67s     Wait for com.neuralkey.app to idle
+    t =    53.68s     Find the "home.testField" TextField
+    t =    53.74s     Check for interrupting elements affecting "home.testField" TextField
+    t =    53.79s     Synthesize event
+    t =    54.18s     Wait for com.neuralkey.app to idle
+    t =    54.45s Waiting 10.0s for "keyboard.key.delete" Any to exist
+    t =    55.48s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.delete" Any`
+    t =    55.48s         Checking existence of `"keyboard.key.delete" Any`
+    t =    57.26s Added attachment named '17-keyboard-popup'
+    t =    57.26s Terminate com.neuralkey.app:11936
+    t =    58.29s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test07KeyboardDesignStates]' passed (58.713 seconds).
+Test Suite 'ScreenCaptureTests' passed at 2026-11-15 21:07:54.057.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 125.512 (125.516) seconds
+Test Suite 'NeuralKeyUITests.xctest' passed at 2026-11-15 21:07:54.058.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 125.512 (125.518) seconds
+Test Suite 'Selected tests' passed at 2026-11-15 21:07:54.059.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 125.512 (125.518) seconds
+2026-11-15 21:07:55.367 xcodebuild[7389:25855] [MT] IDETestOperationsObserverDebug: 176.398 elapsed -- Testing started completed.
+2026-11-15 21:07:55.367 xcodebuild[7389:25855] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-15 21:07:55.367 xcodebuild[7389:25855] [MT] IDETestOperationsObserverDebug: 176.398 sec, +176.398 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Neural-IOS/Neural-IOS/simulator-captures/TestResults.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

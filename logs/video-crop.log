@@ -1,0 +1,67 @@
+scripts/ci/crop_video.swift:19:39: warning: 'tracks(withMediaType:)' was deprecated in macOS 13.0: Use loadTracks(withMediaType:) instead
+ 17 | 
+ 18 |         let asset = AVURLAsset(url: input)
+ 19 |         guard let sourceTrack = asset.tracks(withMediaType: .video).first else {
+    |                                       `- warning: 'tracks(withMediaType:)' was deprecated in macOS 13.0: Use loadTracks(withMediaType:) instead
+ 20 |             return fail("no video track")
+ 21 |         }
+
+scripts/ci/crop_video.swift:22:32: warning: 'naturalSize' was deprecated in macOS 13.0: Use load(.naturalSize) instead
+ 20 |             return fail("no video track")
+ 21 |         }
+ 22 |         let size = sourceTrack.naturalSize.applying(sourceTrack.preferredTransform)
+    |                                `- warning: 'naturalSize' was deprecated in macOS 13.0: Use load(.naturalSize) instead
+ 23 |         let width = abs(size.width)
+ 24 |         let height = abs(size.height)
+
+scripts/ci/crop_video.swift:22:65: warning: 'preferredTransform' was deprecated in macOS 13.0: Use load(.preferredTransform) instead
+ 20 |             return fail("no video track")
+ 21 |         }
+ 22 |         let size = sourceTrack.naturalSize.applying(sourceTrack.preferredTransform)
+    |                                                                 `- warning: 'preferredTransform' was deprecated in macOS 13.0: Use load(.preferredTransform) instead
+ 23 |         let width = abs(size.width)
+ 24 |         let height = abs(size.height)
+
+scripts/ci/crop_video.swift:46:40: warning: 'preferredTransform' was deprecated in macOS 13.0: Use load(.preferredTransform) instead
+ 44 |         instruction.timeRange = CMTimeRange(start: .zero, duration: composition.duration)
+ 45 |         let layer = AVMutableVideoCompositionLayerInstruction(assetTrack: track)
+ 46 |         layer.setTransform(sourceTrack.preferredTransform.translatedBy(x: 0, y: -(height - cropHeight)), at: .zero)
+    |                                        `- warning: 'preferredTransform' was deprecated in macOS 13.0: Use load(.preferredTransform) instead
+ 47 |         instruction.layerInstructions = [layer]
+ 48 | 
+
+scripts/ci/crop_video.swift:62:16: warning: 'exportAsynchronously(completionHandler:)' was deprecated in macOS 15.0
+ 60 | 
+ 61 |         let done = DispatchSemaphore(value: 0)
+ 62 |         export.exportAsynchronously { done.signal() }
+    |                `- warning: 'exportAsynchronously(completionHandler:)' was deprecated in macOS 15.0
+ 63 |         done.wait()
+ 64 | 
+
+scripts/ci/crop_video.swift:65:22: warning: 'status' was deprecated in macOS 15.0: Use states(updateInterval:) instead
+ 63 |         done.wait()
+ 64 | 
+ 65 |         guard export.status == .completed else {
+    |                      `- warning: 'status' was deprecated in macOS 15.0: Use states(updateInterval:) instead
+ 66 |             return fail("export failed: \(String(describing: export.error))")
+ 67 |         }
+
+scripts/ci/crop_video.swift:66:69: warning: 'error' was deprecated in macOS 15.0: Use export(to:as:) async throws instead
+ 64 | 
+ 65 |         guard export.status == .completed else {
+ 66 |             return fail("export failed: \(String(describing: export.error))")
+    |                                                                     `- warning: 'error' was deprecated in macOS 15.0: Use export(to:as:) async throws instead
+ 67 |         }
+ 68 |         print("Keyboard video: \(Int(width))x\(Int(cropHeight)), \(String(format: "%.1f", CMTimeGetSeconds(cursor))) s")
+
+scripts/ci/crop_video.swift:79:47: warning: 'duration' was deprecated in macOS 13.0: Use load(.duration) instead
+ 77 |         generator.requestedTimeToleranceAfter = CMTime(value: 1, timescale: 10)
+ 78 | 
+ 79 |         let duration = CMTimeGetSeconds(asset.duration)
+    |                                               `- warning: 'duration' was deprecated in macOS 13.0: Use load(.duration) instead
+ 80 |         var ranges: [CMTimeRange] = []
+ 81 |         var rangeStart: Double?
+
+IOServiceMatchingfailed for: AppleM2ScalerParavirtDriver
+Keyboard visible in 6 segments
+Keyboard video: 1320x1136, 66.8 s
