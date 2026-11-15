@@ -49,8 +49,8 @@ struct KeyboardView: View {
             ZStack(alignment: .topLeading) {
                 Color.clear
                 if controller.configuration.showsSystemRow {
-                    systemIcon("face.smiling", label: "emoji", identifier: "keyboard.emoji", centerX: KeyboardMetrics.emojiCenterX, action: .emoji)
-                    systemIcon("mic", label: "dictation", identifier: "keyboard.dictation", centerX: KeyboardMetrics.micCenterX, action: .dictation)
+                    systemIcon(.keyboardEmoji, label: "emoji", identifier: "keyboard.emoji", centerX: KeyboardMetrics.emojiCenterX, action: .emoji)
+                    systemIcon(.keyboardMic, label: "dictation", identifier: "keyboard.dictation", centerX: KeyboardMetrics.micCenterX, action: .dictation)
                 }
             }
             .frame(height: KeyboardMetrics.bottomAreaHeight - KeyboardMetrics.rowSpacing / 2)
@@ -58,7 +58,7 @@ struct KeyboardView: View {
     }
 
     private func systemIcon(
-        _ name: String,
+        _ icon: AppIcon,
         label: String,
         identifier: String,
         centerX: CGFloat,
@@ -67,8 +67,9 @@ struct KeyboardView: View {
         Button {
             controller.perform(action)
         } label: {
-            Image(systemName: name)
-                .font(.system(size: KeyboardMetrics.systemIconSize))
+            Image(icon)
+                .resizable()
+                .frame(width: KeyboardMetrics.systemIconSize, height: KeyboardMetrics.systemIconSize)
                 .foregroundStyle(AppColor.keyboardSystemIcon)
                 .frame(width: KeyboardMetrics.systemIconSize * 1.8, height: KeyboardMetrics.systemIconSize * 1.8)
                 .contentShape(Rectangle())

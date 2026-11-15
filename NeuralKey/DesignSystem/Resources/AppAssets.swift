@@ -26,6 +26,8 @@ enum AppIcon: String {
     case sun = "IconSun"
     case arrowLeft = "IconArrowLeft"
     case checkCircle = "IconCheckCircle"
+    case keyboardEmoji = "IconKeyboardEmoji"
+    case keyboardMic = "IconKeyboardMic"
 }
 
 enum AppImage: String {

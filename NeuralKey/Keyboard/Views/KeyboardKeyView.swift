@@ -105,6 +105,15 @@ struct KeyboardKeyView: View {
             } else {
                 symbol("return.left", size: KeyboardMetrics.returnIconSize, color: AppColor.keyboardLabel)
             }
+        case .layer where isPhonePad && key.subtitle == "+*#":
+            HStack(spacing: KeyboardMetrics.phoneToggleSpacing) {
+                ForEach(["plus", "asterisk", "number"], id: \.self) { name in
+                    Image(systemName: name)
+                        .font(.system(size: KeyboardMetrics.phoneToggleIconSize, weight: .ultraLight))
+                }
+            }
+            .foregroundStyle(AppColor.keyboardLabel)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .layer:
             Text(key.subtitle ?? "")
                 .font(.system(
@@ -131,6 +140,7 @@ struct KeyboardKeyView: View {
             }
         }
         .foregroundStyle(AppColor.keyboardLabel)
+        .offset(y: KeyboardMetrics.phoneLabelNudge)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
