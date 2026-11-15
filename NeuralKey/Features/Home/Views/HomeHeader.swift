@@ -4,7 +4,6 @@ struct HomeHeader: View {
     var body: some View {
         HStack(spacing: 0) {
             AppLogo(size: AppSize.headerLogo, cornerRadius: AppRadius.xs)
-                .appShadow(.headerLogoGlow)
 
             Text(verbatim: "Neural Key")
                 .textStyle(.brandName)

@@ -88,7 +88,7 @@ extension AppTextStyle {
     static let input = AppTextStyle(weight: .regular, size: 16)
     static let rowTitle = AppTextStyle(weight: .medium, size: 16)
     static let rowSubtitle = AppTextStyle(weight: .regular, size: 12)
-    static let rewritesLabel = AppTextStyle(weight: .medium, size: 15, tracking: 0.25)
+    static let rewritesLabel = AppTextStyle(weight: .medium, size: 15, tracking: 0.36)
     static let chip = AppTextStyle(weight: .bold, size: 12)
 
     // MARK: Shared

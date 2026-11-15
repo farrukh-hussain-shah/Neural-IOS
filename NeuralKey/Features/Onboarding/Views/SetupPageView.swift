@@ -33,6 +33,10 @@ private struct SetupStepRow: View {
 
     private var isActive: Bool { step.status == .active }
 
+    private var rowSpacing: CGFloat {
+        step.status == .completed ? Layout.completedRowSpacing : Layout.rowSpacing
+    }
+
     var body: some View {
         HStack(alignment: .top, spacing: AppSpacing.s14) {
             VStack(spacing: AppSpacing.s6) {
@@ -46,7 +50,7 @@ private struct SetupStepRow: View {
             }
 
             details
-                .padding(.bottom, isLast ? 0 : AppSpacing.s26)
+                .padding(.bottom, isLast ? 0 : rowSpacing)
         }
         .fixedSize(horizontal: false, vertical: true)
     }
@@ -80,6 +84,8 @@ private struct SetupStepRow: View {
     }
 
     private enum Layout {
+        static let rowSpacing: CGFloat = 26
+        static let completedRowSpacing: CGFloat = 25.3
         static let activeTitleNudge: CGFloat = 1.5
         static let activeDetailSpacing: CGFloat = 1.5
         static let activeDetailOverhang: CGFloat = 4

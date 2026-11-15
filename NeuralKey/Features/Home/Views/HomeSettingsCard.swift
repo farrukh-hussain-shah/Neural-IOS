@@ -108,7 +108,7 @@ private struct RewritesFooter: View {
                 Text("GET MORE")
                     .textStyle(.chip)
                     .foregroundStyle(AppColor.textOnAccent)
-                    .padding(.horizontal, AppSpacing.s18)
+                    .padding(.horizontal, RowLayout.chipHorizontalPadding)
                     .frame(height: AppSize.chipHeight)
                     .background(Capsule().fill(AppColor.royal))
                     .overlay(Capsule().strokeBorder(AppColor.chipBorder, lineWidth: 1))
@@ -123,7 +123,8 @@ private struct RewritesFooter: View {
 
 private enum RowLayout {
     static let horizontalPadding: CGFloat = 15
-    static let iconToText: CGFloat = 13
+    static let iconToText: CGFloat = 12
+    static let chipHorizontalPadding: CGFloat = 17.6
 }
 
 private extension View {

@@ -10,6 +10,7 @@ struct PrimaryButton: View {
             HStack(spacing: AppSpacing.s10) {
                 Text(title)
                     .textStyle(.button)
+                    .offset(y: Layout.titleBaselineNudge)
                 if let trailingIcon {
                     Image(trailingIcon)
                         .resizable()
@@ -21,9 +22,12 @@ struct PrimaryButton: View {
             .frame(maxWidth: .infinity)
             .frame(height: AppSize.primaryButtonHeight)
             .background(RoundedRectangle(cornerRadius: AppRadius.lg).fill(AppColor.primary))
-            .appShadow(.primaryButton, in: RoundedRectangle(cornerRadius: AppRadius.lg))
         }
         .buttonStyle(.pressable)
+    }
+
+    private enum Layout {
+        static let titleBaselineNudge: CGFloat = 1
     }
 }
 

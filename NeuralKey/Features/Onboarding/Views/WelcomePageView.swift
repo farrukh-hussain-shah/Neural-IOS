@@ -10,7 +10,7 @@ struct WelcomePageView: View {
             Text(content.message)
                 .textStyle(.bodyLarge)
                 .foregroundStyle(AppColor.textSecondary)
-                .padding(.top, AppSpacing.s12)
+                .padding(.top, Layout.messageTop)
 
             VStack(spacing: AppSpacing.s12) {
                 ForEach(content.features) { feature in
@@ -19,6 +19,10 @@ struct WelcomePageView: View {
             }
             .padding(.top, AppSpacing.s28)
         }
+    }
+
+    private enum Layout {
+        static let messageTop: CGFloat = 13
     }
 }
 

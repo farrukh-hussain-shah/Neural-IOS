@@ -33,12 +33,6 @@ struct SplashView: View {
     private var brand: some View {
         VStack(spacing: 0) {
             AppLogo(size: AppSize.splashLogo, cornerRadius: AppRadius.splashLogo)
-                .background {
-                    RoundedRectangle(cornerRadius: AppRadius.splashLogo)
-                        .fill(AppColor.splashBackground)
-                        .appShadow(.splashLogoGlow)
-                        .appShadow(.splashLogoDepth)
-                }
             Text(verbatim: AppConfiguration.displayName)
                 .textStyle(.splashTitle)
                 .foregroundStyle(AppColor.textPrimary)
