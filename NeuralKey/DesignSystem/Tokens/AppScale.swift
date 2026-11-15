@@ -3,12 +3,12 @@ import UIKit
 enum AppScale {
     enum Reference {
         case standard
-        case premium
+        case compact
 
         var width: CGFloat {
             switch self {
             case .standard: 390
-            case .premium: 375
+            case .compact: 375
             }
         }
     }
@@ -21,7 +21,7 @@ enum AppScale {
     }
 
     static let factor = scaleFactor(for: .standard)
-    static let premiumFactor = scaleFactor(for: .premium)
+    static let compactFactor = scaleFactor(for: .compact)
 
     static func scaleFactor(for reference: Reference) -> CGFloat {
         screenWidth / reference.width
@@ -34,10 +34,10 @@ enum AppScale {
 
 extension BinaryInteger {
     var scaled: CGFloat { CGFloat(self) * AppScale.factor }
-    var premiumScaled: CGFloat { CGFloat(self) * AppScale.premiumFactor }
+    var compactScaled: CGFloat { CGFloat(self) * AppScale.compactFactor }
 }
 
 extension BinaryFloatingPoint {
     var scaled: CGFloat { CGFloat(self) * AppScale.factor }
-    var premiumScaled: CGFloat { CGFloat(self) * AppScale.premiumFactor }
+    var compactScaled: CGFloat { CGFloat(self) * AppScale.compactFactor }
 }

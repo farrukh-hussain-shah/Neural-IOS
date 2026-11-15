@@ -14,11 +14,12 @@ from PIL import Image, ImageChops, ImageDraw, ImageFont
 
 SCREENS = [
     ("01-splash", "Splash", "768w light-3.svg"),
-    ("02-onboarding-welcome", "Onboarding 1 – Welcome", "390w light.svg"),
-    ("03-onboarding-add-keyboard", "Onboarding 2 – Setup 1 of 3", "768w light-1.svg"),
-    ("04-onboarding-full-access", "Onboarding 3 – Setup 2 of 3", "768w light-2.svg"),
-    ("05-home", "Home", "Home.svg"),
-    ("06-premium", "Premium", "Premium.svg"),
+    ("02-language", "Language Selection", "Language.svg"),
+    ("03-onboarding-welcome", "Onboarding 1 – Welcome", "390w light.svg"),
+    ("04-onboarding-add-keyboard", "Onboarding 2 – Setup 1 of 3", "768w light-1.svg"),
+    ("05-onboarding-full-access", "Onboarding 3 – Setup 2 of 3", "768w light-2.svg"),
+    ("06-home", "Home", "Home.svg"),
+    ("07-premium", "Premium", "Premium.svg"),
 ]
 
 POINT_SCALE = 3
@@ -133,7 +134,7 @@ def write_report(results, output_dir):
         f"- Mismatch = share of pixels whose colour differs by more than {PIXEL_THRESHOLD}/255, "
         f"excluding the status bar ({STATUS_BAR_POINTS} pt) and home indicator ({HOME_INDICATOR_POINTS} pt).",
         "- `Home.svg` has no status bar, so its reference is placed below the status bar.",
-        "- `Premium.svg` is a 375 × 812 pt frame, so its reference is scaled uniformly to the 390 pt simulator width.",
+        "- `Language.svg` and `Premium.svg` are 375 × 812 pt frames, so their references are scaled uniformly to 390 pt.",
         "",
         "| Screen | Design file | Mismatch | Note |",
         "| --- | --- | --- | --- |",

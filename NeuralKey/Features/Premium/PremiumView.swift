@@ -36,7 +36,7 @@ struct PremiumView: View {
             header
                 .padding(
                     .top,
-                    AppScale.safeAreaAlignedTop(Layout.titleDesignTop, safeAreaTop: safeAreaTop, reference: .premium)
+                    AppScale.safeAreaAlignedTop(Layout.titleDesignTop, safeAreaTop: safeAreaTop, reference: .compact)
                 )
 
             PremiumRewardedAdButton(title: content.rewardedAdTitle, subtitle: content.rewardedAdSubtitle)
@@ -120,7 +120,7 @@ struct PremiumView: View {
 
     private func closeButton(safeAreaTop: CGFloat) -> some View {
         let top = max(
-            AppScale.safeAreaAlignedTop(Layout.closeDesignTop, safeAreaTop: safeAreaTop, reference: .premium),
+            AppScale.safeAreaAlignedTop(Layout.closeDesignTop, safeAreaTop: safeAreaTop, reference: .compact),
             Layout.closeMinimumTop
         )
         return Button(action: onClose) {
@@ -141,36 +141,36 @@ struct PremiumView: View {
     }
 
     private enum Layout {
-        static let minimumScreenHeight: CGFloat = 805.premiumScaled
+        static let minimumScreenHeight: CGFloat = 805.compactScaled
 
         static let closeDesignTop: CGFloat = 50
-        static let closeMinimumTop: CGFloat = 6.premiumScaled
-        static let closeTrailing: CGFloat = 16.premiumScaled
-        static let closeSize: CGFloat = 24.premiumScaled
-        static let closeIconSize: CGFloat = 20.premiumScaled
-        static let closeCornerRadius: CGFloat = 5.premiumScaled
-        static let closeHitSlop: CGFloat = 10.premiumScaled
+        static let closeMinimumTop: CGFloat = 6.compactScaled
+        static let closeTrailing: CGFloat = 16.compactScaled
+        static let closeSize: CGFloat = 24.compactScaled
+        static let closeIconSize: CGFloat = 20.compactScaled
+        static let closeCornerRadius: CGFloat = 5.compactScaled
+        static let closeHitSlop: CGFloat = 10.compactScaled
 
         static let titleDesignTop: CGFloat = 258.3
-        static let titleToSubtitle: CGFloat = 3.2.premiumScaled
-        static let sparklesSize = CGSize(width: 21.premiumScaled, height: 21.5.premiumScaled)
-        static let sparklesGap: CGFloat = 1.4.premiumScaled
-        static let sparklesRise: CGFloat = 1.3.premiumScaled
+        static let titleToSubtitle: CGFloat = 3.2.compactScaled
+        static let sparklesSize = CGSize(width: 21.compactScaled, height: 21.5.compactScaled)
+        static let sparklesGap: CGFloat = 1.4.compactScaled
+        static let sparklesRise: CGFloat = 1.3.compactScaled
 
-        static let subtitleToAdButton: CGFloat = 16.4.premiumScaled
-        static let adButtonToFeatures: CGFloat = 20.premiumScaled
-        static let featuresLeading: CGFloat = 17.premiumScaled
-        static let featuresTrailing: CGFloat = 13.premiumScaled
-        static let featuresToPlans: CGFloat = 39.premiumScaled
-        static let plansHorizontal: CGFloat = 18.premiumScaled
-        static let planSpacing: CGFloat = 13.5.premiumScaled
-        static let plansToRenewalNote: CGFloat = 16.8.premiumScaled
+        static let subtitleToAdButton: CGFloat = 16.4.compactScaled
+        static let adButtonToFeatures: CGFloat = 20.compactScaled
+        static let featuresLeading: CGFloat = 17.compactScaled
+        static let featuresTrailing: CGFloat = 13.compactScaled
+        static let featuresToPlans: CGFloat = 39.compactScaled
+        static let plansHorizontal: CGFloat = 18.compactScaled
+        static let planSpacing: CGFloat = 13.5.compactScaled
+        static let plansToRenewalNote: CGFloat = 16.8.compactScaled
 
-        static let minimumMiddleSpacing: CGFloat = 16.premiumScaled
-        static let disclaimerToSubscribe: CGFloat = 18.8.premiumScaled
-        static let subscribeHorizontal: CGFloat = 16.premiumScaled
-        static let subscribeToLinks: CGFloat = 20.4.premiumScaled
-        static let linksBottom: CGFloat = 14.7.premiumScaled
+        static let minimumMiddleSpacing: CGFloat = 16.compactScaled
+        static let disclaimerToSubscribe: CGFloat = 18.8.compactScaled
+        static let subscribeHorizontal: CGFloat = 16.compactScaled
+        static let subscribeToLinks: CGFloat = 20.4.compactScaled
+        static let linksBottom: CGFloat = 14.7.compactScaled
     }
 }
 

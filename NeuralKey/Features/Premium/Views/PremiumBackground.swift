@@ -9,12 +9,12 @@ struct PremiumBackground: View {
                 ForEach(Glow.all) { glow in
                     Ellipse()
                         .fill(AppColor.premiumGlow)
-                        .frame(width: glow.size.width.premiumScaled, height: glow.size.height.premiumScaled)
-                        .blur(radius: glow.blur.premiumScaled)
+                        .frame(width: glow.size.width.compactScaled, height: glow.size.height.compactScaled)
+                        .blur(radius: glow.blur.compactScaled)
                         .opacity(glow.opacity)
                         .position(
-                            x: proxy.size.width / 2 + (glow.center.x - Layout.designCenterX).premiumScaled,
-                            y: glow.center.y.premiumScaled
+                            x: proxy.size.width / 2 + (glow.center.x - Layout.designCenterX).compactScaled,
+                            y: glow.center.y.compactScaled
                         )
                 }
 
@@ -55,11 +55,11 @@ struct PremiumBackground: View {
 
     private enum Layout {
         static let designCenterX: CGFloat = 187.5
-        static let networkOrigin = CGPoint(x: (-2).premiumScaled, y: 4.premiumScaled)
-        static let networkSide: CGFloat = 375.premiumScaled
+        static let networkOrigin = CGPoint(x: (-2).compactScaled, y: 4.compactScaled)
+        static let networkSide: CGFloat = 375.compactScaled
         static let scrimBaseOpacity: Double = 0.6
-        static let scrimFadeStart: CGFloat = 351.8.premiumScaled
-        static let scrimFadeLength: CGFloat = 103.5.premiumScaled
+        static let scrimFadeStart: CGFloat = 351.8.compactScaled
+        static let scrimFadeLength: CGFloat = 103.5.compactScaled
     }
 
     private struct Glow: Identifiable {

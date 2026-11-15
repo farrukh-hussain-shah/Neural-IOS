@@ -118,21 +118,36 @@ extension AppTextStyle {
 
     // MARK: Premium
 
-    static let premiumTitle = AppTextStyle(weight: .bold, size: 26, reference: .premium)
-    static let premiumSubtitle = AppTextStyle(weight: .regular, size: 14, tracking: -0.6, reference: .premium)
-    static let premiumAdTitle = AppTextStyle(family: .system, weight: .bold, size: 13, reference: .premium)
-    static let premiumAdSubtitle = AppTextStyle(family: .system, weight: .regular, size: 8.5, reference: .premium)
-    static let premiumFeature = AppTextStyle(weight: .medium, size: 10, tracking: -0.55, reference: .premium)
-    static let premiumBadge = AppTextStyle(weight: .regular, size: 8, tracking: 0.3, reference: .premium)
-    static let premiumPlanTitle = AppTextStyle(family: .system, weight: .semibold, size: 12, reference: .premium)
-    static let premiumPlanPrice = AppTextStyle(family: .system, weight: .medium, size: 11, reference: .premium)
-    static let premiumPlanPriceSelected = AppTextStyle(family: .system, weight: .semibold, size: 11, reference: .premium)
-    static let premiumPlanUnit = AppTextStyle(family: .system, weight: .regular, size: 8, reference: .premium)
-    static let premiumPlanSaving = AppTextStyle(family: .system, weight: .medium, size: 10, reference: .premium)
-    static let premiumFinePrint = AppTextStyle(family: .system, weight: .light, size: 9.5, reference: .premium)
-    static let premiumDisclaimer = AppTextStyle(weight: .regular, size: 11, lineHeight: 16, reference: .premium)
-    static let premiumButton = AppTextStyle(weight: .semibold, size: 16, tracking: -0.65, reference: .premium)
-    static let premiumLink = AppTextStyle(family: .system, weight: .regular, size: 10, reference: .premium)
+    static let premiumTitle = AppTextStyle(weight: .bold, size: 26, reference: .compact)
+    static let premiumSubtitle = AppTextStyle(weight: .regular, size: 14, tracking: -0.6, reference: .compact)
+    static let premiumAdTitle = AppTextStyle(family: .system, weight: .bold, size: 13, reference: .compact)
+    static let premiumAdSubtitle = AppTextStyle(family: .system, weight: .regular, size: 8.5, reference: .compact)
+    static let premiumFeature = AppTextStyle(weight: .medium, size: 10, tracking: -0.55, reference: .compact)
+    static let premiumBadge = AppTextStyle(weight: .regular, size: 8, tracking: 0.3, reference: .compact)
+    static let premiumPlanTitle = AppTextStyle(family: .system, weight: .semibold, size: 12, reference: .compact)
+    static let premiumPlanPrice = AppTextStyle(family: .system, weight: .medium, size: 11, reference: .compact)
+    static let premiumPlanPriceSelected = AppTextStyle(family: .system, weight: .semibold, size: 11, reference: .compact)
+    static let premiumPlanUnit = AppTextStyle(family: .system, weight: .regular, size: 8, reference: .compact)
+    static let premiumPlanSaving = AppTextStyle(family: .system, weight: .medium, size: 10, reference: .compact)
+    static let premiumFinePrint = AppTextStyle(family: .system, weight: .light, size: 9.5, reference: .compact)
+    static let premiumDisclaimer = AppTextStyle(weight: .regular, size: 11, lineHeight: 16, reference: .compact)
+    static let premiumButton = AppTextStyle(weight: .semibold, size: 16, tracking: -0.65, reference: .compact)
+    static let premiumLink = AppTextStyle(family: .system, weight: .regular, size: 10, reference: .compact)
+
+    // MARK: Language Selection
+
+    static let languageTitle = AppTextStyle(weight: .bold, size: 22, reference: .compact)
+    static let languageSubtitle = AppTextStyle(weight: .regular, size: 12, reference: .compact)
+    static let languageDone = AppTextStyle(weight: .semibold, size: 12, reference: .compact)
+    static let languageOptionTitle = AppTextStyle(weight: .medium, size: 14, reference: .compact)
+    static let languageOptionSubtitle = AppTextStyle(weight: .regular, size: 10, reference: .compact)
+
+    // MARK: Ads
+
+    static let adTitle = AppTextStyle(weight: .medium, size: 16, reference: .compact)
+    static let adSubtitle = AppTextStyle(weight: .regular, size: 12, reference: .compact)
+    static let adBadge = AppTextStyle(weight: .semibold, size: 8, reference: .compact)
+    static let adAction = AppTextStyle(weight: .semibold, size: 16, reference: .compact)
 
     // MARK: Shared
 

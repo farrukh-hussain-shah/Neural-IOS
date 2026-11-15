@@ -1,5 +1,7 @@
 enum AccessibilityID {
     static let splashBrand = "splash.brand"
+    static let languageTitle = "language.title"
+    static let languageDone = "language.done"
     static let onboardingPageIndicator = "onboarding.pageIndicator"
     static let onboardingPrimaryAction = "onboarding.primaryAction"
     static let homeTitle = "home.title"
@@ -10,5 +12,9 @@ enum AccessibilityID {
 
     static func premiumPlan(_ plan: PremiumPlan) -> String {
         "premium.plan.\(plan.rawValue)"
+    }
+
+    static func languageOption(_ language: AppLanguage) -> String {
+        "language.option.\(language.rawValue)"
     }
 }

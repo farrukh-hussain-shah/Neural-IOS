@@ -25,6 +25,14 @@ enum AppImage: String {
     case premiumSparkles = "PremiumSparkles"
     case premiumFeatureBullet = "PremiumFeatureBullet"
     case ditherNoise = "DitherNoise"
+    case flagEnglish = "FlagEnglish"
+    case flagSpanish = "FlagSpanish"
+    case flagPortuguese = "FlagPortuguese"
+    case flagRussian = "FlagRussian"
+    case flagArabic = "FlagArabic"
+    case flagChinese = "FlagChinese"
+    case flagHindi = "FlagHindi"
+    case adSampleLogo = "AdSampleLogo"
 }
 
 extension Image {

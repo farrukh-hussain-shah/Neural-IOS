@@ -97,17 +97,17 @@ struct PremiumPlanCard: View {
     private static let selectionHighlightID = "premium.selectionHighlight"
 
     private enum Layout {
-        static let height: CGFloat = 113.premiumScaled
-        static let titleTop: CGFloat = 11.5.premiumScaled
-        static let titleToDivider: CGFloat = 11.9.premiumScaled
-        static let dividerThickness: CGFloat = 0.5.premiumScaled
-        static let dividerInset: CGFloat = 12.premiumScaled
-        static let dividerToPrice: CGFloat = 11.75.premiumScaled
-        static let priceInset: CGFloat = 13.premiumScaled
-        static let priceHeight: CGFloat = 26.premiumScaled
-        static let priceToSavings: CGFloat = 12.6.premiumScaled
-        static let radioTop: CGFloat = 8.3.premiumScaled
-        static let radioTrailing: CGFloat = 8.1.premiumScaled
+        static let height: CGFloat = 113.compactScaled
+        static let titleTop: CGFloat = 11.5.compactScaled
+        static let titleToDivider: CGFloat = 11.9.compactScaled
+        static let dividerThickness: CGFloat = 0.5.compactScaled
+        static let dividerInset: CGFloat = 12.compactScaled
+        static let dividerToPrice: CGFloat = 11.75.compactScaled
+        static let priceInset: CGFloat = 13.compactScaled
+        static let priceHeight: CGFloat = 26.compactScaled
+        static let priceToSavings: CGFloat = 12.6.compactScaled
+        static let radioTop: CGFloat = 8.3.compactScaled
+        static let radioTrailing: CGFloat = 8.1.compactScaled
     }
 }
 
@@ -129,14 +129,14 @@ private struct PremiumRadio: View {
     }
 
     private enum Layout {
-        static let diameter: CGFloat = 12.5.premiumScaled
-        static let ringWidth: CGFloat = 1.25.premiumScaled
-        static let dotDiameter: CGFloat = 7.5.premiumScaled
+        static let diameter: CGFloat = 12.5.compactScaled
+        static let ringWidth: CGFloat = 1.25.compactScaled
+        static let dotDiameter: CGFloat = 7.5.compactScaled
     }
 }
 
 private struct PremiumBadge: View {
-    static let height: CGFloat = 18.premiumScaled
+    static let height: CGFloat = 18.compactScaled
 
     let title: LocalizedStringKey
 
@@ -149,6 +149,6 @@ private struct PremiumBadge: View {
     }
 
     private enum Layout {
-        static let width: CGFloat = 54.premiumScaled
+        static let width: CGFloat = 54.compactScaled
     }
 }

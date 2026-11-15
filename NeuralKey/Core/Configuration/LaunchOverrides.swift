@@ -11,6 +11,7 @@ enum LaunchOverrides {
 
     static var initialRoute: AppRoute? {
         switch UserDefaults.standard.string(forKey: initialRouteKey) ?? "" {
+        case "language": AppRoute.languageSelection
         case "onboarding": AppRoute.onboarding(.first)
         case "home": AppRoute.home
         default: nil

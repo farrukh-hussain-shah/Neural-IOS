@@ -50,7 +50,7 @@ struct OnboardingScaffold<Content: View, Footnote: View>: View {
                 .padding(.bottom, proxy.safeAreaInsets.bottom > 0 ? 0 : AppSpacing.s16)
             }
         }
-        .background { OnboardingBackground() }
+        .background { RadialGlowBackground(glow: .onboarding) }
     }
 }
 
@@ -73,27 +73,5 @@ struct OnboardingFootnoteView: View {
                 + Text(" & ").foregroundStyle(AppColor.pale)
                 + Text("Privacy Policy").underline().foregroundStyle(AppColor.pale)
         }
-    }
-}
-
-private struct OnboardingBackground: View {
-    var body: some View {
-        GeometryReader { proxy in
-            RadialGradient(
-                stops: AppGradient.smoothFalloff(AppColor.onboardingGlow, peakOpacity: 1, endLocation: Layout.glowFadeEnd),
-                center: Layout.glowCenter,
-                startRadius: 0,
-                endRadius: proxy.size.width * Layout.glowRadiusRatio
-            )
-        }
-        .background(AppColor.onboardingBackground)
-        .dithered()
-        .ignoresSafeArea()
-    }
-
-    private enum Layout {
-        static let glowCenter = UnitPoint(x: 331.5 / 390, y: 0)
-        static let glowRadiusRatio: CGFloat = 351 / 390
-        static let glowFadeEnd: CGFloat = 0.75
     }
 }

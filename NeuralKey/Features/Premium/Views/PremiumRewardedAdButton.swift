@@ -32,12 +32,12 @@ struct PremiumRewardedAdButton: View {
     }
 
     private enum Layout {
-        static let size = CGSize(width: 202.premiumScaled, height: 50.premiumScaled)
-        static let leadingPadding: CGFloat = 8.premiumScaled
-        static let iconSize: CGFloat = 34.premiumScaled
-        static let iconTop: CGFloat = 8.premiumScaled
-        static let iconToText: CGFloat = 15.premiumScaled
-        static let textTop: CGFloat = 10.8.premiumScaled
-        static let titleToSubtitle: CGFloat = 3.7.premiumScaled
+        static let size = CGSize(width: 202.compactScaled, height: 50.compactScaled)
+        static let leadingPadding: CGFloat = 8.compactScaled
+        static let iconSize: CGFloat = 34.compactScaled
+        static let iconTop: CGFloat = 8.compactScaled
+        static let iconToText: CGFloat = 15.compactScaled
+        static let textTop: CGFloat = 10.8.compactScaled
+        static let titleToSubtitle: CGFloat = 3.7.compactScaled
     }
 }

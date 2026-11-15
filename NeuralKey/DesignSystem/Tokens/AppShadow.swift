@@ -9,7 +9,7 @@ struct AppShadow {
 
 extension AppShadow {
     static let inputDepth = AppShadow(color: .black.opacity(0.1), radius: 12.5.scaled, y: 20.scaled)
-    static let premiumPill = AppShadow(color: .black.opacity(0.15), radius: 7.5.premiumScaled, y: 4.premiumScaled)
+    static let premiumPill = AppShadow(color: .black.opacity(0.15), radius: 7.5.compactScaled, y: 4.compactScaled)
 }
 
 extension View {

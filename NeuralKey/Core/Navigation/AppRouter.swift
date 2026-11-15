@@ -2,6 +2,7 @@ import Observation
 
 enum AppRoute: Equatable {
     case splash
+    case languageSelection
     case onboarding(OnboardingStep)
     case home
 }
@@ -17,6 +18,10 @@ final class AppRouter {
     }
 
     func completeSplash() {
+        route = .languageSelection
+    }
+
+    func completeLanguageSelection() {
         route = .onboarding(.first)
     }
 

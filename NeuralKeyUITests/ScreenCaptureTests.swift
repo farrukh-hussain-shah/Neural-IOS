@@ -4,6 +4,8 @@ final class ScreenCaptureTests: XCTestCase {
 
     private enum Identifier {
         static let splashBrand = "splash.brand"
+        static let languageTitle = "language.title"
+        static let languageDone = "language.done"
         static let pageIndicator = "onboarding.pageIndicator"
         static let primaryAction = "onboarding.primaryAction"
         static let homeTitle = "home.title"
@@ -15,6 +17,10 @@ final class ScreenCaptureTests: XCTestCase {
         static func premiumPlan(_ plan: String) -> String {
             "premium.plan.\(plan)"
         }
+
+        static func languageOption(_ language: String) -> String {
+            "language.option.\(language)"
+        }
     }
 
     private enum Timing {
@@ -25,10 +31,14 @@ final class ScreenCaptureTests: XCTestCase {
 
     private static let designSplashProgress = "0.88"
     private static let onboardingPages = [
-        (capture: "02-onboarding-welcome", indicator: "Page 1 of 3"),
-        (capture: "03-onboarding-add-keyboard", indicator: "Page 2 of 3"),
-        (capture: "04-onboarding-full-access", indicator: "Page 3 of 3")
+        (capture: "03-onboarding-welcome", indicator: "Page 1 of 3"),
+        (capture: "04-onboarding-add-keyboard", indicator: "Page 2 of 3"),
+        (capture: "05-onboarding-full-access", indicator: "Page 3 of 3")
     ]
+    private static let languages = ["english", "spanish", "portuguese", "russian", "arabic", "chinese", "hindi"]
+    private static let defaultLanguage = "english"
+    private static let persistedLanguage = "arabic"
+    private static let firstOnboardingPage = "Page 1 of 3"
     private static let premiumPlans = ["weekly", "monthly", "yearly"]
     private static let defaultPremiumPlan = "monthly"
     private static let frameTolerance: CGFloat = 0.5
@@ -52,9 +62,66 @@ final class ScreenCaptureTests: XCTestCase {
     }
 
     @MainActor
-    func test02OnboardingToHomeFlow() {
+    func test02LanguageSelection() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-NKInitialRoute", "language", "-NKSelectedLanguage", Self.defaultLanguage]
+        app.launch()
+
+        XCTAssertTrue(
+            element(Identifier.languageTitle, in: app).waitForExistence(timeout: Timing.launchTimeout),
+            "Language selection did not appear"
+        )
+        assertExclusiveSelection(Self.defaultLanguage, among: Self.languages, identifier: Identifier.languageOption, in: app)
+        settle()
+        capture("02-language")
+
+        for language in Self.languages.reversed() {
+            element(Identifier.languageOption(language), in: app).tap()
+            assertExclusiveSelection(language, among: Self.languages, identifier: Identifier.languageOption, in: app)
+        }
+
+        element(Identifier.languageOption(Self.persistedLanguage), in: app).tap()
+        assertExclusiveSelection(Self.persistedLanguage, among: Self.languages, identifier: Identifier.languageOption, in: app)
+        element(Identifier.languageDone, in: app).tap()
+        XCTAssertTrue(
+            element(Identifier.pageIndicator, label: Self.firstOnboardingPage, in: app)
+                .waitForExistence(timeout: Timing.transitionTimeout),
+            "Onboarding did not follow language selection"
+        )
+        app.terminate()
+
+        let relaunched = XCUIApplication()
+        relaunched.launchArguments += ["-NKInitialRoute", "language"]
+        relaunched.launch()
+        XCTAssertTrue(
+            element(Identifier.languageTitle, in: relaunched).waitForExistence(timeout: Timing.launchTimeout),
+            "Language selection did not appear after relaunch"
+        )
+        assertExclusiveSelection(
+            Self.persistedLanguage,
+            among: Self.languages,
+            identifier: Identifier.languageOption,
+            in: relaunched
+        )
+        element(Identifier.languageOption(Self.defaultLanguage), in: relaunched).tap()
+        assertExclusiveSelection(Self.defaultLanguage, among: Self.languages, identifier: Identifier.languageOption, in: relaunched)
+    }
+
+    @MainActor
+    func test03OnboardingToHomeFlow() {
         let app = XCUIApplication()
         app.launch()
+
+        XCTAssertTrue(
+            element(Identifier.splashBrand, in: app).waitForExistence(timeout: Timing.launchTimeout),
+            "Splash screen did not appear"
+        )
+        let languageDone = element(Identifier.languageDone, in: app)
+        XCTAssertTrue(
+            languageDone.waitForExistence(timeout: Timing.launchTimeout),
+            "Language selection did not follow the splash screen"
+        )
+        languageDone.tap()
 
         var indicatorFrame: CGRect?
         var actionFrame: CGRect?
@@ -86,11 +153,11 @@ final class ScreenCaptureTests: XCTestCase {
             "Home screen did not appear"
         )
         settle()
-        capture("05-home")
+        capture("06-home")
     }
 
     @MainActor
-    func test03PremiumScreen() {
+    func test04PremiumScreen() {
         let app = XCUIApplication()
         app.launchArguments += ["-NKInitialRoute", "home"]
         app.launch()
@@ -109,16 +176,16 @@ final class ScreenCaptureTests: XCTestCase {
             "Premium screen did not appear"
         )
         XCTAssertTrue(element(Identifier.premiumSubscribe, in: app).exists, "Subscribe button is missing")
-        assertSelectedPlan(Self.defaultPremiumPlan, in: app)
+        assertExclusiveSelection(Self.defaultPremiumPlan, among: Self.premiumPlans, identifier: Identifier.premiumPlan, in: app)
         settle()
-        capture("06-premium")
+        capture("07-premium")
 
         for plan in ["weekly", "yearly", "monthly"] {
             element(Identifier.premiumPlan(plan), in: app).tap()
-            assertSelectedPlan(plan, in: app)
+            assertExclusiveSelection(plan, among: Self.premiumPlans, identifier: Identifier.premiumPlan, in: app)
             if plan == "yearly" {
                 settle()
-                capture("07-premium-yearly-selected")
+                capture("08-premium-yearly-selected")
             }
         }
 
@@ -133,18 +200,23 @@ final class ScreenCaptureTests: XCTestCase {
             "Home screen did not reappear after closing Premium"
         )
         settle()
-        capture("08-home-after-premium")
+        capture("09-home-after-premium")
     }
 
     @MainActor
-    private func assertSelectedPlan(_ selectedPlan: String, in app: XCUIApplication) {
-        for plan in Self.premiumPlans {
-            let card = element(Identifier.premiumPlan(plan), in: app)
-            XCTAssertTrue(card.waitForExistence(timeout: Timing.transitionTimeout), "Plan '\(plan)' is missing")
+    private func assertExclusiveSelection(
+        _ selected: String,
+        among options: [String],
+        identifier: (String) -> String,
+        in app: XCUIApplication
+    ) {
+        for option in options {
+            let optionElement = element(identifier(option), in: app)
+            XCTAssertTrue(optionElement.waitForExistence(timeout: Timing.transitionTimeout), "Option '\(option)' is missing")
             XCTAssertEqual(
-                card.isSelected,
-                plan == selectedPlan,
-                "Plan '\(plan)' selection should be \(plan == selectedPlan) after selecting '\(selectedPlan)'"
+                optionElement.isSelected,
+                option == selected,
+                "Option '\(option)' selection should be \(option == selected) after selecting '\(selected)'"
             )
         }
     }

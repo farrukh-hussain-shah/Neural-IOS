@@ -74,6 +74,24 @@ enum AppColor {
     static let premiumRadioSelected = Color.white.opacity(0.3)
     static let premiumPillSelected = Color.white
     static let premiumPriceSelected = Color.black
+
+    // MARK: Language Selection
+
+    static let optionSurface = Color(hex: 0x111113)
+    static let optionBorder = Color(hex: 0x232329)
+    static let optionSurfaceSelected = Color(hex: 0x101C32)
+    static let optionTile = Color(hex: 0x202125)
+    static let optionSubtitle = Color(hex: 0xA3A7B0)
+    static let optionSubtitleSelected = Color(hex: 0xB4C7EC)
+    static let radioBorder = Color(hex: 0x656973)
+
+    // MARK: Ads
+
+    static let adSurface = Color(hex: 0x111113)
+    static let adBorder = Color(hex: 0x12C0C0, opacity: 0.1)
+    static let adIconTile = Color(hex: 0x222222)
+    static let adBadge = Color(hex: 0xFEA613)
+    static let adBadgeText = Color(hex: 0x0D0D0D)
 }
 
 enum AppGradient {

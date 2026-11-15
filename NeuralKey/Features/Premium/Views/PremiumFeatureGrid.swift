@@ -17,8 +17,8 @@ struct PremiumFeatureGrid: View {
     }
 
     private enum Layout {
-        static let columnSpacing: CGFloat = 9.premiumScaled
-        static let rowSpacing: CGFloat = 8.premiumScaled
+        static let columnSpacing: CGFloat = 9.compactScaled
+        static let rowSpacing: CGFloat = 8.compactScaled
     }
 }
 
@@ -45,10 +45,10 @@ private struct PremiumFeatureChip: View {
     }
 
     private enum Layout {
-        static let height: CGFloat = 27.premiumScaled
-        static let leadingPadding: CGFloat = 13.premiumScaled
-        static let iconSize: CGFloat = 11.premiumScaled
-        static let iconToText: CGFloat = 7.premiumScaled
-        static let titleBaselineNudge: CGFloat = 0.8.premiumScaled
+        static let height: CGFloat = 27.compactScaled
+        static let leadingPadding: CGFloat = 13.compactScaled
+        static let iconSize: CGFloat = 11.compactScaled
+        static let iconToText: CGFloat = 7.compactScaled
+        static let titleBaselineNudge: CGFloat = 0.8.compactScaled
     }
 }
