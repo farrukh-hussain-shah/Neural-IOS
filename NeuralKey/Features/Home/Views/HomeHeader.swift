@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct HomeHeader: View {
+    var onPremium: @MainActor () -> Void = {}
+
     var body: some View {
         HStack(spacing: 0) {
             AppLogo(size: AppSize.headerLogo, cornerRadius: AppRadius.xs)
@@ -16,8 +18,10 @@ struct HomeHeader: View {
             CircleIconButton(
                 icon: .crown,
                 background: AppGradient.brand,
-                accessibilityLabel: "Premium"
+                accessibilityLabel: "Premium",
+                action: onPremium
             )
+            .accessibilityIdentifier(AccessibilityID.homePremiumButton)
 
             CircleIconButton(
                 icon: .menu,

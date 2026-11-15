@@ -49,6 +49,7 @@ enum AppSize {
     static let pageIndicatorHeight: CGFloat = 5
     static let pageIndicatorActiveWidth: CGFloat = 32
     static let pageIndicatorInactiveWidth: CGFloat = 8
+    static let premiumButtonHeight: CGFloat = 50
 
     enum Icon {
         static let small: CGFloat = 16

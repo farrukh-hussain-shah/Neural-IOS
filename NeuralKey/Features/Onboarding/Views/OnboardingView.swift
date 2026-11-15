@@ -7,6 +7,7 @@ struct OnboardingView: View {
     var body: some View {
         OnboardingScaffold(
             pageIndex: step.pageIndex,
+            pageCount: OnboardingStep.allCases.count,
             action: step.primaryAction,
             onAction: onContinue
         ) {

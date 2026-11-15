@@ -59,11 +59,31 @@ enum AppColor {
     static let switchKnob = Color.white
     static let switchKnobBorder = Color(hex: 0xD1D5DB)
     static let chevron = Color(hex: 0x586175)
+
+    // MARK: Premium
+
+    static let premiumBackground = Color(hex: 0x050505)
+    static let premiumGlow = Color(hex: 0x0D59F2)
+    static let premiumSurface = Color.white.opacity(0.1)
+    static let premiumDivider = Color.white.opacity(0.2)
+    static let premiumTextSecondary = Color.white.opacity(0.7)
+    static let premiumLinkSeparator = Color.white.opacity(0.5)
+    static let premiumFinePrint = Color(hex: 0x666666)
+    static let premiumRadio = Color(hex: 0x0D59F2, opacity: 0.3)
+    static let premiumRadioSelected = Color.white.opacity(0.3)
+    static let premiumPillSelected = Color.white
+    static let premiumPriceSelected = Color.black
 }
 
 enum AppGradient {
     static let brand = LinearGradient(
         colors: [AppColor.royal, AppColor.cyan],
+        startPoint: .leading,
+        endPoint: .trailing
+    )
+
+    static let brandReversed = LinearGradient(
+        colors: [AppColor.cyan, AppColor.royal],
         startPoint: .leading,
         endPoint: .trailing
     )

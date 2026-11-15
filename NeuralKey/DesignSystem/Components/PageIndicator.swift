@@ -16,7 +16,7 @@ struct PageIndicator: View {
                     )
             }
         }
-        .animation(.easeInOut(duration: 0.25), value: currentIndex)
+        .animation(AppAnimation.pageIndicator, value: currentIndex)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("Page \(currentIndex + 1) of \(count)"))
     }

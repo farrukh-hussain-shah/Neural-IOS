@@ -9,10 +9,6 @@ enum AppConfiguration {
         static let completionDelay: TimeInterval = 0.3
     }
 
-    enum Onboarding {
-        static let pageCount = 4
-    }
-
     enum Transition {
         static let duration: TimeInterval = 0.35
     }

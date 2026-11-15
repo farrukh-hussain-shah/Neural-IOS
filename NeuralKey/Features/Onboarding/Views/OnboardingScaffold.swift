@@ -2,6 +2,7 @@ import SwiftUI
 
 struct OnboardingScaffold<Content: View, Footnote: View>: View {
     let pageIndex: Int
+    let pageCount: Int
     let action: OnboardingAction
     let onAction: @MainActor () -> Void
     @ViewBuilder let content: Content
@@ -10,31 +11,44 @@ struct OnboardingScaffold<Content: View, Footnote: View>: View {
     var body: some View {
         GeometryReader { proxy in
             VStack(alignment: .leading, spacing: 0) {
-                PageIndicator(count: AppConfiguration.Onboarding.pageCount, currentIndex: pageIndex)
+                PageIndicator(count: pageCount, currentIndex: pageIndex)
                     .accessibilityIdentifier(AccessibilityID.onboardingPageIndicator)
                     .padding(.top, Layout.indicatorTop)
+                    .padding(.horizontal, AppSpacing.screenHorizontal)
 
-                ScrollView {
-                    content
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top, Layout.contentTop)
-                        .padding(.bottom, AppSpacing.s24)
+                ZStack(alignment: .topLeading) {
+                    ScrollView {
+                        content
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, AppSpacing.screenHorizontal)
+                            .padding(.top, Layout.contentTop)
+                            .padding(.bottom, AppSpacing.s24)
+                    }
+                    .scrollIndicators(.hidden)
+                    .scrollBounceBehavior(.basedOnSize)
+                    .id(pageIndex)
+                    .transition(AppAnimation.onboardingPage)
                 }
-                .scrollIndicators(.hidden)
-                .scrollBounceBehavior(.basedOnSize)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                .animation(AppAnimation.onboardingContent, value: pageIndex)
 
                 VStack(spacing: Layout.footnoteToButton) {
-                    footnote
-                        .textStyle(.caption)
-                        .foregroundStyle(AppColor.textSecondary)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity)
+                    ZStack {
+                        footnote
+                            .textStyle(.caption)
+                            .foregroundStyle(AppColor.textSecondary)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
+                            .id(pageIndex)
+                            .transition(.opacity)
+                    }
                     PrimaryButton(title: action.title, trailingIcon: action.icon, action: onAction)
                         .accessibilityIdentifier(AccessibilityID.onboardingPrimaryAction)
                 }
+                .animation(AppAnimation.onboardingContent, value: pageIndex)
+                .padding(.horizontal, AppSpacing.screenHorizontal)
                 .padding(.bottom, proxy.safeAreaInsets.bottom > 0 ? 0 : AppSpacing.s16)
             }
-            .padding(.horizontal, AppSpacing.screenHorizontal)
         }
         .background { OnboardingBackground() }
     }

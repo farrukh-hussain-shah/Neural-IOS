@@ -18,6 +18,7 @@ SCREENS = [
     ("03-onboarding-add-keyboard", "Onboarding 2 – Setup 1 of 3", "768w light-1.svg"),
     ("04-onboarding-full-access", "Onboarding 3 – Setup 2 of 3", "768w light-2.svg"),
     ("05-home", "Home", "Home.svg"),
+    ("06-premium", "Premium", "Premium.svg"),
 ]
 
 POINT_SCALE = 3
@@ -132,6 +133,7 @@ def write_report(results, output_dir):
         f"- Mismatch = share of pixels whose colour differs by more than {PIXEL_THRESHOLD}/255, "
         f"excluding the status bar ({STATUS_BAR_POINTS} pt) and home indicator ({HOME_INDICATOR_POINTS} pt).",
         "- `Home.svg` has no status bar, so its reference is placed below the status bar.",
+        "- `Premium.svg` is a 375 × 812 pt frame, so its reference is scaled uniformly to the 390 pt simulator width.",
         "",
         "| Screen | Design file | Mismatch | Note |",
         "| --- | --- | --- | --- |",

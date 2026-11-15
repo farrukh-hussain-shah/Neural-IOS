@@ -1,12 +1,14 @@
 import SwiftUI
 
 struct HomeView: View {
+    var onPremium: @MainActor () -> Void = {}
+
     @State private var viewModel = HomeViewModel()
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                HomeHeader()
+                HomeHeader(onPremium: onPremium)
                     .padding(.horizontal, AppSpacing.screenHorizontal)
                     .padding(.top, AppSpacing.s20)
 

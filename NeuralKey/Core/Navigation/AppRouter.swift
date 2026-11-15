@@ -10,6 +10,7 @@ enum AppRoute: Equatable {
 @Observable
 final class AppRouter {
     private(set) var route: AppRoute
+    var isPremiumPresented = false
 
     init(initialRoute: AppRoute = .splash) {
         route = initialRoute
@@ -22,5 +23,13 @@ final class AppRouter {
     func continueOnboarding() {
         guard case .onboarding(let step) = route else { return }
         route = step.next.map(AppRoute.onboarding) ?? .home
+    }
+
+    func presentPremium() {
+        isPremiumPresented = true
+    }
+
+    func dismissPremium() {
+        isPremiumPresented = false
     }
 }

@@ -15,10 +15,15 @@ enum AppIcon: String {
     case globe = "IconGlobe"
     case chevronRight = "IconChevronRight"
     case bolt = "IconBolt"
+    case close = "IconClose"
+    case adBadge = "IconAdBadge"
 }
 
 enum AppImage: String {
     case logo = "AppLogo"
+    case premiumNetwork = "PremiumNetwork"
+    case premiumSparkles = "PremiumSparkles"
+    case premiumFeatureBullet = "PremiumFeatureBullet"
 }
 
 extension Image {
