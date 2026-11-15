@@ -5,12 +5,14 @@ enum AppScale {
         case standard
         case compact
         case narrow
+        case keyboard
 
         var width: CGFloat {
             switch self {
             case .standard: 390
             case .compact: 375
             case .narrow: 360
+            case .keyboard: 402
             }
         }
     }
@@ -25,6 +27,7 @@ enum AppScale {
     static let factor = scaleFactor(for: .standard)
     static let compactFactor = scaleFactor(for: .compact)
     static let narrowFactor = scaleFactor(for: .narrow)
+    static let keyboardFactor = scaleFactor(for: .keyboard)
 
     static func scaleFactor(for reference: Reference) -> CGFloat {
         screenWidth / reference.width
@@ -39,10 +42,12 @@ extension BinaryInteger {
     var scaled: CGFloat { CGFloat(self) * AppScale.factor }
     var compactScaled: CGFloat { CGFloat(self) * AppScale.compactFactor }
     var narrowScaled: CGFloat { CGFloat(self) * AppScale.narrowFactor }
+    var keyboardScaled: CGFloat { CGFloat(self) * AppScale.keyboardFactor }
 }
 
 extension BinaryFloatingPoint {
     var scaled: CGFloat { CGFloat(self) * AppScale.factor }
     var compactScaled: CGFloat { CGFloat(self) * AppScale.compactFactor }
     var narrowScaled: CGFloat { CGFloat(self) * AppScale.narrowFactor }
+    var keyboardScaled: CGFloat { CGFloat(self) * AppScale.keyboardFactor }
 }

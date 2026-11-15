@@ -118,6 +118,23 @@ enum AppColor {
     static let backButtonBorder = Color.white.opacity(0.1)
     static let backButtonIcon = Color.white.opacity(0.7)
 
+    // MARK: Keyboard
+
+    static let keyboardPanel = Color(hex: 0xE3E3E3)
+    static let keyboardPhonePanel = Color(hex: 0xE0E0E0)
+    static let keyboardPanelBorder = Color.white.opacity(0.7)
+    static let keyboardKey = Color(hex: 0xFCFCFC)
+    static let keyboardKeyPressed = Color(hex: 0xC9C9CE)
+    static let keyboardLabel = Color(hex: 0x565656)
+    static let keyboardPopupLabel = Color.black
+    static let keyboardPrimary = Color(hex: 0x0088FF)
+    static let keyboardPrimaryPressed = Color(hex: 0x0070D6)
+    static let keyboardSuggestion = Color.black
+    static let keyboardDivider = Color.black.opacity(0.18)
+    static let keyboardSystemIcon = Color.black.opacity(0.5)
+    static let keyboardPopupShadow = Color.black.opacity(0.22)
+    static let keyboardPopupBorder = Color.black.opacity(0.08)
+
     // MARK: Ads
 
     static let adSurface = Color(hex: 0x111113)

@@ -3,19 +3,19 @@ import SwiftUI
 struct KeyboardTestField: View {
     @Binding var text: String
 
+    @Environment(SettingsStore.self) private var settings: SettingsStore?
+
     private var fieldShape: RoundedRectangle {
         RoundedRectangle(cornerRadius: Layout.cornerRadius)
     }
 
     var body: some View {
-        TextField(
-            "Test your keyboard",
+        NeuralKeyboardTextField(
             text: $text,
-            prompt: Text("Type something...").foregroundStyle(AppColor.textPlaceholder)
+            placeholder: String(localized: "Type something..."),
+            configuration: keyboardConfiguration,
+            accessibilityIdentifier: AccessibilityID.homeTestField
         )
-        .textStyle(.input)
-        .foregroundStyle(AppColor.textPrimary)
-        .tint(AppColor.royal)
         .padding(.horizontal, Layout.horizontalPadding)
         .frame(height: AppSize.inputHeight)
         .background {
@@ -30,6 +30,15 @@ struct KeyboardTestField: View {
                 .strokeBorder(AppGradient.brand, lineWidth: Layout.borderWidth)
                 .opacity(Layout.borderOpacity)
         }
+    }
+
+    private var keyboardConfiguration: KeyboardConfiguration {
+        var configuration = KeyboardConfiguration.standard
+        configuration.playsHaptics = settings?.isHapticFeedbackEnabled ?? false
+        #if DEBUG
+        configuration = LaunchOverrides.keyboardConfiguration(base: configuration)
+        #endif
+        return configuration
     }
 
     private enum Layout {

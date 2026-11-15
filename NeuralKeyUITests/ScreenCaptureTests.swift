@@ -15,6 +15,7 @@ final class ScreenCaptureTests: XCTestCase {
         static let premiumSubscribe = "premium.subscribe"
 
         static let menuButton = "home.menuButton"
+        static let testField = "home.testField"
         static let settingsTitle = "settings.title"
         static let settingsToneAdjustment = "settings.toneAdjustment"
         static let settingsHaptics = "settings.haptics"
@@ -282,6 +283,131 @@ final class ScreenCaptureTests: XCTestCase {
         XCTAssertTrue(element(Identifier.homeTitle, in: app).exists, "Home is not visible after closing Settings")
         settle()
         capture("12-home-after-settings")
+    }
+
+    @MainActor
+    func test06InAppKeyboard() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-NKInitialRoute", "home"]
+        app.launch()
+
+        let field = app.textFields[Identifier.testField]
+        XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        field.tap()
+        XCTAssertTrue(key("q", in: app).waitForExistence(timeout: Timing.transitionTimeout), "In-app keyboard did not appear")
+        XCTAssertEqual(key("q", in: app).label, "Q", "An empty field should start capitalized")
+
+        type("hello", in: app)
+        assertFieldText(field, equals: "Hello")
+        let verbatim = app.buttons["keyboard.suggestion.0"]
+        XCTAssertEqual(verbatim.label, "“Hello”", "The typed word should be offered as the first suggestion")
+        verbatim.tap()
+        assertFieldText(field, equals: "Hello ")
+
+        type("worl", in: app)
+        keyElement("key.delete", in: app).tap()
+        assertFieldText(field, equals: "Hello wor")
+
+        keyElement("key.shift", in: app).tap()
+        XCTAssertEqual(key("l", in: app).label, "L", "Shift should capitalize the next letter")
+        type("l", in: app)
+        XCTAssertEqual(key("d", in: app).label, "d", "Shift should release after one letter")
+        type("d", in: app)
+        assertFieldText(field, equals: "Hello worLd")
+
+        keyElement("key.shift", in: app).doubleTap()
+        type("ab", in: app)
+        assertFieldText(field, equals: "Hello worLdAB")
+        keyElement("key.shift", in: app).tap()
+        XCTAssertEqual(key("c", in: app).label, "c", "Caps lock should turn off")
+
+        keyElement("key.layer.123", in: app).tap()
+        XCTAssertTrue(key("1", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Numbers layer did not open")
+        type("7", in: app)
+        keyElement("key.layer.#+=", in: app).tap()
+        XCTAssertTrue(key("[", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Symbols layer did not open")
+        settle()
+        capture("18-keyboard-symbols")
+        type("#", in: app)
+        keyElement("key.space", in: app).tap()
+        XCTAssertTrue(key("q", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Space should return to letters")
+        assertFieldText(field, equals: "Hello worLdAB7# ")
+
+        type("ok", in: app)
+        keyElement("key.space", in: app).doubleTap()
+        assertFieldText(field, equals: "Hello worLdAB7# ok. ")
+        XCTAssertEqual(key("q", in: app).label, "Q", "A new sentence should start capitalized")
+
+        key("e", in: app).press(forDuration: 1.2)
+        XCTAssertTrue(fieldText(field).hasSuffix("È"), "Long-press should insert the first accented alternate")
+
+        keyElement("key.return", in: app).tap()
+        XCTAssertTrue(waitForDisappearance(of: key("q", in: app)), "Return should dismiss the keyboard")
+    }
+
+    @MainActor
+    func test07KeyboardDesignStates() {
+        let states: [(capture: String, arguments: [String], layer: String?)] = [
+            ("13-keyboard-letters", ["-NKKeyboardAutoCapitalize", "NO"], nil),
+            ("14-keyboard-numbers", ["-NKKeyboardSuggestions", "NO"], "key.layer.123"),
+            ("15-keyboard-go", [
+                "-NKKeyboardSuggestions", "NO", "-NKKeyboardSystemRow", "NO",
+                "-NKKeyboardReturnKey", "go", "-NKKeyboardAutoCapitalize", "NO"
+            ], nil),
+            ("16-keyboard-phone", ["-NKKeyboardType", "phonePad"], nil),
+            ("17-keyboard-popup", ["-NKKeyboardAutoCapitalize", "NO", "-NKKeyboardPreviewKey", "g"], nil)
+        ]
+
+        for state in states {
+            let app = XCUIApplication()
+            app.launchArguments += ["-NKInitialRoute", "home"] + state.arguments
+            app.launch()
+            let field = app.textFields[Identifier.testField]
+            XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+            field.tap()
+            XCTAssertTrue(
+                keyElement("key.delete", in: app).waitForExistence(timeout: Timing.transitionTimeout),
+                "Keyboard did not appear for \(state.capture)"
+            )
+            if let layer = state.layer {
+                keyElement(layer, in: app).tap()
+            }
+            if state.capture == "16-keyboard-phone" {
+                type("5", in: app)
+                assertFieldText(field, equals: "5")
+                keyElement("key.delete", in: app).tap()
+            }
+            settle()
+            capture(state.capture)
+            app.terminate()
+        }
+    }
+
+    @MainActor
+    private func key(_ character: String, in app: XCUIApplication) -> XCUIElement {
+        keyElement("key." + character, in: app)
+    }
+
+    @MainActor
+    private func keyElement(_ id: String, in app: XCUIApplication) -> XCUIElement {
+        app.descendants(matching: .any)["keyboard." + id]
+    }
+
+    @MainActor
+    private func type(_ characters: String, in app: XCUIApplication) {
+        for character in characters {
+            key(String(character).lowercased(), in: app).tap()
+        }
+    }
+
+    @MainActor
+    private func fieldText(_ field: XCUIElement) -> String {
+        field.value as? String ?? ""
+    }
+
+    @MainActor
+    private func assertFieldText(_ field: XCUIElement, equals expected: String, line: UInt = #line) {
+        XCTAssertEqual(fieldText(field), expected, "Field text mismatch", line: line)
     }
 
     @MainActor

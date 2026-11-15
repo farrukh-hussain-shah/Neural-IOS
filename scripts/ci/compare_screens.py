@@ -22,9 +22,14 @@ SCREENS = [
     ("07-premium", "Premium", "Premium.svg"),
     ("10-settings", "Settings", "Settings-Android.png"),
     ("11-ai-tones", "AI Tones", "AITones-Android.png"),
+    ("13-keyboard-letters", "Keyboard – Letters", "Keyboard Designs/Defaulta.svg"),
+    ("14-keyboard-numbers", "Keyboard – Numbers", "Keyboard Designs/Defaultb.svg"),
+    ("15-keyboard-go", "Keyboard – Go key", "Keyboard Designs/Default Keyboard.svg"),
+    ("16-keyboard-phone", "Keyboard – Number pad", "Keyboard Designs/Default.svg"),
 ]
 
 POINT_SCALE = 3
+KEYBOARD_SCREENS = {"13-keyboard-letters", "14-keyboard-numbers", "15-keyboard-go", "16-keyboard-phone"}
 STATUS_BAR_POINTS = 47
 HOME_INDICATOR_POINTS = 34
 PIXEL_THRESHOLD = 32
@@ -49,10 +54,10 @@ def mismatch_mask(design, actual):
     return magnitude.point(lambda value: 255 if value > PIXEL_THRESHOLD else 0)
 
 
-def mismatch_percentage(mask):
+def mismatch_percentage(mask, full_frame=False):
     width, height = mask.size
-    top = STATUS_BAR_POINTS * POINT_SCALE
-    bottom = height - HOME_INDICATOR_POINTS * POINT_SCALE
+    top = 0 if full_frame else STATUS_BAR_POINTS * POINT_SCALE
+    bottom = height if full_frame else height - HOME_INDICATOR_POINTS * POINT_SCALE
     region = mask.crop((0, top, width, bottom))
     mismatched = region.histogram()[255]
     return 100.0 * mismatched / (region.width * region.height)
@@ -96,12 +101,16 @@ def compare_screen(key, title, design_dir, actual_dir, output_dir):
 
     design = Image.open(design_path).convert("RGB")
     actual = Image.open(actual_path).convert("RGB")
+    if key in KEYBOARD_SCREENS:
+        crop_height = round(actual.width * design.height / design.width)
+        actual = actual.crop((0, actual.height - crop_height, actual.width, actual.height))
+        result["note"] = "keyboard area cropped from the simulator screenshot"
     if actual.size != design.size:
         result["note"] = f"simulator {actual.width}x{actual.height} resized to {design.width}x{design.height}"
         actual = actual.resize(design.size, Image.LANCZOS)
 
     mask = mismatch_mask(design, actual)
-    result["mismatch"] = round(mismatch_percentage(mask), 2)
+    result["mismatch"] = round(mismatch_percentage(mask, full_frame=key in KEYBOARD_SCREENS), 2)
     result["status"] = "compared"
 
     side_by_side(

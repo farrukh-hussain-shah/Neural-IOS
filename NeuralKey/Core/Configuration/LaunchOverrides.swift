@@ -14,6 +14,30 @@ enum LaunchOverrides {
         UserDefaults.standard.string(forKey: frozenSplashProgressKey).flatMap(Double.init)
     }
 
+    static func keyboardConfiguration(base: KeyboardConfiguration) -> KeyboardConfiguration {
+        let defaults = UserDefaults.standard
+        var configuration = base
+        if let type = defaults.string(forKey: "NKKeyboardType").flatMap(KeyboardConfiguration.KeyboardType.init(rawValue:)) {
+            configuration.type = type
+        }
+        if let returnKey = defaults.string(forKey: "NKKeyboardReturnKey").flatMap(KeyboardConfiguration.ReturnKey.init(rawValue:)) {
+            configuration.returnKey = returnKey
+        }
+        if defaults.object(forKey: "NKKeyboardSuggestions") != nil {
+            configuration.showsSuggestions = defaults.bool(forKey: "NKKeyboardSuggestions")
+        }
+        if defaults.object(forKey: "NKKeyboardSystemRow") != nil {
+            configuration.showsSystemRow = defaults.bool(forKey: "NKKeyboardSystemRow")
+        }
+        if defaults.object(forKey: "NKKeyboardAutoCapitalize") != nil {
+            configuration.autoCapitalizes = defaults.bool(forKey: "NKKeyboardAutoCapitalize")
+        }
+        if let previewKey = defaults.string(forKey: "NKKeyboardPreviewKey") {
+            configuration.previewKeyID = "key.\(previewKey)"
+        }
+        return configuration
+    }
+
     static var initialRoute: AppRoute? {
         switch UserDefaults.standard.string(forKey: initialRouteKey) ?? "" {
         case "language": AppRoute.languageSelection

@@ -7,6 +7,7 @@ enum AccessibilityID {
     static let homeTitle = "home.title"
     static let homePremiumButton = "home.premiumButton"
     static let homeMenuButton = "home.menuButton"
+    static let homeTestField = "home.testField"
     static let settingsTitle = "settings.title"
     static let settingsUpgrade = "settings.upgrade"
     static let settingsToneAdjustment = "settings.toneAdjustment"
