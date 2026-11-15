@@ -10,3 +10,4 @@ build/
 *.dSYM
 .build/
 simulator-captures/
+__pycache__/
