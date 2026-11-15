@@ -26,11 +26,16 @@ private struct InAppKeyboardHost: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .overlay(alignment: .bottom) {
-                if let controller = presenter.controller {
-                    KeyboardView(controller: controller)
-                        .transition(.move(edge: .bottom))
+            .overlay {
+                ZStack(alignment: .bottom) {
+                    Color.clear
+                        .allowsHitTesting(false)
+                    if let controller = presenter.controller {
+                        KeyboardView(controller: controller)
+                            .transition(.move(edge: .bottom))
+                    }
                 }
+                .ignoresSafeArea(edges: .bottom)
             }
             .animation(.spring(response: 0.38, dampingFraction: 1), value: presenter.isVisible)
             .environment(presenter)
