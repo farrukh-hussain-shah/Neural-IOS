@@ -4,6 +4,7 @@ struct KeyboardTestField: View {
     @Binding var text: String
 
     @Environment(SettingsStore.self) private var settings: SettingsStore?
+    @Environment(InAppKeyboardPresenter.self) private var keyboardPresenter: InAppKeyboardPresenter?
 
     private var fieldShape: RoundedRectangle {
         RoundedRectangle(cornerRadius: Layout.cornerRadius)
@@ -14,6 +15,7 @@ struct KeyboardTestField: View {
             text: $text,
             placeholder: String(localized: "Type something..."),
             configuration: keyboardConfiguration,
+            presenter: keyboardPresenter,
             accessibilityIdentifier: AccessibilityID.homeTestField
         )
         .padding(.horizontal, Layout.horizontalPadding)

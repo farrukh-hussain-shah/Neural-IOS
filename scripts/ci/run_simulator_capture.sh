@@ -4,6 +4,7 @@
 # $OUTPUT_DIR.
 #   CAPTURE_TESTS  comma-separated -only-testing identifiers; empty runs every UI test.
 #   RECORD_VIDEO   true records and compresses a video of the run (off by default).
+#   VIDEO_CROP_RATIO  keeps only the bottom of the video (height = width x ratio), e.g. the keyboard.
 #   EXTRA_DEVICES  comma-separated simulators that rerun the same tests (screenshots/<device>/).
 set -euo pipefail
 
@@ -15,6 +16,7 @@ PREFERRED_DEVICES="${PREFERRED_DEVICES:-iPhone 18 Pro Max,iPhone 17 Pro Max,iPho
 EXTRA_DEVICES="${EXTRA_DEVICES:-}"
 CAPTURE_TESTS="${CAPTURE_TESTS:-}"
 RECORD_VIDEO="${RECORD_VIDEO:-false}"
+VIDEO_CROP_RATIO="${VIDEO_CROP_RATIO:-}"
 
 ONLY_TESTING_ARGS=()
 if [[ -n "$CAPTURE_TESTS" ]]; then
@@ -117,6 +119,11 @@ FINAL_VIDEO="$OUTPUT_DIR/video/simulator-flow.mp4"
 MAX_VIDEO_BYTES=$((90 * 1024 * 1024))
 
 compress_video() {
+  if [[ -n "$VIDEO_CROP_RATIO" ]] && xcrun swift "$(dirname "$0")/crop_video.swift" "$RAW_VIDEO" "$FINAL_VIDEO" "$VIDEO_CROP_RATIO" \
+    && [[ -s "$FINAL_VIDEO" ]] && [[ "$(stat -f%z "$FINAL_VIDEO")" -le "$MAX_VIDEO_BYTES" ]]; then
+    rm -f "$RAW_VIDEO"
+    return
+  fi
   for preset in PresetHEVC1920x1080 Preset1280x720 Preset960x540; do
     rm -f "$FINAL_VIDEO"
     if avconvert --preset "$preset" --source "$RAW_VIDEO" --output "$FINAL_VIDEO" --replace >/dev/null 2>&1 \

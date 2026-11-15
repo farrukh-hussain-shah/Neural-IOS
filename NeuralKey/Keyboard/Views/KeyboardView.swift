@@ -83,8 +83,8 @@ struct KeyboardView: View {
     private var panel: some View {
         let shape = UnevenRoundedRectangle(
             topLeadingRadius: KeyboardMetrics.panelTopCornerRadius,
-            bottomLeadingRadius: KeyboardMetrics.panelBottomCornerRadius,
-            bottomTrailingRadius: KeyboardMetrics.panelBottomCornerRadius,
+            bottomLeadingRadius: 0,
+            bottomTrailingRadius: 0,
             topTrailingRadius: KeyboardMetrics.panelTopCornerRadius,
             style: .continuous
         )

@@ -5,10 +5,12 @@ struct HomeView: View {
     var onMenu: @MainActor () -> Void = {}
 
     @State private var viewModel = HomeViewModel()
+    @State private var keyboardPresenter = InAppKeyboardPresenter()
 
     var body: some View {
         content
             .background { HomeBackground() }
+            .inAppKeyboardHost(keyboardPresenter)
     }
 
     private var content: some View {

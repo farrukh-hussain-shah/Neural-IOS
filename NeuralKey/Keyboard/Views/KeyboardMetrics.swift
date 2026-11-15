@@ -15,7 +15,6 @@ enum KeyboardMetrics {
 
     static let keyCornerRadius: CGFloat = 8.5.keyboardScaled
     static let panelTopCornerRadius: CGFloat = 27.keyboardScaled
-    static let panelBottomCornerRadius: CGFloat = 62.keyboardScaled
 
     static let letterFontSize: CGFloat = 25.keyboardScaled
     static let letterBaselineNudge: CGFloat = -2.4.keyboardScaled

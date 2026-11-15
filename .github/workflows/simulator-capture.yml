@@ -20,7 +20,8 @@ env:
   OUTPUT_DIR: ${{ github.workspace }}/simulator-captures
   CAPTURES_BRANCH: simulator-captures
   CAPTURE_TESTS: NeuralKeyUITests/ScreenCaptureTests/test06InAppKeyboard,NeuralKeyUITests/ScreenCaptureTests/test07KeyboardDesignStates
-  RECORD_VIDEO: "false"
+  RECORD_VIDEO: "true"
+  VIDEO_CROP_RATIO: "0.8607"
 
 jobs:
   capture:

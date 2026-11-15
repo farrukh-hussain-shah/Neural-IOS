@@ -5,6 +5,7 @@ struct NeuralKeyboardTextField: UIViewRepresentable {
     @Binding var text: String
     let placeholder: String
     let configuration: KeyboardConfiguration
+    let presenter: InAppKeyboardPresenter?
     var accessibilityIdentifier: String?
 
     func makeCoordinator() -> Coordinator {
@@ -40,9 +41,11 @@ struct NeuralKeyboardTextField: UIViewRepresentable {
             coordinator?.textDidChange(in: field)
         }
         controller.textInput = input
+        controller.onInputClick = { UIDevice.current.playInputClick() }
         context.coordinator.controller = controller
         context.coordinator.input = input
-        field.inputView = KeyboardInputView(controller: controller)
+        context.coordinator.presenter = presenter
+        field.inputView = KeyboardInputView()
         field.text = text
         return field
     }
@@ -50,6 +53,7 @@ struct NeuralKeyboardTextField: UIViewRepresentable {
     func updateUIView(_ field: UITextField, context: Context) {
         context.coordinator.text = $text
         context.coordinator.controller?.playsHaptics = configuration.playsHaptics
+        context.coordinator.presenter = presenter
         if field.text != text {
             field.text = text
         }
@@ -60,6 +64,7 @@ struct NeuralKeyboardTextField: UIViewRepresentable {
         var text: Binding<String>
         var controller: KeyboardController?
         var input: TextFieldKeyboardInput?
+        weak var presenter: InAppKeyboardPresenter?
 
         init(text: Binding<String>) {
             self.text = text
@@ -78,7 +83,14 @@ struct NeuralKeyboardTextField: UIViewRepresentable {
         }
 
         func textFieldDidBeginEditing(_ field: UITextField) {
-            controller?.textDidChange()
+            guard let controller else { return }
+            controller.textDidChange()
+            presenter?.show(controller)
+        }
+
+        func textFieldDidEndEditing(_ field: UITextField) {
+            guard let controller else { return }
+            presenter?.hide(controller)
         }
 
         func textFieldDidChangeSelection(_ field: UITextField) {
