@@ -128,7 +128,7 @@ struct AIToneSelectionView: View {
         .animation(AppAnimation.selection, value: canUpdate)
         .accessibilityIdentifier(AccessibilityID.tonesUpdate)
         .padding(.horizontal, Layout.updateHorizontal)
-        .padding(.bottom, max(Layout.updateBottom - safeAreaBottom, 0))
+        .padding(.bottom, Layout.updateBottom - safeAreaBottom)
         .background(alignment: .top) {
             AppColor.tonesBackground
                 .ignoresSafeArea(edges: .bottom)
@@ -151,7 +151,7 @@ struct AIToneSelectionView: View {
         static let horizontalMargin: CGFloat = 6.5.narrowScaled
         static let backTop: CGFloat = 2.5.narrowScaled
         static let backSize: CGFloat = 33.5.narrowScaled
-        static let backIconSize: CGFloat = 10.narrowScaled
+        static let backIconSize: CGFloat = 21.narrowScaled
         static let backToTitle: CGFloat = 15.5.narrowScaled
         static let titleLineSpacing: CGFloat = 0.7.narrowScaled
         static let titleToSubtitle: CGFloat = 7.6.narrowScaled

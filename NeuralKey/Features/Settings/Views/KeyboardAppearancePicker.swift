@@ -55,7 +55,7 @@ private struct AppearanceTile: View {
                     lineWidth: isSelected ? Layout.selectedBorderWidth : 1
                 )
             }
-            .shadow(color: isSelected ? AppColor.royal.opacity(0.3) : .clear, radius: Layout.selectedGlow)
+            .shadow(color: isSelected ? AppColor.royal.opacity(0.18) : .clear, radius: Layout.selectedGlow)
     }
 
     @ViewBuilder
