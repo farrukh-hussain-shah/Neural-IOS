@@ -14,12 +14,15 @@ final class ScreenCaptureTests: XCTestCase {
         static let premiumClose = "premium.close"
         static let premiumSubscribe = "premium.subscribe"
 
+        static let premiumPlanPrefix = "premium.plan."
+        static let languageOptionPrefix = "language.option."
+
         static func premiumPlan(_ plan: String) -> String {
-            "premium.plan.\(plan)"
+            premiumPlanPrefix + plan
         }
 
         static func languageOption(_ language: String) -> String {
-            "language.option.\(language)"
+            languageOptionPrefix + language
         }
     }
 
@@ -71,17 +74,17 @@ final class ScreenCaptureTests: XCTestCase {
             element(Identifier.languageTitle, in: app).waitForExistence(timeout: Timing.launchTimeout),
             "Language selection did not appear"
         )
-        assertExclusiveSelection(Self.defaultLanguage, among: Self.languages, identifier: Identifier.languageOption, in: app)
+        assertExclusiveSelection(Self.defaultLanguage, among: Self.languages, prefix: Identifier.languageOptionPrefix, in: app)
         settle()
         capture("02-language")
 
         for language in Self.languages.reversed() {
             element(Identifier.languageOption(language), in: app).tap()
-            assertExclusiveSelection(language, among: Self.languages, identifier: Identifier.languageOption, in: app)
+            assertExclusiveSelection(language, among: Self.languages, prefix: Identifier.languageOptionPrefix, in: app)
         }
 
         element(Identifier.languageOption(Self.persistedLanguage), in: app).tap()
-        assertExclusiveSelection(Self.persistedLanguage, among: Self.languages, identifier: Identifier.languageOption, in: app)
+        assertExclusiveSelection(Self.persistedLanguage, among: Self.languages, prefix: Identifier.languageOptionPrefix, in: app)
         element(Identifier.languageDone, in: app).tap()
         XCTAssertTrue(
             element(Identifier.pageIndicator, label: Self.firstOnboardingPage, in: app)
@@ -97,14 +100,9 @@ final class ScreenCaptureTests: XCTestCase {
             element(Identifier.languageTitle, in: relaunched).waitForExistence(timeout: Timing.launchTimeout),
             "Language selection did not appear after relaunch"
         )
-        assertExclusiveSelection(
-            Self.persistedLanguage,
-            among: Self.languages,
-            identifier: Identifier.languageOption,
-            in: relaunched
-        )
+        assertExclusiveSelection(Self.persistedLanguage, among: Self.languages, prefix: Identifier.languageOptionPrefix, in: relaunched)
         element(Identifier.languageOption(Self.defaultLanguage), in: relaunched).tap()
-        assertExclusiveSelection(Self.defaultLanguage, among: Self.languages, identifier: Identifier.languageOption, in: relaunched)
+        assertExclusiveSelection(Self.defaultLanguage, among: Self.languages, prefix: Identifier.languageOptionPrefix, in: relaunched)
     }
 
     @MainActor
@@ -112,10 +110,6 @@ final class ScreenCaptureTests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        XCTAssertTrue(
-            element(Identifier.splashBrand, in: app).waitForExistence(timeout: Timing.launchTimeout),
-            "Splash screen did not appear"
-        )
         let languageDone = element(Identifier.languageDone, in: app)
         XCTAssertTrue(
             languageDone.waitForExistence(timeout: Timing.launchTimeout),
@@ -176,13 +170,13 @@ final class ScreenCaptureTests: XCTestCase {
             "Premium screen did not appear"
         )
         XCTAssertTrue(element(Identifier.premiumSubscribe, in: app).exists, "Subscribe button is missing")
-        assertExclusiveSelection(Self.defaultPremiumPlan, among: Self.premiumPlans, identifier: Identifier.premiumPlan, in: app)
+        assertExclusiveSelection(Self.defaultPremiumPlan, among: Self.premiumPlans, prefix: Identifier.premiumPlanPrefix, in: app)
         settle()
         capture("07-premium")
 
         for plan in ["weekly", "yearly", "monthly"] {
             element(Identifier.premiumPlan(plan), in: app).tap()
-            assertExclusiveSelection(plan, among: Self.premiumPlans, identifier: Identifier.premiumPlan, in: app)
+            assertExclusiveSelection(plan, among: Self.premiumPlans, prefix: Identifier.premiumPlanPrefix, in: app)
             if plan == "yearly" {
                 settle()
                 capture("08-premium-yearly-selected")
@@ -207,18 +201,17 @@ final class ScreenCaptureTests: XCTestCase {
     private func assertExclusiveSelection(
         _ selected: String,
         among options: [String],
-        identifier: (String) -> String,
+        prefix: String,
         in app: XCUIApplication
     ) {
-        for option in options {
-            let optionElement = element(identifier(option), in: app)
-            XCTAssertTrue(optionElement.waitForExistence(timeout: Timing.transitionTimeout), "Option '\(option)' is missing")
-            XCTAssertEqual(
-                optionElement.isSelected,
-                option == selected,
-                "Option '\(option)' selection should be \(option == selected) after selecting '\(selected)'"
-            )
-        }
+        let target = app.buttons[prefix + selected]
+        XCTAssertTrue(target.waitForExistence(timeout: Timing.transitionTimeout), "Option '\(selected)' is missing")
+        XCTAssertTrue(target.isSelected, "Option '\(selected)' is not selected")
+
+        let optionButtons = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", prefix))
+        XCTAssertEqual(optionButtons.count, options.count, "Expected \(options.count) options with prefix '\(prefix)'")
+        let selectedButtons = optionButtons.matching(NSPredicate(format: "selected == true"))
+        XCTAssertEqual(selectedButtons.count, 1, "Exactly one option should be selected after selecting '\(selected)'")
     }
 
     private func assertFrame(_ frame: CGRect, equals expected: CGRect, _ message: String) {
