@@ -38,8 +38,8 @@ enum KeyboardMetrics {
     static let phoneLetterTracking: CGFloat = 2.keyboardScaled
     static let phoneSymbolFontSize: CGFloat = 21.keyboardScaled
     static let phoneDeleteIconSize: CGFloat = 19.keyboardScaled
-    static let phoneToggleIconSize: CGFloat = 15.keyboardScaled
-    static let phoneToggleSpacing: CGFloat = 5.keyboardScaled
+    static let phoneToggleIconSize: CGFloat = 16.keyboardScaled
+    static let phoneToggleSpacing: CGFloat = 2.keyboardScaled
     static let phoneLabelNudge: CGFloat = -1.5.keyboardScaled
 
     static let popupExtraHeight: CGFloat = 54.keyboardScaled

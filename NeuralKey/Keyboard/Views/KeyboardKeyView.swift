@@ -109,7 +109,7 @@ struct KeyboardKeyView: View {
             HStack(spacing: KeyboardMetrics.phoneToggleSpacing) {
                 ForEach(["plus", "asterisk", "number"], id: \.self) { name in
                     Image(systemName: name)
-                        .font(.system(size: KeyboardMetrics.phoneToggleIconSize, weight: .ultraLight))
+                        .font(.system(size: KeyboardMetrics.phoneToggleIconSize, weight: .light))
                 }
             }
             .foregroundStyle(AppColor.keyboardLabel)
