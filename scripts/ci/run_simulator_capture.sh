@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Builds the app, boots an iPhone Pro Max simulator (newest available model first), runs the
 # screen-capture UI tests while recording the simulator screen, and collects screenshots,
-# video, logs and the .xcresult bundle into $OUTPUT_DIR.
+# video, logs and the .xcresult bundle into $OUTPUT_DIR. The same tests then run on each of
+# $EXTRA_DEVICES (smaller screens) and their screenshots go to screenshots/<device>/.
 set -euo pipefail
 
 PROJECT="${PROJECT:-NeuralKey.xcodeproj}"
@@ -9,6 +10,7 @@ SCHEME="${SCHEME:-NeuralKey}"
 OUTPUT_DIR="${OUTPUT_DIR:-$PWD/simulator-captures}"
 DERIVED_DATA="${DERIVED_DATA:-$PWD/.build/DerivedData}"
 PREFERRED_DEVICES="${PREFERRED_DEVICES:-iPhone 18 Pro Max,iPhone 17 Pro Max,iPhone 16 Pro Max}"
+EXTRA_DEVICES="${EXTRA_DEVICES:-iPhone SE (3rd generation),iPhone 16e}"
 
 mkdir -p "$OUTPUT_DIR/screenshots" "$OUTPUT_DIR/video" "$OUTPUT_DIR/logs"
 rm -rf "$OUTPUT_DIR/TestResults.xcresult"
@@ -38,8 +40,34 @@ UDID="$(xcrun simctl create "NeuralKey Capture" "$DEVICE_TYPE_ID" "$RUNTIME_ID")
 echo "$DEVICE_NAME ($RUNTIME_NAME)" > "$OUTPUT_DIR/logs/device.txt"
 echo "Simulator: $DEVICE_NAME, $RUNTIME_NAME, $UDID"
 
+prepare_simulator() {
+  local udid="$1"
+  xcrun simctl boot "$udid"
+  xcrun simctl bootstatus "$udid" -b
+  xcrun simctl ui "$udid" appearance dark
+  xcrun simctl status_bar "$udid" override \
+    --time "9:41" \
+    --dataNetwork wifi --wifiMode active --wifiBars 3 \
+    --cellularMode active --cellularBars 4 \
+    --batteryState charged --batteryLevel 100
+}
+
+device_type_for() {
+  xcrun simctl list runtimes --json | python3 -c '
+import json, sys
+runtime_id, name = sys.argv[1], sys.argv[2]
+for runtime in json.load(sys.stdin)["runtimes"]:
+    if runtime["identifier"] == runtime_id:
+        for device_type in runtime.get("supportedDeviceTypes", []):
+            if device_type["name"] == name:
+                print(device_type["identifier"])
+                sys.exit(0)
+' "$RUNTIME_ID" "$1"
+}
+
 VIDEO_PID=""
 LOG_PID=""
+EXTRA_UDID=""
 cleanup() {
   if [[ -n "$VIDEO_PID" ]] && kill -0 "$VIDEO_PID" 2>/dev/null; then
     kill -INT "$VIDEO_PID" || true
@@ -50,17 +78,14 @@ cleanup() {
   fi
   xcrun simctl shutdown "$UDID" >/dev/null 2>&1 || true
   xcrun simctl delete "$UDID" >/dev/null 2>&1 || true
+  if [[ -n "$EXTRA_UDID" ]]; then
+    xcrun simctl shutdown "$EXTRA_UDID" >/dev/null 2>&1 || true
+    xcrun simctl delete "$EXTRA_UDID" >/dev/null 2>&1 || true
+  fi
 }
 trap cleanup EXIT
 
-xcrun simctl boot "$UDID"
-xcrun simctl bootstatus "$UDID" -b
-xcrun simctl ui "$UDID" appearance dark
-xcrun simctl status_bar "$UDID" override \
-  --time "9:41" \
-  --dataNetwork wifi --wifiMode active --wifiBars 3 \
-  --cellularMode active --cellularBars 4 \
-  --batteryState charged --batteryLevel 100
+prepare_simulator "$UDID"
 
 xcodebuild build-for-testing \
   -project "$PROJECT" \
@@ -99,6 +124,39 @@ kill -INT "$VIDEO_PID" || true
 wait "$VIDEO_PID" || true
 VIDEO_PID=""
 
+IFS=',' read -r -a EXTRA_DEVICE_LIST <<< "$EXTRA_DEVICES"
+for extra_name in "${EXTRA_DEVICE_LIST[@]}"; do
+  extra_type="$(device_type_for "$extra_name")"
+  if [[ -z "$extra_type" ]]; then
+    echo "Skipping $extra_name: not available for $RUNTIME_NAME"
+    continue
+  fi
+  extra_slug="$(echo "$extra_name" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-' | sed 's/-$//')"
+  EXTRA_UDID="$(xcrun simctl create "NeuralKey $extra_name" "$extra_type" "$RUNTIME_ID")"
+  echo "Extra simulator: $extra_name, $EXTRA_UDID"
+  prepare_simulator "$EXTRA_UDID"
+
+  set +e
+  TEST_RUNNER_NK_CAPTURE_DIR="$OUTPUT_DIR/screenshots/$extra_slug" xcodebuild test-without-building \
+    -project "$PROJECT" \
+    -scheme "$SCHEME" \
+    -configuration Debug \
+    -destination "id=$EXTRA_UDID" \
+    -derivedDataPath "$DERIVED_DATA" \
+    -parallel-testing-enabled NO \
+    CODE_SIGNING_ALLOWED=NO \
+    2>&1 | tee "$OUTPUT_DIR/logs/test-$extra_slug.log"
+  extra_status=${PIPESTATUS[0]}
+  set -e
+  if [[ "$extra_status" -ne 0 && "$TEST_STATUS" -eq 0 ]]; then
+    TEST_STATUS="$extra_status"
+  fi
+
+  xcrun simctl shutdown "$EXTRA_UDID" >/dev/null 2>&1 || true
+  xcrun simctl delete "$EXTRA_UDID" >/dev/null 2>&1 || true
+  EXTRA_UDID=""
+done
+
 echo "Captured screenshots:"
-ls -la "$OUTPUT_DIR/screenshots" || true
+ls -laR "$OUTPUT_DIR/screenshots" || true
 exit "$TEST_STATUS"

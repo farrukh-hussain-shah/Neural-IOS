@@ -28,23 +28,25 @@ enum AppRadius {
     static let lg: CGFloat = 14.scaled
     static let xl: CGFloat = 16.scaled
     static let splashLogo: CGFloat = 15.scaled
+    static let settingTile: CGFloat = 8.narrowScaled
 }
 
 enum AppSize {
     static let primaryButtonHeight: CGFloat = 56.scaled
     static let circleButton: CGFloat = 40.scaled
-    static let headerLogo: CGFloat = 32.scaled
+    static let headerLogo: CGFloat = 28.narrowScaled
     static let splashLogo: CGFloat = 92.scaled
     static let featureTile: CGFloat = 44.scaled
     static let featureCardHeight: CGFloat = 74.scaled
-    static let settingTile: CGFloat = 32.scaled
-    static let settingRowHeight: CGFloat = 73.scaled
-    static let rewritesFooterHeight: CGFloat = 64.scaled
+    static let settingTile: CGFloat = 28.5.narrowScaled
+    static let settingIcon: CGFloat = 18.narrowScaled
+    static let settingRowHeight: CGFloat = 55.5.narrowScaled
+    static let rewritesFooterHeight: CGFloat = 52.5.narrowScaled
     static let stepMarker: CGFloat = 30.scaled
     static let stepConnectorWidth: CGFloat = 2.scaled
     static let toggleCardHeight: CGFloat = 56.scaled
-    static let inputHeight: CGFloat = 55.scaled
-    static let chipHeight: CGFloat = 28.scaled
+    static let inputHeight: CGFloat = 44.narrowScaled
+    static let chipHeight: CGFloat = 21.narrowScaled
     static let progressBarHeight: CGFloat = 6.scaled
     static let pageIndicatorHeight: CGFloat = 5.scaled
     static let pageIndicatorActiveWidth: CGFloat = 32.scaled

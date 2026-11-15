@@ -5,6 +5,6 @@ import Observation
 final class HomeViewModel {
     var testText = ""
     var isKeyboardEnabled = true
-    var isFullAccessAllowed = false
-    let availableRewrites = 38
+    var isKeyboardSelected = true
+    let rewritesLeft = 18
 }

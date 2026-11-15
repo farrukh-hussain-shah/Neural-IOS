@@ -105,16 +105,16 @@ extension AppTextStyle {
 
     // MARK: Home
 
-    static let brandName = AppTextStyle(weight: .bold, size: 18, tracking: 0.48)
-    static let homeTitle = AppTextStyle(weight: .bold, size: 30)
-    static let homeSubtitle = AppTextStyle(weight: .regular, size: 14, lineHeight: 23)
-    static let sectionLabel = AppTextStyle(weight: .medium, size: 12)
-    static let sectionLabelStrong = AppTextStyle(weight: .bold, size: 12, tracking: 0.6)
-    static let input = AppTextStyle(weight: .regular, size: 16)
-    static let rowTitle = AppTextStyle(weight: .medium, size: 16)
-    static let rowSubtitle = AppTextStyle(weight: .regular, size: 12)
-    static let rewritesLabel = AppTextStyle(weight: .medium, size: 15, tracking: 0.36)
-    static let chip = AppTextStyle(weight: .bold, size: 12)
+    static let brandName = AppTextStyle(weight: .bold, size: 14, reference: .narrow)
+    static let homeTitle = AppTextStyle(weight: .bold, size: 25, reference: .narrow)
+    static let homeSubtitle = AppTextStyle(weight: .regular, size: 14, lineHeight: 17.5, reference: .narrow)
+    static let sectionLabel = AppTextStyle(weight: .medium, size: 12, tracking: -0.15, reference: .narrow)
+    static let sectionLabelStrong = AppTextStyle(weight: .bold, size: 12, reference: .narrow)
+    static let input = AppTextStyle(weight: .regular, size: 14, reference: .narrow)
+    static let rowTitle = AppTextStyle(weight: .medium, size: 15, reference: .narrow)
+    static let rowSubtitle = AppTextStyle(weight: .regular, size: 10.5, reference: .narrow)
+    static let chip = AppTextStyle(weight: .medium, size: 10, reference: .narrow)
+    static let chipBadge = AppTextStyle(weight: .bold, size: 5.5, reference: .narrow)
 
     // MARK: Premium
 

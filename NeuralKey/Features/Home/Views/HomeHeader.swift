@@ -5,20 +5,23 @@ struct HomeHeader: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            AppLogo(size: AppSize.headerLogo, cornerRadius: AppRadius.xs)
+            AppLogo(size: AppSize.headerLogo, cornerRadius: Layout.logoCornerRadius)
+                .shadow(color: AppColor.royal.opacity(Layout.logoGlowOpacity), radius: Layout.logoGlowRadius)
 
             Text(verbatim: "Neural Key")
                 .textStyle(.brandName)
                 .foregroundStyle(AppColor.textPrimary)
-                .padding(.leading, AppSpacing.s8)
+                .padding(.leading, Layout.logoToName)
                 .accessibilityAddTraits(.isHeader)
 
-            Spacer(minLength: AppSpacing.s12)
+            Spacer(minLength: Layout.logoToName)
 
             CircleIconButton(
                 icon: .crown,
                 background: AppGradient.brand,
                 accessibilityLabel: "Premium",
+                size: Layout.premiumSize,
+                iconSize: Layout.premiumIconSize,
                 action: onPremium
             )
             .accessibilityIdentifier(AccessibilityID.homePremiumButton)
@@ -26,10 +29,23 @@ struct HomeHeader: View {
             CircleIconButton(
                 icon: .menu,
                 background: AppColor.controlSurface,
-                foreground: AppColor.textOnAccent,
-                accessibilityLabel: "Menu"
+                accessibilityLabel: "Menu",
+                size: Layout.menuSize,
+                iconSize: Layout.menuIconSize
             )
-            .padding(.leading, AppSpacing.s24)
+            .padding(.leading, Layout.premiumToMenu)
         }
+    }
+
+    private enum Layout {
+        static let logoCornerRadius: CGFloat = 7.narrowScaled
+        static let logoGlowOpacity: Double = 0.55
+        static let logoGlowRadius: CGFloat = 7.narrowScaled
+        static let logoToName: CGFloat = 20.5.narrowScaled
+        static let premiumSize: CGFloat = 30.narrowScaled
+        static let premiumIconSize: CGFloat = 14.narrowScaled
+        static let menuSize: CGFloat = 32.narrowScaled
+        static let menuIconSize: CGFloat = 15.narrowScaled
+        static let premiumToMenu: CGFloat = 20.5.narrowScaled
     }
 }

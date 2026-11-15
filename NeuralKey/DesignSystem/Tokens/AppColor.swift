@@ -8,23 +8,21 @@ enum AppColor {
     static let primaryBright = Color(hex: 0x1462FF)
     static let accent = Color(hex: 0x2E6BFF)
     static let royal = Color(hex: 0x0D59F2)
-    static let azure = Color(hex: 0x007FFF)
     static let cyan = Color(hex: 0x06B6D4)
     static let tagline = Color(hex: 0x3B76FF)
     static let highlight = Color(hex: 0x4B86FF)
     static let soft = Color(hex: 0x6B9BFF)
     static let pale = Color(hex: 0x8FB4FF)
-    static let chipBorder = Color(hex: 0x1978E5, opacity: 0.4)
 
     // MARK: Text
 
     static let textPrimary = Color.white
     static let textSecondary = Color(hex: 0x94A3B8)
     static let textTertiary = Color(hex: 0x8593A8)
+    static let homeTextSecondary = Color(hex: 0xA9B2C2)
     static let textMuted = Color(hex: 0xB6C0CF)
-    static let textSubdued = Color(hex: 0x9CA6BA)
-    static let textPlaceholder = Color(hex: 0x475569)
-    static let textOnAccent = Color(hex: 0xF2F2F7)
+    static let textSubdued = Color(hex: 0xA6ADB9)
+    static let textPlaceholder = Color(hex: 0x8E8E93)
 
     // MARK: Backgrounds
 
@@ -39,14 +37,13 @@ enum AppColor {
     static let cardBorder = Color(hex: 0x23272E)
     static let iconTile = Color(hex: 0x1C2331)
     static let selectedSurface = Color(hex: 0x131C2E)
-    static let inputSurface = Color(hex: 0x1A1A1C)
-    static let inputGlow = Color(hex: 0x0D59F2, opacity: 0.25)
-    static let controlSurface = Color(hex: 0x1E1F24)
-    static let groupedSurface = Color.white.opacity(0.05)
-    static let groupedBorder = Color.white.opacity(0.05)
-    static let groupedDivider = Color.white.opacity(0.08)
-    static let groupedFooter = Color(hex: 0x1A202C, opacity: 0.6)
-    static let tintedTile = Color(hex: 0x06B6D4, opacity: 0.1)
+    static let inputSurface = Color(hex: 0x1B1B1B)
+    static let controlSurface = Color(hex: 0x1E1E24)
+    static let groupedSurface = Color(hex: 0x15181E)
+    static let groupedBorder = Color(hex: 0x212124)
+    static let groupedDivider = Color(hex: 0x24272D)
+    static let groupedFooter = Color(hex: 0x181B24)
+    static let tintedTile = Color(hex: 0x152034)
     static let progressTrack = Color(hex: 0x1C2331)
 
     // MARK: Indicators & Controls
@@ -59,7 +56,7 @@ enum AppColor {
     static let switchTrackOff = Color(hex: 0x282E39)
     static let switchKnob = Color.white
     static let switchKnobBorder = Color(hex: 0xD1D5DB)
-    static let chevron = Color(hex: 0x586175)
+    static let chevron = Color(hex: 0x5E606D)
 
     // MARK: Premium
 

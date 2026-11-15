@@ -19,9 +19,9 @@ struct AppSwitchToggleStyle: ToggleStyle {
         )
 
         static let compact = Metrics(
-            trackSize: CGSize(width: 44.scaled, height: 24.scaled),
-            knobDiameter: 19.scaled,
-            onColor: AppColor.azure,
+            trackSize: CGSize(width: 36.5.narrowScaled, height: 20.narrowScaled),
+            knobDiameter: 16.5.narrowScaled,
+            onColor: AppColor.royal,
             offColor: AppColor.switchTrackOff,
             knobBorderWhenOff: AppColor.switchKnobBorder
         )

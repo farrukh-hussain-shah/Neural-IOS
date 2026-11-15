@@ -5,15 +5,17 @@ struct CircleIconButton<Background: ShapeStyle>: View {
     let background: Background
     var foreground: Color = AppColor.textPrimary
     let accessibilityLabel: LocalizedStringKey
+    var size: CGFloat = AppSize.circleButton
+    var iconSize: CGFloat = AppSize.Icon.regular
     var action: @MainActor () -> Void = {}
 
     var body: some View {
         Button(action: action) {
             Image(icon)
                 .resizable()
-                .frame(width: AppSize.Icon.regular, height: AppSize.Icon.regular)
+                .frame(width: iconSize, height: iconSize)
                 .foregroundStyle(foreground)
-                .frame(width: AppSize.circleButton, height: AppSize.circleButton)
+                .frame(width: size, height: size)
                 .background(Circle().fill(background))
         }
         .buttonStyle(.pressable)

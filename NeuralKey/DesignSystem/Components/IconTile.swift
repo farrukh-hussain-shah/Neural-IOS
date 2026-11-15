@@ -18,8 +18,8 @@ struct IconTile: View {
 
         static let setting = Style(
             tileSize: AppSize.settingTile,
-            iconSize: AppSize.Icon.regular,
-            cornerRadius: AppRadius.sm,
+            iconSize: AppSize.settingIcon,
+            cornerRadius: AppRadius.settingTile,
             background: AppColor.tintedTile,
             foreground: AppColor.royal
         )

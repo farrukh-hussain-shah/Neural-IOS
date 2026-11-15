@@ -6,45 +6,43 @@ struct HomeView: View {
     @State private var viewModel = HomeViewModel()
 
     var body: some View {
-        GeometryReader { proxy in
-            content(safeAreaTop: proxy.safeAreaInsets.top)
-        }
-        .background { HomeBackground() }
+        content
+            .background { HomeBackground() }
     }
 
-    private func content(safeAreaTop: CGFloat) -> some View {
+    private var content: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 HomeHeader(onPremium: onPremium)
-                    .padding(.horizontal, Layout.horizontalMargin)
-                    .padding(.top, AppScale.safeAreaAlignedTop(Layout.headerDesignTop, safeAreaTop: safeAreaTop))
+                    .padding(.leading, Layout.headerLeading)
+                    .padding(.trailing, Layout.headerTrailing)
+                    .padding(.top, Layout.headerTop)
 
                 hero
-                    .padding(.leading, Layout.textLeading)
-                    .padding(.trailing, Layout.horizontalMargin)
-                    .padding(.top, Layout.heroTop)
+                    .padding(.horizontal, Layout.heroLeading)
+                    .padding(.top, Layout.headerToTitle)
 
                 Text("TEST YOUR KEYBOARD")
                     .textStyle(.sectionLabel)
-                    .foregroundStyle(AppColor.textSecondary)
-                    .padding(.leading, Layout.textLeading)
-                    .padding(.top, Layout.testLabelTop)
+                    .foregroundStyle(AppColor.homeTextSecondary)
+                    .padding(.leading, Layout.testLabelLeading)
+                    .padding(.top, Layout.subtitleToTestLabel)
 
                 KeyboardTestField(text: $viewModel.testText)
-                    .padding(.horizontal, Layout.horizontalMargin)
-                    .padding(.top, Layout.fieldTop)
+                    .padding(.horizontal, Layout.fieldHorizontal)
+                    .padding(.top, Layout.testLabelToField)
 
-                Text("TYPING & FEEDBACK")
+                Text("SETUP")
                     .textStyle(.sectionLabelStrong)
-                    .foregroundStyle(AppColor.textSubdued)
-                    .padding(.leading, Layout.textLeading)
-                    .padding(.top, Layout.feedbackLabelTop)
+                    .foregroundStyle(AppColor.textPrimary)
+                    .padding(.leading, Layout.setupLabelLeading)
+                    .padding(.top, Layout.fieldToSetupLabel)
 
                 HomeSettingsCard(viewModel: viewModel)
-                    .padding(.horizontal, Layout.horizontalMargin)
-                    .padding(.top, Layout.cardTop)
+                    .padding(.horizontal, Layout.cardHorizontal)
+                    .padding(.top, Layout.setupLabelToCard)
             }
-            .padding(.bottom, AppSpacing.s32)
+            .padding(.bottom, Layout.bottomPadding)
         }
         .scrollIndicators(.hidden)
         .scrollBounceBehavior(.basedOnSize)
@@ -52,19 +50,25 @@ struct HomeView: View {
     }
 
     private enum Layout {
-        static let headerDesignTop: CGFloat = AppScale.designStatusBarHeight + 20
-        static let horizontalMargin: CGFloat = 16.scaled
-        static let textLeading: CGFloat = 20.scaled
-        static let heroTop: CGFloat = 42.5.scaled
-        static let heroSubtitleSpacing: CGFloat = 6.scaled
-        static let testLabelTop: CGFloat = 33.scaled
-        static let fieldTop: CGFloat = 12.5.scaled
-        static let feedbackLabelTop: CGFloat = 35.scaled
-        static let cardTop: CGFloat = 8.5.scaled
+        static let headerTop: CGFloat = 14.narrowScaled
+        static let headerLeading: CGFloat = 20.narrowScaled
+        static let headerTrailing: CGFloat = 14.narrowScaled
+        static let headerToTitle: CGFloat = 27.9.narrowScaled
+        static let heroLeading: CGFloat = 16.narrowScaled
+        static let titleToSubtitle: CGFloat = 8.7.narrowScaled
+        static let subtitleToTestLabel: CGFloat = 30.9.narrowScaled
+        static let testLabelLeading: CGFloat = 15.5.narrowScaled
+        static let testLabelToField: CGFloat = 13.1.narrowScaled
+        static let fieldHorizontal: CGFloat = 16.5.narrowScaled
+        static let fieldToSetupLabel: CGFloat = 32.1.narrowScaled
+        static let setupLabelLeading: CGFloat = 14.5.narrowScaled
+        static let setupLabelToCard: CGFloat = 8.1.narrowScaled
+        static let cardHorizontal: CGFloat = 12.5.narrowScaled
+        static let bottomPadding: CGFloat = 24.narrowScaled
     }
 
     private var hero: some View {
-        VStack(alignment: .leading, spacing: Layout.heroSubtitleSpacing) {
+        VStack(alignment: .leading, spacing: Layout.titleToSubtitle) {
             (Text("NeuralBoard ") + Text("AI").foregroundStyle(AppColor.royal))
                 .textStyle(.homeTitle)
                 .foregroundStyle(AppColor.textPrimary)
@@ -72,7 +76,7 @@ struct HomeView: View {
                 .accessibilityIdentifier(AccessibilityID.homeTitle)
             Text("Smart Typing. AI Powered.\nPerfectly Personalized.")
                 .textStyle(.homeSubtitle)
-                .foregroundStyle(AppColor.textSecondary)
+                .foregroundStyle(AppColor.homeTextSecondary)
         }
     }
 }

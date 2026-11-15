@@ -18,7 +18,7 @@ SCREENS = [
     ("03-onboarding-welcome", "Onboarding 1 – Welcome", "390w light.svg"),
     ("04-onboarding-add-keyboard", "Onboarding 2 – Setup 1 of 3", "768w light-1.svg"),
     ("05-onboarding-full-access", "Onboarding 3 – Setup 2 of 3", "768w light-2.svg"),
-    ("06-home", "Home", "Home.svg"),
+    ("06-home", "Home", "Home-Android.png"),
     ("07-premium", "Premium", "Premium.svg"),
 ]
 
@@ -110,6 +110,19 @@ def compare_screen(key, title, design_dir, actual_dir, output_dir):
     return result
 
 
+def other_screen_sizes(output_dir):
+    device_dirs = sorted(path for path in (output_dir / "screenshots").glob("*") if path.is_dir())
+    if not device_dirs:
+        return []
+    lines = ["## Other screen sizes", ""]
+    for device_dir in device_dirs:
+        shots = sorted(device_dir.glob("*.png"))
+        lines += [f"### {device_dir.name}", ""]
+        lines += [f'<img src="screenshots/{device_dir.name}/{shot.name}" width="180" alt="{shot.stem}">' for shot in shots]
+        lines.append("")
+    return lines
+
+
 def write_report(results, output_dir):
     device_file = output_dir / "logs" / "device.txt"
     device = device_file.read_text().strip() if device_file.exists() else "unknown"
@@ -133,7 +146,7 @@ def write_report(results, output_dir):
         "- Video of the full flow: [video/simulator-flow.mp4](video/simulator-flow.mp4)",
         f"- Mismatch = share of pixels whose colour differs by more than {PIXEL_THRESHOLD}/255, "
         f"excluding the status bar ({STATUS_BAR_POINTS} pt) and home indicator ({HOME_INDICATOR_POINTS} pt).",
-        "- `Home.svg` has no status bar, so its reference is placed below the status bar.",
+        "- Home follows the Android screenshot `Home-Android.png` (ad removed), scaled to 390 pt and aligned to the iOS header.",
         "- `Language.svg` and `Premium.svg` are 375 × 812 pt frames, so their references are scaled uniformly to 390 pt.",
         "",
         "| Screen | Design file | Mismatch | Note |",
@@ -155,6 +168,7 @@ def write_report(results, output_dir):
             f"Full size: [design](design/{result['key']}.png) · [simulator](screenshots/{result['key']}.png)",
             "",
         ]
+    lines += other_screen_sizes(output_dir)
     report = "\n".join(lines)
     (output_dir / "README.md").write_text(report)
     (output_dir / "comparison" / "summary.json").write_text(json.dumps(results, indent=2))
