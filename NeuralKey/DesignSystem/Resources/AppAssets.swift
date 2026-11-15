@@ -17,6 +17,15 @@ enum AppIcon: String {
     case bolt = "IconBolt"
     case close = "IconClose"
     case adBadge = "IconAdBadge"
+    case sliders = "IconSliders"
+    case phone = "IconPhone"
+    case star = "IconStar"
+    case share = "IconShare"
+    case shield = "IconShield"
+    case moon = "IconMoon"
+    case sun = "IconSun"
+    case arrowLeft = "IconArrowLeft"
+    case checkCircle = "IconCheckCircle"
 }
 
 enum AppImage: String {

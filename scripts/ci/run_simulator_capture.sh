@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Builds the app, boots an iPhone Pro Max simulator (newest available model first), runs the
 # screen-capture UI tests while recording the simulator screen, and collects screenshots,
-# video, logs and the .xcresult bundle into $OUTPUT_DIR. The same tests then run on each of
-# $EXTRA_DEVICES (smaller screens) and their screenshots go to screenshots/<device>/.
+# video, logs and the .xcresult bundle into $OUTPUT_DIR. Optionally, the same tests then run on
+# each comma-separated device in $EXTRA_DEVICES, with screenshots in screenshots/<device>/.
 set -euo pipefail
 
 PROJECT="${PROJECT:-NeuralKey.xcodeproj}"
@@ -10,7 +10,7 @@ SCHEME="${SCHEME:-NeuralKey}"
 OUTPUT_DIR="${OUTPUT_DIR:-$PWD/simulator-captures}"
 DERIVED_DATA="${DERIVED_DATA:-$PWD/.build/DerivedData}"
 PREFERRED_DEVICES="${PREFERRED_DEVICES:-iPhone 18 Pro Max,iPhone 17 Pro Max,iPhone 16 Pro Max}"
-EXTRA_DEVICES="${EXTRA_DEVICES:-iPhone SE (3rd generation),iPhone 16e}"
+EXTRA_DEVICES="${EXTRA_DEVICES:-}"
 
 mkdir -p "$OUTPUT_DIR/screenshots" "$OUTPUT_DIR/video" "$OUTPUT_DIR/logs"
 rm -rf "$OUTPUT_DIR/TestResults.xcresult"
@@ -124,8 +124,11 @@ kill -INT "$VIDEO_PID" || true
 wait "$VIDEO_PID" || true
 VIDEO_PID=""
 
-IFS=',' read -r -a EXTRA_DEVICE_LIST <<< "$EXTRA_DEVICES"
-for extra_name in "${EXTRA_DEVICE_LIST[@]}"; do
+EXTRA_DEVICE_LIST=()
+if [[ -n "$EXTRA_DEVICES" ]]; then
+  IFS=',' read -r -a EXTRA_DEVICE_LIST <<< "$EXTRA_DEVICES"
+fi
+for extra_name in ${EXTRA_DEVICE_LIST[@]+"${EXTRA_DEVICE_LIST[@]}"}; do
   extra_type="$(device_type_for "$extra_name")"
   if [[ -z "$extra_type" ]]; then
     echo "Skipping $extra_name: not available for $RUNTIME_NAME"

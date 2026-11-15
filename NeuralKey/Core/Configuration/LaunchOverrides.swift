@@ -4,6 +4,11 @@ import Foundation
 enum LaunchOverrides {
     private static let frozenSplashProgressKey = "NKSplashFrozenProgress"
     private static let initialRouteKey = "NKInitialRoute"
+    private static let resetPreferencesKey = "NKResetPreferences"
+
+    static var shouldResetPreferences: Bool {
+        UserDefaults.standard.bool(forKey: resetPreferencesKey)
+    }
 
     static var frozenSplashProgress: Double? {
         UserDefaults.standard.string(forKey: frozenSplashProgressKey).flatMap(Double.init)

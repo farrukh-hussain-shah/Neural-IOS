@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeHeader: View {
     var onPremium: @MainActor () -> Void = {}
+    var onMenu: @MainActor () -> Void = {}
 
     var body: some View {
         HStack(spacing: 0) {
@@ -31,8 +32,10 @@ struct HomeHeader: View {
                 background: AppColor.controlSurface,
                 accessibilityLabel: "Menu",
                 size: Layout.menuSize,
-                iconSize: Layout.menuIconSize
+                iconSize: Layout.menuIconSize,
+                action: onMenu
             )
+            .accessibilityIdentifier(AccessibilityID.homeMenuButton)
             .padding(.leading, Layout.premiumToMenu)
         }
     }

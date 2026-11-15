@@ -142,6 +142,25 @@ extension AppTextStyle {
     static let languageOptionTitle = AppTextStyle(weight: .medium, size: 14, reference: .compact)
     static let languageOptionSubtitle = AppTextStyle(weight: .regular, size: 10, reference: .compact)
 
+    // MARK: Settings
+
+    static let settingsTitle = AppTextStyle(weight: .bold, size: 22.5, reference: .narrow)
+    static let settingsCardTitle = AppTextStyle(weight: .bold, size: 14, reference: .narrow)
+    static let settingsCardSubtitle = AppTextStyle(weight: .regular, size: 10.5, reference: .narrow)
+    static let settingsPill = AppTextStyle(weight: .semibold, size: 10, reference: .narrow)
+    static let settingsSection = AppTextStyle(weight: .medium, size: 11.5, reference: .narrow)
+    static let settingsRowTitle = AppTextStyle(weight: .medium, size: 14, reference: .narrow)
+    static let settingsRowValue = AppTextStyle(weight: .regular, size: 12, reference: .narrow)
+    static let settingsTileLabel = AppTextStyle(weight: .medium, size: 11.5, reference: .narrow)
+
+    // MARK: AI Tones
+
+    static let tonesTitle = AppTextStyle(weight: .bold, size: 23, reference: .narrow)
+    static let tonesSubtitle = AppTextStyle(weight: .regular, size: 14, reference: .narrow)
+    static let tonesSection = AppTextStyle(weight: .semibold, size: 10, reference: .narrow)
+    static let toneChip = AppTextStyle(weight: .medium, size: 11.5, reference: .narrow)
+    static let tonesAction = AppTextStyle(weight: .semibold, size: 15, reference: .narrow)
+
     // MARK: Ads
 
     static let adTitle = AppTextStyle(weight: .medium, size: 16, reference: .compact)

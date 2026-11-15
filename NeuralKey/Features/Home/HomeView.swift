@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     var onPremium: @MainActor () -> Void = {}
+    var onMenu: @MainActor () -> Void = {}
 
     @State private var viewModel = HomeViewModel()
 
@@ -13,7 +14,7 @@ struct HomeView: View {
     private var content: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                HomeHeader(onPremium: onPremium)
+                HomeHeader(onPremium: onPremium, onMenu: onMenu)
                     .padding(.leading, Layout.headerLeading)
                     .padding(.trailing, Layout.headerTrailing)
                     .padding(.top, Layout.headerTop)

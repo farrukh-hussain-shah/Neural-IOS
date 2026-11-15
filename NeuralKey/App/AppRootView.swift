@@ -3,6 +3,7 @@ import SwiftUI
 struct AppRootView: View {
     @State private var router = AppRouter(initialRoute: Self.initialRoute)
     @State private var languageStore = LanguageStore()
+    @State private var settingsStore = SettingsStore()
 
     var body: some View {
         ZStack {
@@ -17,9 +18,21 @@ struct AppRootView: View {
                 OnboardingView(step: step, onContinue: router.continueOnboarding)
                     .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
             case .home:
-                HomeView(onPremium: router.presentPremium)
-                    .transition(.opacity)
-                    .fullScreenCover(isPresented: $router.isPremiumPresented) {
+                ZStack {
+                    HomeView(onPremium: router.presentPremium, onMenu: router.presentSettings)
+                    if router.isSettingsPresented {
+                        SettingsDrawer(
+                            store: settingsStore,
+                            onUpgrade: router.presentPremium,
+                            onClose: router.dismissSettings
+                        )
+                        .transition(.move(edge: .trailing))
+                        .zIndex(1)
+                    }
+                }
+                .animation(AppAnimation.drawer, value: router.isSettingsPresented)
+                .transition(.opacity)
+                .fullScreenCover(isPresented: $router.isPremiumPresented) {
                         PremiumView(onClose: router.dismissPremium)
                             .preferredColorScheme(.dark)
                     }
@@ -28,6 +41,7 @@ struct AppRootView: View {
         .animation(.easeInOut(duration: AppConfiguration.Transition.duration), value: router.route)
         .background(AppColor.onboardingBackground.ignoresSafeArea())
         .environment(languageStore)
+        .environment(settingsStore)
         .preferredColorScheme(.dark)
     }
 

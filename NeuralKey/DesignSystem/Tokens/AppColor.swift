@@ -82,6 +82,42 @@ enum AppColor {
     static let optionSubtitleSelected = Color(hex: 0xB4C7EC)
     static let radioBorder = Color(hex: 0x656973)
 
+    // MARK: Settings
+
+    static let settingsSurface = Color(hex: 0x161920)
+    static let settingsBorder = Color.white.opacity(0.05)
+    static let settingsUpgradeBorder = Color.white.opacity(0.1)
+    static let settingsPill = Color.white.opacity(0.1)
+    static let settingsSectionLabel = Color.white.opacity(0.6)
+    static let settingsSecondary = Color.white.opacity(0.5)
+    static let settingsValue = Color.white.opacity(0.4)
+    static let appearanceSystemTop = Color(hex: 0x1D293D)
+    static let appearanceSystemInner = Color(hex: 0x1D293D, opacity: 0.8)
+    static let appearanceSystemCore = Color(hex: 0x45556C, opacity: 0.5)
+    static let appearanceDark = Color(hex: 0x1C1C1E)
+    static let appearanceLight = Color(hex: 0xE6E5EA)
+    static let appearanceMoon = Color(hex: 0x90A1B9)
+    static let appearanceSun = Color(hex: 0x62748E)
+    static let appearanceTileBorder = Color.white.opacity(0.1)
+
+    // MARK: AI Tones
+
+    static let tonesBackground = Color(hex: 0x050507)
+    static let tonesSubtitle = Color(hex: 0xDBEAFE, opacity: 0.6)
+    static let toneAccent = Color(hex: 0x60A5FA)
+    static let toneSectionLabel = Color(hex: 0x60A5FA, opacity: 0.8)
+    static let toneChipSurface = Color(hex: 0x141419, opacity: 0.6)
+    static let toneChipBorder = Color(hex: 0x007FFF, opacity: 0.2)
+    static let toneChipBorderSelected = Color(hex: 0x007FFF, opacity: 0.8)
+    static let toneChipText = Color.white.opacity(0.9)
+    static let toneChipIcon = Color.white.opacity(0.5)
+    static let toneGlowBlue = Color(hex: 0x007FFF)
+    static let toneGlowRoyal = Color(hex: 0x2563EB)
+    static let toneGlowViolet = Color(hex: 0xA855F7)
+    static let backButtonSurface = Color.white.opacity(0.05)
+    static let backButtonBorder = Color.white.opacity(0.1)
+    static let backButtonIcon = Color.white.opacity(0.7)
+
     // MARK: Ads
 
     static let adSurface = Color(hex: 0x111113)
@@ -96,6 +132,24 @@ enum AppGradient {
         colors: [AppColor.royal, AppColor.cyan],
         startPoint: .leading,
         endPoint: .trailing
+    )
+
+    static let toneSelected = LinearGradient(
+        colors: [Color(hex: 0x007FFF, opacity: 0.25), Color(hex: 0x007FFF, opacity: 0.05)],
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    )
+
+    static let appearanceSystem = LinearGradient(
+        colors: [AppColor.appearanceSystemTop, .black],
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    )
+
+    static let upgradeCard = LinearGradient(
+        colors: [Color.white.opacity(0.08), Color.white.opacity(0)],
+        startPoint: .top,
+        endPoint: .bottom
     )
 
     static let brandReversed = LinearGradient(

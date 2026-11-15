@@ -12,6 +12,7 @@ enum AppRoute: Equatable {
 final class AppRouter {
     private(set) var route: AppRoute
     var isPremiumPresented = false
+    var isSettingsPresented = false
 
     init(initialRoute: AppRoute = .splash) {
         route = initialRoute
@@ -36,5 +37,13 @@ final class AppRouter {
 
     func dismissPremium() {
         isPremiumPresented = false
+    }
+
+    func presentSettings() {
+        isSettingsPresented = true
+    }
+
+    func dismissSettings() {
+        isSettingsPresented = false
     }
 }

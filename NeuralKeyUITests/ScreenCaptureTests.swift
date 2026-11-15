@@ -14,6 +14,15 @@ final class ScreenCaptureTests: XCTestCase {
         static let premiumClose = "premium.close"
         static let premiumSubscribe = "premium.subscribe"
 
+        static let menuButton = "home.menuButton"
+        static let settingsTitle = "settings.title"
+        static let settingsToneAdjustment = "settings.toneAdjustment"
+        static let settingsHaptics = "settings.haptics"
+        static let tonesTitle = "tones.title"
+        static let tonesBack = "tones.back"
+        static let tonesUpdate = "tones.update"
+        static let appearancePrefix = "settings.appearance."
+        static let tonePrefix = "tones.option."
         static let premiumPlanPrefix = "premium.plan."
         static let languageOptionPrefix = "language.option."
 
@@ -42,6 +51,8 @@ final class ScreenCaptureTests: XCTestCase {
     private static let defaultLanguage = "english"
     private static let persistedLanguage = "arabic"
     private static let firstOnboardingPage = "Page 1 of 3"
+    private static let appearances = ["system", "dark", "light"]
+    private static let defaultToneCount = 10
     private static let premiumPlans = ["weekly", "monthly", "yearly"]
     private static let defaultPremiumPlan = "monthly"
     private static let frameTolerance: CGFloat = 0.5
@@ -195,6 +206,89 @@ final class ScreenCaptureTests: XCTestCase {
         )
         settle()
         capture("09-home-after-premium")
+    }
+
+    @MainActor
+    func test05SettingsAndAITones() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-NKInitialRoute", "home", "-NKResetPreferences", "YES"]
+        app.launch()
+
+        XCTAssertTrue(
+            element(Identifier.homeTitle, in: app).waitForExistence(timeout: Timing.launchTimeout),
+            "Home screen did not appear"
+        )
+        element(Identifier.menuButton, in: app).tap()
+
+        let settingsTitle = element(Identifier.settingsTitle, in: app)
+        XCTAssertTrue(settingsTitle.waitForExistence(timeout: Timing.transitionTimeout), "Settings did not open from the menu")
+        assertExclusiveSelection("system", among: Self.appearances, prefix: Identifier.appearancePrefix, in: app)
+        settle()
+        capture("10-settings")
+
+        for appearance in ["dark", "light", "system"] {
+            app.buttons[Identifier.appearancePrefix + appearance].tap()
+            assertExclusiveSelection(appearance, among: Self.appearances, prefix: Identifier.appearancePrefix, in: app)
+        }
+
+        let haptics = element(Identifier.settingsHaptics, in: app)
+        XCTAssertTrue(haptics.waitForExistence(timeout: Timing.transitionTimeout), "Haptic Feedback toggle is missing")
+        XCTAssertEqual(haptics.value as? String, "0", "Haptic Feedback should start off")
+        haptics.tap()
+        XCTAssertEqual(haptics.value as? String, "1", "Haptic Feedback did not turn on")
+
+        element(Identifier.settingsToneAdjustment, in: app).tap()
+        XCTAssertTrue(
+            element(Identifier.tonesTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+            "AI Tones did not open from Settings"
+        )
+        let update = app.buttons[Identifier.tonesUpdate]
+        XCTAssertTrue(update.waitForExistence(timeout: Timing.transitionTimeout), "Update button is missing")
+        XCTAssertEqual(selectedCount(prefix: Identifier.tonePrefix, in: app), Self.defaultToneCount)
+        XCTAssertFalse(update.isEnabled, "Update should be disabled before any change")
+        settle()
+        capture("11-ai-tones")
+
+        let translate = app.buttons[Identifier.tonePrefix + "translate"]
+        translate.tap()
+        XCTAssertTrue(translate.isSelected, "Translate did not become selected")
+        XCTAssertTrue(update.isEnabled, "Update should be enabled after a change")
+        translate.tap()
+        XCTAssertFalse(translate.isSelected, "Translate did not deselect")
+        XCTAssertFalse(update.isEnabled, "Update should be disabled when the selection is unchanged")
+
+        let email = app.buttons[Identifier.tonePrefix + "email"]
+        email.tap()
+        XCTAssertTrue(email.isSelected, "Email did not become selected")
+        update.tap()
+        XCTAssertTrue(
+            waitForDisappearance(of: element(Identifier.tonesTitle, in: app)),
+            "Update did not return to Settings"
+        )
+        XCTAssertTrue(settingsTitle.exists, "Settings is not visible after Update")
+
+        element(Identifier.settingsToneAdjustment, in: app).tap()
+        XCTAssertTrue(email.waitForExistence(timeout: Timing.transitionTimeout))
+        XCTAssertTrue(email.isSelected, "Saved tone selection was not kept")
+        XCTAssertEqual(selectedCount(prefix: Identifier.tonePrefix, in: app), Self.defaultToneCount + 1)
+        element(Identifier.tonesBack, in: app).tap()
+        XCTAssertTrue(
+            waitForDisappearance(of: element(Identifier.tonesTitle, in: app)),
+            "Back did not return to Settings"
+        )
+
+        app.swipeRight()
+        XCTAssertTrue(waitForDisappearance(of: settingsTitle), "Swiping right did not close Settings")
+        XCTAssertTrue(element(Identifier.homeTitle, in: app).exists, "Home is not visible after closing Settings")
+        settle()
+        capture("12-home-after-settings")
+    }
+
+    @MainActor
+    private func selectedCount(prefix: String, in app: XCUIApplication) -> Int {
+        app.buttons
+            .matching(NSPredicate(format: "identifier BEGINSWITH %@ AND selected == true", prefix))
+            .count
     }
 
     @MainActor
