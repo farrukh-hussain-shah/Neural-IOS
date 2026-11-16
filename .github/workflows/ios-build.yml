@@ -18,6 +18,8 @@ env:
 jobs:
   build:
     name: Build (iOS Simulator)
+    # A pull request from a feature/** branch in this repo is already tested by its push run.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository || !startsWith(github.head_ref, 'feature/')
     runs-on: macos-15
     timeout-minutes: 30
 
