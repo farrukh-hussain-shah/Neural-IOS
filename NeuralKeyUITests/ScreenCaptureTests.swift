@@ -41,7 +41,7 @@ final class ScreenCaptureTests: XCTestCase {
         static let transitionTimeout: TimeInterval = 10
         static let settle: TimeInterval = 1.5
         static let keyHold: TimeInterval = 0.2
-        static let popupHold: TimeInterval = 4
+        static let popupHold: TimeInterval = 8
         static let hostTimeout: TimeInterval = 20
     }
 
