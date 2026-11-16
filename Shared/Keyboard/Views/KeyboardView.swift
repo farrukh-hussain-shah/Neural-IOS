@@ -99,15 +99,21 @@ struct KeyboardView: View {
             .fill(panelColor)
             .overlay {
                 if !isPhonePad {
-                    // The design's inner shadow: a 1 pt white highlight along the top edge.
-                    shape
-                        .stroke(AppColor.keyboardPanelHighlight, lineWidth: 2)
-                        .blur(radius: 1)
-                        .offset(y: 1)
-                        .mask(shape)
-                    shape.stroke(AppColor.keyboardPanelBorder, lineWidth: 1)
+                    ZStack {
+                        // The design's inner shadow: a 1 pt white highlight along the top edge.
+                        shape
+                            .stroke(AppColor.keyboardPanelHighlight, lineWidth: 2)
+                            .blur(radius: 1)
+                            .offset(y: 1)
+                            .mask(shape)
+                        shape.stroke(AppColor.keyboardPanelBorder, lineWidth: 1)
+                    }
+                    // Run the edge past the bottom so only the top and sides are drawn: the
+                    // panel's bottom meets the screen edge or iOS's strip, which has no border.
+                    .padding(.bottom, -topRadius)
                 }
             }
+            .clipped()
     }
 }
 
