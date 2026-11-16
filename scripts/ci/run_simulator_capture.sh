@@ -171,9 +171,11 @@ capture_agent() {
       command="$(cat "$request")"
       case "$command" in
         screenshot)
-          sleep 1.6
+          echo "$(date +%T) request $name"
+          sleep 1.2
           xcrun simctl io "$UDID" screenshot --type=png "$OUTPUT_DIR/screenshots/$name.png" >/dev/null 2>&1 \
             || echo "Host screenshot $name failed"
+          echo "$(date +%T) captured $name"
           ;;
         video-start)
           xcrun simctl io "$UDID" recordVideo --codec=h264 --force "$OUTPUT_DIR/video/$name-raw.mp4" \
@@ -221,14 +223,19 @@ for clip in "$OUTPUT_DIR"/video/*-raw.mp4; do
   [[ -e "$clip" ]] || continue
   [[ "$clip" == "$RAW_VIDEO" ]] && continue
   final_clip="${clip%-raw.mp4}.mp4"
-  if [[ "$(stat -f%z "$clip")" -le "$MAX_VIDEO_BYTES" ]]; then
-    mv -f "$clip" "$final_clip"
-  elif avconvert --preset PresetHEVC1920x1080 --source "$clip" --output "$final_clip" --replace >/dev/null 2>&1 \
-    && [[ -s "$final_clip" ]] && [[ "$(stat -f%z "$final_clip")" -le "$MAX_VIDEO_BYTES" ]]; then
+  # Re-encode to standard H.264 with regular keyframes so the clip plays and seeks
+  # everywhere (raw simulator recordings only play correctly from the start).
+  for preset in Preset1920x1080 Preset1280x720; do
+    rm -f "$final_clip"
+    if avconvert --preset "$preset" --source "$clip" --output "$final_clip" --replace >/dev/null 2>&1 \
+      && [[ -s "$final_clip" ]] && [[ "$(stat -f%z "$final_clip")" -le "$MAX_VIDEO_BYTES" ]]; then
+      break
+    fi
+  done
+  if [[ -s "$final_clip" ]]; then
     rm -f "$clip"
   else
-    avconvert --preset Preset1280x720 --source "$clip" --output "$final_clip" --replace >/dev/null 2>&1 || mv -f "$clip" "$final_clip"
-    rm -f "$clip"
+    mv -f "$clip" "$final_clip"
   fi
   echo "Clip ready: $final_clip ($(stat -f%z "$final_clip") bytes)"
 done
