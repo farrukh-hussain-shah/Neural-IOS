@@ -556,7 +556,8 @@ final class ScreenCaptureTests: XCTestCase {
         XCTAssertEqual(q.maxY, a.minY, accuracy: tolerance, "Gap between the first and second rows is not fully covered")
         XCTAssertEqual(a.minX, screen.minX, accuracy: tolerance, "Margin left of a is not covered")
         XCTAssertEqual(p.maxX, screen.maxX, accuracy: tolerance, "Margin right of p is not covered")
-        XCTAssertGreaterThan(space.height, q.height + 10, "The bottom row should take touches down to the bottom edge")
+        // The band below the bottom row is ~7 pt (11.5 design pt minus half a row gap).
+        XCTAssertGreaterThan(space.height, q.height + 5, "The bottom row should take touches down to the bottom edge")
 
         // Taps that land in the empty space still type the nearest key.
         let taps: [(String, CGPoint)] = [
