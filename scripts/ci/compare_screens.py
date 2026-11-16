@@ -155,6 +155,8 @@ def write_report(results, output_dir):
         lines.append(f"- Workflow run: {run_url}")
     if (output_dir / "video" / "simulator-flow.mp4").exists():
         lines.append("- Video of the run: [video/simulator-flow.mp4](video/simulator-flow.mp4)")
+    if (output_dir / "video" / "keyboard-tour.mp4").exists():
+        lines.append("- Keyboard tour video: [video/keyboard-tour.mp4](video/keyboard-tour.mp4)")
     lines += [
         f"- Mismatch = share of pixels whose colour differs by more than {PIXEL_THRESHOLD}/255, "
         f"excluding the status bar ({STATUS_BAR_POINTS} pt) and home indicator ({HOME_INDICATOR_POINTS} pt).",

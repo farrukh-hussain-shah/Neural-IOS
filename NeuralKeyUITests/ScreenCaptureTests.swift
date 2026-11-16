@@ -40,6 +40,9 @@ final class ScreenCaptureTests: XCTestCase {
         static let launchTimeout: TimeInterval = 15
         static let transitionTimeout: TimeInterval = 10
         static let settle: TimeInterval = 1.5
+        static let keyHold: TimeInterval = 0.2
+        static let popupHold: TimeInterval = 4
+        static let hostTimeout: TimeInterval = 20
     }
 
     private static let designSplashProgress = "0.88"
@@ -512,6 +515,155 @@ final class ScreenCaptureTests: XCTestCase {
             app.activate()
         }
         return false
+    }
+
+    /// A filmed walk through the whole NeuralKey keyboard: it pops up, types with key
+    /// bubbles, and covers shift, caps lock, accents, numbers, symbols, delete and return.
+    @MainActor
+    func test10KeyboardTour() {
+        let launchArguments = [
+            "-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES", "-NKSystemKeyboardAppearance", "light"
+        ]
+
+        // Make NeuralKey the active keyboard first, so the filmed tap brings it straight up.
+        let setup = XCUIApplication()
+        setup.launchArguments += launchArguments
+        setup.launch()
+        let setupField = setup.textFields[Identifier.testField]
+        XCTAssertTrue(setupField.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        setupField.tap()
+        if !selectNeuralKeyKeyboard(in: setup) {
+            enableNeuralKeyKeyboard()
+            setup.activate()
+            setupField.tap()
+            XCTAssertTrue(selectNeuralKeyKeyboard(in: setup), "Could not switch to the NeuralKey keyboard")
+        }
+        setup.terminate()
+
+        let app = XCUIApplication()
+        app.launchArguments += launchArguments
+        app.launch()
+        let field = app.textFields[Identifier.testField]
+        XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        settle()
+
+        let isFilming = hostCapture("keyboard-tour", command: "video-start")
+        addTeardownBlock { @MainActor in
+            if isFilming {
+                _ = self.hostCapture("keyboard-tour", command: "video-stop")
+            }
+        }
+
+        field.tap()
+        XCTAssertTrue(key("q", in: app).waitForExistence(timeout: Timing.transitionTimeout), "NeuralKey keyboard did not pop up")
+        settle()
+        capture("30-tour-keyboard-up")
+
+        holdKey("h", capture: "31-tour-popup-h", in: app)
+        tourType("ello", in: app)
+        assertFieldText(field, equals: "Hello")
+        settle()
+        capture("32-tour-hello")
+
+        tourTap("key.space", in: app)
+        tourType("world", in: app)
+        keyElement("key.space", in: app).doubleTap()
+        assertFieldText(field, equals: "Hello world. ")
+        settle()
+        capture("33-tour-sentence")
+
+        holdKey("e", capture: "34-tour-accents", in: app)
+        XCTAssertTrue(fieldText(field).hasSuffix("È"), "Holding e should offer accents and insert the first one")
+        tourTap("key.delete", in: app)
+        assertFieldText(field, equals: "Hello world. ")
+
+        tourType("i", in: app)
+        keyElement("key.shift", in: app).doubleTap()
+        tourType("os", in: app)
+        assertFieldText(field, equals: "Hello world. IOS")
+        settle()
+        capture("35-tour-caps-lock")
+        tourTap("key.shift", in: app)
+        tourTap("key.space", in: app)
+
+        tourTap("key.layer.123", in: app)
+        XCTAssertTrue(key("1", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Numbers layer did not open")
+        settle()
+        capture("36-tour-numbers")
+        holdKey("2", capture: "37-tour-popup-2", in: app)
+        tourType("026", in: app)
+
+        tourTap("key.layer.#+=", in: app)
+        XCTAssertTrue(key("[", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Symbols layer did not open")
+        settle()
+        capture("38-tour-symbols")
+        holdKey("#", capture: "39-tour-popup-hash", in: app)
+        tourTap("key.space", in: app)
+        XCTAssertTrue(key("q", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Space should return to letters")
+
+        tourType("oj", in: app)
+        tourTap("key.delete", in: app)
+        tourType("k", in: app)
+        assertFieldText(field, equals: "Hello world. IOS 2026# ok")
+        settle()
+        capture("40-tour-final")
+
+        tourTap("key.return", in: app)
+        XCTAssertTrue(waitForDisappearance(of: key("q", in: app)), "Return should close the keyboard")
+        settle()
+        capture("41-tour-keyboard-closed")
+    }
+
+    /// Types with a short hold on each key so its bubble shows in the video, like a finger would.
+    @MainActor
+    private func tourType(_ characters: String, in app: XCUIApplication) {
+        for character in characters {
+            key(String(character).lowercased(), in: app).press(forDuration: Timing.keyHold)
+        }
+    }
+
+    @MainActor
+    private func tourTap(_ id: String, in app: XCUIApplication) {
+        keyElement(id, in: app).press(forDuration: Timing.keyHold)
+    }
+
+    /// Holds a key while the CI host takes a screenshot, so the key bubble (or accent menu) is captured.
+    @MainActor
+    private func holdKey(_ character: String, capture name: String, in app: XCUIApplication) {
+        let element = key(character, in: app)
+        XCTAssertTrue(element.waitForExistence(timeout: Timing.transitionTimeout), "Key \(character) is missing")
+        let requested = hostCapture(name, command: "screenshot", waitsForHost: false)
+        element.press(forDuration: Timing.popupHold)
+        if requested {
+            XCTAssertTrue(waitForHost(name), "The host did not capture \(name)")
+        }
+    }
+
+    /// Asks the CI script (scripts/ci/run_simulator_capture.sh) to screenshot or film the simulator.
+    /// Returns false when no host is listening, for example when run from Xcode.
+    @MainActor
+    @discardableResult
+    private func hostCapture(_ name: String, command: String, waitsForHost: Bool = true) -> Bool {
+        guard let directory = ProcessInfo.processInfo.environment["NK_CAPTURE_DIR"], !directory.isEmpty else { return false }
+        let requests = URL(fileURLWithPath: directory, isDirectory: true).appendingPathComponent(".requests", isDirectory: true)
+        guard FileManager.default.fileExists(atPath: requests.path) else { return false }
+        do {
+            try Data(command.utf8).write(to: requests.appendingPathComponent(name + ".request"), options: .atomic)
+        } catch {
+            return false
+        }
+        return waitsForHost ? waitForHost(name) : true
+    }
+
+    @MainActor
+    private func waitForHost(_ name: String) -> Bool {
+        guard let directory = ProcessInfo.processInfo.environment["NK_CAPTURE_DIR"] else { return false }
+        let request = URL(fileURLWithPath: directory).appendingPathComponent(".requests/\(name).request").path
+        let deadline = Date().addingTimeInterval(Timing.hostTimeout)
+        while FileManager.default.fileExists(atPath: request), Date() < deadline {
+            Thread.sleep(forTimeInterval: 0.1)
+        }
+        return !FileManager.default.fileExists(atPath: request)
     }
 
     /// Turns the NeuralKey keyboard on in Settings unless an earlier test already did.
