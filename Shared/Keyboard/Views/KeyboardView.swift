@@ -13,7 +13,8 @@ struct KeyboardView: View {
             rows
             bottomArea
         }
-        .frame(width: KeyboardLayout.designWidth.keyboardScaled, height: KeyboardMetrics.height(for: controller.configuration))
+        .frame(maxWidth: .infinity)
+        .frame(height: KeyboardMetrics.height(for: controller.configuration))
         .background(panel)
         .ignoresSafeArea()
     }
@@ -53,7 +54,7 @@ struct KeyboardView: View {
                     systemIcon(.keyboardMic, label: "dictation", identifier: "keyboard.dictation", centerX: KeyboardMetrics.micCenterX, action: .dictation)
                 }
             }
-            .frame(height: KeyboardMetrics.bottomAreaHeight - KeyboardMetrics.rowSpacing / 2)
+            .frame(height: KeyboardMetrics.bottomHeight(for: controller.configuration) - KeyboardMetrics.rowSpacing / 2)
         }
     }
 
@@ -81,17 +82,18 @@ struct KeyboardView: View {
     }
 
     private var panel: some View {
+        let topRadius = controller.configuration.placement == .systemKeyboard ? 0 : KeyboardMetrics.panelTopCornerRadius
         let shape = UnevenRoundedRectangle(
-            topLeadingRadius: KeyboardMetrics.panelTopCornerRadius,
+            topLeadingRadius: topRadius,
             bottomLeadingRadius: 0,
             bottomTrailingRadius: 0,
-            topTrailingRadius: KeyboardMetrics.panelTopCornerRadius,
+            topTrailingRadius: topRadius,
             style: .continuous
         )
         return shape
             .fill(isPhonePad ? AppColor.keyboardPhonePanel : AppColor.keyboardPanel)
             .overlay {
-                if !isPhonePad {
+                if !isPhonePad && controller.configuration.placement == .inApp {
                     shape.stroke(AppColor.keyboardPanelBorder, lineWidth: 1)
                 }
             }

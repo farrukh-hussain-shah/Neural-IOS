@@ -4,6 +4,7 @@ enum KeyboardMetrics {
     static let suggestionBarHeight: CGFloat = 56.keyboardScaled
     static let compactTopInset: CGFloat = 16.keyboardScaled
     static let bottomAreaHeight: CGFloat = 80.keyboardScaled
+    static let systemKeyboardBottomInset: CGFloat = 8.keyboardScaled
     static let systemIconCenterOffset: CGFloat = 39.5.keyboardScaled
     static let rowHeight: CGFloat = KeyboardLayout.rowHeight.keyboardScaled
     static let rowSpacing: CGFloat = KeyboardLayout.rowSpacing.keyboardScaled
@@ -49,13 +50,17 @@ enum KeyboardMetrics {
     static let alternateWidth: CGFloat = 34.keyboardScaled
     static let alternateFontSize: CGFloat = 26.keyboardScaled
 
+    static func bottomHeight(for configuration: KeyboardConfiguration) -> CGFloat {
+        configuration.placement == .systemKeyboard ? systemKeyboardBottomInset : bottomAreaHeight
+    }
+
     static func height(for configuration: KeyboardConfiguration) -> CGFloat {
         switch configuration.type {
         case .phonePad:
             phoneTopInset + 4 * phoneRowHeight + 3 * phoneRowSpacing + phoneBottomHeight
         case .text:
             (configuration.showsSuggestions ? suggestionBarHeight : compactTopInset)
-                + 4 * rowHeight + 3 * rowSpacing + bottomAreaHeight
+                + 4 * rowHeight + 3 * rowSpacing + bottomHeight(for: configuration)
         }
     }
 }

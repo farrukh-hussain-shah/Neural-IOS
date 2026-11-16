@@ -123,6 +123,8 @@ struct KeyboardKeyView: View {
                 .tracking(isPhonePad ? KeyboardMetrics.phoneLetterTracking : 0)
                 .foregroundStyle(AppColor.keyboardLabel)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+        case .nextKeyboard:
+            symbol("globe", size: KeyboardMetrics.returnIconSize, color: AppColor.keyboardLabel)
         case .space, .emoji, .dictation:
             Color.clear
         }
@@ -169,6 +171,7 @@ struct KeyboardKeyView: View {
         case .layer: key.subtitle ?? ""
         case .emoji: "emoji"
         case .dictation: "dictation"
+        case .nextKeyboard: "next keyboard"
         }
     }
 

@@ -31,6 +31,10 @@ final class AppRouter {
         route = step.next.map(AppRoute.onboarding) ?? .home
     }
 
+    func finishOnboarding() {
+        route = .home
+    }
+
     func presentPremium() {
         isPremiumPresented = true
     }

@@ -13,6 +13,10 @@ enum OnboardingStep: Int, CaseIterable, Hashable {
 
     var pageIndex: Int { rawValue }
 
+    var opensKeyboardSettings: Bool {
+        self != .welcome
+    }
+
     var primaryAction: OnboardingAction {
         switch self {
         case .welcome: .setUpKeyboard

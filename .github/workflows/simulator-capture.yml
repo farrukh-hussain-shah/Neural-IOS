@@ -2,7 +2,7 @@ name: Simulator Capture
 
 on:
   push:
-    branches: [main]
+    branches: [main, "feature/**"]
   pull_request:
   workflow_dispatch:
 
@@ -19,9 +19,8 @@ env:
   SCHEME: NeuralKey
   OUTPUT_DIR: ${{ github.workspace }}/simulator-captures
   CAPTURES_BRANCH: simulator-captures
-  CAPTURE_TESTS: NeuralKeyUITests/ScreenCaptureTests/test06InAppKeyboard,NeuralKeyUITests/ScreenCaptureTests/test07KeyboardDesignStates
+  CAPTURE_TESTS: NeuralKeyUITests/ScreenCaptureTests/test08KeyboardSetupThroughSettings,NeuralKeyUITests/ScreenCaptureTests/test06InAppKeyboard
   RECORD_VIDEO: "true"
-  VIDEO_CROP_RATIO: "0.8607"
 
 jobs:
   capture:
@@ -78,5 +77,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -q -m "Simulator captures for ${GITHUB_SHA::7}"
-          git push -q -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${CAPTURES_BRANCH}"
-          echo "Captures: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${CAPTURES_BRANCH}" >> "$GITHUB_STEP_SUMMARY"
+          target="$CAPTURES_BRANCH"
+          if [[ "$GITHUB_REF_NAME" != "main" ]]; then
+            target="captures-${GITHUB_REF_NAME//\//-}"
+          fi
+          git push -q -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${target}"
+          echo "Captures: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${target}" >> "$GITHUB_STEP_SUMMARY"

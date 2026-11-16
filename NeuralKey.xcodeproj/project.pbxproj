@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4E4B00000000000000000030 /* NeuralKeyKeyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4E4B00000000000000000021 /* NeuralKeyKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		4E4B0000000000000000001A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -14,11 +18,33 @@
 			remoteGlobalIDString = 4E4B00000000000000000009;
 			remoteInfo = NeuralKey;
 		};
+		4E4B0000000000000000002E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E4B0000000000000000000A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E4B00000000000000000029;
+			remoteInfo = NeuralKeyKeyboard;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4E4B0000000000000000002F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4E4B00000000000000000030 /* NeuralKeyKeyboard.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4E4B00000000000000000001 /* NeuralKey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeuralKey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4B00000000000000000011 /* NeuralKeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuralKeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E4B00000000000000000021 /* NeuralKeyKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NeuralKeyKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -28,6 +54,13 @@
 				Info.plist,
 			);
 			target = 4E4B00000000000000000009 /* NeuralKey */;
+		};
+		4E4B0000000000000000002A /* Exceptions for "NeuralKeyKeyboard" folder in "NeuralKeyKeyboard" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4E4B00000000000000000029 /* NeuralKeyKeyboard */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -43,6 +76,19 @@
 		4E4B00000000000000000012 /* NeuralKeyUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = NeuralKeyUITests;
+			sourceTree = "<group>";
+		};
+		4E4B00000000000000000022 /* NeuralKeyKeyboard */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4E4B0000000000000000002A /* Exceptions for "NeuralKeyKeyboard" folder in "NeuralKeyKeyboard" target */,
+			);
+			path = NeuralKeyKeyboard;
+			sourceTree = "<group>";
+		};
+		4E4B00000000000000000031 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -62,6 +108,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4E4B00000000000000000025 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -69,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				4E4B00000000000000000002 /* NeuralKey */,
+				4E4B00000000000000000031 /* Shared */,
+				4E4B00000000000000000022 /* NeuralKeyKeyboard */,
 				4E4B00000000000000000012 /* NeuralKeyUITests */,
 				4E4B00000000000000000005 /* Products */,
 			);
@@ -79,6 +134,7 @@
 			children = (
 				4E4B00000000000000000001 /* NeuralKey.app */,
 				4E4B00000000000000000011 /* NeuralKeyUITests.xctest */,
+				4E4B00000000000000000021 /* NeuralKeyKeyboard.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,13 +149,16 @@
 				4E4B00000000000000000006 /* Sources */,
 				4E4B00000000000000000007 /* Frameworks */,
 				4E4B00000000000000000008 /* Resources */,
+				4E4B0000000000000000002F /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4E4B0000000000000000002D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				4E4B00000000000000000002 /* NeuralKey */,
+				4E4B00000000000000000031 /* Shared */,
 			);
 			name = NeuralKey;
 			packageProductDependencies = (
@@ -131,6 +190,29 @@
 			productReference = 4E4B00000000000000000011 /* NeuralKeyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		4E4B00000000000000000029 /* NeuralKeyKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E4B00000000000000000027 /* Build configuration list for PBXNativeTarget "NeuralKeyKeyboard" */;
+			buildPhases = (
+				4E4B00000000000000000024 /* Sources */,
+				4E4B00000000000000000025 /* Frameworks */,
+				4E4B00000000000000000026 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4E4B00000000000000000022 /* NeuralKeyKeyboard */,
+				4E4B00000000000000000031 /* Shared */,
+			);
+			name = NeuralKeyKeyboard;
+			packageProductDependencies = (
+			);
+			productName = NeuralKeyKeyboard;
+			productReference = 4E4B00000000000000000021 /* NeuralKeyKeyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -147,6 +229,9 @@
 					4E4B00000000000000000016 = {
 						CreatedOnToolsVersion = 16.4;
 						TestTargetID = 4E4B00000000000000000009;
+					};
+					4E4B00000000000000000029 = {
+						CreatedOnToolsVersion = 16.4;
 					};
 				};
 			};
@@ -165,6 +250,7 @@
 			projectRoot = "";
 			targets = (
 				4E4B00000000000000000009 /* NeuralKey */,
+				4E4B00000000000000000029 /* NeuralKeyKeyboard */,
 				4E4B00000000000000000016 /* NeuralKeyUITests */,
 			);
 		};
@@ -179,6 +265,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4E4B00000000000000000015 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E4B00000000000000000026 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -202,6 +295,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4E4B00000000000000000024 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -209,6 +309,11 @@
 			isa = PBXTargetDependency;
 			target = 4E4B00000000000000000009 /* NeuralKey */;
 			targetProxy = 4E4B0000000000000000001A /* PBXContainerItemProxy */;
+		};
+		4E4B0000000000000000002D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E4B00000000000000000029 /* NeuralKeyKeyboard */;
+			targetProxy = 4E4B0000000000000000002E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -337,6 +442,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NeuralKey/NeuralKey.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
@@ -368,6 +474,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NeuralKey/NeuralKey.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
@@ -430,6 +537,62 @@
 			};
 			name = Release;
 		};
+		4E4B0000000000000000002B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = NeuralKeyKeyboard/NeuralKeyKeyboard.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NeuralKeyKeyboard/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NeuralKey;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.neuralkey.app.keyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		4E4B0000000000000000002C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = NeuralKeyKeyboard/NeuralKeyKeyboard.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NeuralKeyKeyboard/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NeuralKey;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.neuralkey.app.keyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -447,6 +610,15 @@
 			buildConfigurations = (
 				4E4B0000000000000000000F /* Debug */,
 				4E4B00000000000000000010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E4B00000000000000000027 /* Build configuration list for PBXNativeTarget "NeuralKeyKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E4B0000000000000000002B /* Debug */,
+				4E4B0000000000000000002C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

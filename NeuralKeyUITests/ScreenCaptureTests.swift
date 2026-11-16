@@ -120,6 +120,7 @@ final class ScreenCaptureTests: XCTestCase {
     @MainActor
     func test03OnboardingToHomeFlow() {
         let app = XCUIApplication()
+        app.launchArguments += ["-NKSkipKeyboardSetup", "YES"]
         app.launch()
 
         let languageDone = element(Identifier.languageDone, in: app)
@@ -381,6 +382,97 @@ final class ScreenCaptureTests: XCTestCase {
             capture(state.capture)
             app.terminate()
         }
+    }
+
+    @MainActor
+    func test08KeyboardSetupThroughSettings() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-NKInitialRoute", "onboarding"]
+        app.launch()
+
+        let primaryAction = element(Identifier.primaryAction, in: app)
+        XCTAssertTrue(primaryAction.waitForExistence(timeout: Timing.launchTimeout), "Onboarding did not appear")
+        primaryAction.tap()
+        XCTAssertTrue(
+            element(Identifier.pageIndicator, label: "Page 2 of 3", in: app).waitForExistence(timeout: Timing.transitionTimeout),
+            "Add Keyboard step did not appear"
+        )
+        settle()
+        capture("20-setup-add-keyboard")
+
+        primaryAction.tap()
+        let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
+        XCTAssertTrue(settings.wait(for: .runningForeground, timeout: Timing.launchTimeout), "Open Settings did not open the Settings app")
+        openKeyboardSettings(in: settings)
+
+        let keyboardSwitch = settings.switches["NeuralKey"]
+        XCTAssertTrue(keyboardSwitch.waitForExistence(timeout: Timing.transitionTimeout), "NeuralKey keyboard switch is missing in Settings")
+        turnOn(keyboardSwitch)
+        XCTAssertTrue(waitUntilOn(keyboardSwitch), "NeuralKey keyboard did not turn on")
+        settle()
+        capture("21-settings-keyboard-added")
+
+        app.activate()
+        XCTAssertTrue(
+            element(Identifier.pageIndicator, label: "Page 3 of 3", in: app).waitForExistence(timeout: Timing.transitionTimeout),
+            "Returning after adding the keyboard should show the Full Access step"
+        )
+        settle()
+        capture("22-setup-full-access")
+
+        element(Identifier.primaryAction, in: app).tap()
+        XCTAssertTrue(settings.wait(for: .runningForeground, timeout: Timing.launchTimeout), "Open Settings did not reopen Settings")
+        openKeyboardSettings(in: settings)
+        let fullAccessSwitch = settings.switches["Allow Full Access"]
+        XCTAssertTrue(fullAccessSwitch.waitForExistence(timeout: Timing.transitionTimeout), "Allow Full Access switch is missing")
+        if switchIsOn(fullAccessSwitch) == false {
+            turnOn(fullAccessSwitch)
+            let allow = settings.alerts.buttons["Allow"]
+            if allow.waitForExistence(timeout: Timing.transitionTimeout) {
+                allow.tap()
+            }
+        }
+        XCTAssertTrue(waitUntilOn(fullAccessSwitch), "Full Access did not turn on")
+        settle()
+        capture("23-settings-full-access")
+
+        app.activate()
+        XCTAssertTrue(
+            element(Identifier.homeTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+            "Returning after allowing Full Access should continue to Home"
+        )
+        settle()
+        capture("24-home-after-setup")
+    }
+
+    @MainActor
+    private func openKeyboardSettings(in settings: XCUIApplication) {
+        if settings.switches["NeuralKey"].waitForExistence(timeout: 3) {
+            return
+        }
+        let keyboards = settings.descendants(matching: .any)
+            .matching(NSPredicate(format: "label == %@", "Keyboards"))
+            .firstMatch
+        XCTAssertTrue(keyboards.waitForExistence(timeout: Timing.launchTimeout), "Keyboards row is missing in NeuralKey settings")
+        keyboards.tap()
+    }
+
+    @MainActor
+    private func turnOn(_ toggle: XCUIElement) {
+        guard switchIsOn(toggle) != true else { return }
+        toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.92, dy: 0.5)).tap()
+    }
+
+    @MainActor
+    private func waitUntilOn(_ toggle: XCUIElement) -> Bool {
+        let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == '1'"), object: toggle)
+        return XCTWaiter.wait(for: [expectation], timeout: Timing.transitionTimeout) == .completed
+    }
+
+    @MainActor
+    private func switchIsOn(_ element: XCUIElement) -> Bool? {
+        guard let value = element.value as? String else { return nil }
+        return value == "1"
     }
 
     @MainActor

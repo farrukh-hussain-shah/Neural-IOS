@@ -6,6 +6,10 @@ enum LaunchOverrides {
     private static let initialRouteKey = "NKInitialRoute"
     private static let resetPreferencesKey = "NKResetPreferences"
 
+    static var skipsKeyboardSetup: Bool {
+        UserDefaults.standard.bool(forKey: "NKSkipKeyboardSetup")
+    }
+
     static var shouldResetPreferences: Bool {
         UserDefaults.standard.bool(forKey: resetPreferencesKey)
     }

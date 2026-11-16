@@ -12,6 +12,7 @@ final class KeyboardController {
 
     @ObservationIgnored weak var textInput: (any KeyboardTextInput)?
     @ObservationIgnored var onInputClick: (() -> Void)?
+    @ObservationIgnored var onNextKeyboard: (() -> Void)?
     @ObservationIgnored var playsHaptics: Bool
 
     @ObservationIgnored private var lastShiftTap: Date?
@@ -85,6 +86,8 @@ final class KeyboardController {
         case .returnKey:
             textInput?.performReturn()
             textDidChange()
+        case .nextKeyboard:
+            onNextKeyboard?()
         case .emoji, .dictation:
             break
         }

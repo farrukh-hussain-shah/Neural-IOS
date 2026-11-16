@@ -23,6 +23,7 @@ enum KeyboardAction: Equatable {
     case returnKey
     case emoji
     case dictation
+    case nextKeyboard
 }
 
 struct KeyboardKey: Identifiable, Equatable {
@@ -141,6 +142,14 @@ enum KeyboardLayout {
     }
 
     private static func bottomRow(switchTo layer: KeyboardLayer, label: String, configuration: KeyboardConfiguration) -> KeyboardRow {
+        if configuration.showsGlobeKey {
+            return KeyboardRow(id: 3, leadingInset: 4, keys: [
+                KeyboardKey(id: "key.layer.\(label)", action: .layer(layer), width: 44, gapAfter: 6, style: .function, subtitle: label),
+                KeyboardKey(id: "key.globe", action: .nextKeyboard, width: 41, gapAfter: 6, style: .function),
+                KeyboardKey(id: "key.space", action: .space, width: 200, gapAfter: 6, style: .function),
+                KeyboardKey(id: "key.return", action: .returnKey, width: 91, gapAfter: 0, style: .function)
+            ])
+        }
         let layerKey = KeyboardKey(id: "key.layer.\(label)", action: .layer(layer), width: 91, gapAfter: 6, style: .function, subtitle: label)
         switch configuration.returnKey {
         case .return:

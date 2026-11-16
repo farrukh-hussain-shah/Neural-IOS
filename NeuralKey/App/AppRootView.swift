@@ -15,7 +15,7 @@ struct AppRootView: View {
                 LanguageSelectionView(store: languageStore, onDone: router.completeLanguageSelection)
                     .transition(.asymmetric(insertion: .opacity, removal: .move(edge: .leading)))
             case .onboarding(let step):
-                OnboardingView(step: step, onContinue: router.continueOnboarding)
+                OnboardingView(step: step, onContinue: router.continueOnboarding, onFinish: router.finishOnboarding)
                     .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
             case .home:
                 ZStack {
