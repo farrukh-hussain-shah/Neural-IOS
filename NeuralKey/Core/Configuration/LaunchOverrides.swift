@@ -10,6 +10,10 @@ enum LaunchOverrides {
         UserDefaults.standard.bool(forKey: "NKSkipKeyboardSetup")
     }
 
+    static var usesSystemKeyboard: Bool {
+        UserDefaults.standard.bool(forKey: "NKUseSystemKeyboard")
+    }
+
     static var shouldResetPreferences: Bool {
         UserDefaults.standard.bool(forKey: resetPreferencesKey)
     }

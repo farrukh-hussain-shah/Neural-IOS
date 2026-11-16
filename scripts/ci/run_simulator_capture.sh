@@ -56,6 +56,8 @@ echo "Simulator: $DEVICE_NAME, $RUNTIME_NAME, $UDID"
 
 prepare_simulator() {
   local udid="$1"
+  # Show the on-screen keyboard so system keyboards (NeuralKey) can be tested.
+  defaults write com.apple.iphonesimulator ConnectHardwareKeyboard -bool false || true
   xcrun simctl boot "$udid"
   xcrun simctl bootstatus "$udid" -b
   xcrun simctl ui "$udid" appearance dark

@@ -448,6 +448,76 @@ final class ScreenCaptureTests: XCTestCase {
     }
 
     @MainActor
+    func test09NeuralKeyKeyboardExtension() {
+        enableNeuralKeyKeyboard()
+
+        let app = XCUIApplication()
+        app.launchArguments += ["-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES"]
+        app.launch()
+
+        let field = app.textFields[Identifier.testField]
+        XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        field.tap()
+        XCTAssertTrue(selectNeuralKeyKeyboard(in: app), "Could not switch to the NeuralKey keyboard")
+        XCTAssertEqual(key("q", in: app).label, "Q", "An empty field should start capitalized")
+        settle()
+        capture("25-extension-letters")
+
+        type("hello", in: app)
+        keyElement("key.space", in: app).tap()
+        type("world", in: app)
+        assertFieldText(field, equals: "Hello world")
+        settle()
+        capture("26-extension-typing")
+
+        keyElement("key.layer.123", in: app).tap()
+        XCTAssertTrue(key("1", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Numbers layer did not open")
+        type("7", in: app)
+        assertFieldText(field, equals: "Hello world7")
+        settle()
+        capture("27-extension-numbers")
+
+        keyElement("key.delete", in: app).tap()
+        assertFieldText(field, equals: "Hello world")
+    }
+
+    /// Turns the NeuralKey keyboard on in Settings unless an earlier test already did.
+    @MainActor
+    private func enableNeuralKeyKeyboard() {
+        let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
+        settings.launch()
+        openKeyboardSettings(in: settings)
+        let keyboardSwitch = settings.switches["NeuralKey"]
+        XCTAssertTrue(keyboardSwitch.waitForExistence(timeout: Timing.transitionTimeout), "NeuralKey keyboard switch is missing in Settings")
+        turnOn(keyboardSwitch)
+        XCTAssertTrue(waitUntilOn(keyboardSwitch), "NeuralKey keyboard did not turn on")
+        settings.terminate()
+    }
+
+    /// Taps the system globe key until the NeuralKey keyboard is the active one.
+    @MainActor
+    private func selectNeuralKeyKeyboard(in app: XCUIApplication) -> Bool {
+        let nextKeyboard = app.descendants(matching: .any)
+            .matching(NSPredicate(format: "label ==[c] %@", "Next keyboard"))
+            .firstMatch
+        for _ in 0..<5 {
+            if key("q", in: app).waitForExistence(timeout: 2) {
+                return true
+            }
+            guard nextKeyboard.waitForExistence(timeout: Timing.transitionTimeout) else {
+                print("Next keyboard key not found:\n\(app.debugDescription)")
+                return false
+            }
+            nextKeyboard.tap()
+        }
+        let found = key("q", in: app).waitForExistence(timeout: Timing.transitionTimeout)
+        if !found {
+            print("NeuralKey keyboard keys not found:\n\(app.debugDescription)")
+        }
+        return found
+    }
+
+    @MainActor
     private func openKeyboardSettings(in settings: XCUIApplication) {
         if settings.switches["NeuralKey"].waitForExistence(timeout: 3) {
             return

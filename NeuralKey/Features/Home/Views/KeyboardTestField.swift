@@ -16,7 +16,8 @@ struct KeyboardTestField: View {
             placeholder: String(localized: "Type something..."),
             configuration: keyboardConfiguration,
             presenter: keyboardPresenter,
-            accessibilityIdentifier: AccessibilityID.homeTestField
+            accessibilityIdentifier: AccessibilityID.homeTestField,
+            usesSystemKeyboard: usesSystemKeyboard
         )
         .padding(.horizontal, Layout.horizontalPadding)
         .frame(height: AppSize.inputHeight)
@@ -32,6 +33,14 @@ struct KeyboardTestField: View {
                 .strokeBorder(AppGradient.brand, lineWidth: Layout.borderWidth)
                 .opacity(Layout.borderOpacity)
         }
+    }
+
+    private var usesSystemKeyboard: Bool {
+        #if DEBUG
+        LaunchOverrides.usesSystemKeyboard
+        #else
+        false
+        #endif
     }
 
     private var keyboardConfiguration: KeyboardConfiguration {
