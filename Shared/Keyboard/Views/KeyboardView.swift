@@ -32,20 +32,39 @@ struct KeyboardView: View {
         }
     }
 
+    /// As a system keyboard there is nothing below the last row (iOS draws its own strip), so,
+    /// like the native keyboard, that row's keys take touches all the way to the bottom edge.
+    private var extendsLastRowToBottom: Bool {
+        !isPhonePad && controller.configuration.placement == .systemKeyboard
+    }
+
+    /// Every key's touch area covers half of each gap around it, the side margins and, for the
+    /// outer rows, the space up to the suggestion bar or down to the bottom edge, so a tap
+    /// anywhere on the keyboard reaches the nearest key, as on iOS.
     private var rows: some View {
         let rowHeight = isPhonePad ? KeyboardMetrics.phoneRowHeight : KeyboardMetrics.rowHeight
         let spacing = isPhonePad ? KeyboardMetrics.phoneRowSpacing : KeyboardMetrics.rowSpacing
         let rows = controller.rows
+        let bottomFill = KeyboardMetrics.bottomHeight(for: controller.configuration) - spacing / 2
         return VStack(spacing: 0) {
-            ForEach(rows) { row in
-                KeyboardRowView(row: row, rowHeight: rowHeight, verticalHitInset: spacing / 2, controller: controller)
+            ForEach(Array(rows.enumerated()), id: \.element.id) { index, row in
+                let isLastRow = index == rows.count - 1
+                KeyboardRowView(
+                    row: row,
+                    rowHeight: rowHeight,
+                    topHitInset: spacing / 2,
+                    bottomHitInset: spacing / 2 + (isLastRow && extendsLastRowToBottom ? bottomFill : 0),
+                    controller: controller
+                )
             }
         }
     }
 
     @ViewBuilder
     private var bottomArea: some View {
-        if isPhonePad {
+        if extendsLastRowToBottom {
+            EmptyView()
+        } else if isPhonePad {
             Color.clear.frame(height: KeyboardMetrics.phoneBottomHeight - KeyboardMetrics.phoneRowSpacing / 2)
         } else {
             ZStack(alignment: .topLeading) {
@@ -140,7 +159,8 @@ struct KeyboardView: View {
 private struct KeyboardRowView: View {
     let row: KeyboardRow
     let rowHeight: CGFloat
-    let verticalHitInset: CGFloat
+    let topHitInset: CGFloat
+    let bottomHitInset: CGFloat
     let controller: KeyboardController
 
     var body: some View {
@@ -156,9 +176,9 @@ private struct KeyboardRowView: View {
                     edge: isFirst ? .leading : (isLast ? .trailing : .none),
                     expandsAlternatesLeading: keyCenter(at: index) > KeyboardLayout.designWidth / 2,
                     hitInsets: EdgeInsets(
-                        top: verticalHitInset,
+                        top: topHitInset,
                         leading: previousGap.keyboardScaled,
-                        bottom: verticalHitInset,
+                        bottom: bottomHitInset,
                         trailing: nextGap.keyboardScaled
                     ),
                     controller: controller

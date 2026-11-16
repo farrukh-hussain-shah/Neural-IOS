@@ -517,6 +517,68 @@ final class ScreenCaptureTests: XCTestCase {
         return false
     }
 
+    /// Taps the empty space between and around keys on the NeuralKey keyboard: as on iOS, every
+    /// gap belongs to the nearest key, so there is no dead space between the white key faces.
+    @MainActor
+    func test12KeyTouchAreasCoverGaps() {
+        let app = XCUIApplication()
+        app.launchArguments += [
+            "-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES",
+            "-NKSystemKeyboardAppearance", "light", "-NKSystemKeyboardAutocapitalization", "none"
+        ]
+        app.launch()
+        let field = app.textFields[Identifier.testField]
+        XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        field.tap()
+        if !selectNeuralKeyKeyboard(in: app) {
+            enableNeuralKeyKeyboard()
+            app.activate()
+            field.tap()
+            XCTAssertTrue(selectNeuralKeyKeyboard(in: app), "Could not switch to the NeuralKey keyboard")
+        }
+        settle()
+
+        let q = key("q", in: app).frame
+        let w = key("w", in: app).frame
+        let p = key("p", in: app).frame
+        let a = key("a", in: app).frame
+        let l = key("l", in: app).frame
+        let z = key("z", in: app).frame
+        let shift = keyElement("key.shift", in: app).frame
+        let space = keyElement("key.space", in: app).frame
+        let screen = app.windows.firstMatch.frame
+        print("Key touch areas: q \(q), w \(w), p \(p), a \(a), l \(l), shift \(shift), z \(z), space \(space), screen \(screen)")
+
+        // Touch areas meet edge to edge: no dead space between keys, rows or at the screen edges.
+        let tolerance: CGFloat = 0.5
+        XCTAssertEqual(q.maxX, w.minX, accuracy: tolerance, "Gap between q and w is not fully covered")
+        XCTAssertEqual(shift.maxX, z.minX, accuracy: tolerance, "Gap between shift and z is not fully covered")
+        XCTAssertEqual(q.maxY, a.minY, accuracy: tolerance, "Gap between the first and second rows is not fully covered")
+        XCTAssertEqual(a.minX, screen.minX, accuracy: tolerance, "Margin left of a is not covered")
+        XCTAssertEqual(p.maxX, screen.maxX, accuracy: tolerance, "Margin right of p is not covered")
+        XCTAssertGreaterThan(space.height, q.height + 10, "The bottom row should take touches down to the bottom edge")
+
+        // Taps that land in the empty space still type the nearest key.
+        let taps: [(String, CGPoint)] = [
+            ("q, right of its face", CGPoint(x: q.maxX - 1, y: q.midY)),
+            ("w, left of its face", CGPoint(x: w.minX + 1, y: w.midY)),
+            ("a, in the left margin", CGPoint(x: a.minX + 2, y: a.midY)),
+            ("l, in the right margin", CGPoint(x: l.maxX - 2, y: l.midY)),
+            ("q, below its face", CGPoint(x: q.midX, y: q.maxY - 1)),
+            ("a, above its face", CGPoint(x: a.midX, y: a.minY + 1)),
+            ("space, below the bottom row", CGPoint(x: space.midX, y: space.maxY - 2)),
+            ("z, between shift and z", CGPoint(x: z.minX + 1, y: z.midY))
+        ]
+        let origin = app.coordinate(withNormalizedOffset: .zero)
+        for (description, point) in taps {
+            origin.withOffset(CGVector(dx: point.x, dy: point.y)).tap()
+            print("Tapped \(description) at \(point): field is now \(fieldText(field))")
+        }
+        assertFieldText(field, equals: "qwalqa z")
+        settle()
+        capture("45-touch-areas")
+    }
+
     /// Captures the NeuralKey keyboard in the design's state (lowercase, default suggestions)
     /// in light mode, compared with Keyboard Designs/Defaulta.svg and Defaultb.svg, and dark mode.
     @MainActor
