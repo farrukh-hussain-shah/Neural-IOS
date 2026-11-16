@@ -125,6 +125,9 @@ enum AppColor {
 
     static let keyboardPanel = Color(light: 0xE3E3E3, dark: 0x2C2C2C)
     static let keyboardPhonePanel = Color(light: 0xE0E0E0, dark: 0x2C2C2C)
+    /// As a system keyboard: the colour iOS uses for the globe strip below the keys, so the
+    /// keyboard and the strip read as one surface with no step between them.
+    static let keyboardSystemPanel = Color(light: 0xCBCED4, dark: 0x2C2C2C)
     static let keyboardPanelBorder = Color(light: 0xFFFFFF, lightOpacity: 0.7, dark: 0xFFFFFF, darkOpacity: 0.12)
     static let keyboardPanelHighlight = Color(light: 0xFFFFFF, lightOpacity: 1, dark: 0xFFFFFF, darkOpacity: 0.08)
     static let keyboardKey = Color(light: 0xFCFCFC, dark: 0x6B6B6B)

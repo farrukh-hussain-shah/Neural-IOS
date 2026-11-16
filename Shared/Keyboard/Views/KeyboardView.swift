@@ -83,7 +83,10 @@ struct KeyboardView: View {
     }
 
     private var panelColor: Color {
-        isPhonePad ? AppColor.keyboardPhonePanel : AppColor.keyboardPanel
+        if controller.configuration.placement == .systemKeyboard {
+            return AppColor.keyboardSystemPanel
+        }
+        return isPhonePad ? AppColor.keyboardPhonePanel : AppColor.keyboardPanel
     }
 
     private var panel: some View {
