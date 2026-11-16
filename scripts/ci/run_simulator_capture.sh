@@ -110,6 +110,17 @@ xcodebuild build-for-testing \
   CODE_SIGNING_ALLOWED=NO \
   2>&1 | tee "$OUTPUT_DIR/logs/build-for-testing.log"
 
+# The simulator only registers app extensions that carry a signature, so the
+# unsigned CI build is signed ad hoc (no team or certificate needed).
+APP_PRODUCT="$DERIVED_DATA/Build/Products/Debug-iphonesimulator/NeuralKey.app"
+if [[ -d "$APP_PRODUCT/PlugIns" ]]; then
+  for appex in "$APP_PRODUCT"/PlugIns/*.appex; do
+    codesign --force --deep --sign - --timestamp=none "$appex"
+  done
+  codesign --force --sign - --timestamp=none "$APP_PRODUCT"
+  codesign --verify --deep "$APP_PRODUCT" && echo "Ad hoc signed $APP_PRODUCT"
+fi
+
 xcrun simctl spawn "$UDID" log stream --level debug --style compact \
   --predicate 'process == "NeuralKey"' > "$OUTPUT_DIR/logs/app.log" 2>&1 &
 LOG_PID=$!

@@ -450,11 +450,42 @@ final class ScreenCaptureTests: XCTestCase {
         if settings.switches["NeuralKey"].waitForExistence(timeout: 3) {
             return
         }
-        let keyboards = settings.descendants(matching: .any)
-            .matching(NSPredicate(format: "label == %@", "Keyboards"))
-            .firstMatch
-        XCTAssertTrue(keyboards.waitForExistence(timeout: Timing.launchTimeout), "Keyboards row is missing in NeuralKey settings")
+        let keyboards = labelled("Keyboards", in: settings)
+        if !keyboards.waitForExistence(timeout: Timing.transitionTimeout) {
+            // Settings opened on its root page: go to Apps › NeuralKey instead.
+            print("Settings did not open the NeuralKey page:\n\(settings.debugDescription)")
+            openAppPage(in: settings)
+        }
+        guard keyboards.waitForExistence(timeout: Timing.launchTimeout) else {
+            print("Keyboards row not found:\n\(settings.debugDescription)")
+            XCTFail("Keyboards row is missing in NeuralKey settings")
+            return
+        }
         keyboards.tap()
+    }
+
+    @MainActor
+    private func openAppPage(in settings: XCUIApplication) {
+        let apps = labelled("Apps", in: settings)
+        for _ in 0..<6 where !(apps.exists && apps.isHittable) {
+            settings.swipeUp()
+        }
+        guard apps.exists else { return }
+        apps.tap()
+        let appRow = labelled("NeuralKey", in: settings)
+        for _ in 0..<8 where !(appRow.exists && appRow.isHittable) {
+            settings.swipeUp()
+        }
+        if appRow.exists {
+            appRow.tap()
+        }
+    }
+
+    @MainActor
+    private func labelled(_ label: String, in settings: XCUIApplication) -> XCUIElement {
+        settings.descendants(matching: .any)
+            .matching(NSPredicate(format: "label == %@ AND elementType != %@", label, NSNumber(value: XCUIElement.ElementType.switch.rawValue)))
+            .firstMatch
     }
 
     @MainActor
