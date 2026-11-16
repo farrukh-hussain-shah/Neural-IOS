@@ -447,8 +447,6 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test09NeuralKeyKeyboardExtension() {
-        enableNeuralKeyKeyboard()
-
         let app = XCUIApplication()
         app.launchArguments += ["-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES"]
         app.launch()
@@ -456,7 +454,13 @@ final class ScreenCaptureTests: XCTestCase {
         let field = app.textFields[Identifier.testField]
         XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
         field.tap()
-        XCTAssertTrue(selectNeuralKeyKeyboard(in: app), "Could not switch to the NeuralKey keyboard")
+        if !selectNeuralKeyKeyboard(in: app) {
+            // Not enabled yet (test08 normally does it): turn it on in Settings and come back.
+            enableNeuralKeyKeyboard()
+            app.activate()
+            field.tap()
+            XCTAssertTrue(selectNeuralKeyKeyboard(in: app), "Could not switch to the NeuralKey keyboard")
+        }
         XCTAssertEqual(key("q", in: app).label, "Q", "An empty field should start capitalized")
         settle()
         capture("25-extension-letters")
@@ -514,13 +518,16 @@ final class ScreenCaptureTests: XCTestCase {
     @MainActor
     private func enableNeuralKeyKeyboard() {
         let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
-        settings.launch()
+        if settings.state == .notRunning {
+            settings.launch()
+        } else {
+            settings.activate()
+        }
         openKeyboardSettings(in: settings)
         let keyboardSwitch = settings.switches["NeuralKey"]
         XCTAssertTrue(keyboardSwitch.waitForExistence(timeout: Timing.transitionTimeout), "NeuralKey keyboard switch is missing in Settings")
         turnOn(keyboardSwitch)
         XCTAssertTrue(waitUntilOn(keyboardSwitch), "NeuralKey keyboard did not turn on")
-        settings.terminate()
     }
 
     /// Taps the system globe key until the NeuralKey keyboard is the active one.
