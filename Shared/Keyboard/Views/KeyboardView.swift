@@ -114,9 +114,26 @@ struct KeyboardView: View {
                     // Run the edge past the bottom so only the top and sides are drawn: the
                     // panel's bottom meets the screen edge or iOS's strip, which has no border.
                     .padding(.bottom, -topRadius)
+                    .mask { edgeMask(topRadius: topRadius) }
                 }
             }
             .clipped()
+    }
+
+    /// In-app the edge follows the design down both sides. As a system keyboard it stays on the
+    /// rounded top and fades out, so the sides flow into iOS's strip below like the native keyboard.
+    @ViewBuilder
+    private func edgeMask(topRadius: CGFloat) -> some View {
+        if controller.configuration.placement == .systemKeyboard {
+            VStack(spacing: 0) {
+                Color.black.frame(height: topRadius)
+                LinearGradient(colors: [.black, .clear], startPoint: .top, endPoint: .bottom)
+                    .frame(height: topRadius)
+                Color.clear
+            }
+        } else {
+            Color.black
+        }
     }
 }
 
