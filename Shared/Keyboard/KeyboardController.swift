@@ -11,6 +11,14 @@ final class KeyboardController {
     private(set) var suggestions: [KeyboardSuggestion] = []
     /// Light keeps the designed look; the extension switches to dark to match the host app.
     var isDarkAppearance = false
+    /// False when the host field asks for no autocapitalization (UITextAutocapitalizationType.none).
+    @ObservationIgnored var hostAllowsAutoCapitalization = true {
+        didSet {
+            if !hostAllowsAutoCapitalization, shift == .on {
+                shift = .off
+            }
+        }
+    }
 
     @ObservationIgnored weak var textInput: (any KeyboardTextInput)?
     @ObservationIgnored var onInputClick: (() -> Void)?
@@ -144,7 +152,8 @@ final class KeyboardController {
     }
 
     private func updateAutoCapitalization() {
-        guard configuration.autoCapitalizes, layer == .letters, shift != .capsLock, let textInput else { return }
+        guard configuration.autoCapitalizes, hostAllowsAutoCapitalization, layer == .letters, shift != .capsLock,
+              let textInput else { return }
         shift = Self.startsSentence(textInput.textBeforeCursor) ? .on : .off
     }
 

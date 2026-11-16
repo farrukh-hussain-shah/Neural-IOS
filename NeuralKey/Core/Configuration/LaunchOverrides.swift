@@ -18,6 +18,10 @@ enum LaunchOverrides {
         UserDefaults.standard.string(forKey: "NKSystemKeyboardAppearance") == "light" ? .light : .dark
     }
 
+    static var systemKeyboardAutocapitalization: UITextAutocapitalizationType {
+        UserDefaults.standard.string(forKey: "NKSystemKeyboardAutocapitalization") == "none" ? .none : .sentences
+    }
+
     static var shouldResetPreferences: Bool {
         UserDefaults.standard.bool(forKey: resetPreferencesKey)
     }

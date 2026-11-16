@@ -120,14 +120,13 @@ enum AppColor {
     static let backButtonIcon = Color.white.opacity(0.7)
 
     // MARK: Keyboard
-    // Light values follow the keyboard design; dark values follow the iOS dark keyboard,
-    // whose background (#2C2C2C) is the strip iOS draws under third-party keyboards.
+    // Light values follow the keyboard design (Keyboard Designs/*.svg); dark values follow
+    // the iOS dark keyboard, whose background (#2C2C2C) is the strip iOS draws below it.
 
     static let keyboardPanel = Color(light: 0xE3E3E3, dark: 0x2C2C2C)
     static let keyboardPhonePanel = Color(light: 0xE0E0E0, dark: 0x2C2C2C)
-    /// The system keyboard background (as an extension, matching the strip iOS draws below it).
-    static let keyboardSystemPanel = Color(light: 0xCBCED4, dark: 0x2C2C2C)
     static let keyboardPanelBorder = Color(light: 0xFFFFFF, lightOpacity: 0.7, dark: 0xFFFFFF, darkOpacity: 0.12)
+    static let keyboardPanelHighlight = Color(light: 0xFFFFFF, lightOpacity: 1, dark: 0xFFFFFF, darkOpacity: 0.08)
     static let keyboardKey = Color(light: 0xFCFCFC, dark: 0x6B6B6B)
     static let keyboardKeyPressed = Color(light: 0xC9C9CE, dark: 0x474747)
     static let keyboardLabel = Color(light: 0x565656, dark: 0xFFFFFF)

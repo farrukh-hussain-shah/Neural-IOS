@@ -83,14 +83,11 @@ struct KeyboardView: View {
     }
 
     private var panelColor: Color {
-        if controller.configuration.placement == .systemKeyboard {
-            return AppColor.keyboardSystemPanel
-        }
-        return isPhonePad ? AppColor.keyboardPhonePanel : AppColor.keyboardPanel
+        isPhonePad ? AppColor.keyboardPhonePanel : AppColor.keyboardPanel
     }
 
     private var panel: some View {
-        let topRadius = controller.configuration.placement == .systemKeyboard ? 0 : KeyboardMetrics.panelTopCornerRadius
+        let topRadius = KeyboardMetrics.panelTopCornerRadius
         let shape = UnevenRoundedRectangle(
             topLeadingRadius: topRadius,
             bottomLeadingRadius: 0,
@@ -101,7 +98,13 @@ struct KeyboardView: View {
         return shape
             .fill(panelColor)
             .overlay {
-                if !isPhonePad && controller.configuration.placement == .inApp {
+                if !isPhonePad {
+                    // The design's inner shadow: a 1 pt white highlight along the top edge.
+                    shape
+                        .stroke(AppColor.keyboardPanelHighlight, lineWidth: 2)
+                        .blur(radius: 1)
+                        .offset(y: 1)
+                        .mask(shape)
                     shape.stroke(AppColor.keyboardPanelBorder, lineWidth: 1)
                 }
             }

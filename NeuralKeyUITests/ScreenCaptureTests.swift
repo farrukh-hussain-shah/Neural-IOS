@@ -517,6 +517,38 @@ final class ScreenCaptureTests: XCTestCase {
         return false
     }
 
+    /// Captures the NeuralKey keyboard in the design's state (lowercase, default suggestions)
+    /// in light mode, compared with Keyboard Designs/Defaulta.svg and Defaultb.svg, and dark mode.
+    @MainActor
+    func test11ExtensionMatchesDesign() {
+        for appearance in ["light", "dark"] {
+            let app = XCUIApplication()
+            app.launchArguments += [
+                "-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES",
+                "-NKSystemKeyboardAppearance", appearance, "-NKSystemKeyboardAutocapitalization", "none"
+            ]
+            app.launch()
+            let field = app.textFields[Identifier.testField]
+            XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+            field.tap()
+            if !selectNeuralKeyKeyboard(in: app) {
+                enableNeuralKeyKeyboard()
+                app.activate()
+                field.tap()
+                XCTAssertTrue(selectNeuralKeyKeyboard(in: app), "Could not switch to the NeuralKey keyboard")
+            }
+            XCTAssertEqual(key("q", in: app).label, "q", "A field without autocapitalization should start lowercase")
+            settle()
+            capture("42-extension-letters-\(appearance)")
+
+            keyElement("key.layer.123", in: app).tap()
+            XCTAssertTrue(key("1", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Numbers layer did not open")
+            settle()
+            capture("44-extension-numbers-\(appearance)")
+            app.terminate()
+        }
+    }
+
     /// A filmed walk through the whole NeuralKey keyboard: it pops up, types with key
     /// bubbles, and covers shift, caps lock, accents, numbers, symbols, delete and return.
     @MainActor

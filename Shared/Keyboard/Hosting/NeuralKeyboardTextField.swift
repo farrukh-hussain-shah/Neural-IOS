@@ -10,6 +10,7 @@ struct NeuralKeyboardTextField: UIViewRepresentable {
     /// Uses the keyboard iOS picks (for example the NeuralKey extension) instead of the in-app one.
     var usesSystemKeyboard = false
     var systemKeyboardAppearance: UIKeyboardAppearance = .dark
+    var systemKeyboardAutocapitalization: UITextAutocapitalizationType = .sentences
 
     func makeCoordinator() -> Coordinator {
         Coordinator(text: $text)
@@ -50,6 +51,7 @@ struct NeuralKeyboardTextField: UIViewRepresentable {
         context.coordinator.presenter = usesSystemKeyboard ? nil : presenter
         if usesSystemKeyboard {
             field.keyboardAppearance = systemKeyboardAppearance
+            field.autocapitalizationType = systemKeyboardAutocapitalization
         } else {
             field.inputView = KeyboardInputView()
         }

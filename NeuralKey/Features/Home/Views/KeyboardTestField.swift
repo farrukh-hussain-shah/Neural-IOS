@@ -18,7 +18,8 @@ struct KeyboardTestField: View {
             presenter: keyboardPresenter,
             accessibilityIdentifier: AccessibilityID.homeTestField,
             usesSystemKeyboard: usesSystemKeyboard,
-            systemKeyboardAppearance: systemKeyboardAppearance
+            systemKeyboardAppearance: systemKeyboardAppearance,
+            systemKeyboardAutocapitalization: systemKeyboardAutocapitalization
         )
         .padding(.horizontal, Layout.horizontalPadding)
         .frame(height: AppSize.inputHeight)
@@ -49,6 +50,14 @@ struct KeyboardTestField: View {
         LaunchOverrides.systemKeyboardAppearance
         #else
         .dark
+        #endif
+    }
+
+    private var systemKeyboardAutocapitalization: UITextAutocapitalizationType {
+        #if DEBUG
+        LaunchOverrides.systemKeyboardAutocapitalization
+        #else
+        .sentences
         #endif
     }
 

@@ -70,6 +70,10 @@ final class KeyboardViewController: UIInputViewController {
         if keyboardController?.isDarkAppearance != isDark {
             keyboardController?.isDarkAppearance = isDark
         }
+        let allowsCapitals = (textDocumentProxy.autocapitalizationType ?? .sentences) != UITextAutocapitalizationType.none
+        if keyboardController?.hostAllowsAutoCapitalization != allowsCapitals {
+            keyboardController?.hostAllowsAutoCapitalization = allowsCapitals
+        }
     }
 
     override func selectionDidChange(_ textInput: UITextInput?) {

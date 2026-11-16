@@ -4,7 +4,7 @@ enum KeyboardMetrics {
     static let suggestionBarHeight: CGFloat = 56.keyboardScaled
     static let compactTopInset: CGFloat = 16.keyboardScaled
     static let bottomAreaHeight: CGFloat = 80.keyboardScaled
-    static let systemKeyboardBottomInset: CGFloat = 8.keyboardScaled
+    static let systemKeyboardBottomInset: CGFloat = 11.5.keyboardScaled
     static let systemIconCenterOffset: CGFloat = 39.5.keyboardScaled
     static let rowHeight: CGFloat = KeyboardLayout.rowHeight.keyboardScaled
     static let rowSpacing: CGFloat = KeyboardLayout.rowSpacing.keyboardScaled
