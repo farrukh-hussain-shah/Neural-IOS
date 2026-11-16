@@ -436,9 +436,11 @@ final class ScreenCaptureTests: XCTestCase {
         settle()
         capture("23-settings-full-access")
 
+        // iOS terminates the app when Full Access changes, so this relaunches it;
+        // the saved setup progress must bring the user straight to Home.
         app.activate()
         XCTAssertTrue(
-            element(Identifier.homeTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+            element(Identifier.homeTitle, in: app).waitForExistence(timeout: Timing.launchTimeout),
             "Returning after allowing Full Access should continue to Home"
         )
         settle()
