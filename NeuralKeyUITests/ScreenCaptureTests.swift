@@ -400,9 +400,8 @@ final class ScreenCaptureTests: XCTestCase {
         settle()
         capture("20-setup-add-keyboard")
 
-        primaryAction.tap()
         let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
-        XCTAssertTrue(settings.wait(for: .runningForeground, timeout: Timing.launchTimeout), "Open Settings did not open the Settings app")
+        XCTAssertTrue(openSettings(from: app, settings: settings), "Open Settings did not open the Settings app")
         openKeyboardSettings(in: settings)
 
         let keyboardSwitch = settings.switches["NeuralKey"]
@@ -420,8 +419,7 @@ final class ScreenCaptureTests: XCTestCase {
         settle()
         capture("22-setup-full-access")
 
-        element(Identifier.primaryAction, in: app).tap()
-        XCTAssertTrue(settings.wait(for: .runningForeground, timeout: Timing.launchTimeout), "Open Settings did not reopen Settings")
+        XCTAssertTrue(openSettings(from: app, settings: settings), "Open Settings did not reopen Settings")
         openKeyboardSettings(in: settings)
         let fullAccessSwitch = settings.switches["Allow Full Access"]
         XCTAssertTrue(fullAccessSwitch.waitForExistence(timeout: Timing.transitionTimeout), "Allow Full Access switch is missing")
@@ -479,6 +477,21 @@ final class ScreenCaptureTests: XCTestCase {
 
         keyElement("key.delete", in: app).tap()
         assertFieldText(field, equals: "Hello world")
+    }
+
+    /// Taps Open Settings, retrying once when a slow simulator drops the tap mid-transition.
+    @MainActor
+    private func openSettings(from app: XCUIApplication, settings: XCUIApplication) -> Bool {
+        for _ in 0..<2 {
+            let action = element(Identifier.primaryAction, in: app)
+            guard action.waitForExistence(timeout: Timing.transitionTimeout) else { return false }
+            action.tap()
+            if settings.wait(for: .runningForeground, timeout: Timing.launchTimeout) {
+                return true
+            }
+            app.activate()
+        }
+        return false
     }
 
     /// Turns the NeuralKey keyboard on in Settings unless an earlier test already did.
