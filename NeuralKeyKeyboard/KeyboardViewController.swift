@@ -37,17 +37,39 @@ final class KeyboardViewController: UIInputViewController {
         heightConstraint = height
 
         KeyboardSharedState.recordFullAccess(hasFullAccess)
+        updateAppearance()
+        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (self: Self, _: UITraitCollection) in
+            self.updateAppearance()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         KeyboardSharedState.recordFullAccess(hasFullAccess)
+        updateAppearance()
         keyboardController?.textDidChange()
     }
 
     override func textDidChange(_ textInput: UITextInput?) {
         super.textDidChange(textInput)
+        updateAppearance()
         keyboardController?.textDidChange()
+    }
+
+    /// Follows the host field's keyboard appearance, like the system keyboard does.
+    private func updateAppearance() {
+        let isDark: Bool
+        switch textDocumentProxy.keyboardAppearance ?? .default {
+        case .dark:
+            isDark = true
+        case .light:
+            isDark = false
+        default:
+            isDark = traitCollection.userInterfaceStyle == .dark
+        }
+        if keyboardController?.isDarkAppearance != isDark {
+            keyboardController?.isDarkAppearance = isDark
+        }
     }
 
     override func selectionDidChange(_ textInput: UITextInput?) {

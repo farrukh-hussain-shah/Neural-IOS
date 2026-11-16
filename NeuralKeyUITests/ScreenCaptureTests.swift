@@ -477,6 +477,22 @@ final class ScreenCaptureTests: XCTestCase {
 
         keyElement("key.delete", in: app).tap()
         assertFieldText(field, equals: "Hello world")
+        app.terminate()
+
+        // A light keyboard field: NeuralKey should switch to its light look.
+        let lightApp = XCUIApplication()
+        lightApp.launchArguments += [
+            "-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES", "-NKSystemKeyboardAppearance", "light"
+        ]
+        lightApp.launch()
+        let lightField = lightApp.textFields[Identifier.testField]
+        XCTAssertTrue(lightField.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        lightField.tap()
+        XCTAssertTrue(selectNeuralKeyKeyboard(in: lightApp), "NeuralKey keyboard is not active in the light field")
+        type("hi", in: lightApp)
+        assertFieldText(lightField, equals: "Hi")
+        settle()
+        capture("28-extension-light")
     }
 
     /// Taps Open Settings, retrying once when a slow simulator drops the tap mid-transition.

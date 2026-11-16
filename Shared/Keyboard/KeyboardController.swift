@@ -9,6 +9,8 @@ final class KeyboardController {
     private(set) var layer: KeyboardLayer
     private(set) var shift: ShiftState = .off
     private(set) var suggestions: [KeyboardSuggestion] = []
+    /// Light keeps the designed look; the extension switches to dark to match the host app.
+    var isDarkAppearance = false
 
     @ObservationIgnored weak var textInput: (any KeyboardTextInput)?
     @ObservationIgnored var onInputClick: (() -> Void)?

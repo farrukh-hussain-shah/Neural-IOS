@@ -17,7 +17,8 @@ struct KeyboardTestField: View {
             configuration: keyboardConfiguration,
             presenter: keyboardPresenter,
             accessibilityIdentifier: AccessibilityID.homeTestField,
-            usesSystemKeyboard: usesSystemKeyboard
+            usesSystemKeyboard: usesSystemKeyboard,
+            systemKeyboardAppearance: systemKeyboardAppearance
         )
         .padding(.horizontal, Layout.horizontalPadding)
         .frame(height: AppSize.inputHeight)
@@ -40,6 +41,14 @@ struct KeyboardTestField: View {
         LaunchOverrides.usesSystemKeyboard
         #else
         false
+        #endif
+    }
+
+    private var systemKeyboardAppearance: UIKeyboardAppearance {
+        #if DEBUG
+        LaunchOverrides.systemKeyboardAppearance
+        #else
+        .dark
         #endif
     }
 

@@ -9,6 +9,7 @@ struct NeuralKeyboardTextField: UIViewRepresentable {
     var accessibilityIdentifier: String?
     /// Uses the keyboard iOS picks (for example the NeuralKey extension) instead of the in-app one.
     var usesSystemKeyboard = false
+    var systemKeyboardAppearance: UIKeyboardAppearance = .dark
 
     func makeCoordinator() -> Coordinator {
         Coordinator(text: $text)
@@ -48,7 +49,7 @@ struct NeuralKeyboardTextField: UIViewRepresentable {
         context.coordinator.input = input
         context.coordinator.presenter = usesSystemKeyboard ? nil : presenter
         if usesSystemKeyboard {
-            field.keyboardAppearance = .dark
+            field.keyboardAppearance = systemKeyboardAppearance
         } else {
             field.inputView = KeyboardInputView()
         }

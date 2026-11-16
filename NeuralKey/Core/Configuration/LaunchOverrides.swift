@@ -1,5 +1,5 @@
 #if DEBUG
-import Foundation
+import UIKit
 
 enum LaunchOverrides {
     private static let frozenSplashProgressKey = "NKSplashFrozenProgress"
@@ -12,6 +12,10 @@ enum LaunchOverrides {
 
     static var usesSystemKeyboard: Bool {
         UserDefaults.standard.bool(forKey: "NKUseSystemKeyboard")
+    }
+
+    static var systemKeyboardAppearance: UIKeyboardAppearance {
+        UserDefaults.standard.string(forKey: "NKSystemKeyboardAppearance") == "light" ? .light : .dark
     }
 
     static var shouldResetPreferences: Bool {

@@ -17,6 +17,7 @@ struct KeyboardView: View {
         .frame(height: KeyboardMetrics.height(for: controller.configuration))
         .background(panel)
         .ignoresSafeArea()
+        .environment(\.colorScheme, controller.isDarkAppearance ? .dark : .light)
     }
 
     @ViewBuilder

@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 enum AppColor {
 
@@ -119,21 +120,23 @@ enum AppColor {
     static let backButtonIcon = Color.white.opacity(0.7)
 
     // MARK: Keyboard
+    // Light values follow the keyboard design; dark values follow the iOS dark keyboard,
+    // whose background (#2C2C2C) is the strip iOS draws under third-party keyboards.
 
-    static let keyboardPanel = Color(hex: 0xE3E3E3)
-    static let keyboardPhonePanel = Color(hex: 0xE0E0E0)
-    static let keyboardPanelBorder = Color.white.opacity(0.7)
-    static let keyboardKey = Color(hex: 0xFCFCFC)
-    static let keyboardKeyPressed = Color(hex: 0xC9C9CE)
-    static let keyboardLabel = Color(hex: 0x565656)
-    static let keyboardPopupLabel = Color.black
+    static let keyboardPanel = Color(light: 0xE3E3E3, dark: 0x2C2C2C)
+    static let keyboardPhonePanel = Color(light: 0xE0E0E0, dark: 0x2C2C2C)
+    static let keyboardPanelBorder = Color(light: 0xFFFFFF, lightOpacity: 0.7, dark: 0xFFFFFF, darkOpacity: 0.12)
+    static let keyboardKey = Color(light: 0xFCFCFC, dark: 0x6B6B6B)
+    static let keyboardKeyPressed = Color(light: 0xC9C9CE, dark: 0x474747)
+    static let keyboardLabel = Color(light: 0x565656, dark: 0xFFFFFF)
+    static let keyboardPopupLabel = Color(light: 0x000000, dark: 0xFFFFFF)
     static let keyboardPrimary = Color(hex: 0x0088FF)
     static let keyboardPrimaryPressed = Color(hex: 0x0070D6)
-    static let keyboardSuggestion = Color.black
-    static let keyboardDivider = Color.black.opacity(0.18)
-    static let keyboardSystemIcon = Color.black.opacity(0.5)
-    static let keyboardPopupShadow = Color.black.opacity(0.22)
-    static let keyboardPopupBorder = Color.black.opacity(0.08)
+    static let keyboardSuggestion = Color(light: 0x000000, dark: 0xFFFFFF)
+    static let keyboardDivider = Color(light: 0x000000, lightOpacity: 0.18, dark: 0xFFFFFF, darkOpacity: 0.18)
+    static let keyboardSystemIcon = Color(light: 0x000000, lightOpacity: 0.5, dark: 0xFFFFFF, darkOpacity: 0.6)
+    static let keyboardPopupShadow = Color(light: 0x000000, lightOpacity: 0.22, dark: 0x000000, darkOpacity: 0.5)
+    static let keyboardPopupBorder = Color(light: 0x000000, lightOpacity: 0.08, dark: 0xFFFFFF, darkOpacity: 0.08)
 
     // MARK: Ads
 
@@ -193,6 +196,15 @@ enum AppGradient {
 }
 
 extension Color {
+    /// A colour that follows the light or dark colour scheme of the view showing it.
+    init(light: UInt32, lightOpacity: Double = 1, dark: UInt32, darkOpacity: Double = 1) {
+        self.init(uiColor: UIColor { traits in
+            traits.userInterfaceStyle == .dark
+                ? UIColor(hex: dark, alpha: darkOpacity)
+                : UIColor(hex: light, alpha: lightOpacity)
+        })
+    }
+
     init(hex: UInt32, opacity: Double = 1) {
         self.init(
             .sRGB,
@@ -200,6 +212,17 @@ extension Color {
             green: Double((hex >> 8) & 0xFF) / 255,
             blue: Double(hex & 0xFF) / 255,
             opacity: opacity
+        )
+    }
+}
+
+private extension UIColor {
+    convenience init(hex: UInt32, alpha: Double) {
+        self.init(
+            red: CGFloat((hex >> 16) & 0xFF) / 255,
+            green: CGFloat((hex >> 8) & 0xFF) / 255,
+            blue: CGFloat(hex & 0xFF) / 255,
+            alpha: alpha
         )
     }
 }
