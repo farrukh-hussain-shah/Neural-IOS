@@ -36,9 +36,11 @@ private struct FeatureCard: View {
                 Text(feature.title)
                     .textStyle(.cardTitle)
                     .foregroundStyle(AppColor.textPrimary)
+                    .singleLineLabel(minimumScale: 0.8)
                 Text(feature.subtitle)
                     .textStyle(.caption)
                     .foregroundStyle(AppColor.textSecondary)
+                    .singleLineLabel(minimumScale: 0.8)
             }
             Spacer(minLength: 0)
         }

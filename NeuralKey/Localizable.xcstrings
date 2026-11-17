@@ -1818,7 +1818,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Дружелюбный, официальный и другие"
+            "value": "Дружелюбный, деловой и др."
           }
         },
         "ar": {
@@ -3286,19 +3286,19 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Reescrituras restantes: "
+            "value": "Restantes: "
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Reescritas restantes: "
+            "value": "Restantes: "
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Осталось правок: "
+            "value": "Осталось: "
           }
         },
         "ar": {
@@ -5326,13 +5326,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mira un anuncio para desbloquear"
+            "value": "Mira un anuncio"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Assista a um anúncio para desbloquear"
+            "value": "Veja um anúncio"
           }
         },
         "ru": {
@@ -5356,7 +5356,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अनलॉक के लिए विज्ञापन देखें"
+            "value": "विज्ञापन देखें"
           }
         }
       }

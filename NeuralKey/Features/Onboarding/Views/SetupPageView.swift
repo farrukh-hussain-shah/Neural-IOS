@@ -67,6 +67,7 @@ private struct SetupStepRow: View {
             Text(step.detail)
                 .textStyle(isActive ? .body : .caption)
                 .foregroundStyle(isActive ? AppColor.textSecondary : AppColor.textTertiary)
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(.trailing, isActive ? -Layout.activeDetailOverhang : 0)
                 .padding(.top, isActive ? Layout.activeDetailSpacing : 0)
 
@@ -137,6 +138,7 @@ private struct SetupToggleCard: View {
             Text(title)
                 .textStyle(.controlLabel)
                 .foregroundStyle(AppColor.textPrimary)
+                .singleLineLabel(minimumScale: 0.75)
         }
         .toggleStyle(.appSwitch(.standard))
         .padding(.horizontal, Layout.horizontalPadding)
@@ -164,6 +166,7 @@ private struct SetupNote: View {
             Text(text)
                 .textStyle(.note)
                 .foregroundStyle(AppColor.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }
