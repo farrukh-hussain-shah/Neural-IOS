@@ -14,6 +14,7 @@ enum AccessibilityID {
     static let settingsUpgrade = "settings.upgrade"
     static let settingsToneAdjustment = "settings.toneAdjustment"
     static let settingsHaptics = "settings.haptics"
+    static let settingsLanguage = "settings.language"
     static let tonesTitle = "tones.title"
     static let tonesBack = "tones.back"
     static let tonesUpdate = "tones.update"

@@ -2,8 +2,10 @@ import SwiftUI
 
 struct SettingsView: View {
     let store: SettingsStore
+    let language: AppLanguage
     let onUpgrade: @MainActor () -> Void
     let onToneAdjustment: @MainActor () -> Void
+    let onLanguage: @MainActor () -> Void
 
     var body: some View {
         ScrollView {
@@ -32,6 +34,14 @@ struct SettingsView: View {
                     SettingsDivider()
                     SettingsToggleRow(icon: .asset(.phone), title: "Haptic Feedback", isOn: hapticBinding)
                         .accessibilityIdentifier(AccessibilityID.settingsHaptics)
+                    SettingsDivider()
+                    SettingsNavigationRow(
+                        icon: .asset(.globe),
+                        title: "Change Language",
+                        value: language.name,
+                        action: onLanguage
+                    )
+                    .accessibilityIdentifier(AccessibilityID.settingsLanguage)
                 }
                 .padding(.top, Layout.labelToGroup)
 

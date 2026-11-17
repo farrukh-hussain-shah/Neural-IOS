@@ -19,6 +19,7 @@ final class ScreenCaptureTests: XCTestCase {
         static let settingsTitle = "settings.title"
         static let settingsToneAdjustment = "settings.toneAdjustment"
         static let settingsHaptics = "settings.haptics"
+        static let settingsLanguage = "settings.language"
         static let tonesTitle = "tones.title"
         static let tonesBack = "tones.back"
         static let tonesUpdate = "tones.update"
@@ -391,6 +392,47 @@ final class ScreenCaptureTests: XCTestCase {
         print("Home headlines seen: \(seen)")
         XCTAssertEqual(seen.first, "Neural Key AI", "The first headline should be Neural Key AI")
         XCTAssertGreaterThanOrEqual(seen.count, 4, "The headline should change every 3 seconds")
+    }
+
+    /// Settings › Change Language opens the language screen; picking a language and tapping
+    /// Done returns to Settings with the whole app in that language.
+    @MainActor
+    func test16ChangeLanguageFromSettings() {
+        let app = makeApp()
+        app.launchArguments += ["-NKInitialRoute", "home", "-NKSelectedLanguage", Self.defaultLanguage]
+        app.launch()
+        XCTAssertTrue(element(Identifier.homeTitle, in: app).waitForExistence(timeout: Timing.launchTimeout), "Home is missing")
+        element(Identifier.menuButton, in: app).tap()
+        let settingsTitle = element(Identifier.settingsTitle, in: app)
+        XCTAssertTrue(settingsTitle.waitForExistence(timeout: Timing.transitionTimeout), "Settings did not open")
+        let languageRow = element(Identifier.settingsLanguage, in: app)
+        XCTAssertTrue(languageRow.waitForExistence(timeout: Timing.transitionTimeout), "Change Language row is missing")
+        settle()
+        capture("51-settings-language-row")
+
+        for (language, settingsLabel) in [("hindi", "सेटिंग्स"), ("english", "Settings")] {
+            element(Identifier.settingsLanguage, in: app).tap()
+            XCTAssertTrue(
+                element(Identifier.languageTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+                "The language screen did not open from Settings"
+            )
+            element(Identifier.languageOption(language), in: app).tap()
+            assertExclusiveSelection(language, among: Self.languages, prefix: Identifier.languageOptionPrefix, in: app)
+            if language == "hindi" {
+                settle()
+                capture("52-settings-language-screen")
+            }
+            element(Identifier.languageDone, in: app).tap()
+            XCTAssertTrue(
+                waitForDisappearance(of: element(Identifier.languageTitle, in: app)),
+                "Done did not close the language screen"
+            )
+            XCTAssertEqual(settingsTitle.label, settingsLabel, "Settings should now be in \(language)")
+            if language == "hindi" {
+                settle()
+                capture("53-settings-in-hindi")
+            }
+        }
     }
 
     @MainActor

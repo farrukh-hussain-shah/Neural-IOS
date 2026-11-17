@@ -23,6 +23,7 @@ struct AppRootView: View {
                     if router.isSettingsPresented {
                         SettingsDrawer(
                             store: settingsStore,
+                            languageStore: languageStore,
                             onUpgrade: router.presentPremium,
                             onClose: router.dismissSettings
                         )
