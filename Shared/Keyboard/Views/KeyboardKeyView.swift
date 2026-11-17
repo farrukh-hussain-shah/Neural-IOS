@@ -12,6 +12,9 @@ struct KeyboardKeyView: View {
     @State private var alternates: [String] = []
     @State private var selectedAlternate = 0
     @State private var longPressTask: Task<Void, Never>?
+    /// Keeps the key bubble up briefly after release so even the quickest tap shows it, as on iOS.
+    @State private var isLingering = false
+    @State private var lingerTask: Task<Void, Never>?
 
     private var isPhonePad: Bool {
         controller.layer == .phoneDigits || controller.layer == .phoneSymbols
@@ -28,7 +31,7 @@ struct KeyboardKeyView: View {
     }
 
     private var isHighlighted: Bool {
-        isPressed || controller.configuration.previewKeyID == key.id
+        isPressed || isLingering || controller.configuration.previewKeyID == key.id
     }
 
     private var showsPopup: Bool {
@@ -179,6 +182,8 @@ struct KeyboardKeyView: View {
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged { value in
                 if !isPressed {
+                    lingerTask?.cancel()
+                    isLingering = false
                     isPressed = true
                     controller.keyDown(key)
                     scheduleAlternates()
@@ -195,15 +200,26 @@ struct KeyboardKeyView: View {
             .onEnded { _ in
                 longPressTask?.cancel()
                 longPressTask = nil
-                if alternates.isEmpty {
-                    controller.keyUp(key)
-                } else {
+                let showedAlternates = !alternates.isEmpty
+                if showedAlternates {
                     controller.insertAlternate(alternates[selectedAlternate])
+                } else {
+                    controller.keyUp(key)
                 }
                 isPressed = false
                 alternates = []
+                if !showedAlternates, displayedCharacter != nil {
+                    isLingering = true
+                    lingerTask = Task { @MainActor in
+                        try? await Task.sleep(for: .seconds(KeyboardKeyView.bubbleLinger))
+                        guard !Task.isCancelled else { return }
+                        isLingering = false
+                    }
+                }
             }
     }
+
+    static let bubbleLinger: TimeInterval = 0.1
 
     private func scheduleAlternates() {
         guard !isPhonePad, let value = characterValue,

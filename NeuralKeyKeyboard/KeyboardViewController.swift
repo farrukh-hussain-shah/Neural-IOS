@@ -17,7 +17,12 @@ final class KeyboardViewController: UIInputViewController {
         keyboardController = controller
         documentInput = input
 
-        let hosting = UIHostingController(rootView: KeyboardView(controller: controller))
+        // Bottom-aligned, so if iOS gives the keyboard more height the extra space stays above
+        // the keys and the bottom row sits on iOS's globe strip, like the native keyboard.
+        let hosting = UIHostingController(
+            rootView: KeyboardView(controller: controller)
+                .frame(maxHeight: .infinity, alignment: .bottom)
+        )
         hosting.safeAreaRegions = []
         hosting.view.backgroundColor = .clear
         hosting.view.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +37,7 @@ final class KeyboardViewController: UIInputViewController {
         hosting.didMove(toParent: self)
 
         let height = view.heightAnchor.constraint(equalToConstant: KeyboardMetrics.height(for: configuration))
-        height.priority = .defaultHigh
+        height.priority = UILayoutPriority(999)
         height.isActive = true
         heightConstraint = height
 
@@ -48,6 +53,14 @@ final class KeyboardViewController: UIInputViewController {
         KeyboardSharedState.recordFullAccess(hasFullAccess)
         updateAppearance()
         keyboardController?.textDidChange()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // iOS holds back touch-down near the screen edges while it checks for system gestures,
+        // so keys there would only react on release and never show their bubble. Keys must
+        // react on touch-down, like the native keyboard.
+        view.window?.gestureRecognizers?.forEach { $0.delaysTouchesBegan = false }
     }
 
     override func textDidChange(_ textInput: UITextInput?) {

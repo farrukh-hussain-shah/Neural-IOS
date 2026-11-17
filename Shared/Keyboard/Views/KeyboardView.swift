@@ -102,13 +102,22 @@ struct KeyboardView: View {
     }
 
     private var panelColor: Color {
-        if controller.configuration.placement == .systemKeyboard {
-            return AppColor.keyboardSystemPanel
-        }
-        return isPhonePad ? AppColor.keyboardPhonePanel : AppColor.keyboardPanel
+        isPhonePad ? AppColor.keyboardPhonePanel : AppColor.keyboardPanel
     }
 
+    /// In-app the keyboard draws the design's panel. As a system keyboard it draws none: iOS
+    /// supplies the keyboard's background (Liquid Glass on iOS 26), exactly as for its own keyboard,
+    /// so the keys sit straight on it with no second panel, border or seam.
+    @ViewBuilder
     private var panel: some View {
+        if controller.configuration.placement == .systemKeyboard {
+            Color.clear
+        } else {
+            designPanel
+        }
+    }
+
+    private var designPanel: some View {
         let topRadius = KeyboardMetrics.panelTopCornerRadius
         let shape = UnevenRoundedRectangle(
             topLeadingRadius: topRadius,
@@ -131,28 +140,11 @@ struct KeyboardView: View {
                         shape.stroke(AppColor.keyboardPanelBorder, lineWidth: 1)
                     }
                     // Run the edge past the bottom so only the top and sides are drawn: the
-                    // panel's bottom meets the screen edge or iOS's strip, which has no border.
+                    // panel's bottom meets the screen edge, which has no border.
                     .padding(.bottom, -topRadius)
-                    .mask { edgeMask(topRadius: topRadius) }
                 }
             }
             .clipped()
-    }
-
-    /// In-app the edge follows the design down both sides. As a system keyboard it stays on the
-    /// rounded top and fades out, so the sides flow into iOS's strip below like the native keyboard.
-    @ViewBuilder
-    private func edgeMask(topRadius: CGFloat) -> some View {
-        if controller.configuration.placement == .systemKeyboard {
-            VStack(spacing: 0) {
-                Color.black.frame(height: topRadius)
-                LinearGradient(colors: [.black, .clear], startPoint: .top, endPoint: .bottom)
-                    .frame(height: topRadius)
-                Color.clear
-            }
-        } else {
-            Color.black
-        }
     }
 }
 
