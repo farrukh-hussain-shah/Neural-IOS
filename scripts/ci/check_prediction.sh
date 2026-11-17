@@ -37,7 +37,7 @@ fi
 "$output/prediction-check" 2>&1 | tee "$output/run.log"
 status=${PIPESTATUS[0]}
 if [[ $status -ne 0 ]]; then
-  annotate "$output/run.log" "FAIL|Fatal|fatal|failed"
+  annotate "$output/run.log" "FAIL|mismatch|Fatal|fatal|failed"
   [[ -s "$output/run.log" ]] || echo "::error title=Word prediction::check exited with $status and no output"
 fi
 exit "$status"

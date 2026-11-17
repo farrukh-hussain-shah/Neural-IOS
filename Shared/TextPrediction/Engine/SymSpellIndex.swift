@@ -83,7 +83,7 @@ struct SymSpellIndex: Sendable {
                 }
             }
 
-            if deletedLetters < maxDistance, candidate.count > 1 {
+            if deletedLetters < maxDistance, !candidate.isEmpty {
                 for position in candidate.indices {
                     var shorter = candidate
                     shorter.remove(at: position)
@@ -124,7 +124,7 @@ struct SymSpellIndex: Sendable {
         var level = [word]
         for _ in 0..<maxDistance {
             var shorter: [[UInt32]] = []
-            for candidate in level where candidate.count > 1 {
+            for candidate in level where !candidate.isEmpty {
                 for position in candidate.indices {
                     var delete = candidate
                     delete.remove(at: position)
