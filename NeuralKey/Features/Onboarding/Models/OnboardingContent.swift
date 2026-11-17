@@ -44,7 +44,7 @@ struct SetupContent {
 extension WelcomeContent {
     static let standard = WelcomeContent(
         headline: OnboardingHeadline(primary: "Better replies,", accent: "one tap away."),
-        message: "NeuralKey is an AI keyboard for iPhone. It works inside the apps you already chat in.",
+        message: "Neural Key is an AI keyboard for iPhone. It works inside the apps you already chat in.",
         features: [
             FeatureHighlight(
                 id: "fix-grammar",
@@ -71,14 +71,14 @@ extension WelcomeContent {
 extension SetupContent {
     static let addKeyboard = SetupContent(
         eyebrow: "SETUP · 1 OF 3",
-        headline: OnboardingHeadline(primary: "Turn on", accent: "NeuralKey"),
+        headline: OnboardingHeadline(primary: "Turn on", accent: "Neural Key"),
         steps: [
             SetupStepItem(
                 number: 1,
                 title: "Add the keyboard",
-                detail: "Tap Open Settings, choose Keyboards, then switch NeuralKey on.",
+                detail: "Tap Open Settings, choose Keyboards, then switch Neural Key on.",
                 status: .active,
-                toggleTitle: "NeuralKey"
+                toggleTitle: "Neural Key"
             ),
             SetupStepItem(
                 number: 2,
@@ -96,7 +96,7 @@ extension SetupContent {
             SetupStepItem(
                 number: 1,
                 title: "Add the keyboard",
-                detail: "NeuralKey is on",
+                detail: "Neural Key is on",
                 status: .completed
             ),
             SetupStepItem(
@@ -105,7 +105,7 @@ extension SetupContent {
                 detail: "Back in Settings, switch on Allow Full Access, then tap Allow to confirm.",
                 status: .active,
                 toggleTitle: "Allow Full Access",
-                note: "It connects the keyboard to NeuralKey’s AI. iOS still uses its own keyboard for passwords."
+                note: "It connects the keyboard to Neural Key’s AI. iOS still uses its own keyboard for passwords."
             )
         ]
     )

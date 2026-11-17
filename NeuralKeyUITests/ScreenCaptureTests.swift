@@ -485,7 +485,7 @@ final class ScreenCaptureTests: XCTestCase {
         XCTAssertTrue(openSettings(from: app, settings: settings), "Open Settings did not open the Settings app")
         openKeyboardSettings(in: settings)
 
-        let keyboardSwitch = settings.switches["NeuralKey"]
+        let keyboardSwitch = settings.switches["Neural Key"]
         XCTAssertTrue(keyboardSwitch.waitForExistence(timeout: Timing.transitionTimeout), "NeuralKey keyboard switch is missing in Settings")
         turnOn(keyboardSwitch)
         XCTAssertTrue(waitUntilOn(keyboardSwitch), "NeuralKey keyboard did not turn on")
@@ -894,7 +894,7 @@ final class ScreenCaptureTests: XCTestCase {
             settings.activate()
         }
         openKeyboardSettings(in: settings)
-        let keyboardSwitch = settings.switches["NeuralKey"]
+        let keyboardSwitch = settings.switches["Neural Key"]
         XCTAssertTrue(keyboardSwitch.waitForExistence(timeout: Timing.transitionTimeout), "NeuralKey keyboard switch is missing in Settings")
         turnOn(keyboardSwitch)
         XCTAssertTrue(waitUntilOn(keyboardSwitch), "NeuralKey keyboard did not turn on")
@@ -925,7 +925,7 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     private func openKeyboardSettings(in settings: XCUIApplication) {
-        if settings.switches["NeuralKey"].waitForExistence(timeout: 3) {
+        if settings.switches["Neural Key"].waitForExistence(timeout: 3) {
             return
         }
         let keyboards = labelled("Keyboards", in: settings)
@@ -950,7 +950,7 @@ final class ScreenCaptureTests: XCTestCase {
         }
         guard apps.exists else { return }
         apps.tap()
-        let appRow = labelled("NeuralKey", in: settings)
+        let appRow = labelled("Neural Key", in: settings)
         for _ in 0..<8 where !(appRow.exists && appRow.isHittable) {
             settings.swipeUp()
         }

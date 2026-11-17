@@ -2361,42 +2361,42 @@
         }
       }
     },
-    "It connects the keyboard to NeuralKey’s AI. iOS still uses its own keyboard for passwords.": {
+    "It connects the keyboard to Neural Key’s AI. iOS still uses its own keyboard for passwords.": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Conecta el teclado con la IA de NeuralKey. iOS sigue usando su propio teclado para las contraseñas."
+            "value": "Conecta el teclado con la IA de Neural Key. iOS sigue usando su propio teclado para las contraseñas."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Isso conecta o teclado à IA do NeuralKey. O iOS continua usando o próprio teclado para senhas."
+            "value": "Isso conecta o teclado à IA do Neural Key. O iOS continua usando o próprio teclado para senhas."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Это связывает клавиатуру с ИИ NeuralKey. Для паролей iOS по-прежнему использует свою клавиатуру."
+            "value": "Это связывает клавиатуру с ИИ Neural Key. Для паролей iOS по-прежнему использует свою клавиатуру."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يربط ذلك لوحة المفاتيح بذكاء NeuralKey الاصطناعي. ويظل iOS يستخدم لوحة مفاتيحه لكلمات المرور."
+            "value": "يربط ذلك لوحة المفاتيح بذكاء Neural Key الاصطناعي. ويظل iOS يستخدم لوحة مفاتيحه لكلمات المرور."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "这会将键盘连接到 NeuralKey 的 AI。输入密码时，iOS 仍会使用自带键盘。"
+            "value": "这会将键盘连接到 Neural Key 的 AI。输入密码时，iOS 仍会使用自带键盘。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "इससे कीबोर्ड NeuralKey के AI से जुड़ता है। पासवर्ड के लिए iOS अपना ही कीबोर्ड इस्तेमाल करता है।"
+            "value": "इससे कीबोर्ड Neural Key के AI से जुड़ता है। पासवर्ड के लिए iOS अपना ही कीबोर्ड इस्तेमाल करता है।"
           }
         }
       }
@@ -2681,82 +2681,82 @@
         }
       }
     },
-    "NeuralKey is an AI keyboard for iPhone. It works inside the apps you already chat in.": {
+    "Neural Key is an AI keyboard for iPhone. It works inside the apps you already chat in.": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "NeuralKey es un teclado con IA para iPhone. Funciona dentro de las apps en las que ya chateas."
+            "value": "Neural Key es un teclado con IA para iPhone. Funciona dentro de las apps en las que ya chateas."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "NeuralKey é um teclado com IA para iPhone. Funciona nos apps em que você já conversa."
+            "value": "Neural Key é um teclado com IA para iPhone. Funciona nos apps em que você já conversa."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "NeuralKey — клавиатура с ИИ для iPhone. Она работает в приложениях, где вы уже общаетесь."
+            "value": "Neural Key — клавиатура с ИИ для iPhone. Она работает в приложениях, где вы уже общаетесь."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "NeuralKey لوحة مفاتيح بالذكاء الاصطناعي لجهاز iPhone. تعمل داخل التطبيقات التي تدردش فيها بالفعل."
+            "value": "Neural Key لوحة مفاتيح بالذكاء الاصطناعي لجهاز iPhone. تعمل داخل التطبيقات التي تدردش فيها بالفعل."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "NeuralKey 是一款适用于 iPhone 的 AI 键盘，可在你常用的聊天应用中使用。"
+            "value": "Neural Key 是一款适用于 iPhone 的 AI 键盘，可在你常用的聊天应用中使用。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "NeuralKey iPhone के लिए एक AI कीबोर्ड है। यह उन्हीं ऐप्स में काम करता है जिनमें आप पहले से चैट करते हैं।"
+            "value": "Neural Key iPhone के लिए एक AI कीबोर्ड है। यह उन्हीं ऐप्स में काम करता है जिनमें आप पहले से चैट करते हैं।"
           }
         }
       }
     },
-    "NeuralKey is on": {
+    "Neural Key is on": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "NeuralKey está activado"
+            "value": "Neural Key está activado"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O NeuralKey está ativado"
+            "value": "O Neural Key está ativado"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "NeuralKey включена"
+            "value": "Neural Key включена"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تم تفعيل NeuralKey"
+            "value": "تم تفعيل Neural Key"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "NeuralKey 已开启"
+            "value": "Neural Key 已开启"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "NeuralKey चालू है"
+            "value": "Neural Key चालू है"
           }
         }
       }
@@ -4641,42 +4641,42 @@
         }
       }
     },
-    "Tap Open Settings, choose Keyboards, then switch NeuralKey on.": {
+    "Tap Open Settings, choose Keyboards, then switch Neural Key on.": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Toca Abrir Ajustes, elige Teclados y activa NeuralKey."
+            "value": "Toca Abrir Ajustes, elige Teclados y activa Neural Key."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Toque em Abrir Ajustes, escolha Teclados e ative o NeuralKey."
+            "value": "Toque em Abrir Ajustes, escolha Teclados e ative o Neural Key."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нажмите «Открыть настройки», выберите «Клавиатуры» и включите NeuralKey."
+            "value": "Нажмите «Открыть настройки», выберите «Клавиатуры» и включите Neural Key."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "اضغط على فتح الإعدادات، واختر لوحات المفاتيح، ثم فعّل NeuralKey."
+            "value": "اضغط على فتح الإعدادات، واختر لوحات المفاتيح، ثم فعّل Neural Key."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "轻点“打开设置”，选择“键盘”，然后开启 NeuralKey。"
+            "value": "轻点“打开设置”，选择“键盘”，然后开启 Neural Key。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सेटिंग्स खोलें पर टैप करें, कीबोर्ड चुनें, फिर NeuralKey चालू करें।"
+            "value": "सेटिंग्स खोलें पर टैप करें, कीबोर्ड चुनें, फिर Neural Key चालू करें।"
           }
         }
       }

@@ -1,7 +1,7 @@
 import Foundation
 
 enum AppConfiguration {
-    static let displayName = "NeuralKey"
+    static let displayName = "Neural Key"
 
     enum Splash {
         static let loadingDuration: TimeInterval = 2.0
