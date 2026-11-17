@@ -111,7 +111,10 @@ struct KeyboardView: View {
     @ViewBuilder
     private var panel: some View {
         if controller.configuration.placement == .systemKeyboard {
-            Color.clear
+            // Not fully clear: iOS doesn't deliver touches to fully transparent parts of a keyboard
+            // extension, which would make the gaps between keys dead. A 1% tint is invisible on
+            // the glass but keeps every gap touchable.
+            Color.white.opacity(0.01)
         } else {
             designPanel
         }
