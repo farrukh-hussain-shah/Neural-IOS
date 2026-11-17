@@ -24,7 +24,13 @@ enum OnboardingProgress {
             return nil
         }
         switch (step, KeyboardSetupStatus.current) {
-        case (_, .fullAccess), (.allowFullAccess, .added):
+        case (_, .fullAccess):
+            return .home
+        case (.allowFullAccess, .added):
+            // iOS restarts the app when Full Access is switched on, and the keyboard can only
+            // report it the next time it opens. Being restarted on this step means it was
+            // switched on, so Home shows it as allowed straight away.
+            KeyboardSharedState.recordFullAccess(true)
             return .home
         case (_, .added):
             return .onboarding(.allowFullAccess)

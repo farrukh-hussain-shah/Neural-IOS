@@ -448,6 +448,7 @@ final class ScreenCaptureTests: XCTestCase {
         )
         XCTAssertTrue(app.staticTexts["Allow Full Access"].exists, "Home should list the Allow Full Access step")
         XCTAssertTrue(app.staticTexts["Keyboard Enabled ✓"].exists, "Home should show the keyboard as enabled")
+        XCTAssertTrue(app.staticTexts["Full Access Allowed ✓"].exists, "Home should show Full Access as allowed")
         print("Home setup rows: \(app.switches.allElementsBoundByIndex.map(\.label))")
         settle()
         capture("24-home-after-setup")
