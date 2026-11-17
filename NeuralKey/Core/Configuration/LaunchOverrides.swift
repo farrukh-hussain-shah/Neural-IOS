@@ -10,6 +10,11 @@ enum LaunchOverrides {
         UserDefaults.standard.bool(forKey: "NKSkipKeyboardSetup")
     }
 
+    /// Keeps the Home headline on its first phrase, for stable screenshots.
+    static var freezesHomeHeadline: Bool {
+        UserDefaults.standard.bool(forKey: "NKFreezeHomeHeadline")
+    }
+
     static var usesSystemKeyboard: Bool {
         UserDefaults.standard.bool(forKey: "NKUseSystemKeyboard")
     }

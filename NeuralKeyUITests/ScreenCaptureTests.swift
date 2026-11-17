@@ -69,7 +69,7 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test01SplashScreen() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKSplashFrozenProgress", Self.designSplashProgress]
         app.launch()
 
@@ -83,7 +83,7 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test02LanguageSelection() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKInitialRoute", "language", "-NKSelectedLanguage", Self.defaultLanguage]
         app.launch()
 
@@ -109,7 +109,7 @@ final class ScreenCaptureTests: XCTestCase {
         )
         app.terminate()
 
-        let relaunched = XCUIApplication()
+        let relaunched = makeApp()
         relaunched.launchArguments += ["-NKInitialRoute", "language"]
         relaunched.launch()
         XCTAssertTrue(
@@ -123,7 +123,7 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test03OnboardingToHomeFlow() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKSkipKeyboardSetup", "YES"]
         app.launch()
 
@@ -169,7 +169,7 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test04PremiumScreen() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKInitialRoute", "home"]
         app.launch()
 
@@ -216,7 +216,7 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test05SettingsAndAITones() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKInitialRoute", "home", "-NKResetPreferences", "YES"]
         app.launch()
 
@@ -295,7 +295,7 @@ final class ScreenCaptureTests: XCTestCase {
     @MainActor
     func test14Localization() {
         for language in Self.languages where language != Self.defaultLanguage {
-            let splash = XCUIApplication()
+            let splash = makeApp()
             splash.launchArguments += ["-NKSelectedLanguage", language, "-NKSplashFrozenProgress", Self.designSplashProgress]
             splash.launch()
             XCTAssertTrue(
@@ -306,7 +306,7 @@ final class ScreenCaptureTests: XCTestCase {
             capture("l10n-\(language)-1-splash")
             splash.terminate()
 
-            let app = XCUIApplication()
+            let app = makeApp()
             app.launchArguments += [
                 "-NKSelectedLanguage", language, "-NKInitialRoute", "language",
                 "-NKSkipKeyboardSetup", "YES", "-NKResetPreferences", "YES"
@@ -367,9 +367,35 @@ final class ScreenCaptureTests: XCTestCase {
         }
     }
 
+    /// The Home headline changes phrase every 3 seconds, sliding the next one in.
+    @MainActor
+    func test15HomeHeadlineRotates() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-NKInitialRoute", "home", "-NKSelectedLanguage", Self.defaultLanguage]
+        app.launch()
+        let headline = element(Identifier.homeTitle, in: app)
+        XCTAssertTrue(headline.waitForExistence(timeout: Timing.launchTimeout), "Home headline is missing")
+        var seen = [headline.label]
+        capture("49-home-headline-1")
+        let deadline = Date().addingTimeInterval(14)
+        while seen.count < 4, Date() < deadline {
+            let label = headline.label
+            if label != seen.last {
+                seen.append(label)
+                if seen.count == 2 {
+                    capture("50-home-headline-2")
+                }
+            }
+            Thread.sleep(forTimeInterval: 0.25)
+        }
+        print("Home headlines seen: \(seen)")
+        XCTAssertEqual(seen.first, "Neural Key AI", "The first headline should be Neural Key AI")
+        XCTAssertGreaterThanOrEqual(seen.count, 4, "The headline should change every 3 seconds")
+    }
+
     @MainActor
     func test06InAppKeyboard() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKInitialRoute", "home"]
         app.launch()
 
@@ -441,7 +467,7 @@ final class ScreenCaptureTests: XCTestCase {
         ]
 
         for state in states {
-            let app = XCUIApplication()
+            let app = makeApp()
             app.launchArguments += ["-NKInitialRoute", "home"] + state.arguments
             app.launch()
             let field = app.textFields[Identifier.testField]
@@ -467,7 +493,7 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test08KeyboardSetupThroughSettings() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKInitialRoute", "onboarding"]
         app.launch()
 
@@ -532,7 +558,7 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test09NeuralKeyKeyboardExtension() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES"]
         app.launch()
 
@@ -569,7 +595,7 @@ final class ScreenCaptureTests: XCTestCase {
         app.terminate()
 
         // A light keyboard field: NeuralKey should switch to its light look.
-        let lightApp = XCUIApplication()
+        let lightApp = makeApp()
         lightApp.launchArguments += [
             "-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES", "-NKSystemKeyboardAppearance", "light"
         ]
@@ -603,7 +629,7 @@ final class ScreenCaptureTests: XCTestCase {
     /// gap belongs to the nearest key, so there is no dead space between the white key faces.
     @MainActor
     func test12KeyTouchAreasCoverGaps() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += [
             "-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES",
             "-NKSystemKeyboardAppearance", "light", "-NKSystemKeyboardAutocapitalization", "none"
@@ -667,7 +693,7 @@ final class ScreenCaptureTests: XCTestCase {
     /// word learned after it is typed twice.
     @MainActor
     func test13WordPrediction() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKInitialRoute", "home"]
         app.launch()
         let field = app.textFields[Identifier.testField]
@@ -708,7 +734,7 @@ final class ScreenCaptureTests: XCTestCase {
     @MainActor
     func test11ExtensionMatchesDesign() {
         for appearance in ["light", "dark"] {
-            let app = XCUIApplication()
+            let app = makeApp()
             app.launchArguments += [
                 "-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES",
                 "-NKSystemKeyboardAppearance", appearance, "-NKSystemKeyboardAutocapitalization", "none"
@@ -744,7 +770,7 @@ final class ScreenCaptureTests: XCTestCase {
         ]
 
         // Make NeuralKey the active keyboard first, so the filmed tap brings it straight up.
-        let setup = XCUIApplication()
+        let setup = makeApp()
         setup.launchArguments += launchArguments
         setup.launch()
         let setupField = setup.textFields[Identifier.testField]
@@ -758,7 +784,7 @@ final class ScreenCaptureTests: XCTestCase {
         }
         setup.terminate()
 
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += launchArguments
         app.launch()
         let field = app.textFields[Identifier.testField]
@@ -1011,6 +1037,14 @@ final class ScreenCaptureTests: XCTestCase {
     @MainActor
     private func suggestionLabels(in app: XCUIApplication) -> [String] {
         (0..<3).map { app.buttons["keyboard.suggestion.\($0)"].label }
+    }
+
+    /// The app with the Home headline frozen on its first phrase, so screenshots are stable.
+    @MainActor
+    private func makeApp() -> XCUIApplication {
+        let app = XCUIApplication()
+        app.launchArguments += ["-NKFreezeHomeHeadline", "YES"]
+        return app
     }
 
     @MainActor
