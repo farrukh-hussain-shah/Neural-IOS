@@ -1,0 +1,79 @@
+[
+  {
+    "key": "01-splash",
+    "title": "Splash",
+    "status": "compared",
+    "mismatch": 1.62,
+    "note": "simulator 1320x2868 resized to 1170x2532"
+  },
+  {
+    "key": "02-language",
+    "title": "Language Selection",
+    "status": "compared",
+    "mismatch": 5.07,
+    "note": "simulator 1320x2868 resized to 1170x2532"
+  },
+  {
+    "key": "03-onboarding-welcome",
+    "title": "Onboarding 1 \u2013 Welcome",
+    "status": "compared",
+    "mismatch": 4.26,
+    "note": "simulator 1320x2868 resized to 1170x2532"
+  },
+  {
+    "key": "04-onboarding-add-keyboard",
+    "title": "Onboarding 2 \u2013 Setup 1 of 3",
+    "status": "compared",
+    "mismatch": 3.96,
+    "note": "simulator 1320x2868 resized to 1170x2532"
+  },
+  {
+    "key": "05-onboarding-full-access",
+    "title": "Onboarding 3 \u2013 Setup 2 of 3",
+    "status": "compared",
+    "mismatch": 4.25,
+    "note": "simulator 1320x2868 resized to 1170x2532"
+  },
+  {
+    "key": "06-home",
+    "title": "Home",
+    "status": "compared",
+    "mismatch": 6.11,
+    "note": "simulator 1320x2868 resized to 1170x2532"
+  },
+  {
+    "key": "07-premium",
+    "title": "Premium",
+    "status": "compared",
+    "mismatch": 5.48,
+    "note": "simulator 1320x2868 resized to 1170x2532"
+  },
+  {
+    "key": "10-settings",
+    "title": "Settings",
+    "status": "compared",
+    "mismatch": 10.2,
+    "note": "simulator 1320x2868 resized to 1170x2532"
+  },
+  {
+    "key": "11-ai-tones",
+    "title": "AI Tones",
+    "status": "compared",
+    "mismatch": 14.61,
+    "note": "simulator 1320x2868 resized to 1170x2532"
+  },
+  {
+    "key": "42-extension-letters-light",
+    "title": "NeuralKey keyboard \u2013 Letters (light)",
+    "status": "compared",
+    "mismatch": 3.68,
+    "note": "pixels outside the design's rounded corners are not scored"
+  },
+  {
+    "key": "44-extension-numbers-light",
+    "title": "NeuralKey keyboard \u2013 Numbers (light)",
+    "status": "compared",
+    "mismatch": 2.98,
+    "note": "pixels outside the design's rounded corners are not scored"
+  }
+]

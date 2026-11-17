@@ -1,0 +1,2784 @@
+Command line invocation:
+    /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/xcodebuild test-without-building -project NeuralKey.xcodeproj -scheme NeuralKey -configuration Debug -destination id=1A8B43BC-ABB9-40A8-BAFD-2A47810D3868 -derivedDataPath /Users/runner/work/Neural-IOS/Neural-IOS/.build/DerivedData -resultBundlePath /Users/runner/work/Neural-IOS/Neural-IOS/simulator-captures/TestResults.xcresult -parallel-testing-enabled NO "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test01SplashScreen" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test02LanguageSelection" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test03OnboardingToHomeFlow" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test04PremiumScreen" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test05SettingsAndAITones" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test14Localization" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test15HomeHeadlineRotates" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test16ChangeLanguageFromSettings" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test08KeyboardSetupThroughSettings" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test09NeuralKeyKeyboardExtension" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test10KeyboardTour" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test11ExtensionMatchesDesign" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test12KeyTouchAreasCoverGaps" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test13WordPrediction" "-only-testing:NeuralKeyUITests/ScreenCaptureTests/test06InAppKeyboard" CODE_SIGNING_ALLOWED=NO
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+Writing result bundle at path:
+	/Users/runner/work/Neural-IOS/Neural-IOS/simulator-captures/TestResults.xcresult
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:1A8B43BC-ABB9-40A8-BAFD-2A47810D3868, OS:26.2, name:NeuralKey Capture }
+{ platform:iOS Simulator, arch:x86_64, id:1A8B43BC-ABB9-40A8-BAFD-2A47810D3868, OS:26.2, name:NeuralKey Capture }
+2026-11-17 15:47:34.856836+0000 NeuralKeyUITests-Runner[10827:35277] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-17 15:47:34.875976+0000 NeuralKeyUITests-Runner[10827:35277] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-11-17 15:47:41.806.
+Test Suite 'NeuralKeyUITests.xctest' started at 2026-11-17 15:47:41.807.
+Test Suite 'ScreenCaptureTests' started at 2026-11-17 15:47:41.807.
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test01SplashScreen]' started.
+    t =     0.00s Start Test at 2026-11-17 15:47:41.807
+    t =     0.74s Set Up
+    t =     0.76s Open com.neuralkey.app
+    t =     0.76s     Launch com.neuralkey.app
+    t =    14.40s         Setting up automation session
+    t =    17.23s         Wait for com.neuralkey.app to idle
+    t =    19.54s Waiting 15.0s for Any (First Match) to exist
+    t =    20.56s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    20.57s         Checking existence of `Any (First Match)`
+    t =    22.52s Added attachment named '01-splash'
+    t =    22.53s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test01SplashScreen]' passed (22.979 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test02LanguageSelection]' started.
+    t =     0.00s Start Test at 2026-11-17 15:48:04.795
+    t =     0.12s Set Up
+    t =     0.13s Open com.neuralkey.app
+    t =     0.13s     Launch com.neuralkey.app
+    t =     0.13s         Terminate com.neuralkey.app:11559
+    t =     2.54s         Setting up automation session
+    t =     4.01s         Wait for com.neuralkey.app to idle
+    t =     5.72s Waiting 15.0s for Any (First Match) to exist
+    t =     6.78s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =     6.78s         Checking existence of `Any (First Match)`
+    t =     6.83s Waiting 10.0s for "language.option.english" Button to exist
+    t =     7.86s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.english" Button`
+    t =     7.86s         Checking existence of `"language.option.english" Button`
+    t =     8.00s Find the "language.option.english" Button
+    t =     8.04s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =     8.09s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =     9.85s Added attachment named '02-language'
+    t =     9.86s Tap Any (First Match)
+    t =     9.86s     Wait for com.neuralkey.app to idle
+    t =     9.86s     Find the Any (First Match)
+    t =     9.95s     Check for interrupting elements affecting "language.option.hindi" Button
+    t =    10.10s     Synthesize event
+    t =    10.53s     Wait for com.neuralkey.app to idle
+    t =    10.55s Waiting 10.0s for "language.option.hindi" Button to exist
+    t =    11.65s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.hindi" Button`
+    t =    11.65s         Checking existence of `"language.option.hindi" Button`
+    t =    11.75s Find the "language.option.hindi" Button
+    t =    11.82s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =    11.87s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    11.94s Tap Any (First Match)
+    t =    11.94s     Wait for com.neuralkey.app to idle
+    t =    11.94s     Find the Any (First Match)
+    t =    11.99s     Check for interrupting elements affecting "language.option.chinese" Button
+    t =    12.08s     Synthesize event
+    t =    12.39s     Wait for com.neuralkey.app to idle
+    t =    12.48s Waiting 10.0s for "language.option.chinese" Button to exist
+    t =    13.53s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.chinese" Button`
+    t =    13.53s         Checking existence of `"language.option.chinese" Button`
+    t =    13.67s Find the "language.option.chinese" Button
+    t =    13.74s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =    13.78s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    13.81s Tap Any (First Match)
+    t =    13.81s     Wait for com.neuralkey.app to idle
+    t =    13.81s     Find the Any (First Match)
+    t =    13.85s     Check for interrupting elements affecting "language.option.arabic" Button
+    t =    14.05s     Synthesize event
+    t =    14.34s     Wait for com.neuralkey.app to idle
+    t =    14.35s Waiting 10.0s for "language.option.arabic" Button to exist
+    t =    15.38s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.arabic" Button`
+    t =    15.38s         Checking existence of `"language.option.arabic" Button`
+    t =    15.51s Find the "language.option.arabic" Button
+    t =    15.62s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =    15.70s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    15.75s Tap Any (First Match)
+    t =    15.75s     Wait for com.neuralkey.app to idle
+    t =    15.75s     Find the Any (First Match)
+    t =    15.84s     Check for interrupting elements affecting "language.option.russian" Button
+    t =    15.93s     Synthesize event
+    t =    16.23s     Wait for com.neuralkey.app to idle
+    t =    16.25s Waiting 10.0s for "language.option.russian" Button to exist
+    t =    17.26s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.russian" Button`
+    t =    17.26s         Checking existence of `"language.option.russian" Button`
+    t =    17.34s Find the "language.option.russian" Button
+    t =    17.40s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =    17.44s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    17.49s Tap Any (First Match)
+    t =    17.49s     Wait for com.neuralkey.app to idle
+    t =    17.50s     Find the Any (First Match)
+    t =    17.56s     Check for interrupting elements affecting "language.option.portuguese" Button
+    t =    17.66s     Synthesize event
+    t =    17.97s     Wait for com.neuralkey.app to idle
+    t =    17.98s Waiting 10.0s for "language.option.portuguese" Button to exist
+    t =    18.98s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.portuguese" Button`
+    t =    18.98s         Checking existence of `"language.option.portuguese" Button`
+    t =    19.13s Find the "language.option.portuguese" Button
+    t =    19.24s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =    19.33s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    19.38s Tap Any (First Match)
+    t =    19.38s     Wait for com.neuralkey.app to idle
+    t =    19.39s     Find the Any (First Match)
+    t =    19.54s     Check for interrupting elements affecting "language.option.spanish" Button
+    t =    19.65s     Synthesize event
+    t =    19.97s     Wait for com.neuralkey.app to idle
+    t =    19.98s Waiting 10.0s for "language.option.spanish" Button to exist
+    t =    21.00s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.spanish" Button`
+    t =    21.00s         Checking existence of `"language.option.spanish" Button`
+    t =    21.13s Find the "language.option.spanish" Button
+    t =    21.27s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =    21.38s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    21.44s Tap Any (First Match)
+    t =    21.44s     Wait for com.neuralkey.app to idle
+    t =    21.45s     Find the Any (First Match)
+    t =    21.66s     Check for interrupting elements affecting "language.option.english" Button
+    t =    21.82s     Synthesize event
+    t =    22.14s     Wait for com.neuralkey.app to idle
+    t =    22.15s Waiting 10.0s for "language.option.english" Button to exist
+    t =    23.20s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.english" Button`
+    t =    23.20s         Checking existence of `"language.option.english" Button`
+    t =    23.34s Find the "language.option.english" Button
+    t =    23.43s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =    23.48s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    23.57s Tap Any (First Match)
+    t =    23.57s     Wait for com.neuralkey.app to idle
+    t =    23.58s     Find the Any (First Match)
+    t =    23.67s     Check for interrupting elements affecting "language.option.arabic" Button
+    t =    23.80s     Synthesize event
+    t =    24.10s     Wait for com.neuralkey.app to idle
+    t =    24.11s Waiting 10.0s for "language.option.arabic" Button to exist
+    t =    25.11s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.arabic" Button`
+    t =    25.11s         Checking existence of `"language.option.arabic" Button`
+    t =    25.26s Find the "language.option.arabic" Button
+    t =    25.35s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =    25.41s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    25.47s Tap Any (First Match)
+    t =    25.47s     Wait for com.neuralkey.app to idle
+    t =    25.47s     Find the Any (First Match)
+    t =    25.52s     Check for interrupting elements affecting "language.done" Button
+    t =    25.62s     Synthesize event
+    t =    25.93s     Wait for com.neuralkey.app to idle
+    t =    25.95s Waiting 10.0s for Any (First Match) to exist
+    t =    26.98s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    26.98s         Checking existence of `Any (First Match)`
+    t =    27.03s Terminate com.neuralkey.app:12136
+    t =    28.11s Open com.neuralkey.app
+    t =    28.11s     Launch com.neuralkey.app
+    t =    28.88s         Setting up automation session
+    t =    30.74s         Wait for com.neuralkey.app to idle
+    t =    32.29s Waiting 15.0s for Any (First Match) to exist
+    t =    33.31s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    33.31s         Checking existence of `Any (First Match)`
+    t =    33.38s Waiting 10.0s for "language.option.arabic" Button to exist
+    t =    34.42s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.arabic" Button`
+    t =    34.42s         Checking existence of `"language.option.arabic" Button`
+    t =    34.59s Find the "language.option.arabic" Button
+    t =    34.68s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =    34.72s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    34.75s Tap Any (First Match)
+    t =    34.75s     Wait for com.neuralkey.app to idle
+    t =    34.76s     Find the Any (First Match)
+    t =    34.86s     Check for interrupting elements affecting "language.option.english" Button
+    t =    35.00s     Synthesize event
+    t =    35.37s     Wait for com.neuralkey.app to idle
+    t =    35.38s Waiting 10.0s for "language.option.english" Button to exist
+    t =    36.38s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.english" Button`
+    t =    36.38s         Checking existence of `"language.option.english" Button`
+    t =    36.47s Find the "language.option.english" Button
+    t =    36.56s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =    36.61s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    36.65s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test02LanguageSelection]' passed (37.005 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test03OnboardingToHomeFlow]' started.
+    t =     0.00s Start Test at 2026-11-17 15:48:41.796
+    t =     0.04s Set Up
+    t =     0.04s Open com.neuralkey.app
+    t =     0.04s     Launch com.neuralkey.app
+    t =     0.04s         Terminate com.neuralkey.app:13659
+    t =     1.64s         Setting up automation session
+    t =     3.34s         Wait for com.neuralkey.app to idle
+    t =     4.89s Waiting 15.0s for Any (First Match) to exist
+    t =     5.91s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =     5.92s         Checking existence of `Any (First Match)`
+    t =     6.10s         Capturing element debug description
+    t =     6.95s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =     6.95s         Checking existence of `Any (First Match)`
+    t =     7.07s Tap Any (First Match)
+    t =     7.07s     Wait for com.neuralkey.app to idle
+    t =     7.09s     Find the Any (First Match)
+    t =     7.19s     Check for interrupting elements affecting "language.done" Button
+    t =     7.35s     Synthesize event
+    t =     7.69s     Wait for com.neuralkey.app to idle
+    t =     7.70s Waiting 10.0s for Any (First Match) to exist
+    t =     8.73s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =     8.73s         Checking existence of `Any (First Match)`
+    t =    10.51s Added attachment named '03-onboarding-welcome'
+    t =    10.52s Waiting 10.0s for Any (First Match) to exist
+    t =    11.53s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    11.53s         Checking existence of `Any (First Match)`
+    t =    11.56s Find the Any (First Match)
+    t =    11.60s Find the Any (First Match)
+    t =    11.67s Tap "onboarding.primaryAction" Button
+    t =    11.67s     Wait for com.neuralkey.app to idle
+    t =    11.68s     Find the "onboarding.primaryAction" Button
+    t =    11.72s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =    11.80s     Synthesize event
+    t =    12.12s     Wait for com.neuralkey.app to idle
+    t =    12.18s Waiting 10.0s for Any (First Match) to exist
+    t =    13.20s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    13.20s         Checking existence of `Any (First Match)`
+    t =    15.14s Added attachment named '04-onboarding-add-keyboard'
+    t =    15.16s Waiting 10.0s for Any (First Match) to exist
+    t =    16.19s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    16.19s         Checking existence of `Any (First Match)`
+    t =    16.22s Find the Any (First Match)
+    t =    16.26s Find the Any (First Match)
+    t =    16.34s Find the "onboarding.pageIndicator" Other
+    t =    16.42s Find the "onboarding.primaryAction" Button
+    t =    16.46s Tap "onboarding.primaryAction" Button
+    t =    16.46s     Wait for com.neuralkey.app to idle
+    t =    16.46s     Find the "onboarding.primaryAction" Button
+    t =    16.49s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =    16.57s     Synthesize event
+    t =    16.91s     Wait for com.neuralkey.app to idle
+    t =    16.94s Waiting 10.0s for Any (First Match) to exist
+    t =    17.98s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    17.98s         Checking existence of `Any (First Match)`
+    t =    19.81s Added attachment named '05-onboarding-full-access'
+    t =    19.82s Waiting 10.0s for Any (First Match) to exist
+    t =    20.87s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    20.87s         Checking existence of `Any (First Match)`
+    t =    20.94s Find the Any (First Match)
+    t =    21.03s Find the Any (First Match)
+    t =    21.08s Find the "onboarding.pageIndicator" Other
+    t =    21.15s Find the "onboarding.primaryAction" Button
+    t =    21.41s Tap "onboarding.primaryAction" Button
+    t =    21.41s     Wait for com.neuralkey.app to idle
+    t =    21.42s     Find the "onboarding.primaryAction" Button
+    t =    21.54s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =    21.75s     Synthesize event
+    t =    22.15s     Wait for com.neuralkey.app to idle
+    t =    22.41s Waiting 10.0s for Any (First Match) to exist
+    t =    23.42s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    23.43s         Checking existence of `Any (First Match)`
+    t =    25.36s Added attachment named '06-home'
+    t =    25.37s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test03OnboardingToHomeFlow]' passed (25.742 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test04PremiumScreen]' started.
+    t =     0.00s Start Test at 2026-11-17 15:49:07.539
+    t =     0.04s Set Up
+    t =     0.04s Open com.neuralkey.app
+    t =     0.04s     Launch com.neuralkey.app
+    t =     0.04s         Terminate com.neuralkey.app:13820
+    t =    15.65s         Setting up automation session
+    t =    17.52s         Wait for com.neuralkey.app to idle
+    t =    19.97s Waiting 15.0s for Any (First Match) to exist
+    t =    20.99s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    20.99s         Checking existence of `Any (First Match)`
+    t =    21.45s Waiting 10.0s for Any (First Match) to exist
+    t =    22.48s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    22.49s         Checking existence of `Any (First Match)`
+    t =    22.65s Tap Any (First Match)
+    t =    22.65s     Wait for com.neuralkey.app to idle
+    t =    22.65s     Find the Any (First Match)
+    t =    22.77s     Check for interrupting elements affecting "home.premiumButton" Button
+    t =    22.98s     Synthesize event
+    t =    23.29s     Wait for com.neuralkey.app to idle
+    t =    23.52s Waiting 10.0s for Any (First Match) to exist
+    t =    24.52s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    24.55s         Checking existence of `Any (First Match)`
+    t =    24.77s Checking existence of `Any (First Match)`
+    t =    24.90s Waiting 10.0s for "premium.plan.monthly" Button to exist
+    t =    25.92s     Checking `Expect predicate `existsNoRetry == 1` for object "premium.plan.monthly" Button`
+    t =    25.92s         Checking existence of `"premium.plan.monthly" Button`
+    t =    26.10s Find the "premium.plan.monthly" Button
+    t =    26.30s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "premium.plan."'
+    t =    26.43s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    28.34s Added attachment named '07-premium'
+    t =    28.36s Tap Any (First Match)
+    t =    28.36s     Wait for com.neuralkey.app to idle
+    t =    28.36s     Find the Any (First Match)
+    t =    28.46s     Check for interrupting elements affecting "premium.plan.weekly" Button
+    t =    28.63s     Synthesize event
+    t =    28.94s     Wait for com.neuralkey.app to idle
+    t =    28.94s Waiting 10.0s for "premium.plan.weekly" Button to exist
+    t =    29.97s     Checking `Expect predicate `existsNoRetry == 1` for object "premium.plan.weekly" Button`
+    t =    29.97s         Checking existence of `"premium.plan.weekly" Button`
+    t =    30.12s Find the "premium.plan.weekly" Button
+    t =    30.19s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "premium.plan."'
+    t =    30.24s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    30.28s Tap Any (First Match)
+    t =    30.28s     Wait for com.neuralkey.app to idle
+    t =    30.29s     Find the Any (First Match)
+    t =    30.33s     Check for interrupting elements affecting "premium.plan.yearly" Button
+    t =    30.42s     Synthesize event
+    t =    30.72s     Wait for com.neuralkey.app to idle
+    t =    30.73s Waiting 10.0s for "premium.plan.yearly" Button to exist
+    t =    31.79s     Checking `Expect predicate `existsNoRetry == 1` for object "premium.plan.yearly" Button`
+    t =    31.79s         Checking existence of `"premium.plan.yearly" Button`
+    t =    31.97s Find the "premium.plan.yearly" Button
+    t =    32.09s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "premium.plan."'
+    t =    32.14s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    34.04s Added attachment named '08-premium-yearly-selected'
+    t =    34.04s Tap Any (First Match)
+    t =    34.05s     Wait for com.neuralkey.app to idle
+    t =    34.05s     Find the Any (First Match)
+    t =    34.10s     Check for interrupting elements affecting "premium.plan.monthly" Button
+    t =    34.21s     Synthesize event
+    t =    34.52s     Wait for com.neuralkey.app to idle
+    t =    34.53s Waiting 10.0s for "premium.plan.monthly" Button to exist
+    t =    35.55s     Checking `Expect predicate `existsNoRetry == 1` for object "premium.plan.monthly" Button`
+    t =    35.56s         Checking existence of `"premium.plan.monthly" Button`
+    t =    35.69s Find the "premium.plan.monthly" Button
+    t =    35.89s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "premium.plan."'
+    t =    35.96s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    36.04s Tap Any (First Match)
+    t =    36.04s     Wait for com.neuralkey.app to idle
+    t =    36.04s     Find the Any (First Match)
+    t =    36.08s     Check for interrupting elements affecting "premium.close" Button
+    t =    36.18s     Synthesize event
+    t =    36.49s     Wait for com.neuralkey.app to idle
+    t =    37.86s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =    37.87s     Checking existence of `Any (First Match)`
+    t =    37.95s Waiting 10.0s for Any (First Match) to exist
+    t =    38.98s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    38.98s         Checking existence of `Any (First Match)`
+    t =    40.86s Added attachment named '09-home-after-premium'
+    t =    40.87s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test04PremiumScreen]' passed (41.353 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test05SettingsAndAITones]' started.
+    t =     0.00s Start Test at 2026-11-17 15:49:48.893
+    t =     0.07s Set Up
+    t =     0.07s Open com.neuralkey.app
+    t =     0.07s     Launch com.neuralkey.app
+    t =     0.07s         Terminate com.neuralkey.app:14746
+    t =     2.72s         Setting up automation session
+    t =     4.25s         Wait for com.neuralkey.app to idle
+    t =     6.14s Waiting 15.0s for Any (First Match) to exist
+    t =     7.18s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =     7.18s         Checking existence of `Any (First Match)`
+    t =     7.34s Tap Any (First Match)
+    t =     7.34s     Wait for com.neuralkey.app to idle
+    t =     7.35s     Find the Any (First Match)
+    t =     7.54s     Check for interrupting elements affecting "home.menuButton" Button
+    t =     7.74s     Synthesize event
+    t =     8.13s     Wait for com.neuralkey.app to idle
+    t =     8.15s Waiting 10.0s for Any (First Match) to exist
+    t =     9.18s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =     9.18s         Checking existence of `Any (First Match)`
+    t =     9.39s Waiting 10.0s for "settings.appearance.system" Button to exist
+    t =    10.41s     Checking `Expect predicate `existsNoRetry == 1` for object "settings.appearance.system" Button`
+    t =    10.41s         Checking existence of `"settings.appearance.system" Button`
+    t =    10.55s Find the "settings.appearance.system" Button
+    t =    10.68s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "settings.appearance."'
+    t =    10.74s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    12.57s Added attachment named '10-settings'
+    t =    12.58s Tap "settings.appearance.dark" Button
+    t =    12.58s     Wait for com.neuralkey.app to idle
+    t =    12.58s     Find the "settings.appearance.dark" Button
+    t =    12.79s     Check for interrupting elements affecting "settings.appearance.dark" Button
+    t =    12.91s     Synthesize event
+    t =    13.24s     Wait for com.neuralkey.app to idle
+    t =    13.25s Waiting 10.0s for "settings.appearance.dark" Button to exist
+    t =    14.28s     Checking `Expect predicate `existsNoRetry == 1` for object "settings.appearance.dark" Button`
+    t =    14.28s         Checking existence of `"settings.appearance.dark" Button`
+    t =    14.47s Find the "settings.appearance.dark" Button
+    t =    14.60s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "settings.appearance."'
+    t =    14.66s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    14.73s Tap "settings.appearance.light" Button
+    t =    14.73s     Wait for com.neuralkey.app to idle
+    t =    14.73s     Find the "settings.appearance.light" Button
+    t =    14.80s     Check for interrupting elements affecting "settings.appearance.light" Button
+    t =    14.89s     Synthesize event
+    t =    15.19s     Wait for com.neuralkey.app to idle
+    t =    15.21s Waiting 10.0s for "settings.appearance.light" Button to exist
+    t =    16.24s     Checking `Expect predicate `existsNoRetry == 1` for object "settings.appearance.light" Button`
+    t =    16.24s         Checking existence of `"settings.appearance.light" Button`
+    t =    16.40s Find the "settings.appearance.light" Button
+    t =    16.50s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "settings.appearance."'
+    t =    16.55s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    16.61s Tap "settings.appearance.system" Button
+    t =    16.61s     Wait for com.neuralkey.app to idle
+    t =    16.61s     Find the "settings.appearance.system" Button
+    t =    16.74s     Check for interrupting elements affecting "settings.appearance.system" Button
+    t =    16.82s     Synthesize event
+    t =    17.14s     Wait for com.neuralkey.app to idle
+    t =    17.15s Waiting 10.0s for "settings.appearance.system" Button to exist
+    t =    18.21s     Checking `Expect predicate `existsNoRetry == 1` for object "settings.appearance.system" Button`
+    t =    18.22s         Checking existence of `"settings.appearance.system" Button`
+    t =    18.46s Find the "settings.appearance.system" Button
+    t =    18.64s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "settings.appearance."'
+    t =    18.72s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    18.77s Waiting 10.0s for Any (First Match) to exist
+    t =    19.78s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    19.78s         Checking existence of `Any (First Match)`
+    t =    19.85s Find the Any (First Match)
+    t =    19.90s Tap "settings.haptics" Switch
+    t =    19.90s     Wait for com.neuralkey.app to idle
+    t =    19.91s     Find the "settings.haptics" Switch
+    t =    19.99s     Check for interrupting elements affecting "settings.haptics" Switch
+    t =    20.19s     Synthesize event
+    t =    20.51s     Wait for com.neuralkey.app to idle
+    t =    20.51s Find the "settings.haptics" Switch
+    t =    20.64s Tap Any (First Match)
+    t =    20.64s     Wait for com.neuralkey.app to idle
+    t =    20.65s     Find the Any (First Match)
+    t =    20.70s     Check for interrupting elements affecting "settings.toneAdjustment" Button
+    t =    20.83s     Synthesize event
+    t =    21.18s     Wait for com.neuralkey.app to idle
+    t =    21.29s Waiting 10.0s for Any (First Match) to exist
+    t =    22.36s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    22.36s         Checking existence of `Any (First Match)`
+    t =    22.46s Waiting 10.0s for "tones.update" Button to exist
+    t =    23.48s     Checking `Expect predicate `existsNoRetry == 1` for object "tones.update" Button`
+    t =    23.48s         Checking existence of `"tones.update" Button`
+    t =    24.00s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "tones.option." AND selected == 1'
+    t =    24.17s Find the "tones.update" Button
+    t =    26.45s Added attachment named '11-ai-tones'
+    t =    26.46s Tap "tones.option.translate" Button
+    t =    26.46s     Wait for com.neuralkey.app to idle
+    t =    26.46s     Find the "tones.option.translate" Button
+    t =    26.86s     Check for interrupting elements affecting "tones.option.translate" Button
+    t =    27.03s     Synthesize event
+    t =    27.35s     Wait for com.neuralkey.app to idle
+    t =    27.36s Find the "tones.option.translate" Button
+    t =    28.52s Find the "tones.update" Button
+    t =    29.46s Tap "tones.option.translate" Button
+    t =    29.46s     Wait for com.neuralkey.app to idle
+    t =    29.46s     Find the "tones.option.translate" Button
+    t =    29.75s     Check for interrupting elements affecting "tones.option.translate" Button
+    t =    30.08s     Synthesize event
+    t =    30.41s     Wait for com.neuralkey.app to idle
+    t =    30.42s Find the "tones.option.translate" Button
+    t =    31.30s Find the "tones.update" Button
+    t =    31.62s Tap "tones.option.email" Button
+    t =    31.62s     Wait for com.neuralkey.app to idle
+    t =    31.62s     Find the "tones.option.email" Button
+    t =    31.94s     Check for interrupting elements affecting "tones.option.email" Button
+    t =    32.32s     Synthesize event
+    t =    32.63s     Wait for com.neuralkey.app to idle
+    t =    32.64s Find the "tones.option.email" Button
+    t =    33.00s Tap "tones.update" Button
+    t =    33.00s     Wait for com.neuralkey.app to idle
+    t =    33.01s     Find the "tones.update" Button
+    t =    33.35s     Check for interrupting elements affecting "tones.update" Button
+    t =    33.51s     Synthesize event
+    t =    33.81s     Wait for com.neuralkey.app to idle
+    t =    34.83s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =    34.83s     Checking existence of `Any (First Match)`
+    t =    35.30s Checking existence of `Any (First Match)`
+    t =    35.34s Tap Any (First Match)
+    t =    35.34s     Wait for com.neuralkey.app to idle
+    t =    35.35s     Find the Any (First Match)
+    t =    35.46s     Check for interrupting elements affecting "settings.toneAdjustment" Button
+    t =    35.66s     Synthesize event
+    t =    36.07s     Wait for com.neuralkey.app to idle
+    t =    36.29s Waiting 10.0s for "tones.option.email" Button to exist
+    t =    37.35s     Checking `Expect predicate `existsNoRetry == 1` for object "tones.option.email" Button`
+    t =    37.35s         Checking existence of `"tones.option.email" Button`
+    t =    37.71s Find the "tones.option.email" Button
+    t =    38.14s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "tones.option." AND selected == 1'
+    t =    38.59s Tap Any (First Match)
+    t =    38.59s     Wait for com.neuralkey.app to idle
+    t =    38.59s     Find the Any (First Match)
+    t =    38.71s     Check for interrupting elements affecting "tones.back" Button
+    t =    38.95s     Synthesize event
+    t =    39.30s     Wait for com.neuralkey.app to idle
+    t =    40.37s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =    40.37s     Checking existence of `Any (First Match)`
+    t =    40.72s Swipe right Target Application 'com.neuralkey.app'
+    t =    40.72s     Wait for com.neuralkey.app to idle
+    t =    40.72s     Find the Target Application 'com.neuralkey.app'
+    t =    40.77s     Check for interrupting elements affecting "Neural Key" Application
+    t =    40.85s     Synthesize event
+    t =    41.30s     Wait for com.neuralkey.app to idle
+    t =    42.31s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =    42.31s     Checking existence of `Any (First Match)`
+    t =    42.42s Checking existence of `Any (First Match)`
+    t =    44.25s Added attachment named '12-home-after-settings'
+    t =    44.27s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test05SettingsAndAITones]' passed (44.651 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test06InAppKeyboard]' started.
+    t =     0.00s Start Test at 2026-11-17 15:50:33.545
+    t =     0.06s Set Up
+    t =     0.07s Open com.neuralkey.app
+    t =     0.07s     Launch com.neuralkey.app
+    t =     0.07s         Terminate com.neuralkey.app:16796
+    t =     2.25s         Setting up automation session
+    t =     4.57s         Wait for com.neuralkey.app to idle
+    t =     6.57s Waiting 15.0s for "home.testField" TextField to exist
+    t =     7.62s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =     7.62s         Checking existence of `"home.testField" TextField`
+    t =     7.86s Tap "home.testField" TextField
+    t =     7.86s     Wait for com.neuralkey.app to idle
+    t =     7.86s     Find the "home.testField" TextField
+    t =     8.04s     Check for interrupting elements affecting "home.testField" TextField
+    t =     8.09s     Synthesize event
+    t =     8.44s     Wait for com.neuralkey.app to idle
+    t =    10.27s Waiting 10.0s for "keyboard.key.q" Any to exist
+    t =    11.34s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    11.35s         Checking existence of `"keyboard.key.q" Any`
+    t =    11.84s Find the "keyboard.key.q" Any
+    t =    12.27s Tap "keyboard.key.h" Any
+    t =    12.27s     Wait for com.neuralkey.app to idle
+    t =    12.27s     Find the "keyboard.key.h" Any
+    t =    12.46s     Check for interrupting elements affecting "keyboard.key.h" Key
+    t =    12.58s     Synthesize event
+    t =    12.93s     Wait for com.neuralkey.app to idle
+    t =    13.05s Tap "keyboard.key.e" Any
+    t =    13.05s     Wait for com.neuralkey.app to idle
+    t =    13.05s     Find the "keyboard.key.e" Any
+    t =    13.40s     Check for interrupting elements affecting "keyboard.key.e" Key
+    t =    13.54s     Synthesize event
+    t =    13.87s     Wait for com.neuralkey.app to idle
+    t =    13.88s Tap "keyboard.key.l" Any
+    t =    13.88s     Wait for com.neuralkey.app to idle
+    t =    13.91s     Find the "keyboard.key.l" Any
+    t =    14.16s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    14.31s     Synthesize event
+    t =    14.63s     Wait for com.neuralkey.app to idle
+    t =    14.64s Tap "keyboard.key.l" Any
+    t =    14.64s     Wait for com.neuralkey.app to idle
+    t =    14.67s     Find the "keyboard.key.l" Any
+    t =    14.87s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    15.08s     Synthesize event
+    t =    15.41s     Wait for com.neuralkey.app to idle
+    t =    15.42s Tap "keyboard.key.o" Any
+    t =    15.42s     Wait for com.neuralkey.app to idle
+    t =    15.46s     Find the "keyboard.key.o" Any
+    t =    15.67s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    15.89s     Synthesize event
+    t =    16.21s     Wait for com.neuralkey.app to idle
+    t =    16.21s Find the "home.testField" TextField
+    t =    16.32s Find the "keyboard.suggestion.0" Button
+    t =    16.51s Tap "keyboard.suggestion.0" Button
+    t =    16.51s     Wait for com.neuralkey.app to idle
+    t =    16.51s     Find the "keyboard.suggestion.0" Button
+    t =    16.65s     Check for interrupting elements affecting "keyboard.suggestion.0" Button
+    t =    16.80s     Synthesize event
+    t =    17.10s     Wait for com.neuralkey.app to idle
+    t =    17.10s Find the "home.testField" TextField
+    t =    17.31s Tap "keyboard.key.w" Any
+    t =    17.31s     Wait for com.neuralkey.app to idle
+    t =    17.31s     Find the "keyboard.key.w" Any
+    t =    17.70s     Check for interrupting elements affecting "keyboard.key.w" Key
+    t =    17.92s     Synthesize event
+    t =    18.36s     Wait for com.neuralkey.app to idle
+    t =    18.38s Tap "keyboard.key.o" Any
+    t =    18.38s     Wait for com.neuralkey.app to idle
+    t =    18.48s     Find the "keyboard.key.o" Any
+    t =    18.71s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    18.95s     Synthesize event
+    t =    19.28s     Wait for com.neuralkey.app to idle
+    t =    19.29s Tap "keyboard.key.r" Any
+    t =    19.29s     Wait for com.neuralkey.app to idle
+    t =    19.30s     Find the "keyboard.key.r" Any
+    t =    19.48s     Check for interrupting elements affecting "keyboard.key.r" Key
+    t =    19.59s     Synthesize event
+    t =    19.92s     Wait for com.neuralkey.app to idle
+    t =    19.92s Tap "keyboard.key.l" Any
+    t =    19.92s     Wait for com.neuralkey.app to idle
+    t =    19.93s     Find the "keyboard.key.l" Any
+    t =    20.14s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    20.22s     Synthesize event
+    t =    20.54s     Wait for com.neuralkey.app to idle
+    t =    20.55s Tap "keyboard.key.delete" Any
+    t =    20.55s     Wait for com.neuralkey.app to idle
+    t =    20.55s     Find the "keyboard.key.delete" Any
+    t =    20.67s     Check for interrupting elements affecting "keyboard.key.delete" Key
+    t =    20.73s     Synthesize event
+    t =    21.06s     Wait for com.neuralkey.app to idle
+    t =    21.06s Find the "home.testField" TextField
+    t =    21.14s Tap "keyboard.key.shift" Any
+    t =    21.14s     Wait for com.neuralkey.app to idle
+    t =    21.14s     Find the "keyboard.key.shift" Any
+    t =    21.27s     Check for interrupting elements affecting "keyboard.key.shift" Key
+    t =    21.32s     Synthesize event
+    t =    21.62s     Wait for com.neuralkey.app to idle
+    t =    21.63s Find the "keyboard.key.l" Any
+    t =    21.71s Tap "keyboard.key.l" Any
+    t =    21.71s     Wait for com.neuralkey.app to idle
+    t =    21.71s     Find the "keyboard.key.l" Any
+    t =    21.82s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    21.95s     Synthesize event
+    t =    22.27s     Wait for com.neuralkey.app to idle
+    t =    22.28s Find the "keyboard.key.d" Any
+    t =    22.46s Tap "keyboard.key.d" Any
+    t =    22.46s     Wait for com.neuralkey.app to idle
+    t =    22.47s     Find the "keyboard.key.d" Any
+    t =    22.62s     Check for interrupting elements affecting "keyboard.key.d" Key
+    t =    22.74s     Synthesize event
+    t =    23.07s     Wait for com.neuralkey.app to idle
+    t =    23.08s Find the "home.testField" TextField
+    t =    23.19s Double tap "keyboard.key.shift" Any
+    t =    23.19s     Wait for com.neuralkey.app to idle
+    t =    23.19s     Find the "keyboard.key.shift" Any
+    t =    23.32s     Check for interrupting elements affecting "keyboard.key.shift" Key
+    t =    23.46s     Synthesize event
+    t =    23.83s     Wait for com.neuralkey.app to idle
+    t =    23.84s Tap "keyboard.key.a" Any
+    t =    23.84s     Wait for com.neuralkey.app to idle
+    t =    23.84s     Find the "keyboard.key.a" Any
+    t =    23.99s     Check for interrupting elements affecting "keyboard.key.a" Key
+    t =    24.11s     Synthesize event
+    t =    24.42s     Wait for com.neuralkey.app to idle
+    t =    24.43s Tap "keyboard.key.b" Any
+    t =    24.43s     Wait for com.neuralkey.app to idle
+    t =    24.43s     Find the "keyboard.key.b" Any
+    t =    24.65s     Check for interrupting elements affecting "keyboard.key.b" Key
+    t =    24.83s     Synthesize event
+    t =    25.15s     Wait for com.neuralkey.app to idle
+    t =    25.16s Find the "home.testField" TextField
+    t =    25.43s Tap "keyboard.key.shift" Any
+    t =    25.43s     Wait for com.neuralkey.app to idle
+    t =    25.44s     Find the "keyboard.key.shift" Any
+    t =    25.69s     Check for interrupting elements affecting "keyboard.key.shift" Key
+    t =    25.81s     Synthesize event
+    t =    26.12s     Wait for com.neuralkey.app to idle
+    t =    26.13s Find the "keyboard.key.c" Any
+    t =    26.32s Tap "keyboard.key.layer.123" Any
+    t =    26.32s     Wait for com.neuralkey.app to idle
+    t =    26.33s     Find the "keyboard.key.layer.123" Any
+    t =    26.66s     Check for interrupting elements affecting "keyboard.key.layer.123" Key
+    t =    26.84s     Synthesize event
+    t =    27.16s     Wait for com.neuralkey.app to idle
+    t =    27.17s Waiting 10.0s for "keyboard.key.1" Any to exist
+    t =    28.24s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.1" Any`
+    t =    28.24s         Checking existence of `"keyboard.key.1" Any`
+    t =    28.41s Tap "keyboard.key.7" Any
+    t =    28.41s     Wait for com.neuralkey.app to idle
+    t =    28.41s     Find the "keyboard.key.7" Any
+    t =    28.69s     Check for interrupting elements affecting "keyboard.key.7" Key
+    t =    28.89s     Synthesize event
+    t =    29.23s     Wait for com.neuralkey.app to idle
+    t =    29.26s Tap "keyboard.key.layer.#+=" Any
+    t =    29.26s     Wait for com.neuralkey.app to idle
+    t =    29.30s     Find the "keyboard.key.layer.#+=" Any
+    t =    29.43s     Check for interrupting elements affecting "keyboard.key.layer.#+=" Key
+    t =    29.48s     Synthesize event
+    t =    29.83s     Wait for com.neuralkey.app to idle
+    t =    29.83s Waiting 10.0s for "keyboard.key.[" Any to exist
+    t =    30.84s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.[" Any`
+    t =    30.85s         Checking existence of `"keyboard.key.[" Any`
+    t =    32.78s Added attachment named '18-keyboard-symbols'
+    t =    32.78s Tap "keyboard.key.#" Any
+    t =    32.78s     Wait for com.neuralkey.app to idle
+    t =    32.79s     Find the "keyboard.key.#" Any
+    t =    32.95s     Check for interrupting elements affecting "keyboard.key.#" Key
+    t =    33.11s     Synthesize event
+    t =    33.45s     Wait for com.neuralkey.app to idle
+    t =    33.46s Tap "keyboard.key.space" Any
+    t =    33.46s     Wait for com.neuralkey.app to idle
+    t =    33.46s     Find the "keyboard.key.space" Any
+    t =    33.80s     Check for interrupting elements affecting "keyboard.key.space" Key
+    t =    34.02s     Synthesize event
+    t =    34.34s     Wait for com.neuralkey.app to idle
+    t =    34.34s Waiting 10.0s for "keyboard.key.q" Any to exist
+    t =    35.38s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    35.38s         Checking existence of `"keyboard.key.q" Any`
+    t =    35.90s Find the "home.testField" TextField
+    t =    36.19s Tap "keyboard.key.o" Any
+    t =    36.19s     Wait for com.neuralkey.app to idle
+    t =    36.19s     Find the "keyboard.key.o" Any
+    t =    36.62s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    36.83s     Synthesize event
+    t =    37.18s     Wait for com.neuralkey.app to idle
+    t =    37.19s Tap "keyboard.key.k" Any
+    t =    37.19s     Wait for com.neuralkey.app to idle
+    t =    37.28s     Find the "keyboard.key.k" Any
+    t =    37.58s     Check for interrupting elements affecting "keyboard.key.k" Key
+    t =    37.76s     Synthesize event
+    t =    38.07s     Wait for com.neuralkey.app to idle
+    t =    38.08s Double tap "keyboard.key.space" Any
+    t =    38.08s     Wait for com.neuralkey.app to idle
+    t =    38.11s     Find the "keyboard.key.space" Any
+    t =    38.39s     Check for interrupting elements affecting "keyboard.key.space" Key
+    t =    38.62s     Synthesize event
+    t =    39.06s     Wait for com.neuralkey.app to idle
+    t =    39.06s Find the "home.testField" TextField
+    t =    39.39s Find the "keyboard.key.q" Any
+    t =    40.96s Press "keyboard.key.e" Any for 1.2 seconds
+    t =    40.96s     Wait for com.neuralkey.app to idle
+    t =    40.96s     Find the "keyboard.key.e" Any
+    t =    41.21s     Check for interrupting elements affecting "keyboard.key.e" Key
+    t =    41.42s     Synthesize event
+    t =    42.94s     Wait for com.neuralkey.app to idle
+    t =    42.95s Find the "home.testField" TextField
+    t =    43.13s Tap "keyboard.key.return" Any
+    t =    43.13s     Wait for com.neuralkey.app to idle
+    t =    43.14s     Find the "keyboard.key.return" Any
+    t =    43.61s     Check for interrupting elements affecting "keyboard.key.return" Key
+    t =    43.80s     Synthesize event
+    t =    44.19s     Wait for com.neuralkey.app to idle
+    t =    45.33s Checking `Expect predicate `exists == 0` for object "keyboard.key.q" Any`
+    t =    45.33s     Checking existence of `"keyboard.key.q" Any`
+    t =    45.40s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test06InAppKeyboard]' passed (45.711 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test08KeyboardSetupThroughSettings]' started.
+    t =     0.00s Start Test at 2026-11-17 15:51:19.255
+    t =     0.04s Set Up
+    t =     0.04s Open com.neuralkey.app
+    t =     0.04s     Launch com.neuralkey.app
+    t =     0.04s         Terminate com.neuralkey.app:18472
+    t =     2.53s         Setting up automation session
+    t =     4.57s         Wait for com.neuralkey.app to idle
+    t =     6.34s Waiting 15.0s for Any (First Match) to exist
+    t =     7.34s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =     7.34s         Checking existence of `Any (First Match)`
+    t =     7.41s Tap Any (First Match)
+    t =     7.41s     Wait for com.neuralkey.app to idle
+    t =     7.41s     Find the Any (First Match)
+    t =     7.50s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =     7.67s     Synthesize event
+    t =     8.05s     Wait for com.neuralkey.app to idle
+    t =     8.06s Waiting 10.0s for Any (First Match) to exist
+    t =     9.08s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =     9.08s         Checking existence of `Any (First Match)`
+    t =    10.85s Added attachment named '20-setup-add-keyboard'
+    t =    10.86s Waiting 10.0s for Any (First Match) to exist
+    t =    11.87s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    11.87s         Checking existence of `Any (First Match)`
+    t =    11.91s Tap Any (First Match)
+    t =    11.91s     Wait for com.neuralkey.app to idle
+    t =    11.91s     Find the Any (First Match)
+    t =    11.94s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =    12.04s     Synthesize event
+    t =    12.48s     Wait for com.neuralkey.app to idle
+    t =    12.51s Wait for com.apple.Preferences to become Running Foreground
+    t =    12.92s Waiting 3.0s for "Neural Key" Switch to exist
+    t =    13.98s     Checking `Expect predicate `existsNoRetry == 1` for object "Neural Key" Switch`
+    t =    13.98s         Checking existence of `"Neural Key" Switch`
+    t =    16.23s         Capturing element debug description
+    t =    16.24s     Checking existence of `"Neural Key" Switch`
+    t =    23.18s Collecting debug information to assist test failure triage
+    t =    23.19s     Requesting snapshot of accessibility hierarchy for app with pid 20740
+    t =    24.30s Waiting 10.0s for Any (First Match) to exist
+    t =    25.32s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    25.32s         Checking existence of `Any (First Match)`
+    t =    25.53s         Capturing element debug description
+    t =    26.33s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    26.33s         Checking existence of `Any (First Match)`
+    t =    26.54s         Capturing element debug description
+    t =    27.32s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    27.32s         Checking existence of `Any (First Match)`
+    t =    27.52s         Capturing element debug description
+    t =    28.33s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    28.33s         Checking existence of `Any (First Match)`
+    t =    28.50s         Capturing element debug description
+    t =    29.32s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    29.32s         Checking existence of `Any (First Match)`
+    t =    29.46s         Capturing element debug description
+    t =    30.30s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    30.30s         Checking existence of `Any (First Match)`
+    t =    30.46s         Capturing element debug description
+    t =    31.30s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    31.31s         Checking existence of `Any (First Match)`
+    t =    31.66s         Capturing element debug description
+    t =    32.39s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    32.39s         Checking existence of `Any (First Match)`
+    t =    32.55s         Capturing element debug description
+    t =    33.39s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    33.39s         Checking existence of `Any (First Match)`
+    t =    33.53s         Capturing element debug description
+    t =    34.31s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    34.31s         Checking existence of `Any (First Match)`
+    t =    34.44s         Capturing element debug description
+    t =    34.44s     Checking existence of `Any (First Match)`
+    t =    34.59s Collecting debug information to assist test failure triage
+    t =    34.59s     Requesting snapshot of accessibility hierarchy for app with pid 20740
+    t =    34.71s Requesting snapshot of accessibility hierarchy for app with pid 20740
+    t =    35.12s Requesting snapshot of accessibility hierarchy for app with pid 20740
+Settings did not open the NeuralKey page:
+Attributes: Application, 0x1031646f0, pid: 20740, label: 'Settings'
+Element subtree:
+ →Application, 0x1031646f0, pid: 20740, label: 'Settings'
+    Window (Main), 0x10316e760, {{0.0, 0.0}, {440.0, 956.0}}
+      Other, 0x10316d8e0, {{0.0, 0.0}, {440.0, 956.0}}
+        Other, 0x10316d4c0, {{0.0, 0.0}, {440.0, 956.0}}
+          Other, 0x10316dd00, {{0.0, 0.0}, {440.0, 956.0}}
+            Other, 0x103088070, {{0.0, 0.0}, {440.0, 956.0}}
+              Other, 0x1030883c0, {{0.0, 0.0}, {440.0, 956.0}}
+                Other, 0x103088720, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x103088ab0, {{0.0, 0.0}, {440.0, 956.0}}
+                    Other, 0x103088e20, {{0.0, 0.0}, {440.0, 956.0}}
+                      NavigationBar, 0x103089180, {{0.0, 62.0}, {440.0, 106.0}}, identifier: 'Settings'
+                        StaticText, 0x1030894c0, {{20.0, 119.7}, {133.0, 40.7}}, label: 'Settings'
+                      Other, 0x103089830, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x103089b80, {{0.0, 0.0}, {440.0, 956.0}}
+                          Other, 0x103089ed0, {{0.0, 0.0}, {440.0, 956.0}}
+                            Other, 0x10308a220, {{0.0, 0.0}, {440.0, 956.0}}
+                              CollectionView, 0x10308a580, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x10308a8e0, {{-20.0, -1744.0}, {480.0, 2020.0}}
+                                Other, 0x10308ac60, {{0.0, 0.0}, {440.0, 956.0}}
+                                Other, 0x10308aff0, {{0.0, 0.0}, {440.0, 956.0}}
+                                  Other, 0x10308b350, {{0.0, 815.2}, {440.0, 140.8}}
+                                    Image, 0x10308b6f0, {{-120.0, 820.0}, {680.0, 272.0}}, identifier: 'AdditionalDimmingOverlay'
+                                    Other, 0x10308ba40, {{0.0, 815.2}, {440.0, 140.8}}
+                                      Other, 0x10308bdd0, {{0.0, 815.2}, {440.0, 140.8}}
+                                    Other, 0x10308c150, {{0.0, 815.2}, {440.0, 140.8}}
+                                      Other, 0x10308c4a0, {{0.0, 815.2}, {440.0, 140.8}}
+                                      Other, 0x10316e120, {{0.0, 815.2}, {440.0, 140.8}}
+                                Cell, 0x10316d0a0, {{20.0, 168.0}, {400.0, 90.3}}
+                                  Other, 0x10316cc80, {{20.0, 168.0}, {400.0, 90.3}}
+                                    Other, 0x10316c640, {{20.0, 168.0}, {400.0, 90.3}}
+                                  Other, 0x1031625a0, {{20.0, 168.0}, {400.0, 90.3}}
+                                    Other, 0x103161b00, {{20.0, 168.0}, {400.0, 90.3}}
+                                      Other, 0x1031616e0, {{20.0, 168.0}, {400.0, 90.3}}
+                                        Button, 0x1031612c0, {{20.0, 168.0}, {400.0, 90.3}}, identifier: 'com.apple.settings.primaryAppleAccount', label: 'Apple Account, Sign in to access your iCloud data, the App Store, Apple services, and more.'
+                                          Image, 0x103160ea0, {{40.0, 183.0}, {60.0, 60.3}}, identifier: 'apple.id', label: 'apple.id'
+                                          StaticText, 0x103165d20, {{108.0, 183.0}, {134.7, 24.0}}, label: 'Apple Account'
+                                          StaticText, 0x10316eda0, {{108.0, 209.7}, {264.0, 33.7}}, label: 'Sign in to access your iCloud data, the App Store, Apple services, and more.'
+                                          Image, 0x10316eec0, {{390.7, 207.0}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                Other, 0x10316efe0, {{-20.0, 276.0}, {480.0, 451.0}}
+                                Cell, 0x10316f100, {{20.0, 293.3}, {400.0, 52.0}}
+                                  Other, 0x10316f220, {{20.0, 293.3}, {400.0, 52.0}}
+                                    Other, 0x10316f340, {{20.0, 293.3}, {400.0, 52.0}}
+                                  Other, 0x10316f460, {{20.0, 293.3}, {400.0, 52.0}}
+                                    Other, 0x10316f580, {{20.0, 293.3}, {400.0, 52.0}}
+                                      Other, 0x10316f6a0, {{20.0, 293.3}, {400.0, 52.0}}
+                                        Button, 0x10316f7c0, {{20.0, 293.3}, {400.0, 52.0}}, identifier: 'com.apple.settings.general', label: 'General'
+                                          Image, 0x10316f8e0, {{37.7, 305.0}, {29.0, 29.0}}
+                                          StaticText, 0x10316fa00, {{37.7, 305.0}, {101.7, 29.0}}, label: 'General'
+                                          Image, 0x10316fb20, {{390.7, 313.3}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                Cell, 0x10316fc40, {{20.0, 345.3}, {400.0, 52.0}}
+                                  Other, 0x10316fd60, {{20.0, 345.3}, {400.0, 52.0}}
+                                    Other, 0x10316fe80, {{20.0, 345.3}, {400.0, 52.0}}
+                                  Other, 0x10316ffa0, {{20.0, 345.3}, {400.0, 52.0}}
+                                    Other, 0x1031700c0, {{20.0, 345.3}, {400.0, 52.0}}
+                                      Other, 0x1031701e0, {{20.0, 345.3}, {400.0, 52.0}}
+                                        Button, 0x103170300, {{20.0, 345.3}, {400.0, 52.0}}, identifier: 'com.apple.settings.accessibility', label: 'Accessibility'
+                                          Image, 0x103170420, {{37.7, 357.0}, {29.0, 29.0}}
+                                          StaticText, 0x103170540, {{37.7, 357.0}, {137.0, 29.0}}, label: 'Accessibility'
+                                          Image, 0x103170660, {{390.7, 365.3}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                Other, 0x103170780, {{80.0, 344.3}, {320.0, 1.0}}
+                                Cell, 0x1031708a0, {{20.0, 397.3}, {400.0, 52.0}}
+                                  Other, 0x1031709c0, {{20.0, 397.3}, {400.0, 52.0}}
+                                    Other, 0x103170ae0, {{20.0, 397.3}, {400.0, 52.0}}
+                                  Other, 0x103170c00, {{20.0, 397.3}, {400.0, 52.0}}
+                                    Other, 0x103170d20, {{20.0, 397.3}, {400.0, 52.0}}
+                                      Other, 0x103170e40, {{20.0, 397.3}, {400.0, 52.0}}
+                                        Button, 0x103170f60, {{20.0, 397.3}, {400.0, 52.0}}, identifier: 'com.apple.settings.actionButton', label: 'Action Button'
+                                          Image, 0x103171080, {{37.7, 409.0}, {29.0, 29.0}}
+                                          StaticText, 0x1031711a0, {{37.7, 409.0}, {146.0, 29.0}}, label: 'Action Button'
+                                          Image, 0x1031712c0, {{390.7, 417.3}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                Other, 0x1031713e0, {{80.0, 396.3}, {320.0, 1.0}}
+                                Cell, 0x103171500, {{20.0, 449.3}, {400.0, 52.0}}
+                                  Other, 0x103171620, {{20.0, 449.3}, {400.0, 52.0}}
+                                    Other, 0x103171740, {{20.0, 449.3}, {400.0, 52.0}}
+                                  Other, 0x103171860, {{20.0, 449.3}, {400.0, 52.0}}
+                                    Other, 0x103171980, {{20.0, 449.3}, {400.0, 52.0}}
+                                      Other, 0x103171aa0, {{20.0, 449.3}, {400.0, 52.0}}
+                                        Button, 0x103171bc0, {{20.0, 449.3}, {400.0, 52.0}}, identifier: 'com.apple.settings.siri', label: 'Apple Intelligence & Siri'
+                                          Image, 0x103171ce0, {{37.7, 461.0}, {29.0, 29.0}}
+                                          StaticText, 0x103171e00, {{37.7, 461.0}, {222.3, 29.0}}, label: 'Apple Intelligence & Siri'
+                                          Image, 0x103171f20, {{390.7, 469.3}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                Other, 0x103172040, {{80.0, 448.3}, {320.0, 1.0}}
+                                Cell, 0x103172160, {{20.0, 501.3}, {400.0, 52.0}}
+                                  Other, 0x103172280, {{20.0, 501.3}, {400.0, 52.0}}
+                                    Other, 0x1031723a0, {{20.0, 501.3}, {400.0, 52.0}}
+                                  Other, 0x1031724c0, {{20.0, 501.3}, {400.0, 52.0}}
+                                    Other, 0x1031725e0, {{20.0, 501.3}, {400.0, 52.0}}
+                                      Other, 0x103172700, {{20.0, 501.3}, {400.0, 52.0}}
+                                        Button, 0x103172820, {{20.0, 501.3}, {400.0, 52.0}}, identifier: 'com.apple.settings.camera', label: 'Camera'
+                                          Image, 0x103172940, {{37.7, 513.0}, {29.0, 29.0}}
+                                          StaticText, 0x103172a60, {{37.7, 513.0}, {101.7, 29.0}}, label: 'Camera'
+                                          Image, 0x103172b80, {{390.7, 521.3}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                Other, 0x103172ca0, {{80.0, 500.3}, {320.0, 1.0}}
+                                Cell, 0x103172dc0, {{20.0, 553.3}, {400.0, 52.0}}
+                                  Other, 0x103172ee0, {{20.0, 553.3}, {400.0, 52.0}}
+                                    Other, 0x103173000, {{20.0, 553.3}, {400.0, 52.0}}
+                                  Other, 0x103173120, {{20.0, 553.3}, {400.0, 52.0}}
+                                    Other, 0x103173240, {{20.0, 553.3}, {400.0, 52.0}}
+                                      Other, 0x103173360, {{20.0, 553.3}, {400.0, 52.0}}
+                                        Button, 0x103173480, {{20.0, 553.3}, {400.0, 52.0}}, identifier: 'com.apple.settings.homeScreen', label: 'Home Screen & App Library'
+                                          Image, 0x1031735a0, {{37.7, 565.0}, {29.0, 29.0}}
+                                          StaticText, 0x1031736c0, {{37.7, 565.0}, {254.0, 29.0}}, label: 'Home Screen & App Library'
+                                          Image, 0x1031737e0, {{390.7, 573.3}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                Other, 0x103173900, {{80.0, 552.3}, {320.0, 1.0}}
+                                Cell, 0x103173a20, {{20.0, 605.3}, {400.0, 52.0}}
+                                  Other, 0x103173b40, {{20.0, 605.3}, {400.0, 52.0}}
+                                    Other, 0x103173c60, {{20.0, 605.3}, {400.0, 52.0}}
+                                  Other, 0x103173d80, {{20.0, 605.3}, {400.0, 52.0}}
+                                    Other, 0x103173ea0, {{20.0, 605.3}, {400.0, 52.0}}
+                                      Other, 0x103173fc0, {{20.0, 605.3}, {400.0, 52.0}}
+                                        Button, 0x1031740e0, {{20.0, 605.3}, {400.0, 52.0}}, identifier: 'com.apple.settings.search', label: 'Search'
+                                          Image, 0x103174200, {{37.7, 617.0}, {29.0, 29.0}}
+                                          StaticText, 0x103174320, {{37.7, 617.0}, {95.7, 29.0}}, label: 'Search'
+                                          Image, 0x103174440, {{390.7, 625.3}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                Other, 0x103174560, {{80.0, 604.3}, {320.0, 1.0}}
+                                Cell, 0x103174680, {{20.0, 657.3}, {400.0, 52.0}}
+                                  Other, 0x1031747a0, {{20.0, 657.3}, {400.0, 52.0}}
+                                    Other, 0x1031748c0, {{20.0, 657.3}, {400.0, 52.0}}
+                                  Other, 0x1031749e0, {{20.0, 657.3}, {400.0, 52.0}}
+                                    Other, 0x103174b00, {{20.0, 657.3}, {400.0, 52.0}}
+                                      Other, 0x103174c20, {{20.0, 657.3}, {400.0, 52.0}}
+                                        Button, 0x103174d40, {{20.0, 657.3}, {400.0, 52.0}}, identifier: 'com.apple.settings.standBy', label: 'StandBy'
+                                          Image, 0x103174e60, {{37.7, 669.0}, {29.0, 29.0}}
+                                          StaticText, 0x103174f80, {{37.7, 669.0}, {106.7, 29.0}}, label: 'StandBy'
+                                          Image, 0x1031750a0, {{390.7, 677.3}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                Other, 0x1031751c0, {{80.0, 656.3}, {320.0, 1.0}}
+                                Other, 0x1031752e0, {{-20.0, 727.0}, {480.0, 87.0}}
+                                Cell, 0x103175400, {{20.0, 744.3}, {400.0, 52.0}}
+                                  Other, 0x103175520, {{20.0, 744.3}, {400.0, 52.0}}
+                                    Other, 0x103175640, {{20.0, 744.3}, {400.0, 52.0}}
+                                  Other, 0x103175760, {{20.0, 744.3}, {400.0, 52.0}}
+                                    Other, 0x103175880, {{20.0, 744.3}, {400.0, 52.0}}
+                                      Other, 0x1031759a0, {{20.0, 744.3}, {400.0, 52.0}}
+                                        Button, 0x103175ac0, {{20.0, 744.3}, {400.0, 52.0}}, identifier: 'com.apple.settings.screenTime', label: 'Screen Time'
+                                          Image, 0x103175be0, {{37.7, 756.0}, {29.0, 29.0}}
+                                          StaticText, 0x103175d00, {{37.7, 756.0}, {137.7, 29.0}}, label: 'Screen Time'
+                                          Image, 0x103175e20, {{390.7, 764.3}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                Other, 0x103175f40, {{-20.0, 814.0}, {480.0, 139.0}}
+                                Cell, 0x103176060, {{20.0, 831.3}, {400.0, 52.0}}
+                                  Other, 0x103176180, {{20.0, 831.3}, {400.0, 52.0}}
+                                    Other, 0x1031762a0, {{20.0, 831.3}, {400.0, 52.0}}
+                                  Other, 0x1031763c0, {{20.0, 831.3}, {400.0, 52.0}}
+                                    Other, 0x1031764e0, {{20.0, 831.3}, {400.0, 52.0}}
+                                      Other, 0x103176600, {{20.0, 831.3}, {400.0, 52.0}}
+                                        Button, 0x103176720, {{20.0, 831.3}, {400.0, 52.0}}, identifier: 'com.apple.settings.passcodeAndBiometrics', label: 'Passcode'
+                                          Image, 0x103176840, {{37.7, 843.0}, {29.0, 29.0}}
+                                          StaticText, 0x103176960, {{37.7, 843.0}, {116.3, 29.0}}, label: 'Passcode'
+                                          Image, 0x103176a80, {{390.7, 851.3}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                Cell, 0x103176ba0, {{20.0, 883.3}, {400.0, 52.0}}
+                                  Other, 0x103176cc0, {{20.0, 883.3}, {400.0, 52.0}}
+                                    Other, 0x103176de0, {{20.0, 883.3}, {400.0, 52.0}}
+                                  Other, 0x103176f00, {{20.0, 883.3}, {400.0, 52.0}}
+                                    Other, 0x103177020, {{20.0, 883.3}, {400.0, 52.0}}
+                                      Other, 0x103177140, {{20.0, 883.3}, {400.0, 52.0}}
+                                        Button, 0x103177260, {{20.0, 883.3}, {400.0, 52.0}}, identifier: 'com.apple.settings.privacyAndSecurity', label: 'Privacy & Security'
+                                          Image, 0x103177380, {{37.7, 895.0}, {29.0, 29.0}}
+                                          StaticText, 0x1031774a0, {{37.7, 895.0}, {181.0, 29.0}}, label: 'Privacy & Security'
+                                          Image, 0x1031775c0, {{390.7, 903.3}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                Other, 0x1031776e0, {{80.0, 882.3}, {320.0, 1.0}}
+                                Other, 0x103177800, {{-20.0, 953.0}, {480.0, 139.0}}
+                                Other, 0x103177a70, {{407.0, 116.0}, {30.0, 754.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                  Other, 0x103177b90, {{434.0, 119.0}, {3.0, 528.0}}
+                                Other, 0x103177cb0, {{407.0, 116.0}, {30.0, 754.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                  Other, 0x103177dd0, {{434.0, 119.0}, {3.0, 528.0}}
+                              Other, 0x1031780f0, {{220.0, 519.0}, {0.0, 0.0}}
+                      Other, 0x101777fe0, {{0.0, 0.0}, {440.0, 956.0}}
+                        Other, 0x10177dce0, {{0.0, 0.0}, {440.0, 956.0}}
+                          Toolbar, 0x10177d970, {{0.0, 870.0}, {440.0, 86.0}}, identifier: 'Toolbar', label: 'Toolbar'
+                            Other, 0x10177c4b0, {{28.0, 880.0}, {384.0, 48.0}}
+                              Other, 0x10177e3f0, {{28.0, 880.0}, {384.0, 48.0}}
+                                Other, 0x101779e90, {{28.0, 880.0}, {0.0, 0.0}}
+                                  Other, 0x10177f500, {{28.0, 880.0}, {384.0, 48.0}}
+                                    Other, 0x1017802a0, {{28.0, 880.0}, {384.0, 48.0}}
+                                      Other, 0x1017809a0, {{33.0, 885.0}, {374.0, 38.0}}
+                                        SearchField, 0x10177f170, {{33.0, 885.0}, {374.0, 38.0}}, label: 'Search', placeholderValue: 'Search'
+                                          Button, 0x101779100, {{373.7, 893.0}, {17.3, 22.0}}, identifier: 'Dictate', label: 'Dictate'
+                                          Image, 0x10177a8e0, {{46.0, 894.3}, {20.3, 18.7}}, identifier: 'magnifyingglass', label: 'Search'
+                                          Button, 0x101780630, {{373.7, 893.0}, {17.3, 22.0}}, identifier: 'Dictate', label: 'Dictate'
+                Other, 0x101778680, {{0.0, 0.0}, {440.0, 956.0}}
+                  Other, 0x1017747c0, {{0.0, 0.0}, {440.0, 956.0}}
+Path to element:
+ →Application, 0x1031646f0, pid: 20740, label: 'Settings'
+Query chain:
+ →Find: Application 'com.apple.Preferences'
+  Output: {
+    Application, 0x1031628e0, pid: 20740, label: 'Settings'
+  }
+
+    t =    35.21s Checking existence of `Any (First Match)`
+    t =    35.37s Swipe up Application 'com.apple.Preferences'
+    t =    35.37s     Wait for com.apple.Preferences to idle
+    t =    35.37s     Find the Application 'com.apple.Preferences'
+    t =    35.41s     Check for interrupting elements affecting "Settings" Application
+    t =    35.50s     Synthesize event
+    t =    36.03s     Wait for com.apple.Preferences to idle
+    t =    36.83s Checking existence of `Any (First Match)`
+    t =    37.03s Find the Any (First Match)
+    t =    37.30s Checking existence of `"com.apple.settings.apps" Button`
+    t =    37.46s Find the "com.apple.settings.apps" Button
+    t =    37.59s Checking existence of `"com.apple.settings.apps" Button`
+    t =    37.75s Find the "com.apple.settings.apps" Button
+    t =    37.90s Checking existence of `"com.apple.settings.apps" Button`
+    t =    38.04s Find the "com.apple.settings.apps" Button
+    t =    38.19s Checking existence of `"com.apple.settings.apps" Button`
+    t =    38.32s Find the "com.apple.settings.apps" Button
+    t =    38.46s Checking existence of `"com.apple.settings.apps" Button`
+    t =    38.59s Tap "com.apple.settings.apps" Button
+    t =    38.59s     Wait for com.apple.Preferences to idle
+    t =    38.60s     Find the "com.apple.settings.apps" Button
+    t =    38.73s     Check for interrupting elements affecting "com.apple.settings.apps" Button
+    t =    38.82s     Synthesize event
+    t =    39.11s     Wait for com.apple.Preferences to idle
+    t =    39.42s Checking existence of `Any (First Match)`
+    t =    39.92s Find the Any (First Match)
+    t =    40.63s Swipe up Application 'com.apple.Preferences'
+    t =    40.63s     Wait for com.apple.Preferences to idle
+    t =    40.65s     Find the Application 'com.apple.Preferences'
+    t =    41.02s     Check for interrupting elements affecting "Settings" Application
+    t =    41.11s     Synthesize event
+    t =    41.61s     Wait for com.apple.Preferences to idle
+    t =    43.73s Checking existence of `"com.neuralkey.app" Button`
+    t =    44.01s Find the "com.neuralkey.app" Button
+    t =    44.33s Checking existence of `"com.neuralkey.app" Button`
+    t =    44.49s Find the "com.neuralkey.app" Button
+    t =    44.67s Checking existence of `"com.neuralkey.app" Button`
+    t =    44.83s Find the "com.neuralkey.app" Button
+    t =    45.02s Checking existence of `"com.neuralkey.app" Button`
+    t =    45.18s Find the "com.neuralkey.app" Button
+    t =    45.34s Checking existence of `"com.neuralkey.app" Button`
+    t =    45.51s Find the "com.neuralkey.app" Button
+    t =    45.67s Checking existence of `"com.neuralkey.app" Button`
+    t =    45.83s Find the "com.neuralkey.app" Button
+    t =    46.04s Checking existence of `"com.neuralkey.app" Button`
+    t =    46.17s Find the "com.neuralkey.app" Button
+    t =    46.32s Checking existence of `"com.neuralkey.app" Button`
+    t =    46.45s Tap "com.neuralkey.app" Button
+    t =    46.45s     Wait for com.apple.Preferences to idle
+    t =    46.45s     Find the "com.neuralkey.app" Button
+    t =    46.58s     Check for interrupting elements affecting "com.neuralkey.app" Button
+    t =    46.66s     Synthesize event
+    t =    46.96s     Wait for com.apple.Preferences to idle
+    t =    49.14s Waiting 15.0s for Any (First Match) to exist
+    t =    50.20s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    50.21s         Checking existence of `Any (First Match)`
+    t =    50.31s Tap Any (First Match)
+    t =    50.31s     Wait for com.apple.Preferences to idle
+    t =    50.31s     Find the Any (First Match)
+    t =    50.40s     Check for interrupting elements affecting "KEYBOARDS" Button
+    t =    50.47s     Synthesize event
+    t =    50.77s     Wait for com.apple.Preferences to idle
+    t =    51.11s Waiting 10.0s for "Neural Key" Switch to exist
+    t =    52.13s     Checking `Expect predicate `existsNoRetry == 1` for object "Neural Key" Switch`
+    t =    52.13s         Checking existence of `"Neural Key" Switch`
+    t =    52.24s Find the "Neural Key" Switch
+    t =    52.29s Tap "com.neuralkey.app.keyboard" Switch[0.92, 0.50]
+    t =    52.29s     Wait for com.apple.Preferences to idle
+    t =    52.29s     Find the "com.neuralkey.app.keyboard" Switch
+    t =    52.34s     Check for interrupting elements affecting "com.neuralkey.app.keyboard" Switch
+    t =    52.40s     Synthesize event
+    t =    52.41s         Find the "com.neuralkey.app.keyboard" Switch
+    t =    52.45s         Find the "com.neuralkey.app.keyboard" Switch
+    t =    52.50s         Find the "com.neuralkey.app.keyboard" Switch
+    t =    53.10s     Wait for com.apple.Preferences to idle
+    t =    55.33s Checking `Expect predicate `value == "1"` for object "com.neuralkey.app.keyboard" Switch`
+    t =    55.34s     Find the "com.neuralkey.app.keyboard" Switch
+    t =    57.24s Added attachment named '21-settings-keyboard-added'
+    t =    57.25s Open com.neuralkey.app
+    t =    57.25s     Activate com.neuralkey.app
+    t =    57.84s         Wait for com.neuralkey.app to idle
+    t =    57.86s Waiting 10.0s for Any (First Match) to exist
+    t =    58.86s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    58.86s         Checking existence of `Any (First Match)`
+    t =    60.75s Added attachment named '22-setup-full-access'
+    t =    60.76s Waiting 10.0s for Any (First Match) to exist
+    t =    61.79s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    61.79s         Checking existence of `Any (First Match)`
+    t =    61.94s Tap Any (First Match)
+    t =    61.94s     Wait for com.neuralkey.app to idle
+    t =    61.95s     Find the Any (First Match)
+    t =    62.06s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =    62.19s     Synthesize event
+    t =    62.51s     Wait for com.neuralkey.app to idle
+    t =    62.54s Wait for com.apple.Preferences to become Running Foreground
+    t =    62.92s Waiting 3.0s for "Neural Key" Switch to exist
+    t =    63.92s     Checking `Expect predicate `existsNoRetry == 1` for object "Neural Key" Switch`
+    t =    63.92s         Checking existence of `"Neural Key" Switch`
+    t =    63.99s Waiting 10.0s for "Allow Full Access" Switch to exist
+    t =    65.01s     Checking `Expect predicate `existsNoRetry == 1` for object "Allow Full Access" Switch`
+    t =    65.01s         Checking existence of `"Allow Full Access" Switch`
+    t =    65.03s Find the "Allow Full Access" Switch
+    t =    65.05s Find the "Allow Full Access" Switch
+    t =    65.07s Tap "Allow Full Access" Switch[0.92, 0.50]
+    t =    65.07s     Wait for com.apple.Preferences to idle
+    t =    65.07s     Find the "Allow Full Access" Switch
+    t =    65.09s     Check for interrupting elements affecting "Allow Full Access" Switch
+    t =    65.12s     Synthesize event
+    t =    65.12s         Find the "Allow Full Access" Switch
+    t =    65.15s         Find the "Allow Full Access" Switch
+    t =    65.18s         Find the "Allow Full Access" Switch
+    t =    65.49s     Wait for com.apple.Preferences to idle
+    t =    66.08s Waiting 10.0s for "Allow" Button to exist
+    t =    67.10s     Checking `Expect predicate `existsNoRetry == 1` for object "Allow" Button`
+    t =    67.10s         Checking existence of `"Allow" Button`
+    t =    67.14s Tap "Allow" Button
+    t =    67.14s     Wait for com.apple.Preferences to idle
+    t =    67.15s     Find the "Allow" Button
+    t =    67.17s     Check for interrupting elements affecting "Allow" Button
+    t =    67.21s     Synthesize event
+    t =    67.51s     Wait for com.apple.Preferences to idle
+    t =    68.90s Checking `Expect predicate `value == "1"` for object "Allow Full Access" Switch`
+    t =    68.90s     Find the "Allow Full Access" Switch
+    t =    70.62s Added attachment named '23-settings-full-access'
+    t =    70.62s Open com.neuralkey.app
+    t =    70.62s     Launch com.neuralkey.app
+    t =    71.12s         Setting up automation session
+    t =    73.39s         Wait for com.neuralkey.app to idle
+    t =    75.62s Waiting 15.0s for Any (First Match) to exist
+    t =    76.67s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    76.67s         Checking existence of `Any (First Match)`
+    t =    76.80s Checking existence of `"Allow Full Access" StaticText`
+    t =    76.94s Checking existence of `"Keyboard Enabled ✓" StaticText`
+    t =    77.01s Checking existence of `"Full Access Allowed ✓" StaticText`
+    t =    77.10s Get all elements bound by index for: Descendants matching type Switch
+    t =    77.18s Find the Switch (Element at index 0)
+    t =    77.23s Find the Switch (Element at index 1)
+    t =    77.32s Find the Switch (Element at index 2)
+    t =    77.36s Find the Switch (Element at index 3)
+Home setup rows: ["Enable Keyboard, Keyboard Enabled ✓", "Allow Full Access, Full Access Allowed ✓", "", ""]
+    t =    79.24s Added attachment named '24-home-after-setup'
+    t =    79.25s Tear Down
+    t =    79.96s Checking for crash reports corresponding to unexpected termination of com.neuralkey.app
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test08KeyboardSetupThroughSettings]' passed (100.001 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test09NeuralKeyKeyboardExtension]' started.
+    t =     0.00s Start Test at 2026-11-17 15:52:59.260
+    t =     0.16s Set Up
+    t =     0.17s Open com.neuralkey.app
+    t =     0.17s     Launch com.neuralkey.app
+    t =     0.17s         Terminate com.neuralkey.app:23222
+    t =     6.82s         Setting up automation session
+    t =     9.09s         Wait for com.neuralkey.app to idle
+    t =    11.25s Waiting 15.0s for "home.testField" TextField to exist
+    t =    12.26s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =    12.27s         Checking existence of `"home.testField" TextField`
+    t =    12.61s Tap "home.testField" TextField
+    t =    12.61s     Wait for com.neuralkey.app to idle
+    t =    12.62s     Find the "home.testField" TextField
+    t =    12.88s     Check for interrupting elements affecting "home.testField" TextField
+    t =    13.04s     Synthesize event
+    t =    13.44s     Wait for com.neuralkey.app to idle
+    t =    14.63s Waiting 2.0s for "keyboard.key.q" Any to exist
+    t =    15.68s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    15.68s         Checking existence of `"keyboard.key.q" Any`
+    t =    15.91s         Capturing element debug description
+    t =    16.63s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    16.64s         Checking existence of `"keyboard.key.q" Any`
+    t =    16.72s         Capturing element debug description
+    t =    16.72s     Checking existence of `"keyboard.key.q" Any`
+    t =    16.78s Collecting debug information to assist test failure triage
+    t =    16.79s     Requesting snapshot of accessibility hierarchy for app with pid 25255
+    t =    16.87s Waiting 10.0s for Any (First Match) to exist
+    t =    17.87s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    17.87s         Checking existence of `Any (First Match)`
+    t =    17.95s Tap Any (First Match)
+    t =    17.95s     Wait for com.neuralkey.app to idle
+    t =    17.95s     Find the Any (First Match)
+    t =    18.00s     Check for interrupting elements affecting "Next keyboard" Button
+    t =    18.18s     Synthesize event
+    t =    18.59s     Wait for com.neuralkey.app to idle
+    t =    19.12s Waiting 2.0s for "keyboard.key.q" Any to exist
+    t =    20.15s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    20.15s         Checking existence of `"keyboard.key.q" Any`
+    t =    20.24s         Capturing element debug description
+    t =    21.17s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    21.18s         Checking existence of `"keyboard.key.q" Any`
+    t =    21.38s         Capturing element debug description
+    t =    21.39s     Checking existence of `"keyboard.key.q" Any`
+    t =    22.10s Find the "keyboard.key.q" Any
+    t =    24.41s Added attachment named '25-extension-letters'
+    t =    24.41s Tap "keyboard.key.h" Any
+    t =    24.41s     Wait for com.neuralkey.app to idle
+    t =    24.42s     Find the "keyboard.key.h" Any
+    t =    24.65s     Check for interrupting elements affecting "keyboard.key.h" Key
+    t =    24.75s     Synthesize event
+    t =    25.07s     Wait for com.neuralkey.app to idle
+    t =    25.07s Tap "keyboard.key.e" Any
+    t =    25.07s     Wait for com.neuralkey.app to idle
+    t =    25.08s     Find the "keyboard.key.e" Any
+    t =    25.28s     Check for interrupting elements affecting "keyboard.key.e" Key
+    t =    25.39s     Synthesize event
+    t =    25.69s     Wait for com.neuralkey.app to idle
+    t =    25.70s Tap "keyboard.key.l" Any
+    t =    25.70s     Wait for com.neuralkey.app to idle
+    t =    25.73s     Find the "keyboard.key.l" Any
+    t =    25.90s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    25.98s     Synthesize event
+    t =    26.28s     Wait for com.neuralkey.app to idle
+    t =    26.28s Tap "keyboard.key.l" Any
+    t =    26.28s     Wait for com.neuralkey.app to idle
+    t =    26.30s     Find the "keyboard.key.l" Any
+    t =    26.46s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    26.55s     Synthesize event
+    t =    26.85s     Wait for com.neuralkey.app to idle
+    t =    26.85s Tap "keyboard.key.o" Any
+    t =    26.85s     Wait for com.neuralkey.app to idle
+    t =    26.85s     Find the "keyboard.key.o" Any
+    t =    27.00s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    27.07s     Synthesize event
+    t =    27.38s     Wait for com.neuralkey.app to idle
+    t =    27.38s Tap "keyboard.key.space" Any
+    t =    27.38s     Wait for com.neuralkey.app to idle
+    t =    27.39s     Find the "keyboard.key.space" Any
+    t =    27.61s     Check for interrupting elements affecting "keyboard.key.space" Key
+    t =    27.83s     Synthesize event
+    t =    28.17s     Wait for com.neuralkey.app to idle
+    t =    28.17s Tap "keyboard.key.w" Any
+    t =    28.17s     Wait for com.neuralkey.app to idle
+    t =    28.18s     Find the "keyboard.key.w" Any
+    t =    28.33s     Check for interrupting elements affecting "keyboard.key.w" Key
+    t =    28.42s     Synthesize event
+    t =    28.72s     Wait for com.neuralkey.app to idle
+    t =    28.72s Tap "keyboard.key.o" Any
+    t =    28.72s     Wait for com.neuralkey.app to idle
+    t =    28.75s     Find the "keyboard.key.o" Any
+    t =    29.11s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    29.22s     Synthesize event
+    t =    29.53s     Wait for com.neuralkey.app to idle
+    t =    29.53s Tap "keyboard.key.r" Any
+    t =    29.53s     Wait for com.neuralkey.app to idle
+    t =    29.54s     Find the "keyboard.key.r" Any
+    t =    29.73s     Check for interrupting elements affecting "keyboard.key.r" Key
+    t =    29.82s     Synthesize event
+    t =    30.12s     Wait for com.neuralkey.app to idle
+    t =    30.12s Tap "keyboard.key.l" Any
+    t =    30.12s     Wait for com.neuralkey.app to idle
+    t =    30.14s     Find the "keyboard.key.l" Any
+    t =    30.29s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    30.38s     Synthesize event
+    t =    30.68s     Wait for com.neuralkey.app to idle
+    t =    30.68s Tap "keyboard.key.d" Any
+    t =    30.68s     Wait for com.neuralkey.app to idle
+    t =    30.69s     Find the "keyboard.key.d" Any
+    t =    30.89s     Check for interrupting elements affecting "keyboard.key.d" Key
+    t =    30.98s     Synthesize event
+    t =    31.30s     Wait for com.neuralkey.app to idle
+    t =    31.31s Find the "home.testField" TextField
+    t =    33.18s Added attachment named '26-extension-typing'
+    t =    33.19s Tap "keyboard.key.layer.123" Any
+    t =    33.19s     Wait for com.neuralkey.app to idle
+    t =    33.19s     Find the "keyboard.key.layer.123" Any
+    t =    33.39s     Check for interrupting elements affecting "keyboard.key.layer.123" Key
+    t =    33.49s     Synthesize event
+    t =    33.80s     Wait for com.neuralkey.app to idle
+    t =    33.81s Waiting 10.0s for "keyboard.key.1" Any to exist
+    t =    34.82s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.1" Any`
+    t =    34.82s         Checking existence of `"keyboard.key.1" Any`
+    t =    34.98s Tap "keyboard.key.7" Any
+    t =    34.98s     Wait for com.neuralkey.app to idle
+    t =    34.98s     Find the "keyboard.key.7" Any
+    t =    35.13s     Check for interrupting elements affecting "keyboard.key.7" Key
+    t =    35.22s     Synthesize event
+    t =    35.54s     Wait for com.neuralkey.app to idle
+    t =    35.54s Find the "home.testField" TextField
+    t =    37.42s Added attachment named '27-extension-numbers'
+    t =    37.43s Tap "keyboard.key.delete" Any
+    t =    37.43s     Wait for com.neuralkey.app to idle
+    t =    37.43s     Find the "keyboard.key.delete" Any
+    t =    37.64s     Check for interrupting elements affecting "keyboard.key.delete" Key
+    t =    37.73s     Synthesize event
+    t =    38.05s     Wait for com.neuralkey.app to idle
+    t =    38.06s Find the "home.testField" TextField
+    t =    38.25s Terminate com.neuralkey.app:25255
+    t =    39.28s Open com.neuralkey.app
+    t =    39.28s     Launch com.neuralkey.app
+    t =    40.39s         Setting up automation session
+    t =    41.72s         Wait for com.neuralkey.app to idle
+    t =    43.46s Waiting 15.0s for "home.testField" TextField to exist
+    t =    44.46s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =    44.46s         Checking existence of `"home.testField" TextField`
+    t =    44.63s Tap "home.testField" TextField
+    t =    44.63s     Wait for com.neuralkey.app to idle
+    t =    44.63s     Find the "home.testField" TextField
+    t =    44.71s     Check for interrupting elements affecting "home.testField" TextField
+    t =    44.77s     Synthesize event
+    t =    45.14s     Wait for com.neuralkey.app to idle
+    t =    45.39s Waiting 2.0s for "keyboard.key.q" Any to exist
+    t =    46.44s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    46.45s         Checking existence of `"keyboard.key.q" Any`
+    t =    46.68s Tap "keyboard.key.h" Any
+    t =    46.68s     Wait for com.neuralkey.app to idle
+    t =    46.68s     Find the "keyboard.key.h" Any
+    t =    46.91s     Check for interrupting elements affecting "keyboard.key.h" Key
+    t =    47.02s     Synthesize event
+    t =    47.32s     Wait for com.neuralkey.app to idle
+    t =    47.32s Tap "keyboard.key.i" Any
+    t =    47.32s     Wait for com.neuralkey.app to idle
+    t =    47.34s     Find the "keyboard.key.i" Any
+    t =    47.52s     Check for interrupting elements affecting "keyboard.key.i" Key
+    t =    47.60s     Synthesize event
+    t =    47.89s     Wait for com.neuralkey.app to idle
+    t =    47.90s Find the "home.testField" TextField
+    t =    49.70s Added attachment named '28-extension-light'
+    t =    49.71s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test09NeuralKeyKeyboardExtension]' passed (50.093 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test10KeyboardTour]' started.
+    t =     0.00s Start Test at 2026-11-17 15:53:49.353
+    t =     0.05s Set Up
+    t =     0.05s Open com.neuralkey.app
+    t =     0.05s     Launch com.neuralkey.app
+    t =     0.05s         Terminate com.neuralkey.app:26495
+    t =     1.82s         Setting up automation session
+    t =     3.85s         Wait for com.neuralkey.app to idle
+    t =     6.01s Waiting 15.0s for "home.testField" TextField to exist
+    t =     7.03s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =     7.03s         Checking existence of `"home.testField" TextField`
+    t =     7.29s Tap "home.testField" TextField
+    t =     7.29s     Wait for com.neuralkey.app to idle
+    t =     7.29s     Find the "home.testField" TextField
+    t =     7.44s     Check for interrupting elements affecting "home.testField" TextField
+    t =     7.55s     Synthesize event
+    t =     7.96s     Wait for com.neuralkey.app to idle
+    t =     8.55s Waiting 2.0s for "keyboard.key.q" Any to exist
+    t =     9.59s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =     9.59s         Checking existence of `"keyboard.key.q" Any`
+    t =     9.88s Terminate com.neuralkey.app:27129
+    t =    10.92s Open com.neuralkey.app
+    t =    10.92s     Launch com.neuralkey.app
+    t =    11.60s         Setting up automation session
+    t =    13.13s         Wait for com.neuralkey.app to idle
+    t =    14.87s Waiting 15.0s for "home.testField" TextField to exist
+    t =    15.88s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =    15.88s         Checking existence of `"home.testField" TextField`
+    t =    19.92s Tap "home.testField" TextField
+    t =    19.92s     Wait for com.neuralkey.app to idle
+    t =    19.93s     Find the "home.testField" TextField
+    t =    20.14s     Check for interrupting elements affecting "home.testField" TextField
+    t =    20.43s     Synthesize event
+    t =    20.80s     Wait for com.neuralkey.app to idle
+    t =    21.36s Waiting 10.0s for "keyboard.key.q" Any to exist
+    t =    22.37s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    22.37s         Checking existence of `"keyboard.key.q" Any`
+    t =    24.37s Added attachment named '30-tour-keyboard-up'
+    t =    24.38s Waiting 10.0s for "keyboard.key.h" Any to exist
+    t =    25.41s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.h" Any`
+    t =    25.41s         Checking existence of `"keyboard.key.h" Any`
+    t =    25.59s Press "keyboard.key.h" Any for 8.0 seconds
+    t =    25.59s     Wait for com.neuralkey.app to idle
+    t =    25.59s     Find the "keyboard.key.h" Any
+    t =    25.79s     Check for interrupting elements affecting "keyboard.key.h" Key
+    t =    25.94s     Synthesize event
+    t =    34.19s     Wait for com.neuralkey.app to idle
+    t =    36.99s Press "keyboard.key.e" Any for 0.2 seconds
+    t =    36.99s     Wait for com.neuralkey.app to idle
+    t =    37.00s     Find the "keyboard.key.e" Any
+    t =    37.21s     Check for interrupting elements affecting "keyboard.key.e" Key
+    t =    37.29s     Synthesize event
+    t =    37.74s     Wait for com.neuralkey.app to idle
+    t =    37.74s Press "keyboard.key.l" Any for 0.2 seconds
+    t =    37.74s     Wait for com.neuralkey.app to idle
+    t =    37.75s     Find the "keyboard.key.l" Any
+    t =    37.89s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    37.97s     Synthesize event
+    t =    38.44s     Wait for com.neuralkey.app to idle
+    t =    38.44s Press "keyboard.key.l" Any for 0.2 seconds
+    t =    38.44s     Wait for com.neuralkey.app to idle
+    t =    38.44s     Find the "keyboard.key.l" Any
+    t =    38.63s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    38.71s     Synthesize event
+    t =    39.15s     Wait for com.neuralkey.app to idle
+    t =    39.16s Press "keyboard.key.o" Any for 0.2 seconds
+    t =    39.16s     Wait for com.neuralkey.app to idle
+    t =    39.16s     Find the "keyboard.key.o" Any
+    t =    39.29s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    39.36s     Synthesize event
+    t =    39.80s     Wait for com.neuralkey.app to idle
+    t =    39.80s Find the "home.testField" TextField
+    t =    41.66s Added attachment named '32-tour-hello'
+    t =    41.67s Press "keyboard.key.space" Any for 0.2 seconds
+    t =    41.67s     Wait for com.neuralkey.app to idle
+    t =    41.67s     Find the "keyboard.key.space" Any
+    t =    41.80s     Check for interrupting elements affecting "keyboard.key.space" Key
+    t =    41.86s     Synthesize event
+    t =    42.30s     Wait for com.neuralkey.app to idle
+    t =    42.30s Press "keyboard.key.w" Any for 0.2 seconds
+    t =    42.30s     Wait for com.neuralkey.app to idle
+    t =    42.30s     Find the "keyboard.key.w" Any
+    t =    42.42s     Check for interrupting elements affecting "keyboard.key.w" Key
+    t =    42.48s     Synthesize event
+    t =    42.92s     Wait for com.neuralkey.app to idle
+    t =    42.92s Press "keyboard.key.o" Any for 0.2 seconds
+    t =    42.92s     Wait for com.neuralkey.app to idle
+    t =    42.93s     Find the "keyboard.key.o" Any
+    t =    43.10s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    43.18s     Synthesize event
+    t =    43.62s     Wait for com.neuralkey.app to idle
+    t =    43.62s Press "keyboard.key.r" Any for 0.2 seconds
+    t =    43.62s     Wait for com.neuralkey.app to idle
+    t =    43.63s     Find the "keyboard.key.r" Any
+    t =    43.75s     Check for interrupting elements affecting "keyboard.key.r" Key
+    t =    43.82s     Synthesize event
+    t =    44.26s     Wait for com.neuralkey.app to idle
+    t =    44.26s Press "keyboard.key.l" Any for 0.2 seconds
+    t =    44.26s     Wait for com.neuralkey.app to idle
+    t =    44.27s     Find the "keyboard.key.l" Any
+    t =    44.39s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    44.45s     Synthesize event
+    t =    44.89s     Wait for com.neuralkey.app to idle
+    t =    44.89s Press "keyboard.key.d" Any for 0.2 seconds
+    t =    44.89s     Wait for com.neuralkey.app to idle
+    t =    44.90s     Find the "keyboard.key.d" Any
+    t =    45.00s     Check for interrupting elements affecting "keyboard.key.d" Key
+    t =    45.07s     Synthesize event
+    t =    45.51s     Wait for com.neuralkey.app to idle
+    t =    45.51s Double tap "keyboard.key.space" Any
+    t =    45.51s     Wait for com.neuralkey.app to idle
+    t =    45.52s     Find the "keyboard.key.space" Any
+    t =    45.69s     Check for interrupting elements affecting "keyboard.key.space" Key
+    t =    45.77s     Synthesize event
+    t =    46.12s     Wait for com.neuralkey.app to idle
+    t =    46.12s Find the "home.testField" TextField
+    t =    47.92s Added attachment named '33-tour-sentence'
+    t =    47.92s Waiting 10.0s for "keyboard.key.e" Any to exist
+    t =    48.93s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.e" Any`
+    t =    48.93s         Checking existence of `"keyboard.key.e" Any`
+    t =    49.12s Press "keyboard.key.e" Any for 8.0 seconds
+    t =    49.12s     Wait for com.neuralkey.app to idle
+    t =    49.13s     Find the "keyboard.key.e" Any
+    t =    49.27s     Check for interrupting elements affecting "keyboard.key.e" Key
+    t =    49.34s     Synthesize event
+    t =    57.60s     Wait for com.neuralkey.app to idle
+    t =    57.61s Find the "home.testField" TextField
+    t =    57.77s Press "keyboard.key.delete" Any for 0.2 seconds
+    t =    57.77s     Wait for com.neuralkey.app to idle
+    t =    57.77s     Find the "keyboard.key.delete" Any
+    t =    57.91s     Check for interrupting elements affecting "keyboard.key.delete" Key
+    t =    58.01s     Synthesize event
+    t =    58.46s     Wait for com.neuralkey.app to idle
+    t =    58.46s Find the "home.testField" TextField
+    t =    58.53s Press "keyboard.key.i" Any for 0.2 seconds
+    t =    58.54s     Wait for com.neuralkey.app to idle
+    t =    58.54s     Find the "keyboard.key.i" Any
+    t =    58.70s     Check for interrupting elements affecting "keyboard.key.i" Key
+    t =    58.81s     Synthesize event
+    t =    59.26s     Wait for com.neuralkey.app to idle
+    t =    59.27s Double tap "keyboard.key.shift" Any
+    t =    59.27s     Wait for com.neuralkey.app to idle
+    t =    59.28s     Find the "keyboard.key.shift" Any
+    t =    59.40s     Check for interrupting elements affecting "keyboard.key.shift" Key
+    t =    59.53s     Synthesize event
+    t =    59.89s     Wait for com.neuralkey.app to idle
+    t =    59.89s Press "keyboard.key.o" Any for 0.2 seconds
+    t =    59.89s     Wait for com.neuralkey.app to idle
+    t =    59.90s     Find the "keyboard.key.o" Any
+    t =    60.16s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    60.35s     Synthesize event
+    t =    60.79s     Wait for com.neuralkey.app to idle
+    t =    60.80s Press "keyboard.key.s" Any for 0.2 seconds
+    t =    60.80s     Wait for com.neuralkey.app to idle
+    t =    60.80s     Find the "keyboard.key.s" Any
+    t =    61.15s     Check for interrupting elements affecting "keyboard.key.s" Key
+    t =    61.32s     Synthesize event
+    t =    61.77s     Wait for com.neuralkey.app to idle
+    t =    61.78s Find the "home.testField" TextField
+    t =    63.59s Added attachment named '35-tour-caps-lock'
+    t =    63.60s Press "keyboard.key.shift" Any for 0.2 seconds
+    t =    63.60s     Wait for com.neuralkey.app to idle
+    t =    63.61s     Find the "keyboard.key.shift" Any
+    t =    63.76s     Check for interrupting elements affecting "keyboard.key.shift" Key
+    t =    63.85s     Synthesize event
+    t =    64.29s     Wait for com.neuralkey.app to idle
+    t =    64.29s Press "keyboard.key.space" Any for 0.2 seconds
+    t =    64.29s     Wait for com.neuralkey.app to idle
+    t =    64.29s     Find the "keyboard.key.space" Any
+    t =    64.46s     Check for interrupting elements affecting "keyboard.key.space" Key
+    t =    64.56s     Synthesize event
+    t =    65.01s     Wait for com.neuralkey.app to idle
+    t =    65.01s Press "keyboard.key.layer.123" Any for 0.2 seconds
+    t =    65.01s     Wait for com.neuralkey.app to idle
+    t =    65.03s     Find the "keyboard.key.layer.123" Any
+    t =    65.19s     Check for interrupting elements affecting "keyboard.key.layer.123" Key
+    t =    65.27s     Synthesize event
+    t =    65.73s     Wait for com.neuralkey.app to idle
+    t =    65.74s Waiting 10.0s for "keyboard.key.1" Any to exist
+    t =    66.77s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.1" Any`
+    t =    66.77s         Checking existence of `"keyboard.key.1" Any`
+    t =    68.81s Added attachment named '36-tour-numbers'
+    t =    68.82s Waiting 10.0s for "keyboard.key.2" Any to exist
+    t =    69.85s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.2" Any`
+    t =    69.85s         Checking existence of `"keyboard.key.2" Any`
+    t =    70.05s Press "keyboard.key.2" Any for 8.0 seconds
+    t =    70.05s     Wait for com.neuralkey.app to idle
+    t =    70.05s     Find the "keyboard.key.2" Any
+    t =    70.27s     Check for interrupting elements affecting "keyboard.key.2" Key
+    t =    70.53s     Synthesize event
+    t =    78.78s     Wait for com.neuralkey.app to idle
+    t =    78.78s Press "keyboard.key.0" Any for 0.2 seconds
+    t =    78.78s     Wait for com.neuralkey.app to idle
+    t =    78.79s     Find the "keyboard.key.0" Any
+    t =    78.97s     Check for interrupting elements affecting "keyboard.key.0" Key
+    t =    79.10s     Synthesize event
+    t =    79.58s     Wait for com.neuralkey.app to idle
+    t =    79.58s Press "keyboard.key.2" Any for 0.2 seconds
+    t =    79.58s     Wait for com.neuralkey.app to idle
+    t =    79.59s     Find the "keyboard.key.2" Any
+    t =    79.96s     Check for interrupting elements affecting "keyboard.key.2" Key
+    t =    80.13s     Synthesize event
+    t =    80.59s     Wait for com.neuralkey.app to idle
+    t =    80.60s Press "keyboard.key.6" Any for 0.2 seconds
+    t =    80.60s     Wait for com.neuralkey.app to idle
+    t =    80.66s     Find the "keyboard.key.6" Any
+    t =    80.84s     Check for interrupting elements affecting "keyboard.key.6" Key
+    t =    80.91s     Synthesize event
+    t =    81.37s     Wait for com.neuralkey.app to idle
+    t =    81.39s Press "keyboard.key.layer.#+=" Any for 0.2 seconds
+    t =    81.39s     Wait for com.neuralkey.app to idle
+    t =    81.45s     Find the "keyboard.key.layer.#+=" Any
+    t =    81.74s     Check for interrupting elements affecting "keyboard.key.layer.#+=" Key
+    t =    81.82s     Synthesize event
+    t =    82.27s     Wait for com.neuralkey.app to idle
+    t =    82.27s Waiting 10.0s for "keyboard.key.[" Any to exist
+    t =    83.30s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.[" Any`
+    t =    83.31s         Checking existence of `"keyboard.key.[" Any`
+    t =    85.37s Added attachment named '38-tour-symbols'
+    t =    85.38s Waiting 10.0s for "keyboard.key.#" Any to exist
+    t =    86.42s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.#" Any`
+    t =    86.42s         Checking existence of `"keyboard.key.#" Any`
+    t =    86.67s Press "keyboard.key.#" Any for 8.0 seconds
+    t =    86.67s     Wait for com.neuralkey.app to idle
+    t =    86.67s     Find the "keyboard.key.#" Any
+    t =    86.85s     Check for interrupting elements affecting "keyboard.key.#" Key
+    t =    86.94s     Synthesize event
+    t =    95.17s     Wait for com.neuralkey.app to idle
+    t =    95.18s Press "keyboard.key.space" Any for 0.2 seconds
+    t =    95.18s     Wait for com.neuralkey.app to idle
+    t =    95.19s     Find the "keyboard.key.space" Any
+    t =    95.37s     Check for interrupting elements affecting "keyboard.key.space" Key
+    t =    95.46s     Synthesize event
+    t =    95.89s     Wait for com.neuralkey.app to idle
+    t =    95.90s Waiting 10.0s for "keyboard.key.q" Any to exist
+    t =    96.90s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    96.90s         Checking existence of `"keyboard.key.q" Any`
+    t =    97.13s Press "keyboard.key.o" Any for 0.2 seconds
+    t =    97.13s     Wait for com.neuralkey.app to idle
+    t =    97.13s     Find the "keyboard.key.o" Any
+    t =    97.39s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    97.53s     Synthesize event
+    t =    98.02s     Wait for com.neuralkey.app to idle
+    t =    98.03s Press "keyboard.key.j" Any for 0.2 seconds
+    t =    98.03s     Wait for com.neuralkey.app to idle
+    t =    98.04s     Find the "keyboard.key.j" Any
+    t =    98.25s     Check for interrupting elements affecting "keyboard.key.j" Key
+    t =    98.37s     Synthesize event
+    t =    98.84s     Wait for com.neuralkey.app to idle
+    t =    98.84s Press "keyboard.key.delete" Any for 0.2 seconds
+    t =    98.84s     Wait for com.neuralkey.app to idle
+    t =    98.84s     Find the "keyboard.key.delete" Any
+    t =    99.04s     Check for interrupting elements affecting "keyboard.key.delete" Key
+    t =    99.15s     Synthesize event
+    t =    99.60s     Wait for com.neuralkey.app to idle
+    t =    99.60s Press "keyboard.key.k" Any for 0.2 seconds
+    t =    99.61s     Wait for com.neuralkey.app to idle
+    t =    99.61s     Find the "keyboard.key.k" Any
+    t =    99.83s     Check for interrupting elements affecting "keyboard.key.k" Key
+    t =    99.94s     Synthesize event
+    t =   100.39s     Wait for com.neuralkey.app to idle
+    t =   100.39s Find the "home.testField" TextField
+    t =   102.38s Added attachment named '40-tour-final'
+    t =   102.39s Press "keyboard.key.return" Any for 0.2 seconds
+    t =   102.39s     Wait for com.neuralkey.app to idle
+    t =   102.39s     Find the "keyboard.key.return" Any
+    t =   102.60s     Check for interrupting elements affecting "keyboard.key.return" Key
+    t =   102.71s     Synthesize event
+    t =   103.15s     Wait for com.neuralkey.app to idle
+    t =   104.22s Checking `Expect predicate `exists == 0` for object "keyboard.key.q" Any`
+    t =   104.22s     Checking existence of `"keyboard.key.q" Any`
+    t =   106.10s Added attachment named '41-tour-keyboard-closed'
+    t =   106.11s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test10KeyboardTour]' passed (108.675 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test11ExtensionMatchesDesign]' started.
+    t =     0.00s Start Test at 2026-11-17 15:55:38.029
+    t =     0.07s Set Up
+    t =     0.08s Open com.neuralkey.app
+    t =     0.08s     Launch com.neuralkey.app
+    t =     0.08s         Terminate com.neuralkey.app:27410
+    t =     2.48s         Setting up automation session
+    t =     4.40s         Wait for com.neuralkey.app to idle
+    t =     6.66s Waiting 15.0s for "home.testField" TextField to exist
+    t =     7.69s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =     7.69s         Checking existence of `"home.testField" TextField`
+    t =     7.99s Tap "home.testField" TextField
+    t =     7.99s     Wait for com.neuralkey.app to idle
+    t =     8.00s     Find the "home.testField" TextField
+    t =     8.13s     Check for interrupting elements affecting "home.testField" TextField
+    t =     8.43s     Synthesize event
+    t =     8.76s     Wait for com.neuralkey.app to idle
+    t =     9.40s Waiting 2.0s for "keyboard.key.q" Any to exist
+    t =    10.41s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    10.41s         Checking existence of `"keyboard.key.q" Any`
+    t =    10.71s Find the "keyboard.key.q" Any
+    t =    12.78s Added attachment named '42-extension-letters-light'
+    t =    12.78s Tap "keyboard.key.layer.123" Any
+    t =    12.78s     Wait for com.neuralkey.app to idle
+    t =    12.79s     Find the "keyboard.key.layer.123" Any
+    t =    13.02s     Check for interrupting elements affecting "keyboard.key.layer.123" Key
+    t =    13.14s     Synthesize event
+    t =    13.44s     Wait for com.neuralkey.app to idle
+    t =    13.45s Waiting 10.0s for "keyboard.key.1" Any to exist
+    t =    14.47s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.1" Any`
+    t =    14.48s         Checking existence of `"keyboard.key.1" Any`
+    t =    16.40s Added attachment named '44-extension-numbers-light'
+    t =    16.40s Terminate com.neuralkey.app:33138
+    t =    18.47s Open com.neuralkey.app
+    t =    18.47s     Launch com.neuralkey.app
+    t =    19.62s         Setting up automation session
+    t =    20.90s         Wait for com.neuralkey.app to idle
+    t =    22.63s Waiting 15.0s for "home.testField" TextField to exist
+    t =    23.65s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =    23.65s         Checking existence of `"home.testField" TextField`
+    t =    23.78s Tap "home.testField" TextField
+    t =    23.78s     Wait for com.neuralkey.app to idle
+    t =    23.79s     Find the "home.testField" TextField
+    t =    23.89s     Check for interrupting elements affecting "home.testField" TextField
+    t =    23.97s     Synthesize event
+    t =    24.33s     Wait for com.neuralkey.app to idle
+    t =    25.02s Waiting 2.0s for "keyboard.key.q" Any to exist
+    t =    26.11s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =    26.11s         Checking existence of `"keyboard.key.q" Any`
+    t =    26.38s Find the "keyboard.key.q" Any
+    t =    28.32s Added attachment named '42-extension-letters-dark'
+    t =    28.32s Tap "keyboard.key.layer.123" Any
+    t =    28.32s     Wait for com.neuralkey.app to idle
+    t =    28.33s     Find the "keyboard.key.layer.123" Any
+    t =    28.54s     Check for interrupting elements affecting "keyboard.key.layer.123" Key
+    t =    28.63s     Synthesize event
+    t =    28.94s     Wait for com.neuralkey.app to idle
+    t =    28.94s Waiting 10.0s for "keyboard.key.1" Any to exist
+    t =    29.97s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.1" Any`
+    t =    29.97s         Checking existence of `"keyboard.key.1" Any`
+    t =    31.92s Added attachment named '44-extension-numbers-dark'
+    t =    31.93s Terminate com.neuralkey.app:34034
+    t =    32.94s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test11ExtensionMatchesDesign]' passed (33.146 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test12KeyTouchAreasCoverGaps]' started.
+    t =     0.00s Start Test at 2026-11-17 15:56:11.175
+    t =     0.05s Set Up
+    t =     0.06s Open com.neuralkey.app
+    t =     0.06s     Launch com.neuralkey.app
+    t =     0.93s         Setting up automation session
+    t =     2.43s         Wait for com.neuralkey.app to idle
+    t =     4.26s Waiting 15.0s for "home.testField" TextField to exist
+    t =     5.29s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =     5.29s         Checking existence of `"home.testField" TextField`
+    t =     5.51s Tap "home.testField" TextField
+    t =     5.51s     Wait for com.neuralkey.app to idle
+    t =     5.51s     Find the "home.testField" TextField
+    t =     5.57s     Check for interrupting elements affecting "home.testField" TextField
+    t =     5.67s     Synthesize event
+    t =     6.06s     Wait for com.neuralkey.app to idle
+    t =     6.32s Waiting 2.0s for "keyboard.key.q" Any to exist
+    t =     7.38s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =     7.38s         Checking existence of `"keyboard.key.q" Any`
+    t =     9.11s Find the "keyboard.key.q" Any
+    t =     9.34s Find the "keyboard.key.w" Any
+    t =     9.54s Find the "keyboard.key.p" Any
+    t =     9.72s Find the "keyboard.key.a" Any
+    t =     9.92s Find the "keyboard.key.l" Any
+    t =    10.08s Find the "keyboard.key.z" Any
+    t =    10.28s Find the "keyboard.key.shift" Any
+    t =    10.47s Find the "keyboard.key.space" Any
+    t =    10.66s Find the Window (First Match)
+Key touch areas: q (0.0, 633.0, 45.0, 60.33333333333337), w (45.0, 633.0, 43.66666666666667, 60.33333333333337), p (395.0, 633.0, 45.0, 60.33333333333337), a (0.0, 693.3333333333334, 63.333333333333336, 60.33333333333326), l (376.6666666666667, 693.3333333333334, 63.33333333333326, 60.33333333333326), shift (0.0, 753.6666666666666, 58.0, 60.0), z (58.0, 753.6666666666666, 49.33333333333333, 60.0), space (107.33333333333333, 813.6666666666666, 225.33333333333331, 67.33333333333337), screen (0.0, 0.0, 440.0, 956.0)
+    t =    10.74s Tap Target Application 'com.neuralkey.app'[0.00, 0.00] -> (44.0, 663.2)
+    t =    10.74s     Wait for com.neuralkey.app to idle
+    t =    10.75s     Find the Target Application 'com.neuralkey.app'
+    t =    10.83s     Check for interrupting elements affecting "Neural Key" Application
+    t =    10.89s     Synthesize event
+    t =    10.90s         Find the Target Application 'com.neuralkey.app'
+    t =    10.96s         Find the Target Application 'com.neuralkey.app'
+    t =    11.04s         Find the Target Application 'com.neuralkey.app'
+    t =    11.47s     Wait for com.neuralkey.app to idle
+    t =    11.58s Find the "home.testField" TextField
+Tapped q, right of its face at (44.0, 663.1666666666667): field is now q
+    t =    11.67s Tap Target Application 'com.neuralkey.app'[0.00, 0.00] -> (46.0, 663.2)
+    t =    11.67s     Wait for com.neuralkey.app to idle
+    t =    11.67s     Find the Target Application 'com.neuralkey.app'
+    t =    11.72s     Check for interrupting elements affecting "Neural Key" Application
+    t =    11.81s     Synthesize event
+    t =    11.82s         Find the Target Application 'com.neuralkey.app'
+    t =    11.89s         Find the Target Application 'com.neuralkey.app'
+    t =    11.98s         Find the Target Application 'com.neuralkey.app'
+    t =    12.36s     Wait for com.neuralkey.app to idle
+    t =    12.36s Find the "home.testField" TextField
+Tapped w, left of its face at (46.0, 663.1666666666667): field is now qw
+    t =    12.44s Tap Target Application 'com.neuralkey.app'[0.00, 0.00] -> (2.0, 723.5)
+    t =    12.45s     Wait for com.neuralkey.app to idle
+    t =    12.46s     Find the Target Application 'com.neuralkey.app'
+    t =    12.53s     Check for interrupting elements affecting "Neural Key" Application
+    t =    12.61s     Synthesize event
+    t =    12.62s         Find the Target Application 'com.neuralkey.app'
+    t =    12.70s         Find the Target Application 'com.neuralkey.app'
+    t =    12.79s         Find the Target Application 'com.neuralkey.app'
+    t =    13.13s     Wait for com.neuralkey.app to idle
+    t =    13.13s Find the "home.testField" TextField
+Tapped a, in the left margin at (2.0, 723.5): field is now qwa
+    t =    13.21s Tap Target Application 'com.neuralkey.app'[0.00, 0.00] -> (438.0, 723.5)
+    t =    13.21s     Wait for com.neuralkey.app to idle
+    t =    13.22s     Find the Target Application 'com.neuralkey.app'
+    t =    13.29s     Check for interrupting elements affecting "Neural Key" Application
+    t =    13.35s     Synthesize event
+    t =    13.36s         Find the Target Application 'com.neuralkey.app'
+    t =    13.42s         Find the Target Application 'com.neuralkey.app'
+    t =    13.47s         Find the Target Application 'com.neuralkey.app'
+    t =    13.84s     Wait for com.neuralkey.app to idle
+    t =    13.84s Find the "home.testField" TextField
+Tapped l, in the right margin at (437.99999999999994, 723.5): field is now qwal
+    t =    13.95s Tap Target Application 'com.neuralkey.app'[0.00, 0.00] -> (22.5, 692.3)
+    t =    13.95s     Wait for com.neuralkey.app to idle
+    t =    13.96s     Find the Target Application 'com.neuralkey.app'
+    t =    14.03s     Check for interrupting elements affecting "Neural Key" Application
+    t =    14.10s     Synthesize event
+    t =    14.11s         Find the Target Application 'com.neuralkey.app'
+    t =    14.19s         Find the Target Application 'com.neuralkey.app'
+    t =    14.35s         Find the Target Application 'com.neuralkey.app'
+    t =    14.71s     Wait for com.neuralkey.app to idle
+    t =    14.71s Find the "home.testField" TextField
+Tapped q, below its face at (22.5, 692.3333333333334): field is now qwalq
+    t =    14.79s Tap Target Application 'com.neuralkey.app'[0.00, 0.00] -> (31.7, 694.3)
+    t =    14.79s     Wait for com.neuralkey.app to idle
+    t =    14.79s     Find the Target Application 'com.neuralkey.app'
+    t =    14.86s     Check for interrupting elements affecting "Neural Key" Application
+    t =    14.97s     Synthesize event
+    t =    14.98s         Find the Target Application 'com.neuralkey.app'
+    t =    15.03s         Find the Target Application 'com.neuralkey.app'
+    t =    15.12s         Find the Target Application 'com.neuralkey.app'
+    t =    15.46s     Wait for com.neuralkey.app to idle
+    t =    15.46s Find the "home.testField" TextField
+Tapped a, above its face at (31.666666666666668, 694.3333333333334): field is now qwalqa
+    t =    15.52s Tap Target Application 'com.neuralkey.app'[0.00, 0.00] -> (220.0, 879.0)
+    t =    15.52s     Wait for com.neuralkey.app to idle
+    t =    15.52s     Find the Target Application 'com.neuralkey.app'
+    t =    15.57s     Check for interrupting elements affecting "Neural Key" Application
+    t =    15.64s     Synthesize event
+    t =    15.65s         Find the Target Application 'com.neuralkey.app'
+    t =    15.72s         Find the Target Application 'com.neuralkey.app'
+    t =    15.78s         Find the Target Application 'com.neuralkey.app'
+    t =    16.17s     Wait for com.neuralkey.app to idle
+    t =    16.17s Find the "home.testField" TextField
+Tapped space, below the bottom row at (220.0, 879.0): field is now qwalqa 
+    t =    16.28s Tap Target Application 'com.neuralkey.app'[0.00, 0.00] -> (59.0, 783.7)
+    t =    16.28s     Wait for com.neuralkey.app to idle
+    t =    16.29s     Find the Target Application 'com.neuralkey.app'
+    t =    16.36s     Check for interrupting elements affecting "Neural Key" Application
+    t =    16.42s     Synthesize event
+    t =    16.43s         Find the Target Application 'com.neuralkey.app'
+    t =    16.47s         Find the Target Application 'com.neuralkey.app'
+    t =    16.53s         Find the Target Application 'com.neuralkey.app'
+    t =    16.89s     Wait for com.neuralkey.app to idle
+    t =    16.92s Find the "home.testField" TextField
+Tapped z, between shift and z at (59.0, 783.6666666666666): field is now qwalqa z
+    t =    17.02s Find the "home.testField" TextField
+    t =    18.93s Added attachment named '45-touch-areas'
+    t =    18.94s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test12KeyTouchAreasCoverGaps]' passed (19.199 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test13WordPrediction]' started.
+    t =     0.00s Start Test at 2026-11-17 15:56:30.373
+    t =     0.03s Set Up
+    t =     0.03s Open com.neuralkey.app
+    t =     0.03s     Launch com.neuralkey.app
+    t =     0.03s         Terminate com.neuralkey.app:34817
+    t =     2.95s         Setting up automation session
+    t =     4.47s         Wait for com.neuralkey.app to idle
+    t =     6.27s Waiting 15.0s for "home.testField" TextField to exist
+    t =     7.28s     Checking `Expect predicate `existsNoRetry == 1` for object "home.testField" TextField`
+    t =     7.28s         Checking existence of `"home.testField" TextField`
+    t =     7.51s Tap "home.testField" TextField
+    t =     7.51s     Wait for com.neuralkey.app to idle
+    t =     7.52s     Find the "home.testField" TextField
+    t =     7.71s     Check for interrupting elements affecting "home.testField" TextField
+    t =     7.77s     Synthesize event
+    t =     8.13s     Wait for com.neuralkey.app to idle
+    t =     8.45s Waiting 10.0s for "keyboard.key.q" Any to exist
+    t =     9.49s     Checking `Expect predicate `existsNoRetry == 1` for object "keyboard.key.q" Any`
+    t =     9.49s         Checking existence of `"keyboard.key.q" Any`
+    t =     9.60s Tap "keyboard.key.h" Any
+    t =     9.61s     Wait for com.neuralkey.app to idle
+    t =     9.64s     Find the "keyboard.key.h" Any
+    t =     9.82s     Check for interrupting elements affecting "keyboard.key.h" Key
+    t =     9.91s     Synthesize event
+    t =    10.21s     Wait for com.neuralkey.app to idle
+    t =    10.21s Tap "keyboard.key.e" Any
+    t =    10.21s     Wait for com.neuralkey.app to idle
+    t =    10.21s     Find the "keyboard.key.e" Any
+    t =    10.41s     Check for interrupting elements affecting "keyboard.key.e" Key
+    t =    10.52s     Synthesize event
+    t =    10.85s     Wait for com.neuralkey.app to idle
+    t =    10.86s Tap "keyboard.key.l" Any
+    t =    10.86s     Wait for com.neuralkey.app to idle
+    t =    10.88s     Find the "keyboard.key.l" Any
+    t =    11.01s     Check for interrupting elements affecting "keyboard.key.l" Key
+    t =    11.18s     Synthesize event
+    t =    11.49s     Wait for com.neuralkey.app to idle
+    t =    11.49s Tap "keyboard.key.o" Any
+    t =    11.49s     Wait for com.neuralkey.app to idle
+    t =    11.50s     Find the "keyboard.key.o" Any
+    t =    11.70s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    11.76s     Synthesize event
+    t =    12.06s     Wait for com.neuralkey.app to idle
+    t =    12.06s Waiting 90.0s for Button (First Match) to exist
+    t =    13.10s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    13.10s         Checking existence of `Button (First Match)`
+    t =    14.93s Added attachment named '46-prediction-correction'
+    t =    14.93s Tap Button (First Match)
+    t =    14.93s     Wait for com.neuralkey.app to idle
+    t =    14.93s     Find the Button (First Match)
+    t =    15.03s     Check for interrupting elements affecting "keyboard.suggestion.2" Button
+    t =    15.12s     Synthesize event
+    t =    15.42s     Wait for com.neuralkey.app to idle
+    t =    15.42s Find the "home.testField" TextField
+    t =    15.59s Find the "keyboard.suggestion.0" Button
+    t =    15.76s Find the "keyboard.suggestion.1" Button
+    t =    15.96s Find the "keyboard.suggestion.2" Button
+Next words after "Hello": ["all", "to", "everyone"]
+    t =    16.14s Find the "keyboard.suggestion.0" Button
+    t =    18.08s Added attachment named '47-prediction-next-word'
+    t =    18.08s Tap "keyboard.key.z" Any
+    t =    18.08s     Wait for com.neuralkey.app to idle
+    t =    18.08s     Find the "keyboard.key.z" Any
+    t =    18.20s     Check for interrupting elements affecting "keyboard.key.z" Key
+    t =    18.27s     Synthesize event
+    t =    18.58s     Wait for com.neuralkey.app to idle
+    t =    18.58s Tap "keyboard.key.o" Any
+    t =    18.58s     Wait for com.neuralkey.app to idle
+    t =    18.58s     Find the "keyboard.key.o" Any
+    t =    18.81s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    18.87s     Synthesize event
+    t =    19.20s     Wait for com.neuralkey.app to idle
+    t =    19.20s Tap "keyboard.key.r" Any
+    t =    19.20s     Wait for com.neuralkey.app to idle
+    t =    19.21s     Find the "keyboard.key.r" Any
+    t =    19.39s     Check for interrupting elements affecting "keyboard.key.r" Key
+    t =    19.60s     Synthesize event
+    t =    19.90s     Wait for com.neuralkey.app to idle
+    t =    19.91s Tap "keyboard.key.v" Any
+    t =    19.91s     Wait for com.neuralkey.app to idle
+    t =    19.91s     Find the "keyboard.key.v" Any
+    t =    20.13s     Check for interrupting elements affecting "keyboard.key.v" Key
+    t =    20.23s     Synthesize event
+    t =    20.55s     Wait for com.neuralkey.app to idle
+    t =    20.55s Tap "keyboard.key.a" Any
+    t =    20.55s     Wait for com.neuralkey.app to idle
+    t =    20.56s     Find the "keyboard.key.a" Any
+    t =    20.66s     Check for interrupting elements affecting "keyboard.key.a" Key
+    t =    20.74s     Synthesize event
+    t =    21.03s     Wait for com.neuralkey.app to idle
+    t =    21.04s Tap "keyboard.key.k" Any
+    t =    21.04s     Wait for com.neuralkey.app to idle
+    t =    21.04s     Find the "keyboard.key.k" Any
+    t =    21.13s     Check for interrupting elements affecting "keyboard.key.k" Key
+    t =    21.20s     Synthesize event
+    t =    21.54s     Wait for com.neuralkey.app to idle
+    t =    21.55s Tap "keyboard.key.space" Any
+    t =    21.55s     Wait for com.neuralkey.app to idle
+    t =    21.55s     Find the "keyboard.key.space" Any
+    t =    21.70s     Check for interrupting elements affecting "keyboard.key.space" Key
+    t =    21.81s     Synthesize event
+    t =    22.11s     Wait for com.neuralkey.app to idle
+    t =    22.11s Tap "keyboard.key.z" Any
+    t =    22.11s     Wait for com.neuralkey.app to idle
+    t =    22.12s     Find the "keyboard.key.z" Any
+    t =    22.25s     Check for interrupting elements affecting "keyboard.key.z" Key
+    t =    22.40s     Synthesize event
+    t =    22.70s     Wait for com.neuralkey.app to idle
+    t =    22.71s Tap "keyboard.key.o" Any
+    t =    22.71s     Wait for com.neuralkey.app to idle
+    t =    22.72s     Find the "keyboard.key.o" Any
+    t =    22.89s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    22.95s     Synthesize event
+    t =    23.24s     Wait for com.neuralkey.app to idle
+    t =    23.24s Tap "keyboard.key.r" Any
+    t =    23.25s     Wait for com.neuralkey.app to idle
+    t =    23.25s     Find the "keyboard.key.r" Any
+    t =    23.43s     Check for interrupting elements affecting "keyboard.key.r" Key
+    t =    23.61s     Synthesize event
+    t =    23.94s     Wait for com.neuralkey.app to idle
+    t =    23.94s Tap "keyboard.key.v" Any
+    t =    23.94s     Wait for com.neuralkey.app to idle
+    t =    23.94s     Find the "keyboard.key.v" Any
+    t =    24.03s     Check for interrupting elements affecting "keyboard.key.v" Key
+    t =    24.08s     Synthesize event
+    t =    24.42s     Wait for com.neuralkey.app to idle
+    t =    24.42s Tap "keyboard.key.a" Any
+    t =    24.42s     Wait for com.neuralkey.app to idle
+    t =    24.43s     Find the "keyboard.key.a" Any
+    t =    24.53s     Check for interrupting elements affecting "keyboard.key.a" Key
+    t =    24.60s     Synthesize event
+    t =    24.90s     Wait for com.neuralkey.app to idle
+    t =    24.90s Tap "keyboard.key.k" Any
+    t =    24.90s     Wait for com.neuralkey.app to idle
+    t =    24.91s     Find the "keyboard.key.k" Any
+    t =    25.02s     Check for interrupting elements affecting "keyboard.key.k" Key
+    t =    25.09s     Synthesize event
+    t =    25.42s     Wait for com.neuralkey.app to idle
+    t =    25.42s Tap "keyboard.key.space" Any
+    t =    25.42s     Wait for com.neuralkey.app to idle
+    t =    25.44s     Find the "keyboard.key.space" Any
+    t =    25.54s     Check for interrupting elements affecting "keyboard.key.space" Key
+    t =    25.60s     Synthesize event
+    t =    25.89s     Wait for com.neuralkey.app to idle
+    t =    25.89s Tap "keyboard.key.z" Any
+    t =    25.89s     Wait for com.neuralkey.app to idle
+    t =    25.90s     Find the "keyboard.key.z" Any
+    t =    26.01s     Check for interrupting elements affecting "keyboard.key.z" Key
+    t =    26.08s     Synthesize event
+    t =    26.38s     Wait for com.neuralkey.app to idle
+    t =    26.38s Tap "keyboard.key.o" Any
+    t =    26.38s     Wait for com.neuralkey.app to idle
+    t =    26.38s     Find the "keyboard.key.o" Any
+    t =    26.49s     Check for interrupting elements affecting "keyboard.key.o" Key
+    t =    26.57s     Synthesize event
+    t =    26.88s     Wait for com.neuralkey.app to idle
+    t =    26.89s Tap "keyboard.key.r" Any
+    t =    26.89s     Wait for com.neuralkey.app to idle
+    t =    26.90s     Find the "keyboard.key.r" Any
+    t =    27.00s     Check for interrupting elements affecting "keyboard.key.r" Key
+    t =    27.05s     Synthesize event
+    t =    27.35s     Wait for com.neuralkey.app to idle
+    t =    27.35s Tap "keyboard.key.v" Any
+    t =    27.35s     Wait for com.neuralkey.app to idle
+    t =    27.36s     Find the "keyboard.key.v" Any
+    t =    27.45s     Check for interrupting elements affecting "keyboard.key.v" Key
+    t =    27.51s     Synthesize event
+    t =    27.80s     Wait for com.neuralkey.app to idle
+    t =    27.80s Waiting 10.0s for Button (First Match) to exist
+    t =    28.83s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    28.83s         Checking existence of `Button (First Match)`
+    t =    30.54s Added attachment named '48-prediction-learned-word'
+    t =    30.55s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test13WordPrediction]' passed (30.836 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test14Localization]' started.
+    t =     0.00s Start Test at 2026-11-17 15:57:01.210
+    t =     0.02s Set Up
+    t =     0.02s Open com.neuralkey.app
+    t =     0.03s     Launch com.neuralkey.app
+    t =     0.03s         Terminate com.neuralkey.app:35628
+    t =     1.88s         Setting up automation session
+    t =     2.92s         Wait for com.neuralkey.app to idle
+    t =     4.72s Waiting 15.0s for Any (First Match) to exist
+    t =     5.75s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =     5.76s         Checking existence of `Any (First Match)`
+    t =     7.51s Added attachment named 'l10n-spanish-1-splash'
+    t =     7.51s Terminate com.neuralkey.app:37522
+    t =     8.60s Open com.neuralkey.app
+    t =     8.60s     Launch com.neuralkey.app
+    t =     8.93s         Setting up automation session
+    t =    10.22s         Wait for com.neuralkey.app to idle
+    t =    11.60s Waiting 15.0s for Any (First Match) to exist
+    t =    12.63s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    12.63s         Checking existence of `Any (First Match)`
+    t =    14.50s Added attachment named 'l10n-spanish-2-language'
+    t =    14.50s Tap Any (First Match)
+    t =    14.50s     Wait for com.neuralkey.app to idle
+    t =    14.51s     Find the Any (First Match)
+    t =    14.54s     Check for interrupting elements affecting "language.done" Button
+    t =    14.64s     Synthesize event
+    t =    14.96s     Wait for com.neuralkey.app to idle
+    t =    14.97s Waiting 10.0s for Any (First Match) to exist
+    t =    15.99s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    15.99s         Checking existence of `Any (First Match)`
+    t =    16.02s Waiting 10.0s for Any (First Match) to exist
+    t =    17.03s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    17.03s         Checking existence of `Any (First Match)`
+    t =    18.81s Added attachment named 'l10n-spanish-3-welcome'
+    t =    18.81s Find the Any (First Match)
+Onboarding page 1 in spanish: Página 1 de 3
+    t =    18.88s Tap Any (First Match)
+    t =    18.88s     Wait for com.neuralkey.app to idle
+    t =    18.89s     Find the Any (First Match)
+    t =    18.94s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =    19.02s     Synthesize event
+    t =    19.32s     Wait for com.neuralkey.app to idle
+    t =    19.40s Waiting 10.0s for Any (First Match) to exist
+    t =    20.43s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    20.43s         Checking existence of `Any (First Match)`
+    t =    20.45s Waiting 10.0s for Any (First Match) to exist
+    t =    21.46s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    21.46s         Checking existence of `Any (First Match)`
+    t =    23.35s Added attachment named 'l10n-spanish-4-add-keyboard'
+    t =    23.36s Find the Any (First Match)
+Onboarding page 2 in spanish: Página 2 de 3
+    t =    23.42s Tap Any (First Match)
+    t =    23.42s     Wait for com.neuralkey.app to idle
+    t =    23.42s     Find the Any (First Match)
+    t =    23.46s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =    23.57s     Synthesize event
+    t =    23.89s     Wait for com.neuralkey.app to idle
+    t =    23.90s Waiting 10.0s for Any (First Match) to exist
+    t =    24.91s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    24.91s         Checking existence of `Any (First Match)`
+    t =    24.93s Waiting 10.0s for Any (First Match) to exist
+    t =    25.94s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    25.94s         Checking existence of `Any (First Match)`
+    t =    27.75s Added attachment named 'l10n-spanish-5-full-access'
+    t =    27.75s Find the Any (First Match)
+Onboarding page 3 in spanish: Página 3 de 3
+    t =    27.79s Tap Any (First Match)
+    t =    27.79s     Wait for com.neuralkey.app to idle
+    t =    27.80s     Find the Any (First Match)
+    t =    27.88s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =    27.98s     Synthesize event
+    t =    28.29s     Wait for com.neuralkey.app to idle
+    t =    28.52s Waiting 10.0s for Any (First Match) to exist
+    t =    29.56s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    29.56s         Checking existence of `Any (First Match)`
+    t =    31.38s Added attachment named 'l10n-spanish-6-home'
+    t =    31.38s Tap Any (First Match)
+    t =    31.38s     Wait for com.neuralkey.app to idle
+    t =    31.38s     Find the Any (First Match)
+    t =    31.50s     Check for interrupting elements affecting "home.menuButton" Button
+    t =    31.67s     Synthesize event
+    t =    31.98s     Wait for com.neuralkey.app to idle
+    t =    32.00s Waiting 10.0s for Any (First Match) to exist
+    t =    33.05s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    33.06s         Checking existence of `Any (First Match)`
+    t =    34.91s Added attachment named 'l10n-spanish-7-settings'
+    t =    34.92s Tap Any (First Match)
+    t =    34.92s     Wait for com.neuralkey.app to idle
+    t =    34.93s     Find the Any (First Match)
+    t =    35.21s     Check for interrupting elements affecting "settings.toneAdjustment" Button
+    t =    35.45s     Synthesize event
+    t =    35.83s     Wait for com.neuralkey.app to idle
+    t =    35.87s Waiting 10.0s for Any (First Match) to exist
+    t =    36.90s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    36.90s         Checking existence of `Any (First Match)`
+    t =    39.24s Added attachment named 'l10n-spanish-8-ai-tones'
+    t =    39.24s Tap Any (First Match)
+    t =    39.24s     Wait for com.neuralkey.app to idle
+    t =    39.25s     Find the Any (First Match)
+    t =    39.46s     Check for interrupting elements affecting "tones.back" Button
+    t =    39.96s     Synthesize event
+    t =    40.34s     Wait for com.neuralkey.app to idle
+    t =    41.38s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =    41.38s     Checking existence of `Any (First Match)`
+    t =    41.67s Swipe right Target Application 'com.neuralkey.app'
+    t =    41.67s     Wait for com.neuralkey.app to idle
+    t =    41.68s     Find the Target Application 'com.neuralkey.app'
+    t =    41.82s     Check for interrupting elements affecting "Neural Key" Application
+    t =    41.94s     Synthesize event
+    t =    42.38s     Wait for com.neuralkey.app to idle
+    t =    43.43s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =    43.43s     Checking existence of `Any (First Match)`
+    t =    43.58s Tap Any (First Match)
+    t =    43.58s     Wait for com.neuralkey.app to idle
+    t =    43.59s     Find the Any (First Match)
+    t =    43.67s     Check for interrupting elements affecting "home.premiumButton" Button
+    t =    43.88s     Synthesize event
+    t =    44.23s     Wait for com.neuralkey.app to idle
+    t =    44.57s Waiting 10.0s for Any (First Match) to exist
+    t =    45.63s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    45.63s         Checking existence of `Any (First Match)`
+    t =    47.56s Added attachment named 'l10n-spanish-9-premium'
+    t =    47.57s Terminate com.neuralkey.app:37876
+    t =    48.64s Open com.neuralkey.app
+    t =    48.64s     Launch com.neuralkey.app
+    t =    50.27s         Setting up automation session
+    t =    52.33s         Wait for com.neuralkey.app to idle
+    t =    54.03s Waiting 15.0s for Any (First Match) to exist
+    t =    55.05s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    55.05s         Checking existence of `Any (First Match)`
+    t =    56.88s Added attachment named 'l10n-portuguese-1-splash'
+    t =    56.89s Terminate com.neuralkey.app:39828
+    t =    57.95s Open com.neuralkey.app
+    t =    57.95s     Launch com.neuralkey.app
+    t =    58.84s         Setting up automation session
+    t =    60.32s         Wait for com.neuralkey.app to idle
+    t =    61.95s Waiting 15.0s for Any (First Match) to exist
+    t =    63.01s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    63.01s         Checking existence of `Any (First Match)`
+    t =    64.76s Added attachment named 'l10n-portuguese-2-language'
+    t =    64.77s Tap Any (First Match)
+    t =    64.77s     Wait for com.neuralkey.app to idle
+    t =    64.78s     Find the Any (First Match)
+    t =    64.86s     Check for interrupting elements affecting "language.done" Button
+    t =    64.96s     Synthesize event
+    t =    65.34s     Wait for com.neuralkey.app to idle
+    t =    65.37s Waiting 10.0s for Any (First Match) to exist
+    t =    66.39s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    66.39s         Checking existence of `Any (First Match)`
+    t =    66.42s Waiting 10.0s for Any (First Match) to exist
+    t =    67.45s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    67.45s         Checking existence of `Any (First Match)`
+    t =    69.21s Added attachment named 'l10n-portuguese-3-welcome'
+    t =    69.21s Find the Any (First Match)
+Onboarding page 1 in portuguese: Página 1 de 3
+    t =    69.26s Tap Any (First Match)
+    t =    69.26s     Wait for com.neuralkey.app to idle
+    t =    69.26s     Find the Any (First Match)
+    t =    69.29s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =    69.36s     Synthesize event
+    t =    69.66s     Wait for com.neuralkey.app to idle
+    t =    69.79s Waiting 10.0s for Any (First Match) to exist
+    t =    70.80s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    70.80s         Checking existence of `Any (First Match)`
+    t =    70.82s Waiting 10.0s for Any (First Match) to exist
+    t =    71.83s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    71.83s         Checking existence of `Any (First Match)`
+    t =    73.69s Added attachment named 'l10n-portuguese-4-add-keyboard'
+    t =    73.71s Find the Any (First Match)
+Onboarding page 2 in portuguese: Página 2 de 3
+    t =    73.74s Tap Any (First Match)
+    t =    73.74s     Wait for com.neuralkey.app to idle
+    t =    73.75s     Find the Any (First Match)
+    t =    73.82s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =    73.94s     Synthesize event
+    t =    74.25s     Wait for com.neuralkey.app to idle
+    t =    74.26s Waiting 10.0s for Any (First Match) to exist
+    t =    75.30s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    75.30s         Checking existence of `Any (First Match)`
+    t =    75.36s Waiting 10.0s for Any (First Match) to exist
+    t =    76.41s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    76.41s         Checking existence of `Any (First Match)`
+    t =    78.17s Added attachment named 'l10n-portuguese-5-full-access'
+    t =    78.17s Find the Any (First Match)
+Onboarding page 3 in portuguese: Página 3 de 3
+    t =    78.19s Tap Any (First Match)
+    t =    78.19s     Wait for com.neuralkey.app to idle
+    t =    78.19s     Find the Any (First Match)
+    t =    78.23s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =    78.31s     Synthesize event
+    t =    78.61s     Wait for com.neuralkey.app to idle
+    t =    78.70s Waiting 10.0s for Any (First Match) to exist
+    t =    79.74s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    79.74s         Checking existence of `Any (First Match)`
+    t =    81.54s Added attachment named 'l10n-portuguese-6-home'
+    t =    81.54s Tap Any (First Match)
+    t =    81.54s     Wait for com.neuralkey.app to idle
+    t =    81.55s     Find the Any (First Match)
+    t =    81.62s     Check for interrupting elements affecting "home.menuButton" Button
+    t =    81.72s     Synthesize event
+    t =    82.04s     Wait for com.neuralkey.app to idle
+    t =    82.05s Waiting 10.0s for Any (First Match) to exist
+    t =    83.09s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    83.09s         Checking existence of `Any (First Match)`
+    t =    84.81s Added attachment named 'l10n-portuguese-7-settings'
+    t =    84.81s Tap Any (First Match)
+    t =    84.81s     Wait for com.neuralkey.app to idle
+    t =    84.82s     Find the Any (First Match)
+    t =    84.93s     Check for interrupting elements affecting "settings.toneAdjustment" Button
+    t =    85.08s     Synthesize event
+    t =    85.38s     Wait for com.neuralkey.app to idle
+    t =    85.42s Waiting 10.0s for Any (First Match) to exist
+    t =    86.42s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    86.42s         Checking existence of `Any (First Match)`
+    t =    88.41s Added attachment named 'l10n-portuguese-8-ai-tones'
+    t =    88.41s Tap Any (First Match)
+    t =    88.41s     Wait for com.neuralkey.app to idle
+    t =    88.42s     Find the Any (First Match)
+    t =    88.65s     Check for interrupting elements affecting "tones.back" Button
+    t =    88.98s     Synthesize event
+    t =    89.30s     Wait for com.neuralkey.app to idle
+    t =    90.36s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =    90.36s     Checking existence of `Any (First Match)`
+    t =    90.82s Swipe right Target Application 'com.neuralkey.app'
+    t =    90.82s     Wait for com.neuralkey.app to idle
+    t =    90.82s     Find the Target Application 'com.neuralkey.app'
+    t =    90.90s     Check for interrupting elements affecting "Neural Key" Application
+    t =    90.99s     Synthesize event
+    t =    91.41s     Wait for com.neuralkey.app to idle
+    t =    92.45s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =    92.45s     Checking existence of `Any (First Match)`
+    t =    92.50s Tap Any (First Match)
+    t =    92.50s     Wait for com.neuralkey.app to idle
+    t =    92.50s     Find the Any (First Match)
+    t =    92.53s     Check for interrupting elements affecting "home.premiumButton" Button
+    t =    92.60s     Synthesize event
+    t =    92.91s     Wait for com.neuralkey.app to idle
+    t =    92.95s Waiting 10.0s for Any (First Match) to exist
+    t =    93.98s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    93.98s         Checking existence of `Any (First Match)`
+    t =    95.92s Added attachment named 'l10n-portuguese-9-premium'
+    t =    95.92s Terminate com.neuralkey.app:40227
+    t =    96.96s Open com.neuralkey.app
+    t =    96.96s     Launch com.neuralkey.app
+    t =    98.27s         Setting up automation session
+    t =   100.42s         Wait for com.neuralkey.app to idle
+    t =   102.21s Waiting 15.0s for Any (First Match) to exist
+    t =   103.26s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   103.26s         Checking existence of `Any (First Match)`
+    t =   105.04s Added attachment named 'l10n-russian-1-splash'
+    t =   105.05s Terminate com.neuralkey.app:42522
+    t =   106.05s Open com.neuralkey.app
+    t =   106.05s     Launch com.neuralkey.app
+    t =   106.62s         Setting up automation session
+    t =   108.29s         Wait for com.neuralkey.app to idle
+    t =   109.90s Waiting 15.0s for Any (First Match) to exist
+    t =   110.94s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   110.94s         Checking existence of `Any (First Match)`
+    t =   112.75s Added attachment named 'l10n-russian-2-language'
+    t =   112.76s Tap Any (First Match)
+    t =   112.76s     Wait for com.neuralkey.app to idle
+    t =   112.76s     Find the Any (First Match)
+    t =   112.81s     Check for interrupting elements affecting "language.done" Button
+    t =   112.94s     Synthesize event
+    t =   113.33s     Wait for com.neuralkey.app to idle
+    t =   113.34s Waiting 10.0s for Any (First Match) to exist
+    t =   114.38s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   114.38s         Checking existence of `Any (First Match)`
+    t =   114.42s Waiting 10.0s for Any (First Match) to exist
+    t =   115.45s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   115.45s         Checking existence of `Any (First Match)`
+    t =   117.23s Added attachment named 'l10n-russian-3-welcome'
+    t =   117.23s Find the Any (First Match)
+Onboarding page 1 in russian: Страница 1 из 3
+    t =   117.25s Tap Any (First Match)
+    t =   117.25s     Wait for com.neuralkey.app to idle
+    t =   117.26s     Find the Any (First Match)
+    t =   117.29s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =   117.35s     Synthesize event
+    t =   117.66s     Wait for com.neuralkey.app to idle
+    t =   117.69s Waiting 10.0s for Any (First Match) to exist
+    t =   118.72s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   118.72s         Checking existence of `Any (First Match)`
+    t =   118.91s Waiting 10.0s for Any (First Match) to exist
+    t =   119.92s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   119.92s         Checking existence of `Any (First Match)`
+    t =   121.71s Added attachment named 'l10n-russian-4-add-keyboard'
+    t =   121.72s Find the Any (First Match)
+Onboarding page 2 in russian: Страница 2 из 3
+    t =   121.75s Tap Any (First Match)
+    t =   121.75s     Wait for com.neuralkey.app to idle
+    t =   121.77s     Find the Any (First Match)
+    t =   121.83s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =   121.91s     Synthesize event
+    t =   122.23s     Wait for com.neuralkey.app to idle
+    t =   122.24s Waiting 10.0s for Any (First Match) to exist
+    t =   123.27s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   123.27s         Checking existence of `Any (First Match)`
+    t =   123.32s Waiting 10.0s for Any (First Match) to exist
+    t =   124.36s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   124.36s         Checking existence of `Any (First Match)`
+    t =   126.17s Added attachment named 'l10n-russian-5-full-access'
+    t =   126.17s Find the Any (First Match)
+Onboarding page 3 in russian: Страница 3 из 3
+    t =   126.21s Tap Any (First Match)
+    t =   126.21s     Wait for com.neuralkey.app to idle
+    t =   126.22s     Find the Any (First Match)
+    t =   126.27s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =   126.34s     Synthesize event
+    t =   126.66s     Wait for com.neuralkey.app to idle
+    t =   126.70s Waiting 10.0s for Any (First Match) to exist
+    t =   127.74s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   127.74s         Checking existence of `Any (First Match)`
+    t =   129.48s Added attachment named 'l10n-russian-6-home'
+    t =   129.48s Tap Any (First Match)
+    t =   129.48s     Wait for com.neuralkey.app to idle
+    t =   129.48s     Find the Any (First Match)
+    t =   129.52s     Check for interrupting elements affecting "home.menuButton" Button
+    t =   129.59s     Synthesize event
+    t =   129.89s     Wait for com.neuralkey.app to idle
+    t =   129.90s Waiting 10.0s for Any (First Match) to exist
+    t =   130.94s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   130.94s         Checking existence of `Any (First Match)`
+    t =   132.67s Added attachment named 'l10n-russian-7-settings'
+    t =   132.67s Tap Any (First Match)
+    t =   132.67s     Wait for com.neuralkey.app to idle
+    t =   132.68s     Find the Any (First Match)
+    t =   132.73s     Check for interrupting elements affecting "settings.toneAdjustment" Button
+    t =   132.83s     Synthesize event
+    t =   133.14s     Wait for com.neuralkey.app to idle
+    t =   133.17s Waiting 10.0s for Any (First Match) to exist
+    t =   134.18s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   134.18s         Checking existence of `Any (First Match)`
+    t =   136.06s Added attachment named 'l10n-russian-8-ai-tones'
+    t =   136.07s Tap Any (First Match)
+    t =   136.07s     Wait for com.neuralkey.app to idle
+    t =   136.08s     Find the Any (First Match)
+    t =   136.19s     Check for interrupting elements affecting "tones.back" Button
+    t =   136.40s     Synthesize event
+    t =   136.70s     Wait for com.neuralkey.app to idle
+    t =   137.74s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =   137.74s     Checking existence of `Any (First Match)`
+    t =   138.00s Swipe right Target Application 'com.neuralkey.app'
+    t =   138.00s     Wait for com.neuralkey.app to idle
+    t =   138.01s     Find the Target Application 'com.neuralkey.app'
+    t =   138.10s     Check for interrupting elements affecting "Neural Key" Application
+    t =   138.21s     Synthesize event
+    t =   138.64s     Wait for com.neuralkey.app to idle
+    t =   139.65s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =   139.65s     Checking existence of `Any (First Match)`
+    t =   139.73s Tap Any (First Match)
+    t =   139.73s     Wait for com.neuralkey.app to idle
+    t =   139.73s     Find the Any (First Match)
+    t =   139.76s     Check for interrupting elements affecting "home.premiumButton" Button
+    t =   139.81s     Synthesize event
+    t =   140.13s     Wait for com.neuralkey.app to idle
+    t =   140.16s Waiting 10.0s for Any (First Match) to exist
+    t =   141.23s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   141.23s         Checking existence of `Any (First Match)`
+    t =   143.10s Added attachment named 'l10n-russian-9-premium'
+    t =   143.11s Terminate com.neuralkey.app:43026
+    t =   144.13s Open com.neuralkey.app
+    t =   144.14s     Launch com.neuralkey.app
+    t =   145.28s         Setting up automation session
+    t =   147.27s         Wait for com.neuralkey.app to idle
+    t =   148.81s Waiting 15.0s for Any (First Match) to exist
+    t =   149.85s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   149.85s         Checking existence of `Any (First Match)`
+    t =   151.65s Added attachment named 'l10n-arabic-1-splash'
+    t =   151.66s Terminate com.neuralkey.app:44863
+    t =   152.68s Open com.neuralkey.app
+    t =   152.68s     Launch com.neuralkey.app
+    t =   153.27s         Setting up automation session
+    t =   155.05s         Wait for com.neuralkey.app to idle
+    t =   156.86s Waiting 15.0s for Any (First Match) to exist
+    t =   157.90s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   157.90s         Checking existence of `Any (First Match)`
+    t =   159.83s Added attachment named 'l10n-arabic-2-language'
+    t =   159.83s Tap Any (First Match)
+    t =   159.83s     Wait for com.neuralkey.app to idle
+    t =   159.84s     Find the Any (First Match)
+    t =   159.93s     Check for interrupting elements affecting "language.done" Button
+    t =   160.07s     Synthesize event
+    t =   160.44s     Wait for com.neuralkey.app to idle
+    t =   160.46s Waiting 10.0s for Any (First Match) to exist
+    t =   161.50s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   161.50s         Checking existence of `Any (First Match)`
+    t =   161.58s Waiting 10.0s for Any (First Match) to exist
+    t =   162.63s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   162.63s         Checking existence of `Any (First Match)`
+    t =   164.54s Added attachment named 'l10n-arabic-3-welcome'
+    t =   164.55s Find the Any (First Match)
+Onboarding page 1 in arabic: الصفحة 1 من 3
+    t =   164.70s Tap Any (First Match)
+    t =   164.70s     Wait for com.neuralkey.app to idle
+    t =   164.71s     Find the Any (First Match)
+    t =   164.76s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =   164.99s     Synthesize event
+    t =   165.36s     Wait for com.neuralkey.app to idle
+    t =   165.39s Waiting 10.0s for Any (First Match) to exist
+    t =   166.45s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   166.45s         Checking existence of `Any (First Match)`
+    t =   166.50s Waiting 10.0s for Any (First Match) to exist
+    t =   167.55s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   167.55s         Checking existence of `Any (First Match)`
+    t =   169.38s Added attachment named 'l10n-arabic-4-add-keyboard'
+    t =   169.39s Find the Any (First Match)
+Onboarding page 2 in arabic: الصفحة 2 من 3
+    t =   169.41s Tap Any (First Match)
+    t =   169.42s     Wait for com.neuralkey.app to idle
+    t =   169.42s     Find the Any (First Match)
+    t =   169.45s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =   169.57s     Synthesize event
+    t =   169.90s     Wait for com.neuralkey.app to idle
+    t =   169.91s Waiting 10.0s for Any (First Match) to exist
+    t =   170.91s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   170.92s         Checking existence of `Any (First Match)`
+    t =   170.94s Waiting 10.0s for Any (First Match) to exist
+    t =   171.98s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   171.98s         Checking existence of `Any (First Match)`
+    t =   173.86s Added attachment named 'l10n-arabic-5-full-access'
+    t =   173.87s Find the Any (First Match)
+Onboarding page 3 in arabic: الصفحة 3 من 3
+    t =   173.97s Tap Any (First Match)
+    t =   173.97s     Wait for com.neuralkey.app to idle
+    t =   173.97s     Find the Any (First Match)
+    t =   174.04s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =   174.17s     Synthesize event
+    t =   174.49s     Wait for com.neuralkey.app to idle
+    t =   174.67s Waiting 10.0s for Any (First Match) to exist
+    t =   175.70s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   175.70s         Checking existence of `Any (First Match)`
+    t =   177.55s Added attachment named 'l10n-arabic-6-home'
+    t =   177.56s Tap Any (First Match)
+    t =   177.56s     Wait for com.neuralkey.app to idle
+    t =   177.56s     Find the Any (First Match)
+    t =   177.66s     Check for interrupting elements affecting "home.menuButton" Button
+    t =   177.78s     Synthesize event
+    t =   178.11s     Wait for com.neuralkey.app to idle
+    t =   178.13s Waiting 10.0s for Any (First Match) to exist
+    t =   179.16s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   179.16s         Checking existence of `Any (First Match)`
+    t =   180.88s Added attachment named 'l10n-arabic-7-settings'
+    t =   180.88s Tap Any (First Match)
+    t =   180.88s     Wait for com.neuralkey.app to idle
+    t =   180.88s     Find the Any (First Match)
+    t =   180.95s     Check for interrupting elements affecting "settings.toneAdjustment" Button
+    t =   181.12s     Synthesize event
+    t =   181.44s     Wait for com.neuralkey.app to idle
+    t =   181.62s Waiting 10.0s for Any (First Match) to exist
+    t =   182.63s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   182.63s         Checking existence of `Any (First Match)`
+    t =   184.58s Added attachment named 'l10n-arabic-8-ai-tones'
+    t =   184.58s Tap Any (First Match)
+    t =   184.58s     Wait for com.neuralkey.app to idle
+    t =   184.59s     Find the Any (First Match)
+    t =   184.74s     Check for interrupting elements affecting "tones.back" Button
+    t =   184.97s     Synthesize event
+    t =   185.28s     Wait for com.neuralkey.app to idle
+    t =   186.30s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =   186.30s     Checking existence of `Any (First Match)`
+    t =   186.49s Swipe right Target Application 'com.neuralkey.app'
+    t =   186.49s     Wait for com.neuralkey.app to idle
+    t =   186.50s     Find the Target Application 'com.neuralkey.app'
+    t =   186.55s     Check for interrupting elements affecting "Neural Key" Application
+    t =   186.64s     Synthesize event
+    t =   187.07s     Wait for com.neuralkey.app to idle
+    t =   188.11s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =   188.11s     Checking existence of `Any (First Match)`
+    t =   188.18s Tap Any (First Match)
+    t =   188.18s     Wait for com.neuralkey.app to idle
+    t =   188.19s     Find the Any (First Match)
+    t =   188.22s     Check for interrupting elements affecting "home.premiumButton" Button
+    t =   188.29s     Synthesize event
+    t =   188.58s     Wait for com.neuralkey.app to idle
+    t =   188.74s Waiting 10.0s for Any (First Match) to exist
+    t =   189.76s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   189.76s         Checking existence of `Any (First Match)`
+    t =   191.60s Added attachment named 'l10n-arabic-9-premium'
+    t =   191.60s Terminate com.neuralkey.app:44954
+    t =   192.63s Open com.neuralkey.app
+    t =   192.63s     Launch com.neuralkey.app
+    t =   194.89s         Setting up automation session
+    t =   196.49s         Wait for com.neuralkey.app to idle
+    t =   198.17s Waiting 15.0s for Any (First Match) to exist
+    t =   199.18s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   199.18s         Checking existence of `Any (First Match)`
+    t =   201.01s Added attachment named 'l10n-chinese-1-splash'
+    t =   201.02s Terminate com.neuralkey.app:47219
+    t =   202.03s Open com.neuralkey.app
+    t =   202.03s     Launch com.neuralkey.app
+    t =   203.05s         Setting up automation session
+    t =   205.04s         Wait for com.neuralkey.app to idle
+    t =   206.80s Waiting 15.0s for Any (First Match) to exist
+    t =   207.83s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   207.83s         Checking existence of `Any (First Match)`
+    t =   209.60s Added attachment named 'l10n-chinese-2-language'
+    t =   209.61s Tap Any (First Match)
+    t =   209.61s     Wait for com.neuralkey.app to idle
+    t =   209.61s     Find the Any (First Match)
+    t =   209.67s     Check for interrupting elements affecting "language.done" Button
+    t =   209.76s     Synthesize event
+    t =   210.14s     Wait for com.neuralkey.app to idle
+    t =   210.31s Waiting 10.0s for Any (First Match) to exist
+    t =   211.31s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   211.31s         Checking existence of `Any (First Match)`
+    t =   211.33s Waiting 10.0s for Any (First Match) to exist
+    t =   212.36s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   212.36s         Checking existence of `Any (First Match)`
+    t =   214.12s Added attachment named 'l10n-chinese-3-welcome'
+    t =   214.12s Find the Any (First Match)
+Onboarding page 1 in chinese: 第 1 页，共 3 页
+    t =   214.15s Tap Any (First Match)
+    t =   214.15s     Wait for com.neuralkey.app to idle
+    t =   214.15s     Find the Any (First Match)
+    t =   214.20s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =   214.25s     Synthesize event
+    t =   214.56s     Wait for com.neuralkey.app to idle
+    t =   214.66s Waiting 10.0s for Any (First Match) to exist
+    t =   215.68s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   215.68s         Checking existence of `Any (First Match)`
+    t =   215.73s Waiting 10.0s for Any (First Match) to exist
+    t =   216.76s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   216.76s         Checking existence of `Any (First Match)`
+    t =   218.54s Added attachment named 'l10n-chinese-4-add-keyboard'
+    t =   218.54s Find the Any (First Match)
+Onboarding page 2 in chinese: 第 2 页，共 3 页
+    t =   218.56s Tap Any (First Match)
+    t =   218.56s     Wait for com.neuralkey.app to idle
+    t =   218.56s     Find the Any (First Match)
+    t =   218.59s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =   218.66s     Synthesize event
+    t =   218.98s     Wait for com.neuralkey.app to idle
+    t =   219.04s Waiting 10.0s for Any (First Match) to exist
+    t =   220.09s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   220.09s         Checking existence of `Any (First Match)`
+    t =   220.11s Waiting 10.0s for Any (First Match) to exist
+    t =   221.12s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   221.12s         Checking existence of `Any (First Match)`
+    t =   222.91s Added attachment named 'l10n-chinese-5-full-access'
+    t =   222.92s Find the Any (First Match)
+Onboarding page 3 in chinese: 第 3 页，共 3 页
+    t =   222.97s Tap Any (First Match)
+    t =   222.97s     Wait for com.neuralkey.app to idle
+    t =   222.97s     Find the Any (First Match)
+    t =   223.00s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =   223.11s     Synthesize event
+    t =   223.40s     Wait for com.neuralkey.app to idle
+    t =   223.52s Waiting 10.0s for Any (First Match) to exist
+    t =   224.56s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   224.56s         Checking existence of `Any (First Match)`
+    t =   226.33s Added attachment named 'l10n-chinese-6-home'
+    t =   226.33s Tap Any (First Match)
+    t =   226.33s     Wait for com.neuralkey.app to idle
+    t =   226.33s     Find the Any (First Match)
+    t =   226.37s     Check for interrupting elements affecting "home.menuButton" Button
+    t =   226.43s     Synthesize event
+    t =   226.73s     Wait for com.neuralkey.app to idle
+    t =   226.81s Waiting 10.0s for Any (First Match) to exist
+    t =   227.85s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   227.85s         Checking existence of `Any (First Match)`
+    t =   229.62s Added attachment named 'l10n-chinese-7-settings'
+    t =   229.62s Tap Any (First Match)
+    t =   229.62s     Wait for com.neuralkey.app to idle
+    t =   229.62s     Find the Any (First Match)
+    t =   229.69s     Check for interrupting elements affecting "settings.toneAdjustment" Button
+    t =   229.79s     Synthesize event
+    t =   230.08s     Wait for com.neuralkey.app to idle
+    t =   230.16s Waiting 10.0s for Any (First Match) to exist
+    t =   231.24s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   231.24s         Checking existence of `Any (First Match)`
+    t =   233.24s Added attachment named 'l10n-chinese-8-ai-tones'
+    t =   233.24s Tap Any (First Match)
+    t =   233.24s     Wait for com.neuralkey.app to idle
+    t =   233.25s     Find the Any (First Match)
+    t =   233.33s     Check for interrupting elements affecting "tones.back" Button
+    t =   233.57s     Synthesize event
+    t =   233.87s     Wait for com.neuralkey.app to idle
+    t =   234.90s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =   234.90s     Checking existence of `Any (First Match)`
+    t =   235.10s Swipe right Target Application 'com.neuralkey.app'
+    t =   235.10s     Wait for com.neuralkey.app to idle
+    t =   235.11s     Find the Target Application 'com.neuralkey.app'
+    t =   235.18s     Check for interrupting elements affecting "Neural Key" Application
+    t =   235.23s     Synthesize event
+    t =   235.66s     Wait for com.neuralkey.app to idle
+    t =   236.71s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =   236.72s     Checking existence of `Any (First Match)`
+    t =   236.79s Tap Any (First Match)
+    t =   236.79s     Wait for com.neuralkey.app to idle
+    t =   236.79s     Find the Any (First Match)
+    t =   236.84s     Check for interrupting elements affecting "home.premiumButton" Button
+    t =   236.91s     Synthesize event
+    t =   237.22s     Wait for com.neuralkey.app to idle
+    t =   237.47s Waiting 10.0s for Any (First Match) to exist
+    t =   238.49s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   238.50s         Checking existence of `Any (First Match)`
+    t =   240.38s Added attachment named 'l10n-chinese-9-premium'
+    t =   240.39s Terminate com.neuralkey.app:47918
+    t =   241.42s Open com.neuralkey.app
+    t =   241.43s     Launch com.neuralkey.app
+    t =   246.82s         Setting up automation session
+    t =   248.62s         Wait for com.neuralkey.app to idle
+    t =   250.28s Waiting 15.0s for Any (First Match) to exist
+    t =   251.30s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   251.30s         Checking existence of `Any (First Match)`
+    t =   253.09s Added attachment named 'l10n-hindi-1-splash'
+    t =   253.10s Terminate com.neuralkey.app:49746
+    t =   257.12s Open com.neuralkey.app
+    t =   257.12s     Launch com.neuralkey.app
+    t =   257.99s         Setting up automation session
+    t =   258.97s         Wait for com.neuralkey.app to idle
+    t =   260.41s Waiting 15.0s for Any (First Match) to exist
+    t =   261.45s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   261.45s         Checking existence of `Any (First Match)`
+    t =   263.16s Added attachment named 'l10n-hindi-2-language'
+    t =   263.16s Tap Any (First Match)
+    t =   263.16s     Wait for com.neuralkey.app to idle
+    t =   263.16s     Find the Any (First Match)
+    t =   263.20s     Check for interrupting elements affecting "language.done" Button
+    t =   263.27s     Synthesize event
+    t =   263.60s     Wait for com.neuralkey.app to idle
+    t =   263.61s Waiting 10.0s for Any (First Match) to exist
+    t =   264.63s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   264.63s         Checking existence of `Any (First Match)`
+    t =   264.65s Waiting 10.0s for Any (First Match) to exist
+    t =   265.65s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   265.65s         Checking existence of `Any (First Match)`
+    t =   267.40s Added attachment named 'l10n-hindi-3-welcome'
+    t =   267.41s Find the Any (First Match)
+Onboarding page 1 in hindi: पेज 1 / 3
+    t =   267.43s Tap Any (First Match)
+    t =   267.43s     Wait for com.neuralkey.app to idle
+    t =   267.44s     Find the Any (First Match)
+    t =   267.49s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =   267.54s     Synthesize event
+    t =   267.85s     Wait for com.neuralkey.app to idle
+    t =   267.87s Waiting 10.0s for Any (First Match) to exist
+    t =   268.92s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   268.92s         Checking existence of `Any (First Match)`
+    t =   268.94s Waiting 10.0s for Any (First Match) to exist
+    t =   269.96s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   269.96s         Checking existence of `Any (First Match)`
+    t =   271.77s Added attachment named 'l10n-hindi-4-add-keyboard'
+    t =   271.78s Find the Any (First Match)
+Onboarding page 2 in hindi: पेज 2 / 3
+    t =   271.81s Tap Any (First Match)
+    t =   271.81s     Wait for com.neuralkey.app to idle
+    t =   271.81s     Find the Any (First Match)
+    t =   271.90s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =   272.02s     Synthesize event
+    t =   272.33s     Wait for com.neuralkey.app to idle
+    t =   272.37s Waiting 10.0s for Any (First Match) to exist
+    t =   273.43s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   273.43s         Checking existence of `Any (First Match)`
+    t =   273.47s Waiting 10.0s for Any (First Match) to exist
+    t =   274.50s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   274.50s         Checking existence of `Any (First Match)`
+    t =   276.36s Added attachment named 'l10n-hindi-5-full-access'
+    t =   276.36s Find the Any (First Match)
+Onboarding page 3 in hindi: पेज 3 / 3
+    t =   276.43s Tap Any (First Match)
+    t =   276.43s     Wait for com.neuralkey.app to idle
+    t =   276.44s     Find the Any (First Match)
+    t =   276.47s     Check for interrupting elements affecting "onboarding.primaryAction" Button
+    t =   276.58s     Synthesize event
+    t =   276.91s     Wait for com.neuralkey.app to idle
+    t =   277.09s Waiting 10.0s for Any (First Match) to exist
+    t =   278.10s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   278.10s         Checking existence of `Any (First Match)`
+    t =   279.95s Added attachment named 'l10n-hindi-6-home'
+    t =   279.98s Tap Any (First Match)
+    t =   279.98s     Wait for com.neuralkey.app to idle
+    t =   280.00s     Find the Any (First Match)
+    t =   280.04s     Check for interrupting elements affecting "home.menuButton" Button
+    t =   280.17s     Synthesize event
+    t =   280.49s     Wait for com.neuralkey.app to idle
+    t =   280.51s Waiting 10.0s for Any (First Match) to exist
+    t =   281.57s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   281.57s         Checking existence of `Any (First Match)`
+    t =   283.33s Added attachment named 'l10n-hindi-7-settings'
+    t =   283.34s Tap Any (First Match)
+    t =   283.34s     Wait for com.neuralkey.app to idle
+    t =   283.35s     Find the Any (First Match)
+    t =   283.46s     Check for interrupting elements affecting "settings.toneAdjustment" Button
+    t =   283.67s     Synthesize event
+    t =   284.00s     Wait for com.neuralkey.app to idle
+    t =   284.02s Waiting 10.0s for Any (First Match) to exist
+    t =   285.05s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   285.06s         Checking existence of `Any (First Match)`
+    t =   287.06s Added attachment named 'l10n-hindi-8-ai-tones'
+    t =   287.06s Tap Any (First Match)
+    t =   287.07s     Wait for com.neuralkey.app to idle
+    t =   287.08s     Find the Any (First Match)
+    t =   287.31s     Check for interrupting elements affecting "tones.back" Button
+    t =   287.73s     Synthesize event
+    t =   288.08s     Wait for com.neuralkey.app to idle
+    t =   289.11s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =   289.11s     Checking existence of `Any (First Match)`
+    t =   289.43s Swipe right Target Application 'com.neuralkey.app'
+    t =   289.43s     Wait for com.neuralkey.app to idle
+    t =   289.43s     Find the Target Application 'com.neuralkey.app'
+    t =   289.48s     Check for interrupting elements affecting "Neural Key" Application
+    t =   289.57s     Synthesize event
+    t =   290.01s     Wait for com.neuralkey.app to idle
+    t =   291.05s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =   291.05s     Checking existence of `Any (First Match)`
+    t =   291.13s Tap Any (First Match)
+    t =   291.13s     Wait for com.neuralkey.app to idle
+    t =   291.13s     Find the Any (First Match)
+    t =   291.16s     Check for interrupting elements affecting "home.premiumButton" Button
+    t =   291.23s     Synthesize event
+    t =   291.53s     Wait for com.neuralkey.app to idle
+    t =   291.72s Waiting 10.0s for Any (First Match) to exist
+    t =   292.76s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =   292.76s         Checking existence of `Any (First Match)`
+    t =   294.62s Added attachment named 'l10n-hindi-9-premium'
+    t =   294.63s Terminate com.neuralkey.app:50719
+    t =   295.75s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test14Localization]' passed (297.487 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test15HomeHeadlineRotates]' started.
+    t =     0.00s Start Test at 2026-11-17 16:01:58.702
+    t =     0.13s Set Up
+    t =     0.14s Open com.neuralkey.app
+    t =     0.14s     Launch com.neuralkey.app
+    t =     3.08s         Setting up automation session
+    t =     4.55s         Wait for com.neuralkey.app to idle
+    t =     6.28s Waiting 15.0s for Any (First Match) to exist
+    t =     7.29s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =     7.29s         Checking existence of `Any (First Match)`
+    t =     7.41s Find the Any (First Match)
+    t =     7.71s Added attachment named '49-home-headline-1'
+    t =     7.73s Find the "home.title" StaticText
+    t =     8.09s Find the "home.title" StaticText
+    t =     8.43s Find the "home.title" StaticText
+    t =     8.69s Added attachment named '50-home-headline-2'
+    t =     8.97s Find the "home.title" StaticText
+    t =     9.27s Find the "home.title" StaticText
+    t =     9.56s Find the "home.title" StaticText
+    t =     9.84s Find the "home.title" StaticText
+    t =    10.14s Find the "home.title" StaticText
+    t =    10.45s Find the "home.title" StaticText
+    t =    10.76s Find the "home.title" StaticText
+    t =    11.06s Find the "home.title" StaticText
+    t =    11.36s Find the "home.title" StaticText
+    t =    11.66s Find the "home.title" StaticText
+    t =    11.97s Find the "home.title" StaticText
+    t =    12.28s Find the "home.title" StaticText
+    t =    12.56s Find the "home.title" StaticText
+    t =    12.84s Find the "home.title" StaticText
+    t =    13.13s Find the "home.title" StaticText
+    t =    13.43s Find the "home.title" StaticText
+    t =    13.72s Find the "home.title" StaticText
+    t =    14.02s Find the "home.title" StaticText
+    t =    14.33s Find the "home.title" StaticText
+    t =    14.67s Find the "home.title" StaticText
+Home headlines seen: ["Neural Key AI", "Unlock AI Superpowers", "Type Less Do More", "Thinking Forward"]
+    t =    14.95s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test15HomeHeadlineRotates]' passed (15.205 seconds).
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test16ChangeLanguageFromSettings]' started.
+    t =     0.00s Start Test at 2026-11-17 16:02:13.906
+    t =     0.03s Set Up
+    t =     0.03s Open com.neuralkey.app
+    t =     0.03s     Launch com.neuralkey.app
+    t =     0.03s         Terminate com.neuralkey.app:53188
+    t =    10.99s         Setting up automation session
+    t =    12.83s         Wait for com.neuralkey.app to idle
+    t =    14.73s Waiting 15.0s for Any (First Match) to exist
+    t =    15.75s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    15.75s         Checking existence of `Any (First Match)`
+    t =    15.89s Tap Any (First Match)
+    t =    15.89s     Wait for com.neuralkey.app to idle
+    t =    15.92s     Find the Any (First Match)
+    t =    15.98s     Check for interrupting elements affecting "home.menuButton" Button
+    t =    16.13s     Synthesize event
+    t =    16.43s     Wait for com.neuralkey.app to idle
+    t =    16.46s Waiting 10.0s for Any (First Match) to exist
+    t =    17.49s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    17.49s         Checking existence of `Any (First Match)`
+    t =    17.55s Waiting 10.0s for Any (First Match) to exist
+    t =    18.55s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    18.55s         Checking existence of `Any (First Match)`
+    t =    20.31s Added attachment named '51-settings-language-row'
+    t =    20.32s Tap Any (First Match)
+    t =    20.32s     Wait for com.neuralkey.app to idle
+    t =    20.33s     Find the Any (First Match)
+    t =    20.48s     Check for interrupting elements affecting "settings.language" Button
+    t =    20.61s     Synthesize event
+    t =    20.93s     Wait for com.neuralkey.app to idle
+    t =    20.94s Waiting 10.0s for Any (First Match) to exist
+    t =    22.02s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    22.02s         Checking existence of `Any (First Match)`
+    t =    22.05s Tap Any (First Match)
+    t =    22.05s     Wait for com.neuralkey.app to idle
+    t =    22.06s     Find the Any (First Match)
+    t =    22.19s     Check for interrupting elements affecting "language.option.hindi" Button
+    t =    22.30s     Synthesize event
+    t =    22.61s     Wait for com.neuralkey.app to idle
+    t =    22.75s Waiting 10.0s for "language.option.hindi" Button to exist
+    t =    23.82s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.hindi" Button`
+    t =    23.82s         Checking existence of `"language.option.hindi" Button`
+    t =    24.09s Find the "language.option.hindi" Button
+    t =    24.30s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =    24.56s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    26.53s Added attachment named '52-settings-language-screen'
+    t =    26.54s Tap Any (First Match)
+    t =    26.54s     Wait for com.neuralkey.app to idle
+    t =    26.55s     Find the Any (First Match)
+    t =    26.61s     Check for interrupting elements affecting "language.done" Button
+    t =    26.76s     Synthesize event
+    t =    27.11s     Wait for com.neuralkey.app to idle
+    t =    28.16s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =    28.16s     Checking existence of `Any (First Match)`
+    t =    28.47s Find the Any (First Match)
+    t =    30.26s Added attachment named '53-settings-in-hindi'
+    t =    30.26s Tap Any (First Match)
+    t =    30.26s     Wait for com.neuralkey.app to idle
+    t =    30.27s     Find the Any (First Match)
+    t =    30.39s     Check for interrupting elements affecting "settings.language" Button
+    t =    30.56s     Synthesize event
+    t =    30.87s     Wait for com.neuralkey.app to idle
+    t =    30.88s Waiting 10.0s for Any (First Match) to exist
+    t =    31.93s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    31.93s         Checking existence of `Any (First Match)`
+    t =    31.96s Tap Any (First Match)
+    t =    31.97s     Wait for com.neuralkey.app to idle
+    t =    31.97s     Find the Any (First Match)
+    t =    32.09s     Check for interrupting elements affecting "language.option.english" Button
+    t =    32.33s     Synthesize event
+    t =    32.69s     Wait for com.neuralkey.app to idle
+    t =    32.83s Waiting 10.0s for "language.option.english" Button to exist
+    t =    33.87s     Checking `Expect predicate `existsNoRetry == 1` for object "language.option.english" Button`
+    t =    33.87s         Checking existence of `"language.option.english" Button`
+    t =    34.09s Find the "language.option.english" Button
+    t =    34.24s Get number of matches for: Elements matching predicate 'identifier BEGINSWITH "language.option."'
+    t =    34.33s Get number of matches for: Elements matching predicate 'selected == 1'
+    t =    34.44s Tap Any (First Match)
+    t =    34.44s     Wait for com.neuralkey.app to idle
+    t =    34.44s     Find the Any (First Match)
+    t =    34.56s     Check for interrupting elements affecting "language.done" Button
+    t =    34.85s     Synthesize event
+    t =    35.16s     Wait for com.neuralkey.app to idle
+    t =    36.21s Checking `Expect predicate `exists == 0` for object Any (First Match)`
+    t =    36.21s     Checking existence of `Any (First Match)`
+    t =    36.62s Find the "settings.title" StaticText
+    t =    36.69s Tear Down
+Test Case '-[NeuralKeyUITests.ScreenCaptureTests test16ChangeLanguageFromSettings]' passed (37.034 seconds).
+Test Suite 'ScreenCaptureTests' passed at 2026-11-17 16:02:50.942.
+	 Executed 15 tests, with 0 failures (0 unexpected) in 909.116 (909.136) seconds
+Test Suite 'NeuralKeyUITests.xctest' passed at 2026-11-17 16:02:50.943.
+	 Executed 15 tests, with 0 failures (0 unexpected) in 909.116 (909.137) seconds
+Test Suite 'Selected tests' passed at 2026-11-17 16:02:50.944.
+	 Executed 15 tests, with 0 failures (0 unexpected) in 909.116 (909.138) seconds
+2026-11-17 16:02:52.971 xcodebuild[9349:30992] [MT] IDETestOperationsObserverDebug: 950.057 elapsed -- Testing started completed.
+2026-11-17 16:02:52.972 xcodebuild[9349:30992] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-17 16:02:52.973 xcodebuild[9349:30992] [MT] IDETestOperationsObserverDebug: 950.057 sec, +950.057 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/runner/work/Neural-IOS/Neural-IOS/simulator-captures/TestResults.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started
