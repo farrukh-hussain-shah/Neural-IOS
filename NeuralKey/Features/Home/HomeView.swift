@@ -6,11 +6,17 @@ struct HomeView: View {
 
     @State private var viewModel = HomeViewModel()
     @State private var keyboardPresenter = InAppKeyboardPresenter()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         content
             .background { HomeBackground() }
             .inAppKeyboardHost(keyboardPresenter)
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active {
+                    viewModel.refreshSetupStatus()
+                }
+            }
     }
 
     private var content: some View {

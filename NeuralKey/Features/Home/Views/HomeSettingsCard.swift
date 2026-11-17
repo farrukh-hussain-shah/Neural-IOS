@@ -1,7 +1,10 @@
 import SwiftUI
+import UIKit
 
 struct HomeSettingsCard: View {
-    @Bindable var viewModel: HomeViewModel
+    let viewModel: HomeViewModel
+
+    @Environment(\.openURL) private var openURL
 
     private var cardShape: RoundedRectangle {
         RoundedRectangle(cornerRadius: RowLayout.cardCornerRadius)
@@ -13,15 +16,17 @@ struct HomeSettingsCard: View {
                 icon: .toggle,
                 title: "Enable Keyboard",
                 subtitle: viewModel.isKeyboardEnabled ? "Keyboard Enabled ✓" : "Keyboard Disabled",
-                isOn: $viewModel.isKeyboardEnabled
+                isOn: settingsBinding(viewModel.isKeyboardEnabled)
             )
+            .accessibilityIdentifier(AccessibilityID.homeEnableKeyboard)
             HomeRowDivider()
             HomeToggleRow(
-                icon: .keyboard,
-                title: "Select Keyboard",
-                subtitle: viewModel.isKeyboardSelected ? "Keyboard Selected ✓" : "Keyboard Not Selected",
-                isOn: $viewModel.isKeyboardSelected
+                icon: .shield,
+                title: "Allow Full Access",
+                subtitle: viewModel.hasFullAccess ? "Full Access Allowed ✓" : "Full Access Not Allowed",
+                isOn: settingsBinding(viewModel.hasFullAccess)
             )
+            .accessibilityIdentifier(AccessibilityID.homeAllowFullAccess)
             HomeRowDivider()
             HomeNavigationRow(
                 icon: .globe,
@@ -34,6 +39,18 @@ struct HomeSettingsCard: View {
         .background(AppColor.groupedSurface)
         .clipShape(cardShape)
         .overlay(cardShape.strokeBorder(AppColor.groupedBorder, lineWidth: RowLayout.borderWidth))
+    }
+
+    /// Both switches show what is set in the Settings app, where only the user can change them,
+    /// so flipping one opens NeuralKey's Settings page (Keyboards → NeuralKey, Allow Full Access).
+    private func settingsBinding(_ value: Bool) -> Binding<Bool> {
+        Binding(
+            get: { value },
+            set: { _ in
+                guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                openURL(url)
+            }
+        )
     }
 }
 

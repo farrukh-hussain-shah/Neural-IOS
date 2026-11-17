@@ -446,6 +446,9 @@ final class ScreenCaptureTests: XCTestCase {
             element(Identifier.homeTitle, in: app).waitForExistence(timeout: Timing.launchTimeout),
             "Returning after allowing Full Access should continue to Home"
         )
+        XCTAssertTrue(app.staticTexts["Allow Full Access"].exists, "Home should list the Allow Full Access step")
+        XCTAssertTrue(app.staticTexts["Keyboard Enabled ✓"].exists, "Home should show the keyboard as enabled")
+        print("Home setup rows: \(app.switches.allElementsBoundByIndex.map(\.label))")
         settle()
         capture("24-home-after-setup")
     }
