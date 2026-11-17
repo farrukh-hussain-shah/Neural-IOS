@@ -13,6 +13,23 @@ enum AppLanguage: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
+    /// The localization the app's text is shown in (a language in Localizable.xcstrings).
+    var localizationCode: String {
+        switch self {
+        case .english: "en"
+        case .spanish: "es"
+        case .portuguese: "pt-BR"
+        case .russian: "ru"
+        case .arabic: "ar"
+        case .chinese: "zh-Hans"
+        case .hindi: "hi"
+        }
+    }
+
+    var locale: Locale {
+        Locale(identifier: localizationCode)
+    }
+
     var name: LocalizedStringKey {
         switch self {
         case .english: "English"

@@ -2,7 +2,7 @@ name: iOS Build
 
 on:
   push:
-    branches: [main]
+    branches: [main, "feature/**"]
   pull_request:
   workflow_dispatch:
 
@@ -18,6 +18,8 @@ env:
 jobs:
   build:
     name: Build (iOS Simulator)
+    # A pull request from a feature/** branch in this repo is already tested by its push run.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository || !startsWith(github.head_ref, 'feature/')
     runs-on: macos-15
     timeout-minutes: 30
 
@@ -44,6 +46,9 @@ jobs:
             -derivedDataPath "$RUNNER_TEMP/DerivedData" \
             CODE_SIGNING_ALLOWED=NO \
             | tee "$RUNNER_TEMP/xcodebuild.log"
+
+      - name: Check word prediction
+        run: bash scripts/ci/check_prediction.sh
 
       - name: Upload build log
         if: failure()

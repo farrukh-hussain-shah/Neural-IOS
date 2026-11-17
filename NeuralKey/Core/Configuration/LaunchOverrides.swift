@@ -1,10 +1,31 @@
 #if DEBUG
-import Foundation
+import UIKit
 
 enum LaunchOverrides {
     private static let frozenSplashProgressKey = "NKSplashFrozenProgress"
     private static let initialRouteKey = "NKInitialRoute"
     private static let resetPreferencesKey = "NKResetPreferences"
+
+    static var skipsKeyboardSetup: Bool {
+        UserDefaults.standard.bool(forKey: "NKSkipKeyboardSetup")
+    }
+
+    /// Keeps the Home headline on its first phrase, for stable screenshots.
+    static var freezesHomeHeadline: Bool {
+        UserDefaults.standard.bool(forKey: "NKFreezeHomeHeadline")
+    }
+
+    static var usesSystemKeyboard: Bool {
+        UserDefaults.standard.bool(forKey: "NKUseSystemKeyboard")
+    }
+
+    static var systemKeyboardAppearance: UIKeyboardAppearance {
+        UserDefaults.standard.string(forKey: "NKSystemKeyboardAppearance") == "light" ? .light : .dark
+    }
+
+    static var systemKeyboardAutocapitalization: UITextAutocapitalizationType {
+        UserDefaults.standard.string(forKey: "NKSystemKeyboardAutocapitalization") == "none" ? .none : .sentences
+    }
 
     static var shouldResetPreferences: Bool {
         UserDefaults.standard.bool(forKey: resetPreferencesKey)

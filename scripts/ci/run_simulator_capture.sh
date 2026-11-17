@@ -56,6 +56,8 @@ echo "Simulator: $DEVICE_NAME, $RUNTIME_NAME, $UDID"
 
 prepare_simulator() {
   local udid="$1"
+  # Show the on-screen keyboard so system keyboards (NeuralKey) can be tested.
+  defaults write com.apple.iphonesimulator ConnectHardwareKeyboard -bool false || true
   xcrun simctl boot "$udid"
   xcrun simctl bootstatus "$udid" -b
   xcrun simctl ui "$udid" appearance dark
@@ -110,6 +112,17 @@ xcodebuild build-for-testing \
   CODE_SIGNING_ALLOWED=NO \
   2>&1 | tee "$OUTPUT_DIR/logs/build-for-testing.log"
 
+# The simulator only registers app extensions that carry a signature, so the
+# unsigned CI build is signed ad hoc (no team or certificate needed).
+APP_PRODUCT="$DERIVED_DATA/Build/Products/Debug-iphonesimulator/NeuralKey.app"
+if [[ -d "$APP_PRODUCT/PlugIns" ]]; then
+  for appex in "$APP_PRODUCT"/PlugIns/*.appex; do
+    codesign --force --deep --sign - --timestamp=none "$appex"
+  done
+  codesign --force --sign - --timestamp=none "$APP_PRODUCT"
+  codesign --verify --deep "$APP_PRODUCT" && echo "Ad hoc signed $APP_PRODUCT"
+fi
+
 xcrun simctl spawn "$UDID" log stream --level debug --style compact \
   --predicate 'process == "NeuralKey"' > "$OUTPUT_DIR/logs/app.log" 2>&1 &
 LOG_PID=$!
@@ -144,6 +157,49 @@ if [[ "$RECORD_VIDEO" == "true" ]]; then
   sleep 3
 fi
 
+# Host capture helper: UI tests drop request files here to have the simulator
+# screenshotted while a key is held down (XCTest cannot screenshot mid-touch) or to
+# start and stop a dedicated video. See hostCapture(_:command:) in the UI tests.
+REQUEST_DIR="$OUTPUT_DIR/screenshots/.requests"
+mkdir -p "$REQUEST_DIR" "$OUTPUT_DIR/video"
+capture_agent() {
+  local clip_pid="" request name command
+  while true; do
+    for request in "$REQUEST_DIR"/*.request; do
+      [[ -e "$request" ]] || continue
+      name="$(basename "$request" .request)"
+      command="$(cat "$request")"
+      case "$command" in
+        screenshot)
+          echo "$(date +%T) request $name"
+          sleep 1.2
+          xcrun simctl io "$UDID" screenshot --type=png "$OUTPUT_DIR/screenshots/$name.png" >/dev/null 2>&1 \
+            || echo "Host screenshot $name failed"
+          echo "$(date +%T) captured $name"
+          ;;
+        video-start)
+          xcrun simctl io "$UDID" recordVideo --codec=h264 --force "$OUTPUT_DIR/video/$name-raw.mp4" \
+            > "$OUTPUT_DIR/logs/$name-video.log" 2>&1 &
+          clip_pid=$!
+          sleep 2
+          ;;
+        video-stop)
+          if [[ -n "$clip_pid" ]]; then
+            sleep 1.5
+            kill -INT "$clip_pid" 2>/dev/null || true
+            wait "$clip_pid" 2>/dev/null || true
+            clip_pid=""
+          fi
+          ;;
+      esac
+      rm -f "$request"
+    done
+    sleep 0.1
+  done
+}
+capture_agent > "$OUTPUT_DIR/logs/capture-agent.log" 2>&1 &
+AGENT_PID=$!
+
 set +e
 TEST_RUNNER_NK_CAPTURE_DIR="$OUTPUT_DIR/screenshots" xcodebuild test-without-building \
   -project "$PROJECT" \
@@ -158,6 +214,31 @@ TEST_RUNNER_NK_CAPTURE_DIR="$OUTPUT_DIR/screenshots" xcodebuild test-without-bui
   2>&1 | tee "$OUTPUT_DIR/logs/test.log"
 TEST_STATUS=${PIPESTATUS[0]}
 set -e
+
+sleep 3
+kill "$AGENT_PID" 2>/dev/null || true
+wait "$AGENT_PID" 2>/dev/null || true
+rm -rf "$REQUEST_DIR"
+for clip in "$OUTPUT_DIR"/video/*-raw.mp4; do
+  [[ -e "$clip" ]] || continue
+  [[ "$clip" == "$RAW_VIDEO" ]] && continue
+  final_clip="${clip%-raw.mp4}.mp4"
+  # Re-encode to standard H.264 with regular keyframes so the clip plays and seeks
+  # everywhere (raw simulator recordings only play correctly from the start).
+  for preset in Preset1920x1080 Preset1280x720; do
+    rm -f "$final_clip"
+    if avconvert --preset "$preset" --source "$clip" --output "$final_clip" --replace >/dev/null 2>&1 \
+      && [[ -s "$final_clip" ]] && [[ "$(stat -f%z "$final_clip")" -le "$MAX_VIDEO_BYTES" ]]; then
+      break
+    fi
+  done
+  if [[ -s "$final_clip" ]]; then
+    rm -f "$clip"
+  else
+    mv -f "$clip" "$final_clip"
+  fi
+  echo "Clip ready: $final_clip ($(stat -f%z "$final_clip") bytes)"
+done
 
 if [[ -n "$VIDEO_PID" ]]; then
   sleep 2

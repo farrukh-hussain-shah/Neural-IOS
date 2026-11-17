@@ -2,31 +2,57 @@ import SwiftUI
 
 struct SettingsDrawer: View {
     let store: SettingsStore
+    let languageStore: LanguageStore
     let onUpgrade: @MainActor () -> Void
     let onClose: @MainActor () -> Void
 
-    @State private var isShowingTones = false
+    /// A page opened from Settings, sliding in over it from the right.
+    private enum Page {
+        case tones
+        case language
+    }
+
+    @State private var page: Page?
     @State private var dragOffset: CGFloat = 0
 
     var body: some View {
         GeometryReader { proxy in
             ZStack {
-                SettingsView(store: store, onUpgrade: onUpgrade) {
-                    withAnimation(AppAnimation.drawer) { isShowingTones = true }
-                }
-                .offset(x: isShowingTones ? 0 : dragOffset)
+                SettingsView(
+                    store: store,
+                    language: languageStore.selectedLanguage,
+                    onUpgrade: onUpgrade,
+                    onToneAdjustment: { open(.tones) },
+                    onLanguage: { open(.language) }
+                )
+                .offset(x: page != nil ? 0 : dragOffset)
 
-                if isShowingTones {
-                    AIToneSelectionView(store: store) {
-                        withAnimation(AppAnimation.drawer) { isShowingTones = false }
-                    }
-                    .offset(x: dragOffset)
-                    .transition(.move(edge: .trailing))
-                    .zIndex(1)
+                switch page {
+                case .tones:
+                    AIToneSelectionView(store: store, onClose: closePage)
+                        .offset(x: dragOffset)
+                        .transition(.move(edge: .trailing))
+                        .zIndex(1)
+                case .language:
+                    // Picking a language changes the whole app at once; Done returns to Settings.
+                    LanguageSelectionView(store: languageStore, onDone: closePage)
+                        .offset(x: dragOffset)
+                        .transition(.move(edge: .trailing))
+                        .zIndex(1)
+                case nil:
+                    EmptyView()
                 }
             }
             .simultaneousGesture(swipeToGoBack(width: proxy.size.width))
         }
+    }
+
+    private func open(_ page: Page) {
+        withAnimation(AppAnimation.drawer) { self.page = page }
+    }
+
+    private func closePage() {
+        withAnimation(AppAnimation.drawer) { page = nil }
     }
 
     private func swipeToGoBack(width: CGFloat) -> some Gesture {
@@ -44,8 +70,8 @@ struct SettingsDrawer: View {
                 withAnimation(AppAnimation.drawer) {
                     dragOffset = 0
                     if shouldGoBack {
-                        if isShowingTones {
-                            isShowingTones = false
+                        if page != nil {
+                            page = nil
                         } else {
                             onClose()
                         }

@@ -19,12 +19,12 @@ struct PremiumRewardedAdButton: View {
                     Text(subtitle)
                         .textStyle(.premiumAdSubtitle)
                 }
-                .lineLimit(1)
-                .fixedSize()
+                .singleLineLabel(minimumScale: 0.75)
                 .padding(.top, Layout.textTop)
             }
             .foregroundStyle(AppColor.textPrimary)
             .padding(.leading, Layout.leadingPadding)
+            .padding(.trailing, Layout.leadingPadding)
             .frame(width: Layout.size.width, height: Layout.size.height, alignment: .topLeading)
             .background(RoundedRectangle(cornerRadius: AppRadius.xl).fill(AppGradient.brandReversed))
         }

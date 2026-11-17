@@ -15,20 +15,33 @@ final class AppRouter {
     var isSettingsPresented = false
 
     init(initialRoute: AppRoute = .splash) {
-        route = initialRoute
+        if case .onboarding = initialRoute, let resumed = OnboardingProgress.resumeRoute() {
+            route = resumed
+        } else {
+            route = initialRoute
+        }
     }
 
     func completeSplash() {
-        route = .languageSelection
+        navigate(to: OnboardingProgress.resumeRoute() ?? .languageSelection)
     }
 
     func completeLanguageSelection() {
-        route = .onboarding(.first)
+        navigate(to: .onboarding(.first))
     }
 
     func continueOnboarding() {
         guard case .onboarding(let step) = route else { return }
-        route = step.next.map(AppRoute.onboarding) ?? .home
+        navigate(to: step.next.map(AppRoute.onboarding) ?? .home)
+    }
+
+    func finishOnboarding() {
+        navigate(to: .home)
+    }
+
+    private func navigate(to newRoute: AppRoute) {
+        route = newRoute
+        OnboardingProgress.record(newRoute)
     }
 
     func presentPremium() {

@@ -35,6 +35,7 @@ struct SettingsUpgradeCard: View {
                 HStack(spacing: Layout.pillTextToChevron) {
                     Text("Upgrade")
                         .textStyle(.settingsPill)
+                        .singleLineLabel()
                     Image(.chevronRight)
                         .resizable()
                         .frame(width: Layout.pillChevronSize, height: Layout.pillChevronSize)

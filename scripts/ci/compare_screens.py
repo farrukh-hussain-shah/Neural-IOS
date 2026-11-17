@@ -26,10 +26,18 @@ SCREENS = [
     ("14-keyboard-numbers", "Keyboard – Numbers", "Keyboard Designs/Defaultb.svg"),
     ("15-keyboard-go", "Keyboard – Go key", "Keyboard Designs/Default Keyboard.svg"),
     ("16-keyboard-phone", "Keyboard – Number pad", "Keyboard Designs/Default.svg"),
+    ("42-extension-letters-light", "NeuralKey keyboard – Letters (light)", "Keyboard Designs/Defaulta.svg"),
+    ("44-extension-numbers-light", "NeuralKey keyboard – Numbers (light)", "Keyboard Designs/Defaultb.svg"),
 ]
 
 POINT_SCALE = 3
-KEYBOARD_SCREENS = {"13-keyboard-letters", "14-keyboard-numbers", "15-keyboard-go", "16-keyboard-phone"}
+KEYBOARD_SCREENS = {
+    "13-keyboard-letters", "14-keyboard-numbers", "15-keyboard-go", "16-keyboard-phone",
+    "42-extension-letters-light", "44-extension-numbers-light",
+}
+# Screens where pixels outside the design's rounded corners (black in the reference) are
+# not scored: as a system keyboard, iOS draws its own strip below the keys.
+OUTSIDE_SHAPE_IGNORED = {"42-extension-letters-light", "44-extension-numbers-light"}
 STATUS_BAR_POINTS = 47
 HOME_INDICATOR_POINTS = 34
 PIXEL_THRESHOLD = 32
@@ -110,6 +118,10 @@ def compare_screen(key, title, design_dir, actual_dir, output_dir):
         actual = actual.resize(design.size, Image.LANCZOS)
 
     mask = mismatch_mask(design, actual)
+    if key in OUTSIDE_SHAPE_IGNORED:
+        inside = design.convert("L").point(lambda value: 255 if value > 8 else 0)
+        mask = ImageChops.multiply(mask, inside)
+        result["note"] = "pixels outside the design's rounded corners are not scored"
     result["mismatch"] = round(mismatch_percentage(mask, full_frame=key in KEYBOARD_SCREENS), 2)
     result["status"] = "compared"
 
@@ -155,6 +167,8 @@ def write_report(results, output_dir):
         lines.append(f"- Workflow run: {run_url}")
     if (output_dir / "video" / "simulator-flow.mp4").exists():
         lines.append("- Video of the run: [video/simulator-flow.mp4](video/simulator-flow.mp4)")
+    if (output_dir / "video" / "keyboard-tour.mp4").exists():
+        lines.append("- Keyboard tour video: [video/keyboard-tour.mp4](video/keyboard-tour.mp4)")
     lines += [
         f"- Mismatch = share of pixels whose colour differs by more than {PIXEL_THRESHOLD}/255, "
         f"excluding the status bar ({STATUS_BAR_POINTS} pt) and home indicator ({HOME_INDICATOR_POINTS} pt).",

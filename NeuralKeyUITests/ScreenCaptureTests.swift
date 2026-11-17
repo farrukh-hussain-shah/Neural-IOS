@@ -19,6 +19,7 @@ final class ScreenCaptureTests: XCTestCase {
         static let settingsTitle = "settings.title"
         static let settingsToneAdjustment = "settings.toneAdjustment"
         static let settingsHaptics = "settings.haptics"
+        static let settingsLanguage = "settings.language"
         static let tonesTitle = "tones.title"
         static let tonesBack = "tones.back"
         static let tonesUpdate = "tones.update"
@@ -40,6 +41,11 @@ final class ScreenCaptureTests: XCTestCase {
         static let launchTimeout: TimeInterval = 15
         static let transitionTimeout: TimeInterval = 10
         static let settle: TimeInterval = 1.5
+        static let keyHold: TimeInterval = 0.2
+        static let popupHold: TimeInterval = 8
+        static let hostTimeout: TimeInterval = 20
+        /// Downloading and loading the word lists after launch.
+        static let dictionaryTimeout: TimeInterval = 90
     }
 
     private static let designSplashProgress = "0.88"
@@ -64,7 +70,7 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test01SplashScreen() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKSplashFrozenProgress", Self.designSplashProgress]
         app.launch()
 
@@ -78,7 +84,7 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test02LanguageSelection() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKInitialRoute", "language", "-NKSelectedLanguage", Self.defaultLanguage]
         app.launch()
 
@@ -99,13 +105,12 @@ final class ScreenCaptureTests: XCTestCase {
         assertExclusiveSelection(Self.persistedLanguage, among: Self.languages, prefix: Identifier.languageOptionPrefix, in: app)
         element(Identifier.languageDone, in: app).tap()
         XCTAssertTrue(
-            element(Identifier.pageIndicator, label: Self.firstOnboardingPage, in: app)
-                .waitForExistence(timeout: Timing.transitionTimeout),
+            element(Identifier.pageIndicator, in: app).waitForExistence(timeout: Timing.transitionTimeout),
             "Onboarding did not follow language selection"
         )
         app.terminate()
 
-        let relaunched = XCUIApplication()
+        let relaunched = makeApp()
         relaunched.launchArguments += ["-NKInitialRoute", "language"]
         relaunched.launch()
         XCTAssertTrue(
@@ -119,7 +124,8 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test03OnboardingToHomeFlow() {
-        let app = XCUIApplication()
+        let app = makeApp()
+        app.launchArguments += ["-NKSkipKeyboardSetup", "YES"]
         app.launch()
 
         let languageDone = element(Identifier.languageDone, in: app)
@@ -164,7 +170,7 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test04PremiumScreen() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKInitialRoute", "home"]
         app.launch()
 
@@ -211,7 +217,7 @@ final class ScreenCaptureTests: XCTestCase {
 
     @MainActor
     func test05SettingsAndAITones() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKInitialRoute", "home", "-NKResetPreferences", "YES"]
         app.launch()
 
@@ -285,9 +291,153 @@ final class ScreenCaptureTests: XCTestCase {
         capture("12-home-after-settings")
     }
 
+    /// Every screen in each language other than English (English is covered, and compared with
+    /// the designs, by tests 01–05). Captures are named `l10n-<language>-<screen>`.
+    @MainActor
+    func test14Localization() {
+        for language in Self.languages where language != Self.defaultLanguage {
+            let splash = makeApp()
+            splash.launchArguments += ["-NKSelectedLanguage", language, "-NKSplashFrozenProgress", Self.designSplashProgress]
+            splash.launch()
+            XCTAssertTrue(
+                element(Identifier.splashBrand, in: splash).waitForExistence(timeout: Timing.launchTimeout),
+                "Splash screen did not appear in \(language)"
+            )
+            settle()
+            capture("l10n-\(language)-1-splash")
+            splash.terminate()
+
+            let app = makeApp()
+            app.launchArguments += [
+                "-NKSelectedLanguage", language, "-NKInitialRoute", "language",
+                "-NKSkipKeyboardSetup", "YES", "-NKResetPreferences", "YES"
+            ]
+            app.launch()
+            let done = element(Identifier.languageDone, in: app)
+            XCTAssertTrue(done.waitForExistence(timeout: Timing.launchTimeout), "Language screen did not appear in \(language)")
+            settle()
+            capture("l10n-\(language)-2-language")
+            done.tap()
+
+            for (index, page) in ["3-welcome", "4-add-keyboard", "5-full-access"].enumerated() {
+                let indicator = element(Identifier.pageIndicator, in: app)
+                XCTAssertTrue(indicator.waitForExistence(timeout: Timing.transitionTimeout), "Onboarding did not appear in \(language)")
+                let primaryAction = element(Identifier.primaryAction, in: app)
+                XCTAssertTrue(primaryAction.waitForExistence(timeout: Timing.transitionTimeout))
+                settle()
+                capture("l10n-\(language)-\(page)")
+                print("Onboarding page \(index + 1) in \(language): \(indicator.label)")
+                primaryAction.tap()
+            }
+
+            XCTAssertTrue(
+                element(Identifier.homeTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+                "Home did not appear in \(language)"
+            )
+            settle()
+            capture("l10n-\(language)-6-home")
+
+            element(Identifier.menuButton, in: app).tap()
+            XCTAssertTrue(
+                element(Identifier.settingsTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+                "Settings did not open in \(language)"
+            )
+            settle()
+            capture("l10n-\(language)-7-settings")
+
+            element(Identifier.settingsToneAdjustment, in: app).tap()
+            XCTAssertTrue(
+                element(Identifier.tonesTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+                "AI Tones did not open in \(language)"
+            )
+            settle()
+            capture("l10n-\(language)-8-ai-tones")
+            element(Identifier.tonesBack, in: app).tap()
+            XCTAssertTrue(waitForDisappearance(of: element(Identifier.tonesTitle, in: app)), "Back did not close AI Tones")
+            app.swipeRight()
+            XCTAssertTrue(waitForDisappearance(of: element(Identifier.settingsTitle, in: app)), "Settings did not close")
+
+            element(Identifier.premiumButton, in: app).tap()
+            XCTAssertTrue(
+                element(Identifier.premiumTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+                "Premium did not open in \(language)"
+            )
+            settle()
+            capture("l10n-\(language)-9-premium")
+            app.terminate()
+        }
+    }
+
+    /// The Home headline changes phrase every 3 seconds, sliding the next one in.
+    @MainActor
+    func test15HomeHeadlineRotates() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-NKInitialRoute", "home", "-NKSelectedLanguage", Self.defaultLanguage]
+        app.launch()
+        let headline = element(Identifier.homeTitle, in: app)
+        XCTAssertTrue(headline.waitForExistence(timeout: Timing.launchTimeout), "Home headline is missing")
+        var seen = [headline.label]
+        capture("49-home-headline-1")
+        let deadline = Date().addingTimeInterval(14)
+        while seen.count < 4, Date() < deadline {
+            let label = headline.label
+            if label != seen.last {
+                seen.append(label)
+                if seen.count == 2 {
+                    capture("50-home-headline-2")
+                }
+            }
+            Thread.sleep(forTimeInterval: 0.25)
+        }
+        print("Home headlines seen: \(seen)")
+        XCTAssertEqual(seen.first, "Neural Key AI", "The first headline should be Neural Key AI")
+        XCTAssertGreaterThanOrEqual(seen.count, 4, "The headline should change every 3 seconds")
+    }
+
+    /// Settings › Change Language opens the language screen; picking a language and tapping
+    /// Done returns to Settings with the whole app in that language.
+    @MainActor
+    func test16ChangeLanguageFromSettings() {
+        let app = makeApp()
+        app.launchArguments += ["-NKInitialRoute", "home", "-NKSelectedLanguage", Self.defaultLanguage]
+        app.launch()
+        XCTAssertTrue(element(Identifier.homeTitle, in: app).waitForExistence(timeout: Timing.launchTimeout), "Home is missing")
+        element(Identifier.menuButton, in: app).tap()
+        let settingsTitle = element(Identifier.settingsTitle, in: app)
+        XCTAssertTrue(settingsTitle.waitForExistence(timeout: Timing.transitionTimeout), "Settings did not open")
+        let languageRow = element(Identifier.settingsLanguage, in: app)
+        XCTAssertTrue(languageRow.waitForExistence(timeout: Timing.transitionTimeout), "Change Language row is missing")
+        settle()
+        capture("51-settings-language-row")
+
+        for (language, settingsLabel) in [("hindi", "सेटिंग्स"), ("english", "Settings")] {
+            element(Identifier.settingsLanguage, in: app).tap()
+            XCTAssertTrue(
+                element(Identifier.languageTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+                "The language screen did not open from Settings"
+            )
+            element(Identifier.languageOption(language), in: app).tap()
+            assertExclusiveSelection(language, among: Self.languages, prefix: Identifier.languageOptionPrefix, in: app)
+            if language == "hindi" {
+                settle()
+                capture("52-settings-language-screen")
+            }
+            element(Identifier.languageDone, in: app).tap()
+            XCTAssertTrue(
+                waitForDisappearance(of: element(Identifier.languageTitle, in: app)),
+                "Done did not close the language screen"
+            )
+            XCTAssertEqual(settingsTitle.label, settingsLabel, "Settings should now be in \(language)")
+            if language == "hindi" {
+                settle()
+                capture("53-settings-in-hindi")
+            }
+        }
+    }
+
     @MainActor
     func test06InAppKeyboard() {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launchArguments += ["-NKInitialRoute", "home"]
         app.launch()
 
@@ -359,7 +509,7 @@ final class ScreenCaptureTests: XCTestCase {
         ]
 
         for state in states {
-            let app = XCUIApplication()
+            let app = makeApp()
             app.launchArguments += ["-NKInitialRoute", "home"] + state.arguments
             app.launch()
             let field = app.textFields[Identifier.testField]
@@ -384,6 +534,525 @@ final class ScreenCaptureTests: XCTestCase {
     }
 
     @MainActor
+    func test08KeyboardSetupThroughSettings() {
+        let app = makeApp()
+        app.launchArguments += ["-NKInitialRoute", "onboarding"]
+        app.launch()
+
+        let primaryAction = element(Identifier.primaryAction, in: app)
+        XCTAssertTrue(primaryAction.waitForExistence(timeout: Timing.launchTimeout), "Onboarding did not appear")
+        primaryAction.tap()
+        XCTAssertTrue(
+            element(Identifier.pageIndicator, label: "Page 2 of 3", in: app).waitForExistence(timeout: Timing.transitionTimeout),
+            "Add Keyboard step did not appear"
+        )
+        settle()
+        capture("20-setup-add-keyboard")
+
+        let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
+        XCTAssertTrue(openSettings(from: app, settings: settings), "Open Settings did not open the Settings app")
+        openKeyboardSettings(in: settings)
+
+        let keyboardSwitch = settings.switches["Neural Key"]
+        XCTAssertTrue(keyboardSwitch.waitForExistence(timeout: Timing.transitionTimeout), "NeuralKey keyboard switch is missing in Settings")
+        turnOn(keyboardSwitch)
+        XCTAssertTrue(waitUntilOn(keyboardSwitch), "NeuralKey keyboard did not turn on")
+        settle()
+        capture("21-settings-keyboard-added")
+
+        app.activate()
+        XCTAssertTrue(
+            element(Identifier.pageIndicator, label: "Page 3 of 3", in: app).waitForExistence(timeout: Timing.transitionTimeout),
+            "Returning after adding the keyboard should show the Full Access step"
+        )
+        settle()
+        capture("22-setup-full-access")
+
+        XCTAssertTrue(openSettings(from: app, settings: settings), "Open Settings did not reopen Settings")
+        openKeyboardSettings(in: settings)
+        let fullAccessSwitch = settings.switches["Allow Full Access"]
+        XCTAssertTrue(fullAccessSwitch.waitForExistence(timeout: Timing.transitionTimeout), "Allow Full Access switch is missing")
+        if switchIsOn(fullAccessSwitch) == false {
+            turnOn(fullAccessSwitch)
+            let allow = settings.alerts.buttons["Allow"]
+            if allow.waitForExistence(timeout: Timing.transitionTimeout) {
+                allow.tap()
+            }
+        }
+        XCTAssertTrue(waitUntilOn(fullAccessSwitch), "Full Access did not turn on")
+        settle()
+        capture("23-settings-full-access")
+
+        // iOS terminates the app when Full Access changes, so this relaunches it;
+        // the saved setup progress must bring the user straight to Home.
+        app.activate()
+        XCTAssertTrue(
+            element(Identifier.homeTitle, in: app).waitForExistence(timeout: Timing.launchTimeout),
+            "Returning after allowing Full Access should continue to Home"
+        )
+        XCTAssertTrue(app.staticTexts["Allow Full Access"].exists, "Home should list the Allow Full Access step")
+        XCTAssertTrue(app.staticTexts["Keyboard Enabled ✓"].exists, "Home should show the keyboard as enabled")
+        XCTAssertTrue(app.staticTexts["Full Access Allowed ✓"].exists, "Home should show Full Access as allowed")
+        print("Home setup rows: \(app.switches.allElementsBoundByIndex.map(\.label))")
+        settle()
+        capture("24-home-after-setup")
+    }
+
+    @MainActor
+    func test09NeuralKeyKeyboardExtension() {
+        let app = makeApp()
+        app.launchArguments += ["-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES"]
+        app.launch()
+
+        let field = app.textFields[Identifier.testField]
+        XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        field.tap()
+        if !selectNeuralKeyKeyboard(in: app) {
+            // Not enabled yet (test08 normally does it): turn it on in Settings and come back.
+            enableNeuralKeyKeyboard()
+            app.activate()
+            field.tap()
+            XCTAssertTrue(selectNeuralKeyKeyboard(in: app), "Could not switch to the NeuralKey keyboard")
+        }
+        XCTAssertEqual(key("q", in: app).label, "Q", "An empty field should start capitalized")
+        settle()
+        capture("25-extension-letters")
+
+        type("hello", in: app)
+        keyElement("key.space", in: app).tap()
+        type("world", in: app)
+        assertFieldText(field, equals: "Hello world")
+        settle()
+        capture("26-extension-typing")
+
+        keyElement("key.layer.123", in: app).tap()
+        XCTAssertTrue(key("1", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Numbers layer did not open")
+        type("7", in: app)
+        assertFieldText(field, equals: "Hello world7")
+        settle()
+        capture("27-extension-numbers")
+
+        keyElement("key.delete", in: app).tap()
+        assertFieldText(field, equals: "Hello world")
+        app.terminate()
+
+        // A light keyboard field: NeuralKey should switch to its light look.
+        let lightApp = makeApp()
+        lightApp.launchArguments += [
+            "-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES", "-NKSystemKeyboardAppearance", "light"
+        ]
+        lightApp.launch()
+        let lightField = lightApp.textFields[Identifier.testField]
+        XCTAssertTrue(lightField.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        lightField.tap()
+        XCTAssertTrue(selectNeuralKeyKeyboard(in: lightApp), "NeuralKey keyboard is not active in the light field")
+        type("hi", in: lightApp)
+        assertFieldText(lightField, equals: "Hi")
+        settle()
+        capture("28-extension-light")
+    }
+
+    /// Taps Open Settings, retrying once when a slow simulator drops the tap mid-transition.
+    @MainActor
+    private func openSettings(from app: XCUIApplication, settings: XCUIApplication) -> Bool {
+        for _ in 0..<2 {
+            let action = element(Identifier.primaryAction, in: app)
+            guard action.waitForExistence(timeout: Timing.transitionTimeout) else { return false }
+            action.tap()
+            if settings.wait(for: .runningForeground, timeout: Timing.launchTimeout) {
+                return true
+            }
+            app.activate()
+        }
+        return false
+    }
+
+    /// Taps the empty space between and around keys on the NeuralKey keyboard: as on iOS, every
+    /// gap belongs to the nearest key, so there is no dead space between the white key faces.
+    @MainActor
+    func test12KeyTouchAreasCoverGaps() {
+        let app = makeApp()
+        app.launchArguments += [
+            "-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES",
+            "-NKSystemKeyboardAppearance", "light", "-NKSystemKeyboardAutocapitalization", "none"
+        ]
+        app.launch()
+        let field = app.textFields[Identifier.testField]
+        XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        field.tap()
+        if !selectNeuralKeyKeyboard(in: app) {
+            enableNeuralKeyKeyboard()
+            app.activate()
+            field.tap()
+            XCTAssertTrue(selectNeuralKeyKeyboard(in: app), "Could not switch to the NeuralKey keyboard")
+        }
+        settle()
+
+        let q = key("q", in: app).frame
+        let w = key("w", in: app).frame
+        let p = key("p", in: app).frame
+        let a = key("a", in: app).frame
+        let l = key("l", in: app).frame
+        let z = key("z", in: app).frame
+        let shift = keyElement("key.shift", in: app).frame
+        let space = keyElement("key.space", in: app).frame
+        let screen = app.windows.firstMatch.frame
+        print("Key touch areas: q \(q), w \(w), p \(p), a \(a), l \(l), shift \(shift), z \(z), space \(space), screen \(screen)")
+
+        // Touch areas meet edge to edge: no dead space between keys, rows or at the screen edges.
+        let tolerance: CGFloat = 0.5
+        XCTAssertEqual(q.maxX, w.minX, accuracy: tolerance, "Gap between q and w is not fully covered")
+        XCTAssertEqual(shift.maxX, z.minX, accuracy: tolerance, "Gap between shift and z is not fully covered")
+        XCTAssertEqual(q.maxY, a.minY, accuracy: tolerance, "Gap between the first and second rows is not fully covered")
+        XCTAssertEqual(a.minX, screen.minX, accuracy: tolerance, "Margin left of a is not covered")
+        XCTAssertEqual(p.maxX, screen.maxX, accuracy: tolerance, "Margin right of p is not covered")
+        // The band below the bottom row is ~7 pt (11.5 design pt minus half a row gap).
+        XCTAssertGreaterThan(space.height, q.height + 5, "The bottom row should take touches down to the bottom edge")
+
+        // Taps that land in the empty space still type the nearest key.
+        let taps: [(String, CGPoint)] = [
+            ("q, right of its face", CGPoint(x: q.maxX - 1, y: q.midY)),
+            ("w, left of its face", CGPoint(x: w.minX + 1, y: w.midY)),
+            ("a, in the left margin", CGPoint(x: a.minX + 2, y: a.midY)),
+            ("l, in the right margin", CGPoint(x: l.maxX - 2, y: l.midY)),
+            ("q, below its face", CGPoint(x: q.midX, y: q.maxY - 1)),
+            ("a, above its face", CGPoint(x: a.midX, y: a.minY + 1)),
+            ("space, below the bottom row", CGPoint(x: space.midX, y: space.maxY - 2)),
+            ("z, between shift and z", CGPoint(x: z.minX + 1, y: z.midY))
+        ]
+        let origin = app.coordinate(withNormalizedOffset: .zero)
+        for (description, point) in taps {
+            origin.withOffset(CGVector(dx: point.x, dy: point.y)).tap()
+            print("Tapped \(description) at \(point): field is now \(fieldText(field))")
+        }
+        assertFieldText(field, equals: "qwalqa z")
+        settle()
+        capture("45-touch-areas")
+    }
+
+    /// Word prediction in the in-app keyboard, from the word lists the app downloads at launch:
+    /// a SymSpell correction ("helo" → "Hello"), next-word suggestions after a space, and a new
+    /// word learned after it is typed twice.
+    @MainActor
+    func test13WordPrediction() {
+        let app = makeApp()
+        app.launchArguments += ["-NKInitialRoute", "home"]
+        app.launch()
+        let field = app.textFields[Identifier.testField]
+        XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        field.tap()
+        XCTAssertTrue(key("q", in: app).waitForExistence(timeout: Timing.transitionTimeout), "In-app keyboard did not appear")
+
+        type("helo", in: app)
+        let correction = suggestion("Hello", in: app)
+        XCTAssertTrue(
+            correction.waitForExistence(timeout: Timing.dictionaryTimeout),
+            "\"Helo\" should offer \"Hello\" once the word lists are downloaded; suggestions: \(suggestionLabels(in: app))"
+        )
+        settle()
+        capture("46-prediction-correction")
+        correction.tap()
+        assertFieldText(field, equals: "Hello ")
+        print("Next words after \"Hello\": \(suggestionLabels(in: app))")
+        XCTAssertFalse(app.buttons["keyboard.suggestion.0"].label.isEmpty, "A next word should be suggested after a space")
+        settle()
+        capture("47-prediction-next-word")
+
+        for _ in 0..<2 {
+            type("zorvak", in: app)
+            keyElement("key.space", in: app).tap()
+        }
+        type("zorv", in: app)
+        XCTAssertTrue(
+            suggestion("zorvak", in: app).waitForExistence(timeout: Timing.transitionTimeout),
+            "A word typed twice should be learned; suggestions: \(suggestionLabels(in: app))"
+        )
+        settle()
+        capture("48-prediction-learned-word")
+    }
+
+    /// Captures the NeuralKey keyboard in the design's state (lowercase, default suggestions)
+    /// in light mode, compared with Keyboard Designs/Defaulta.svg and Defaultb.svg, and dark mode.
+    @MainActor
+    func test11ExtensionMatchesDesign() {
+        for appearance in ["light", "dark"] {
+            let app = makeApp()
+            app.launchArguments += [
+                "-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES",
+                "-NKSystemKeyboardAppearance", appearance, "-NKSystemKeyboardAutocapitalization", "none"
+            ]
+            app.launch()
+            let field = app.textFields[Identifier.testField]
+            XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+            field.tap()
+            if !selectNeuralKeyKeyboard(in: app) {
+                enableNeuralKeyKeyboard()
+                app.activate()
+                field.tap()
+                XCTAssertTrue(selectNeuralKeyKeyboard(in: app), "Could not switch to the NeuralKey keyboard")
+            }
+            XCTAssertEqual(key("q", in: app).label, "q", "A field without autocapitalization should start lowercase")
+            settle()
+            capture("42-extension-letters-\(appearance)")
+
+            keyElement("key.layer.123", in: app).tap()
+            XCTAssertTrue(key("1", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Numbers layer did not open")
+            settle()
+            capture("44-extension-numbers-\(appearance)")
+            app.terminate()
+        }
+    }
+
+    /// A filmed walk through the whole NeuralKey keyboard: it pops up, types with key
+    /// bubbles, and covers shift, caps lock, accents, numbers, symbols, delete and return.
+    @MainActor
+    func test10KeyboardTour() {
+        let launchArguments = [
+            "-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES", "-NKSystemKeyboardAppearance", "light"
+        ]
+
+        // Make NeuralKey the active keyboard first, so the filmed tap brings it straight up.
+        let setup = makeApp()
+        setup.launchArguments += launchArguments
+        setup.launch()
+        let setupField = setup.textFields[Identifier.testField]
+        XCTAssertTrue(setupField.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        setupField.tap()
+        if !selectNeuralKeyKeyboard(in: setup) {
+            enableNeuralKeyKeyboard()
+            setup.activate()
+            setupField.tap()
+            XCTAssertTrue(selectNeuralKeyKeyboard(in: setup), "Could not switch to the NeuralKey keyboard")
+        }
+        setup.terminate()
+
+        let app = makeApp()
+        app.launchArguments += launchArguments
+        app.launch()
+        let field = app.textFields[Identifier.testField]
+        XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        settle()
+
+        let isFilming = hostCapture("keyboard-tour", command: "video-start")
+        addTeardownBlock { @MainActor in
+            if isFilming {
+                _ = self.hostCapture("keyboard-tour", command: "video-stop")
+            }
+        }
+
+        field.tap()
+        XCTAssertTrue(key("q", in: app).waitForExistence(timeout: Timing.transitionTimeout), "NeuralKey keyboard did not pop up")
+        settle()
+        capture("30-tour-keyboard-up")
+
+        holdKey("h", capture: "31-tour-popup-h", in: app)
+        tourType("ello", in: app)
+        assertFieldText(field, equals: "Hello")
+        settle()
+        capture("32-tour-hello")
+
+        tourTap("key.space", in: app)
+        tourType("world", in: app)
+        keyElement("key.space", in: app).doubleTap()
+        assertFieldText(field, equals: "Hello world. ")
+        settle()
+        capture("33-tour-sentence")
+
+        holdKey("e", capture: "34-tour-accents", in: app)
+        XCTAssertTrue(fieldText(field).hasSuffix("È"), "Holding e should offer accents and insert the first one")
+        tourTap("key.delete", in: app)
+        assertFieldText(field, equals: "Hello world. ")
+
+        tourType("i", in: app)
+        keyElement("key.shift", in: app).doubleTap()
+        tourType("os", in: app)
+        assertFieldText(field, equals: "Hello world. IOS")
+        settle()
+        capture("35-tour-caps-lock")
+        tourTap("key.shift", in: app)
+        tourTap("key.space", in: app)
+
+        tourTap("key.layer.123", in: app)
+        XCTAssertTrue(key("1", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Numbers layer did not open")
+        settle()
+        capture("36-tour-numbers")
+        holdKey("2", capture: "37-tour-popup-2", in: app)
+        tourType("026", in: app)
+
+        tourTap("key.layer.#+=", in: app)
+        XCTAssertTrue(key("[", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Symbols layer did not open")
+        settle()
+        capture("38-tour-symbols")
+        holdKey("#", capture: "39-tour-popup-hash", in: app)
+        tourTap("key.space", in: app)
+        XCTAssertTrue(key("q", in: app).waitForExistence(timeout: Timing.transitionTimeout), "Space should return to letters")
+
+        tourType("oj", in: app)
+        tourTap("key.delete", in: app)
+        tourType("k", in: app)
+        assertFieldText(field, equals: "Hello world. IOS 2026# ok")
+        settle()
+        capture("40-tour-final")
+
+        tourTap("key.return", in: app)
+        XCTAssertTrue(waitForDisappearance(of: key("q", in: app)), "Return should close the keyboard")
+        settle()
+        capture("41-tour-keyboard-closed")
+    }
+
+    /// Types with a short hold on each key so its bubble shows in the video, like a finger would.
+    @MainActor
+    private func tourType(_ characters: String, in app: XCUIApplication) {
+        for character in characters {
+            key(String(character).lowercased(), in: app).press(forDuration: Timing.keyHold)
+        }
+    }
+
+    @MainActor
+    private func tourTap(_ id: String, in app: XCUIApplication) {
+        keyElement(id, in: app).press(forDuration: Timing.keyHold)
+    }
+
+    /// Holds a key while the CI host takes a screenshot, so the key bubble (or accent menu) is captured.
+    @MainActor
+    private func holdKey(_ character: String, capture name: String, in app: XCUIApplication) {
+        let element = key(character, in: app)
+        XCTAssertTrue(element.waitForExistence(timeout: Timing.transitionTimeout), "Key \(character) is missing")
+        let requested = hostCapture(name, command: "screenshot", waitsForHost: false)
+        element.press(forDuration: Timing.popupHold)
+        if requested {
+            XCTAssertTrue(waitForHost(name), "The host did not capture \(name)")
+        }
+    }
+
+    /// Asks the CI script (scripts/ci/run_simulator_capture.sh) to screenshot or film the simulator.
+    /// Returns false when no host is listening, for example when run from Xcode.
+    @MainActor
+    @discardableResult
+    private func hostCapture(_ name: String, command: String, waitsForHost: Bool = true) -> Bool {
+        guard let directory = ProcessInfo.processInfo.environment["NK_CAPTURE_DIR"], !directory.isEmpty else { return false }
+        let requests = URL(fileURLWithPath: directory, isDirectory: true).appendingPathComponent(".requests", isDirectory: true)
+        guard FileManager.default.fileExists(atPath: requests.path) else { return false }
+        do {
+            try Data(command.utf8).write(to: requests.appendingPathComponent(name + ".request"), options: .atomic)
+        } catch {
+            return false
+        }
+        return waitsForHost ? waitForHost(name) : true
+    }
+
+    @MainActor
+    private func waitForHost(_ name: String) -> Bool {
+        guard let directory = ProcessInfo.processInfo.environment["NK_CAPTURE_DIR"] else { return false }
+        let request = URL(fileURLWithPath: directory).appendingPathComponent(".requests/\(name).request").path
+        let deadline = Date().addingTimeInterval(Timing.hostTimeout)
+        while FileManager.default.fileExists(atPath: request), Date() < deadline {
+            Thread.sleep(forTimeInterval: 0.1)
+        }
+        return !FileManager.default.fileExists(atPath: request)
+    }
+
+    /// Turns the NeuralKey keyboard on in Settings unless an earlier test already did.
+    @MainActor
+    private func enableNeuralKeyKeyboard() {
+        let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
+        if settings.state == .notRunning {
+            settings.launch()
+        } else {
+            settings.activate()
+        }
+        openKeyboardSettings(in: settings)
+        let keyboardSwitch = settings.switches["Neural Key"]
+        XCTAssertTrue(keyboardSwitch.waitForExistence(timeout: Timing.transitionTimeout), "NeuralKey keyboard switch is missing in Settings")
+        turnOn(keyboardSwitch)
+        XCTAssertTrue(waitUntilOn(keyboardSwitch), "NeuralKey keyboard did not turn on")
+    }
+
+    /// Taps the system globe key until the NeuralKey keyboard is the active one.
+    @MainActor
+    private func selectNeuralKeyKeyboard(in app: XCUIApplication) -> Bool {
+        let nextKeyboard = app.descendants(matching: .any)
+            .matching(NSPredicate(format: "label ==[c] %@", "Next keyboard"))
+            .firstMatch
+        for _ in 0..<5 {
+            if key("q", in: app).waitForExistence(timeout: 2) {
+                return true
+            }
+            guard nextKeyboard.waitForExistence(timeout: Timing.transitionTimeout) else {
+                print("Next keyboard key not found:\n\(app.debugDescription)")
+                return false
+            }
+            nextKeyboard.tap()
+        }
+        let found = key("q", in: app).waitForExistence(timeout: Timing.transitionTimeout)
+        if !found {
+            print("NeuralKey keyboard keys not found:\n\(app.debugDescription)")
+        }
+        return found
+    }
+
+    @MainActor
+    private func openKeyboardSettings(in settings: XCUIApplication) {
+        if settings.switches["Neural Key"].waitForExistence(timeout: 3) {
+            return
+        }
+        let keyboards = labelled("Keyboards", in: settings)
+        if !keyboards.waitForExistence(timeout: Timing.transitionTimeout) {
+            // Settings opened on its root page: go to Apps › NeuralKey instead.
+            print("Settings did not open the NeuralKey page:\n\(settings.debugDescription)")
+            openAppPage(in: settings)
+        }
+        guard keyboards.waitForExistence(timeout: Timing.launchTimeout) else {
+            print("Keyboards row not found:\n\(settings.debugDescription)")
+            XCTFail("Keyboards row is missing in NeuralKey settings")
+            return
+        }
+        keyboards.tap()
+    }
+
+    @MainActor
+    private func openAppPage(in settings: XCUIApplication) {
+        let apps = labelled("Apps", in: settings)
+        for _ in 0..<6 where !(apps.exists && apps.isHittable) {
+            settings.swipeUp()
+        }
+        guard apps.exists else { return }
+        apps.tap()
+        let appRow = labelled("Neural Key", in: settings)
+        for _ in 0..<8 where !(appRow.exists && appRow.isHittable) {
+            settings.swipeUp()
+        }
+        if appRow.exists {
+            appRow.tap()
+        }
+    }
+
+    @MainActor
+    private func labelled(_ label: String, in settings: XCUIApplication) -> XCUIElement {
+        settings.descendants(matching: .any)
+            .matching(NSPredicate(format: "label == %@ AND elementType != %@", label, NSNumber(value: XCUIElement.ElementType.switch.rawValue)))
+            .firstMatch
+    }
+
+    @MainActor
+    private func turnOn(_ toggle: XCUIElement) {
+        guard switchIsOn(toggle) != true else { return }
+        toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.92, dy: 0.5)).tap()
+    }
+
+    @MainActor
+    private func waitUntilOn(_ toggle: XCUIElement) -> Bool {
+        let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == '1'"), object: toggle)
+        return XCTWaiter.wait(for: [expectation], timeout: Timing.transitionTimeout) == .completed
+    }
+
+    @MainActor
+    private func switchIsOn(_ element: XCUIElement) -> Bool? {
+        guard let value = element.value as? String else { return nil }
+        return value == "1"
+    }
+
+    @MainActor
     private func key(_ character: String, in app: XCUIApplication) -> XCUIElement {
         keyElement("key." + character, in: app)
     }
@@ -398,6 +1067,26 @@ final class ScreenCaptureTests: XCTestCase {
         for character in characters {
             key(String(character).lowercased(), in: app).tap()
         }
+    }
+
+    @MainActor
+    private func suggestion(_ text: String, in app: XCUIApplication) -> XCUIElement {
+        app.buttons
+            .matching(NSPredicate(format: "identifier BEGINSWITH %@ AND label == %@", "keyboard.suggestion.", text))
+            .firstMatch
+    }
+
+    @MainActor
+    private func suggestionLabels(in app: XCUIApplication) -> [String] {
+        (0..<3).map { app.buttons["keyboard.suggestion.\($0)"].label }
+    }
+
+    /// The app with the Home headline frozen on its first phrase, so screenshots are stable.
+    @MainActor
+    private func makeApp() -> XCUIApplication {
+        let app = XCUIApplication()
+        app.launchArguments += ["-NKFreezeHomeHeadline", "YES"]
+        return app
     }
 
     @MainActor

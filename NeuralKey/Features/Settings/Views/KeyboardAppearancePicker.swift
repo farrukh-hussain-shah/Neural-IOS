@@ -14,6 +14,7 @@ struct KeyboardAppearancePicker: View {
                     VStack(spacing: Layout.tileToLabel) {
                         AppearanceTile(appearance: appearance, isSelected: isSelected)
                         Text(appearance.title)
+                            .singleLineLabel()
                             .textStyle(.settingsTileLabel)
                             .foregroundStyle(isSelected ? AppColor.royal : AppColor.settingsSecondary)
                             .shadow(color: isSelected ? AppColor.royal.opacity(0.5) : .clear, radius: Layout.labelGlow)

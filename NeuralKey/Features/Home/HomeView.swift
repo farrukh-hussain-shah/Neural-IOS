@@ -6,11 +6,17 @@ struct HomeView: View {
 
     @State private var viewModel = HomeViewModel()
     @State private var keyboardPresenter = InAppKeyboardPresenter()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         content
             .background { HomeBackground() }
             .inAppKeyboardHost(keyboardPresenter)
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active {
+                    viewModel.refreshSetupStatus()
+                }
+            }
     }
 
     private var content: some View {
@@ -70,11 +76,17 @@ struct HomeView: View {
         static let bottomPadding: CGFloat = 24.narrowScaled
     }
 
+    private var headlineRotates: Bool {
+        #if DEBUG
+        !LaunchOverrides.freezesHomeHeadline
+        #else
+        true
+        #endif
+    }
+
     private var hero: some View {
         VStack(alignment: .leading, spacing: Layout.titleToSubtitle) {
-            (Text("NeuralBoard ") + Text("AI").foregroundStyle(AppColor.royal))
-                .textStyle(.homeTitle)
-                .foregroundStyle(AppColor.textPrimary)
+            HomeHeadline(rotates: headlineRotates)
                 .accessibilityAddTraits(.isHeader)
                 .accessibilityIdentifier(AccessibilityID.homeTitle)
             Text("Smart Typing. AI Powered.\nPerfectly Personalized.")

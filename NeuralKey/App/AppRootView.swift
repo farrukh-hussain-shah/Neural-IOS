@@ -15,7 +15,7 @@ struct AppRootView: View {
                 LanguageSelectionView(store: languageStore, onDone: router.completeLanguageSelection)
                     .transition(.asymmetric(insertion: .opacity, removal: .move(edge: .leading)))
             case .onboarding(let step):
-                OnboardingView(step: step, onContinue: router.continueOnboarding)
+                OnboardingView(step: step, onContinue: router.continueOnboarding, onFinish: router.finishOnboarding)
                     .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
             case .home:
                 ZStack {
@@ -23,6 +23,7 @@ struct AppRootView: View {
                     if router.isSettingsPresented {
                         SettingsDrawer(
                             store: settingsStore,
+                            languageStore: languageStore,
                             onUpgrade: router.presentPremium,
                             onClose: router.dismissSettings
                         )
@@ -35,6 +36,7 @@ struct AppRootView: View {
                 .fullScreenCover(isPresented: $router.isPremiumPresented) {
                         PremiumView(onClose: router.dismissPremium)
                             .preferredColorScheme(.dark)
+                            .appLanguage(languageStore.selectedLanguage)
                     }
             }
         }
@@ -42,6 +44,7 @@ struct AppRootView: View {
         .background(AppColor.onboardingBackground.ignoresSafeArea())
         .environment(languageStore)
         .environment(settingsStore)
+        .appLanguage(languageStore.selectedLanguage)
         .preferredColorScheme(.dark)
     }
 

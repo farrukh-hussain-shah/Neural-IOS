@@ -44,7 +44,7 @@ struct HomeHeader: View {
         static let logoCornerRadius: CGFloat = 7.narrowScaled
         static let logoGlowOpacity: Double = 0.55
         static let logoGlowRadius: CGFloat = 7.narrowScaled
-        static let logoToName: CGFloat = 20.5.narrowScaled
+        static let logoToName: CGFloat = 8.narrowScaled
         static let premiumSize: CGFloat = 30.narrowScaled
         static let premiumIconSize: CGFloat = 14.narrowScaled
         static let menuSize: CGFloat = 32.narrowScaled
