@@ -104,8 +104,7 @@ final class ScreenCaptureTests: XCTestCase {
         assertExclusiveSelection(Self.persistedLanguage, among: Self.languages, prefix: Identifier.languageOptionPrefix, in: app)
         element(Identifier.languageDone, in: app).tap()
         XCTAssertTrue(
-            element(Identifier.pageIndicator, label: Self.firstOnboardingPage, in: app)
-                .waitForExistence(timeout: Timing.transitionTimeout),
+            element(Identifier.pageIndicator, in: app).waitForExistence(timeout: Timing.transitionTimeout),
             "Onboarding did not follow language selection"
         )
         app.terminate()
@@ -289,6 +288,83 @@ final class ScreenCaptureTests: XCTestCase {
         XCTAssertTrue(element(Identifier.homeTitle, in: app).exists, "Home is not visible after closing Settings")
         settle()
         capture("12-home-after-settings")
+    }
+
+    /// Every screen in each language other than English (English is covered, and compared with
+    /// the designs, by tests 01–05). Captures are named `l10n-<language>-<screen>`.
+    @MainActor
+    func test14Localization() {
+        for language in Self.languages where language != Self.defaultLanguage {
+            let splash = XCUIApplication()
+            splash.launchArguments += ["-NKSelectedLanguage", language, "-NKSplashFrozenProgress", Self.designSplashProgress]
+            splash.launch()
+            XCTAssertTrue(
+                element(Identifier.splashBrand, in: splash).waitForExistence(timeout: Timing.launchTimeout),
+                "Splash screen did not appear in \(language)"
+            )
+            settle()
+            capture("l10n-\(language)-1-splash")
+            splash.terminate()
+
+            let app = XCUIApplication()
+            app.launchArguments += [
+                "-NKSelectedLanguage", language, "-NKInitialRoute", "language",
+                "-NKSkipKeyboardSetup", "YES", "-NKResetPreferences", "YES"
+            ]
+            app.launch()
+            let done = element(Identifier.languageDone, in: app)
+            XCTAssertTrue(done.waitForExistence(timeout: Timing.launchTimeout), "Language screen did not appear in \(language)")
+            settle()
+            capture("l10n-\(language)-2-language")
+            done.tap()
+
+            for (index, page) in ["3-welcome", "4-add-keyboard", "5-full-access"].enumerated() {
+                let indicator = element(Identifier.pageIndicator, in: app)
+                XCTAssertTrue(indicator.waitForExistence(timeout: Timing.transitionTimeout), "Onboarding did not appear in \(language)")
+                let primaryAction = element(Identifier.primaryAction, in: app)
+                XCTAssertTrue(primaryAction.waitForExistence(timeout: Timing.transitionTimeout))
+                settle()
+                capture("l10n-\(language)-\(page)")
+                print("Onboarding page \(index + 1) in \(language): \(indicator.label)")
+                primaryAction.tap()
+            }
+
+            XCTAssertTrue(
+                element(Identifier.homeTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+                "Home did not appear in \(language)"
+            )
+            settle()
+            capture("l10n-\(language)-6-home")
+
+            element(Identifier.menuButton, in: app).tap()
+            XCTAssertTrue(
+                element(Identifier.settingsTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+                "Settings did not open in \(language)"
+            )
+            settle()
+            capture("l10n-\(language)-7-settings")
+
+            element(Identifier.settingsToneAdjustment, in: app).tap()
+            XCTAssertTrue(
+                element(Identifier.tonesTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+                "AI Tones did not open in \(language)"
+            )
+            settle()
+            capture("l10n-\(language)-8-ai-tones")
+            element(Identifier.tonesBack, in: app).tap()
+            XCTAssertTrue(waitForDisappearance(of: element(Identifier.tonesTitle, in: app)), "Back did not close AI Tones")
+            app.swipeRight()
+            XCTAssertTrue(waitForDisappearance(of: element(Identifier.settingsTitle, in: app)), "Settings did not close")
+
+            element(Identifier.premiumButton, in: app).tap()
+            XCTAssertTrue(
+                element(Identifier.premiumTitle, in: app).waitForExistence(timeout: Timing.transitionTimeout),
+                "Premium did not open in \(language)"
+            )
+            settle()
+            capture("l10n-\(language)-9-premium")
+            app.terminate()
+        }
     }
 
     @MainActor

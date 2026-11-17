@@ -66,6 +66,8 @@ struct LanguageSelectionView: View {
         Button(action: onDone) {
             Text("Done")
                 .textStyle(.languageDone)
+                .singleLineLabel(minimumScale: 0.7)
+                .padding(.horizontal, Layout.doneTextInset)
                 .foregroundStyle(AppColor.textPrimary)
                 .frame(width: Layout.doneSize.width, height: Layout.doneSize.height)
                 .background(RoundedRectangle(cornerRadius: Layout.doneCornerRadius).fill(AppGradient.brand))
@@ -75,6 +77,7 @@ struct LanguageSelectionView: View {
     }
 
     private enum Layout {
+        static let doneTextInset: CGFloat = 4.compactScaled
         static let headerDesignTop: CGFloat = 49
         static let horizontalMargin: CGFloat = 20.compactScaled
         static let titleTop: CGFloat = 1.compactScaled

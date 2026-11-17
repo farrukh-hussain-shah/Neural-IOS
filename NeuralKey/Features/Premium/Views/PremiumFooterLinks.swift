@@ -27,6 +27,7 @@ struct PremiumFooterLinks: View {
             Text(title)
                 .underline()
                 .textStyle(.premiumLink)
+                .singleLineLabel()
                 .foregroundStyle(AppColor.premiumTextSecondary)
         }
         .buttonStyle(.pressable)

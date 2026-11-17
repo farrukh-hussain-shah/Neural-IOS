@@ -35,6 +35,7 @@ struct AppRootView: View {
                 .fullScreenCover(isPresented: $router.isPremiumPresented) {
                         PremiumView(onClose: router.dismissPremium)
                             .preferredColorScheme(.dark)
+                            .appLanguage(languageStore.selectedLanguage)
                     }
             }
         }
@@ -42,6 +43,7 @@ struct AppRootView: View {
         .background(AppColor.onboardingBackground.ignoresSafeArea())
         .environment(languageStore)
         .environment(settingsStore)
+        .appLanguage(languageStore.selectedLanguage)
         .preferredColorScheme(.dark)
     }
 

@@ -142,6 +142,7 @@ private struct RewritesFooter: View {
                 HStack(spacing: RowLayout.chipTextToBadge) {
                     Text("Get More")
                         .textStyle(.chip)
+                        .singleLineLabel()
                     AdMark()
                 }
                 .foregroundStyle(AppColor.textPrimary)

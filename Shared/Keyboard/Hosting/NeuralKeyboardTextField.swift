@@ -21,13 +21,9 @@ struct NeuralKeyboardTextField: UIViewRepresentable {
         field.font = AppTextStyle.input.uiFont
         field.textColor = .white
         field.tintColor = UIColor(AppColor.royal)
-        field.attributedPlaceholder = NSAttributedString(
-            string: placeholder,
-            attributes: [
-                .foregroundColor: UIColor(AppColor.textPlaceholder),
-                .font: AppTextStyle.input.uiFont
-            ]
-        )
+        field.semanticContentAttribute = .forceLeftToRight
+        field.textAlignment = .left
+        setPlaceholder(on: field)
         field.autocorrectionType = .no
         field.spellCheckingType = .no
         field.smartQuotesType = .no
@@ -66,6 +62,19 @@ struct NeuralKeyboardTextField: UIViewRepresentable {
         if field.text != text {
             field.text = text
         }
+        if field.attributedPlaceholder?.string != placeholder {
+            setPlaceholder(on: field)
+        }
+    }
+
+    private func setPlaceholder(on field: UITextField) {
+        field.attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [
+                .foregroundColor: UIColor(AppColor.textPlaceholder),
+                .font: AppTextStyle.input.uiFont
+            ]
+        )
     }
 
     @MainActor

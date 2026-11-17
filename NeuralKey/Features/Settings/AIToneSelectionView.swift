@@ -117,6 +117,7 @@ struct AIToneSelectionView: View {
         } label: {
             Text("Update")
                 .textStyle(.tonesAction)
+                .singleLineLabel()
                 .foregroundStyle(AppColor.textPrimary)
                 .frame(maxWidth: .infinity)
                 .frame(height: Layout.updateHeight)

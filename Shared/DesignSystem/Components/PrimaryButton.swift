@@ -35,6 +35,7 @@ struct PrimaryButton: View {
             HStack(spacing: AppSpacing.s10) {
                 Text(title)
                     .textStyle(style.textStyle)
+                    .singleLineLabel()
                     .offset(y: style.titleBaselineNudge)
                 if let trailingIcon {
                     Image(trailingIcon)
@@ -44,6 +45,7 @@ struct PrimaryButton: View {
                 }
             }
             .foregroundStyle(AppColor.textPrimary)
+            .padding(.horizontal, AppSpacing.s16)
             .frame(maxWidth: .infinity)
             .frame(height: style.height)
             .background(RoundedRectangle(cornerRadius: style.cornerRadius).fill(style.background))

@@ -49,6 +49,7 @@ struct NativeAdBanner: View {
             Button(action: onAction) {
                 Text(ad.actionTitle)
                     .textStyle(.adAction)
+                    .singleLineLabel()
                     .foregroundStyle(AppColor.textPrimary)
                     .frame(maxWidth: .infinity)
                     .frame(height: Layout.actionHeight)

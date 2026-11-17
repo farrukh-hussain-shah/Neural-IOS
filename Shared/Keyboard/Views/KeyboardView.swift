@@ -18,6 +18,7 @@ struct KeyboardView: View {
         .background(panel)
         .ignoresSafeArea()
         .environment(\.colorScheme, controller.isDarkAppearance ? .dark : .light)
+        .environment(\.layoutDirection, .leftToRight)
     }
 
     @ViewBuilder

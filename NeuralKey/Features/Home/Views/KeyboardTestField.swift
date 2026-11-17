@@ -5,6 +5,7 @@ struct KeyboardTestField: View {
 
     @Environment(SettingsStore.self) private var settings: SettingsStore?
     @Environment(InAppKeyboardPresenter.self) private var keyboardPresenter: InAppKeyboardPresenter?
+    @Environment(\.locale) private var locale
 
     private var fieldShape: RoundedRectangle {
         RoundedRectangle(cornerRadius: Layout.cornerRadius)
@@ -13,7 +14,7 @@ struct KeyboardTestField: View {
     var body: some View {
         NeuralKeyboardTextField(
             text: $text,
-            placeholder: String(localized: "Type something..."),
+            placeholder: AppLocalization.string("Type something...", locale: locale),
             configuration: keyboardConfiguration,
             presenter: keyboardPresenter,
             accessibilityIdentifier: AccessibilityID.homeTestField,
