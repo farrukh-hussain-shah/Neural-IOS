@@ -52,7 +52,27 @@ final class KeyboardViewController: UIInputViewController {
         super.viewWillAppear(animated)
         KeyboardSharedState.recordFullAccess(hasFullAccess)
         updateAppearance()
+        prepareDictionaries()
         keyboardController?.textDidChange()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        PredictionService.shared.saveNow()
+    }
+
+    /// Loads the word lists the app downloaded (or newer ones since the keyboard last appeared).
+    /// If the app hasn't downloaded them yet, the keyboard downloads them itself, which it may
+    /// only do with Full Access (network access).
+    private func prepareDictionaries() {
+        let service = PredictionService.shared
+        service.prepare()
+        guard !PredictionStorage.shared.hasDownloadedDictionaries, hasFullAccess else { return }
+        Task {
+            if await DictionaryDownloader.shared.refreshIfNeeded() {
+                service.prepare()
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

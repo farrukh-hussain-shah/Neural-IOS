@@ -43,6 +43,8 @@ final class ScreenCaptureTests: XCTestCase {
         static let keyHold: TimeInterval = 0.2
         static let popupHold: TimeInterval = 8
         static let hostTimeout: TimeInterval = 20
+        /// Downloading and loading the word lists after launch.
+        static let dictionaryTimeout: TimeInterval = 90
     }
 
     private static let designSplashProgress = "0.88"
@@ -580,6 +582,47 @@ final class ScreenCaptureTests: XCTestCase {
         capture("45-touch-areas")
     }
 
+    /// Word prediction in the in-app keyboard, from the word lists the app downloads at launch:
+    /// a SymSpell correction ("helo" → "Hello"), next-word suggestions after a space, and a new
+    /// word learned after it is typed twice.
+    @MainActor
+    func test13WordPrediction() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-NKInitialRoute", "home"]
+        app.launch()
+        let field = app.textFields[Identifier.testField]
+        XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        field.tap()
+        XCTAssertTrue(key("q", in: app).waitForExistence(timeout: Timing.transitionTimeout), "In-app keyboard did not appear")
+
+        type("helo", in: app)
+        let correction = suggestion("Hello", in: app)
+        XCTAssertTrue(
+            correction.waitForExistence(timeout: Timing.dictionaryTimeout),
+            "\"Helo\" should offer \"Hello\" once the word lists are downloaded; suggestions: \(suggestionLabels(in: app))"
+        )
+        settle()
+        capture("46-prediction-correction")
+        correction.tap()
+        assertFieldText(field, equals: "Hello ")
+        print("Next words after \"Hello\": \(suggestionLabels(in: app))")
+        XCTAssertFalse(app.buttons["keyboard.suggestion.0"].label.isEmpty, "A next word should be suggested after a space")
+        settle()
+        capture("47-prediction-next-word")
+
+        for _ in 0..<2 {
+            type("zorvak", in: app)
+            keyElement("key.space", in: app).tap()
+        }
+        type("zorv", in: app)
+        XCTAssertTrue(
+            suggestion("zorvak", in: app).waitForExistence(timeout: Timing.transitionTimeout),
+            "A word typed twice should be learned; suggestions: \(suggestionLabels(in: app))"
+        )
+        settle()
+        capture("48-prediction-learned-word")
+    }
+
     /// Captures the NeuralKey keyboard in the design's state (lowercase, default suggestions)
     /// in light mode, compared with Keyboard Designs/Defaulta.svg and Defaultb.svg, and dark mode.
     @MainActor
@@ -876,6 +919,18 @@ final class ScreenCaptureTests: XCTestCase {
         for character in characters {
             key(String(character).lowercased(), in: app).tap()
         }
+    }
+
+    @MainActor
+    private func suggestion(_ text: String, in app: XCUIApplication) -> XCUIElement {
+        app.buttons
+            .matching(NSPredicate(format: "identifier BEGINSWITH %@ AND label == %@", "keyboard.suggestion.", text))
+            .firstMatch
+    }
+
+    @MainActor
+    private func suggestionLabels(in app: XCUIApplication) -> [String] {
+        (0..<3).map { app.buttons["keyboard.suggestion.\($0)"].label }
     }
 
     @MainActor

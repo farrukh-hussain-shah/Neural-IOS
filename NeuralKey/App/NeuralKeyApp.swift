@@ -4,6 +4,7 @@ import SwiftUI
 struct NeuralKeyApp: App {
     init() {
         FontRegistrar.registerBundledFonts()
+        DictionarySync.start()
     }
 
     var body: some Scene {

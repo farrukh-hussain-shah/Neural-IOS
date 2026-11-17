@@ -19,7 +19,7 @@ env:
   SCHEME: NeuralKey
   OUTPUT_DIR: ${{ github.workspace }}/simulator-captures
   CAPTURES_BRANCH: simulator-captures
-  CAPTURE_TESTS: NeuralKeyUITests/ScreenCaptureTests/test08KeyboardSetupThroughSettings,NeuralKeyUITests/ScreenCaptureTests/test09NeuralKeyKeyboardExtension,NeuralKeyUITests/ScreenCaptureTests/test10KeyboardTour,NeuralKeyUITests/ScreenCaptureTests/test11ExtensionMatchesDesign,NeuralKeyUITests/ScreenCaptureTests/test12KeyTouchAreasCoverGaps,NeuralKeyUITests/ScreenCaptureTests/test06InAppKeyboard
+  CAPTURE_TESTS: NeuralKeyUITests/ScreenCaptureTests/test08KeyboardSetupThroughSettings,NeuralKeyUITests/ScreenCaptureTests/test09NeuralKeyKeyboardExtension,NeuralKeyUITests/ScreenCaptureTests/test10KeyboardTour,NeuralKeyUITests/ScreenCaptureTests/test11ExtensionMatchesDesign,NeuralKeyUITests/ScreenCaptureTests/test12KeyTouchAreasCoverGaps,NeuralKeyUITests/ScreenCaptureTests/test13WordPrediction,NeuralKeyUITests/ScreenCaptureTests/test06InAppKeyboard
   RECORD_VIDEO: "false"
 
 jobs:

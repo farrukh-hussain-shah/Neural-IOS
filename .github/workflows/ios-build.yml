@@ -47,6 +47,9 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             | tee "$RUNNER_TEMP/xcodebuild.log"
 
+      - name: Check word prediction
+        run: bash scripts/ci/check_prediction.sh
+
       - name: Upload build log
         if: failure()
         uses: actions/upload-artifact@v7

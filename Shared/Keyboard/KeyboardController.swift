@@ -28,12 +28,32 @@ final class KeyboardController {
     @ObservationIgnored private var lastShiftTap: Date?
     @ObservationIgnored private var lastSpaceInsert: Date?
     @ObservationIgnored private var backspaceTask: Task<Void, Never>?
+    @ObservationIgnored private var dictionaryObserver: NSObjectProtocol?
+    private let prediction: PredictionService
     private let haptics = UIImpactFeedbackGenerator(style: .light)
 
-    init(configuration: KeyboardConfiguration) {
+    init(configuration: KeyboardConfiguration, prediction: PredictionService = .shared) {
         self.configuration = configuration
+        self.prediction = prediction
         playsHaptics = configuration.playsHaptics
         layer = configuration.type == .phonePad ? .phoneDigits : .letters
+        guard configuration.showsSuggestions else { return }
+        prediction.prepare()
+        dictionaryObserver = NotificationCenter.default.addObserver(
+            forName: .predictionDictionariesDidLoad,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated {
+                self?.updateSuggestions()
+            }
+        }
+    }
+
+    deinit {
+        if let dictionaryObserver {
+            NotificationCenter.default.removeObserver(dictionaryObserver)
+        }
     }
 
     var rows: [KeyboardRow] {
@@ -71,9 +91,10 @@ final class KeyboardController {
     func select(_ suggestion: KeyboardSuggestion) {
         guard let textInput else { return }
         feedback()
-        let current = SuggestionProvider.currentWord(in: textInput.textBeforeCursor)
-        current.forEach { _ in textInput.deleteBackward() }
+        let context = TextContext(textBeforeCursor: textInput.textBeforeCursor)
+        context.currentWord.forEach { _ in textInput.deleteBackward() }
         textInput.insertText(suggestion.text + " ")
+        learn(suggestion.text, in: context, source: suggestion.kind == .verbatim ? .keptTypedWord : .selectedSuggestion)
         textDidChange()
     }
 
@@ -94,6 +115,7 @@ final class KeyboardController {
                 updateAutoCapitalization()
             }
         case .returnKey:
+            learnTypedWord()
             textInput?.performReturn()
             textDidChange()
         case .nextKeyboard:
@@ -106,6 +128,9 @@ final class KeyboardController {
     private func insertCharacter(_ value: String) {
         guard let textInput else { return }
         let text = layer == .letters && isUppercase ? value.uppercased() : value
+        if Self.wordEndingPunctuation.contains(value) {
+            learnTypedWord()
+        }
         textInput.insertText(text)
         if shift == .on {
             shift = .off
@@ -119,6 +144,7 @@ final class KeyboardController {
 
     private func insertSpace() {
         guard let textInput else { return }
+        learnTypedWord()
         let before = textInput.textBeforeCursor
         if let lastSpaceInsert,
            Date().timeIntervalSince(lastSpaceInsert) < Timing.doubleSpaceInterval,
@@ -162,7 +188,20 @@ final class KeyboardController {
             suggestions = []
             return
         }
-        suggestions = SuggestionProvider.suggestions(forTextBeforeCursor: textInput.textBeforeCursor)
+        suggestions = SuggestionProvider.suggestions(forTextBeforeCursor: textInput.textBeforeCursor, service: prediction)
+    }
+
+    /// Teaches the keyboard the word just finished by a space, return or punctuation.
+    private func learnTypedWord() {
+        guard let textInput else { return }
+        let context = TextContext(textBeforeCursor: textInput.textBeforeCursor)
+        guard !context.currentWord.isEmpty else { return }
+        learn(context.currentWord, in: context, source: .typed)
+    }
+
+    private func learn(_ word: String, in context: TextContext, source: LearningSource) {
+        guard configuration.showsSuggestions else { return }
+        prediction.learn(word, context: context, source: source)
     }
 
     private func beginBackspace() {
@@ -206,6 +245,9 @@ final class KeyboardController {
             haptics.impactOccurred()
         }
     }
+
+    /// Punctuation that ends the word before it, so that word is learned.
+    private static let wordEndingPunctuation: Set<String> = [".", ",", "!", "?", ";", ":"]
 
     static func startsSentence(_ text: String) -> Bool {
         let trimmed = text.replacingOccurrences(of: " ", with: "")
