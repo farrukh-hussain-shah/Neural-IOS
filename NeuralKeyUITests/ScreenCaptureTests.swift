@@ -1177,6 +1177,7 @@ final class ScreenCaptureTests: XCTestCase {
             if key("q", in: app).waitForExistence(timeout: 2) {
                 return true
             }
+            dismissKeyboardIntro(in: app)
             guard nextKeyboard.waitForExistence(timeout: Timing.transitionTimeout) else {
                 print("Next keyboard key not found:\n\(app.debugDescription)")
                 return false
@@ -1188,6 +1189,19 @@ final class ScreenCaptureTests: XCTestCase {
             print("NeuralKey keyboard keys not found:\n\(app.debugDescription)")
         }
         return found
+    }
+
+    /// On a fresh simulator, iOS covers the first system keyboard with a "slide to type" intro
+    /// whose Continue button must be tapped before the globe key responds.
+    @MainActor
+    private func dismissKeyboardIntro(in app: XCUIApplication) {
+        let intro = app.descendants(matching: .any)["UIContinuousPathIntroductionView"]
+        guard intro.exists else { return }
+        let continueButton = intro.buttons["Continue"]
+        if continueButton.exists {
+            continueButton.tap()
+            _ = waitForDisappearance(of: intro)
+        }
     }
 
     @MainActor
