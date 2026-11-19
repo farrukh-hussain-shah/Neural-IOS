@@ -51,6 +51,7 @@ final class KeyboardViewController: UIInputViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         KeyboardSharedState.recordFullAccess(hasFullAccess)
+        keyboardController?.hasNetworkAccess = hasFullAccess
         updateAppearance()
         prepareDictionaries()
         keyboardController?.textDidChange()
@@ -131,8 +132,21 @@ final class DocumentProxyKeyboardInput: KeyboardTextInput {
         proxy?.documentContextBeforeInput ?? ""
     }
 
+    var textAfterCursor: String {
+        proxy?.documentContextAfterInput ?? ""
+    }
+
     var hasText: Bool {
         proxy?.hasText ?? false
+    }
+
+    func replace(charactersBefore before: Int, charactersAfter after: Int, with text: String) {
+        guard let proxy else { return }
+        if after > 0 {
+            proxy.adjustTextPosition(byCharacterOffset: after)
+        }
+        (0..<(before + after)).forEach { _ in proxy.deleteBackward() }
+        proxy.insertText(text)
     }
 
     func insertText(_ text: String) {

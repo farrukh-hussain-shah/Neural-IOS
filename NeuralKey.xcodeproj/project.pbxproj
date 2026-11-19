@@ -42,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E4B00000000000000000040 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		4E4B00000000000000000001 /* NeuralKey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeuralKey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4B00000000000000000011 /* NeuralKeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuralKeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4B00000000000000000021 /* NeuralKeyKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NeuralKeyKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +119,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E4B00000000000000000041 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				4E4B00000000000000000040 /* Base.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		4E4B00000000000000000004 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +134,7 @@
 				4E4B00000000000000000031 /* Shared */,
 				4E4B00000000000000000022 /* NeuralKeyKeyboard */,
 				4E4B00000000000000000012 /* NeuralKeyUITests */,
+				4E4B00000000000000000041 /* Config */,
 				4E4B00000000000000000005 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -326,6 +336,7 @@
 /* Begin XCBuildConfiguration section */
 		4E4B0000000000000000000D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E4B00000000000000000040 /* Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
@@ -389,6 +400,7 @@
 		};
 		4E4B0000000000000000000E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E4B00000000000000000040 /* Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;

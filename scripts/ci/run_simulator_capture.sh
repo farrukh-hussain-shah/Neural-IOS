@@ -110,6 +110,7 @@ xcodebuild build-for-testing \
   -destination "id=$UDID" \
   -derivedDataPath "$DERIVED_DATA" \
   CODE_SIGNING_ALLOWED=NO \
+  GEMINI_API_KEY="${GEMINI_API_KEY:-}" \
   2>&1 | tee "$OUTPUT_DIR/logs/build-for-testing.log"
 
 # The simulator only registers app extensions that carry a signature, so the

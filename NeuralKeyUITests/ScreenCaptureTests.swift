@@ -435,6 +435,118 @@ final class ScreenCaptureTests: XCTestCase {
         }
     }
 
+    /// The keyboard toolbar and the Improve panel with canned answers (no network): toolbar on an
+    /// empty field, the suggestions row while typing, shimmer while loading, three options,
+    /// switching tone and language, and putting an option in the field.
+    @MainActor
+    func test17ImproveFlow() {
+        let app = makeApp()
+        app.launchArguments += ["-NKInitialRoute", "home", "-NKPreviewRewrites", "YES", "-NKSelectedLanguage", Self.defaultLanguage]
+        app.launch()
+        let field = app.textFields[Identifier.testField]
+        XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        field.tap()
+
+        let toolbarImprove = app.buttons["keyboard.toolbar.improve"]
+        XCTAssertTrue(toolbarImprove.waitForExistence(timeout: Timing.transitionTimeout), "The toolbar should show on an empty field")
+        for id in ["translate", "mic", "clipboard", "settings"] {
+            XCTAssertTrue(app.buttons["keyboard.toolbar.\(id)"].exists, "Toolbar button \(id) is missing")
+        }
+        settle()
+        capture("54-keyboard-toolbar")
+
+        type("hello", in: app)
+        keyElement("key.space", in: app).tap()
+        type("there", in: app)
+        let suggestionsImprove = app.buttons["keyboard.suggestions.improve"]
+        XCTAssertTrue(suggestionsImprove.waitForExistence(timeout: Timing.transitionTimeout), "Typing should show the suggestions row")
+        XCTAssertFalse(toolbarImprove.exists, "The toolbar should give way to suggestions while typing")
+        settle()
+        capture("55-keyboard-suggestions-row")
+
+        suggestionsImprove.tap()
+        XCTAssertTrue(
+            element("keyboard.improve.loading", in: app).waitForExistence(timeout: Timing.transitionTimeout),
+            "Improve should shimmer while the options load"
+        )
+        capture("56-improve-loading")
+        let firstOption = app.buttons["keyboard.improve.option.1"]
+        XCTAssertTrue(firstOption.waitForExistence(timeout: Timing.transitionTimeout), "Improve options did not appear")
+        XCTAssertTrue(firstOption.label.contains("Improve option 1: Hello there"), "Unexpected option: \(firstOption.label)")
+        XCTAssertTrue(app.buttons["keyboard.improve.option.3"].exists, "Improve should show three options")
+        settle()
+        capture("57-improve-options")
+
+        app.buttons["keyboard.improve.tone.rephrase"].tap()
+        XCTAssertTrue(
+            element("keyboard.improve.loading", in: app).waitForExistence(timeout: Timing.transitionTimeout),
+            "Changing the tone should load new options"
+        )
+        XCTAssertTrue(
+            app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Rephrase option 1")).firstMatch
+                .waitForExistence(timeout: Timing.transitionTimeout),
+            "Rephrase options did not appear"
+        )
+
+        app.buttons["keyboard.improve.language"].tap()
+        let spanish = app.buttons["keyboard.improve.languages.es-ES"]
+        XCTAssertTrue(spanish.waitForExistence(timeout: Timing.transitionTimeout), "The language list did not open")
+        settle()
+        capture("58-improve-languages")
+        spanish.tap()
+        XCTAssertTrue(app.buttons["keyboard.improve.language"].waitForExistence(timeout: Timing.transitionTimeout))
+        XCTAssertEqual(app.buttons["keyboard.improve.language"].label.contains("Spanish"), true, "The language button should show Spanish")
+        XCTAssertTrue(app.buttons["keyboard.improve.option.2"].waitForExistence(timeout: Timing.transitionTimeout), "Options did not reload")
+        app.buttons["keyboard.improve.language"].tap()
+        app.buttons["keyboard.improve.languages.en-US"].tap()
+
+        let second = app.buttons["keyboard.improve.option.2"]
+        XCTAssertTrue(second.waitForExistence(timeout: Timing.transitionTimeout))
+        second.tap()
+        XCTAssertTrue(waitForDisappearance(of: element("keyboard.improve", in: app)), "Picking an option should close Improve")
+        assertFieldText(field, equals: "Rephrase option 2: Hello there")
+        settle()
+        capture("59-improve-applied")
+    }
+
+    /// Improve with the real Gemini API. Skipped when the build has no API key.
+    @MainActor
+    func test18ImproveLive() throws {
+        let app = makeApp()
+        app.launchArguments += ["-NKInitialRoute", "home", "-NKSelectedLanguage", Self.defaultLanguage]
+        app.launch()
+        let field = app.textFields[Identifier.testField]
+        XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        field.tap()
+        type("hey", in: app)
+        keyElement("key.space", in: app).tap()
+        for word in ["how", "r", "u", "wanna", "meet", "tmrw"] {
+            type(word, in: app)
+            keyElement("key.space", in: app).tap()
+        }
+        app.buttons["keyboard.suggestions.improve"].tap()
+
+        let message = element("keyboard.improve.message", in: app)
+        let firstOption = app.buttons["keyboard.improve.option.1"]
+        let deadline = Date().addingTimeInterval(40)
+        while Date() < deadline, !firstOption.exists, !message.exists {
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+        if message.exists {
+            capture("60-improve-live-message")
+            if message.label.contains("not configured") {
+                throw XCTSkip("No Gemini API key in this build: \(message.label)")
+            }
+            XCTFail("Gemini returned an error: \(message.label)")
+            return
+        }
+        XCTAssertTrue(firstOption.exists, "Gemini did not answer within 40 seconds")
+        XCTAssertTrue(app.buttons["keyboard.improve.option.3"].exists, "Gemini should give three options")
+        print("Gemini options: \((1...3).map { app.buttons["keyboard.improve.option.\($0)"].label })")
+        settle()
+        capture("60-improve-live")
+    }
+
     @MainActor
     func test06InAppKeyboard() {
         let app = makeApp()

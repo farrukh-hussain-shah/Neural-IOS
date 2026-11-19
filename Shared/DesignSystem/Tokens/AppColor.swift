@@ -135,6 +135,18 @@ enum AppColor {
     static let keyboardPrimaryPressed = Color(hex: 0x0070D6)
     static let keyboardSuggestion = Color(light: 0x000000, dark: 0xFFFFFF)
     static let keyboardDivider = Color(light: 0x000000, lightOpacity: 0.18, dark: 0xFFFFFF, darkOpacity: 0.18)
+
+    // Keyboard glass (toolbar, Improve panel): translucent surfaces over iOS's keyboard glass,
+    // from Neural Key IOS Keyboard SVG (light: white 50% on #DADADA, dark: white 13% on #181818).
+    static let keyboardGlass = Color(light: 0xFFFFFF, lightOpacity: 0.5, dark: 0xFFFFFF, darkOpacity: 0.13)
+    static let keyboardGlassText = Color(light: 0x000000, dark: 0xE6E6E6)
+    static let keyboardGlassSecondaryText = Color(light: 0x3C3C43, lightOpacity: 0.62, dark: 0x949494)
+    static let keyboardGlassIcon = Color(light: 0x3C3C43, dark: 0xE6E6E6)
+    static let keyboardGlassDivider = Color(light: 0x000000, lightOpacity: 0.1, dark: 0xFFFFFF, darkOpacity: 0.1)
+    static let keyboardShimmer = Color(light: 0xFFFFFF, lightOpacity: 0.6, dark: 0xFFFFFF, darkOpacity: 0.2)
+    static let keyboardAccent = Color(light: 0x0D59F2, dark: 0x0D59F2)
+    static let keyboardAccentText = Color(light: 0xF6F6F6, dark: 0xF6F6F6)
+    static let keyboardAccentBorder = Color(light: 0x5E8FF7, dark: 0x5E8FF7)
     static let keyboardSystemIcon = Color(light: 0x000000, lightOpacity: 0.5, dark: 0xFFFFFF, darkOpacity: 0.6)
     static let keyboardPopupShadow = Color(light: 0x000000, lightOpacity: 0.22, dark: 0x000000, darkOpacity: 0.5)
     static let keyboardPopupBorder = Color(light: 0x000000, lightOpacity: 0.08, dark: 0xFFFFFF, darkOpacity: 0.08)

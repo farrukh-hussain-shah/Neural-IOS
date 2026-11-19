@@ -11,3 +11,6 @@ build/
 .build/
 simulator-captures/
 __pycache__/
+
+# Local API keys (see Config/Base.xcconfig)
+Config/Secrets.xcconfig

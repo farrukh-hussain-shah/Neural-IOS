@@ -30,6 +30,7 @@ final class SettingsStore {
             .flatMap(KeyboardAppearance.init(rawValue:)) ?? .defaultAppearance
         selectedTones = defaults.stringArray(forKey: Key.selectedTones)
             .map { Set($0.compactMap(AITone.init(rawValue:))) } ?? AITone.defaultSelection
+        KeyboardSharedState.selectedTones = selectedTones
     }
 
     var primaryTone: AITone? {
@@ -50,5 +51,6 @@ final class SettingsStore {
     func setSelectedTones(_ tones: Set<AITone>) {
         selectedTones = tones
         defaults.set(tones.map(\.rawValue).sorted(), forKey: Key.selectedTones)
+        KeyboardSharedState.selectedTones = tones
     }
 }

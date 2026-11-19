@@ -141,8 +141,29 @@ final class TextFieldKeyboardInput: KeyboardTextInput {
         return field.text(in: range) ?? ""
     }
 
+    var textAfterCursor: String {
+        guard let field = textField else { return "" }
+        guard let selection = field.selectedTextRange,
+              let range = field.textRange(from: selection.end, to: field.endOfDocument) else {
+            return ""
+        }
+        return field.text(in: range) ?? ""
+    }
+
     var hasText: Bool {
         textField?.hasText ?? false
+    }
+
+    func replace(charactersBefore before: Int, charactersAfter after: Int, with text: String) {
+        guard let field = textField else { return }
+        // The text after the cursor runs to the end of the field, so start deleting from there.
+        if after > 0 {
+            let end = field.endOfDocument
+            field.selectedTextRange = field.textRange(from: end, to: end)
+        }
+        (0..<(before + after)).forEach { _ in field.deleteBackward() }
+        field.insertText(text)
+        onChange()
     }
 
     func insertText(_ text: String) {

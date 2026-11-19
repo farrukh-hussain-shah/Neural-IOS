@@ -9,10 +9,27 @@ struct KeyboardView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            topArea
-            rows
-            bottomArea
+            if let panel = controller.panel {
+                Group {
+                    switch panel {
+                    case .improve:
+                        ImprovePanel(controller: controller)
+                    case .improveLanguages:
+                        ImproveLanguageList(controller: controller)
+                    }
+                }
+                .frame(height: panelHeight)
+                .transition(.opacity)
+                if controller.configuration.placement != .systemKeyboard {
+                    bottomArea
+                }
+            } else {
+                topArea
+                rows
+                bottomArea
+            }
         }
+        .animation(.easeInOut(duration: 0.2), value: controller.panel)
         .frame(maxWidth: .infinity)
         .frame(height: KeyboardMetrics.height(for: controller.configuration))
         .background(panel)
@@ -26,8 +43,14 @@ struct KeyboardView: View {
         if isPhonePad {
             Color.clear.frame(height: KeyboardMetrics.phoneTopInset - KeyboardMetrics.phoneRowSpacing / 2)
         } else if controller.configuration.showsSuggestions {
-            SuggestionBar(controller: controller)
-                .frame(height: KeyboardMetrics.suggestionBarHeight - KeyboardMetrics.rowSpacing / 2)
+            Group {
+                if controller.showsToolbar {
+                    KeyboardToolbar(controller: controller)
+                } else {
+                    SuggestionBar(controller: controller)
+                }
+            }
+            .frame(height: KeyboardMetrics.suggestionBarHeight - KeyboardMetrics.rowSpacing / 2)
         } else {
             Color.clear.frame(height: KeyboardMetrics.compactTopInset - KeyboardMetrics.rowSpacing / 2)
         }
@@ -100,6 +123,13 @@ struct KeyboardView: View {
         .accessibilityLabel(Text(label))
         .accessibilityIdentifier(identifier)
         .position(x: centerX, y: KeyboardMetrics.systemIconCenterOffset - KeyboardMetrics.rowSpacing / 2)
+    }
+
+    /// The panel takes the place of the suggestion row and the keys (and, in a system keyboard,
+    /// the small inset below them).
+    private var panelHeight: CGFloat {
+        let total = KeyboardMetrics.height(for: controller.configuration)
+        return controller.configuration.placement == .systemKeyboard ? total : total - KeyboardMetrics.bottomAreaHeight
     }
 
     private var panelColor: Color {
@@ -200,6 +230,9 @@ private struct SuggestionBar: View {
 
     var body: some View {
         HStack(spacing: 0) {
+            ToolbarCircleButton(symbol: "wand.and.stars", isAccent: true, label: "Improve", identifier: "keyboard.suggestions.improve") {
+                controller.openImprove()
+            }
             ForEach(0..<SuggestionProvider.slotCount, id: \.self) { index in
                 if index > 0 {
                     Rectangle()
@@ -208,7 +241,11 @@ private struct SuggestionBar: View {
                 }
                 slot(at: index)
             }
+            ToolbarCircleButton(symbol: "xmark", isAccent: false, label: "Close", identifier: "keyboard.suggestions.close") {
+                controller.dismissSuggestions()
+            }
         }
+        .padding(.horizontal, ImproveLayout.edgeInset - 2.keyboardScaled)
         .padding(.top, KeyboardMetrics.rowSpacing / 2)
     }
 

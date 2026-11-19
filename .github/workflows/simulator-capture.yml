@@ -19,7 +19,7 @@ env:
   SCHEME: NeuralKey
   OUTPUT_DIR: ${{ github.workspace }}/simulator-captures
   CAPTURES_BRANCH: simulator-captures
-  CAPTURE_TESTS: NeuralKeyUITests/ScreenCaptureTests/test01SplashScreen,NeuralKeyUITests/ScreenCaptureTests/test02LanguageSelection,NeuralKeyUITests/ScreenCaptureTests/test03OnboardingToHomeFlow,NeuralKeyUITests/ScreenCaptureTests/test04PremiumScreen,NeuralKeyUITests/ScreenCaptureTests/test05SettingsAndAITones,NeuralKeyUITests/ScreenCaptureTests/test14Localization,NeuralKeyUITests/ScreenCaptureTests/test15HomeHeadlineRotates,NeuralKeyUITests/ScreenCaptureTests/test16ChangeLanguageFromSettings,NeuralKeyUITests/ScreenCaptureTests/test08KeyboardSetupThroughSettings,NeuralKeyUITests/ScreenCaptureTests/test09NeuralKeyKeyboardExtension,NeuralKeyUITests/ScreenCaptureTests/test10KeyboardTour,NeuralKeyUITests/ScreenCaptureTests/test11ExtensionMatchesDesign,NeuralKeyUITests/ScreenCaptureTests/test12KeyTouchAreasCoverGaps,NeuralKeyUITests/ScreenCaptureTests/test13WordPrediction,NeuralKeyUITests/ScreenCaptureTests/test06InAppKeyboard
+  CAPTURE_TESTS: NeuralKeyUITests/ScreenCaptureTests/test01SplashScreen,NeuralKeyUITests/ScreenCaptureTests/test02LanguageSelection,NeuralKeyUITests/ScreenCaptureTests/test03OnboardingToHomeFlow,NeuralKeyUITests/ScreenCaptureTests/test04PremiumScreen,NeuralKeyUITests/ScreenCaptureTests/test05SettingsAndAITones,NeuralKeyUITests/ScreenCaptureTests/test14Localization,NeuralKeyUITests/ScreenCaptureTests/test15HomeHeadlineRotates,NeuralKeyUITests/ScreenCaptureTests/test16ChangeLanguageFromSettings,NeuralKeyUITests/ScreenCaptureTests/test17ImproveFlow,NeuralKeyUITests/ScreenCaptureTests/test18ImproveLive,NeuralKeyUITests/ScreenCaptureTests/test08KeyboardSetupThroughSettings,NeuralKeyUITests/ScreenCaptureTests/test09NeuralKeyKeyboardExtension,NeuralKeyUITests/ScreenCaptureTests/test10KeyboardTour,NeuralKeyUITests/ScreenCaptureTests/test11ExtensionMatchesDesign,NeuralKeyUITests/ScreenCaptureTests/test12KeyTouchAreasCoverGaps,NeuralKeyUITests/ScreenCaptureTests/test13WordPrediction,NeuralKeyUITests/ScreenCaptureTests/test06InAppKeyboard
   RECORD_VIDEO: "false"
 
 jobs:
@@ -39,6 +39,9 @@ jobs:
 
       - name: Run UI tests on simulator and record video
         id: capture
+        env:
+          # Optional repository secret: with it, test18 calls Gemini for real.
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: bash scripts/ci/run_simulator_capture.sh
 
       - name: Compare screenshots with designs

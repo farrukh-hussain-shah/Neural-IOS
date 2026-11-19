@@ -25,6 +25,8 @@ struct KeyboardConfiguration: Equatable {
     var autoCapitalizes = true
     var playsHaptics = false
     var previewKeyID: String?
+    /// Improve answers with canned options after a short delay (UI tests; no network or key).
+    var usesPreviewRewrites = false
 
     static let standard = KeyboardConfiguration()
 

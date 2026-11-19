@@ -53,6 +53,9 @@ enum LaunchOverrides {
         if defaults.object(forKey: "NKKeyboardAutoCapitalize") != nil {
             configuration.autoCapitalizes = defaults.bool(forKey: "NKKeyboardAutoCapitalize")
         }
+        if defaults.bool(forKey: "NKPreviewRewrites") {
+            configuration.usesPreviewRewrites = true
+        }
         if let previewKey = defaults.string(forKey: "NKKeyboardPreviewKey") {
             configuration.previewKeyID = "key.\(previewKey)"
         }

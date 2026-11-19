@@ -9,6 +9,15 @@ final class KeyboardController {
     private(set) var layer: KeyboardLayer
     private(set) var shift: ShiftState = .off
     private(set) var suggestions: [KeyboardSuggestion] = []
+    /// The panel shown in place of the keys, if any.
+    private(set) var panel: KeyboardPanel?
+    /// True when the row above the keys shows the toolbar (Improve, Translate, …) rather than
+    /// suggestions: while nothing is typed, or after the user closes the suggestions.
+    private(set) var showsToolbar = true
+    /// Improve's tone, language and rewritten options.
+    let improve: ImproveSession
+    /// A keyboard extension may only use the network with Full Access.
+    @ObservationIgnored var hasNetworkAccess = true
     /// Light keeps the designed look; the extension switches to dark to match the host app.
     var isDarkAppearance = false
     /// False when the host field asks for no autocapitalization (UITextAutocapitalizationType.none).
@@ -29,6 +38,9 @@ final class KeyboardController {
     @ObservationIgnored private var lastSpaceInsert: Date?
     @ObservationIgnored private var backspaceTask: Task<Void, Never>?
     @ObservationIgnored private var dictionaryObserver: NSObjectProtocol?
+    @ObservationIgnored private var suggestionsDismissed = false
+    /// What Improve was opened on, so the chosen option replaces exactly that text.
+    @ObservationIgnored private var improveSource: (before: String, after: String)?
     private let prediction: PredictionService
     private let haptics = UIImpactFeedbackGenerator(style: .light)
 
@@ -37,6 +49,8 @@ final class KeyboardController {
         self.prediction = prediction
         playsHaptics = configuration.playsHaptics
         layer = configuration.type == .phonePad ? .phoneDigits : .letters
+        let rewriter: any TextRewriter = configuration.usesPreviewRewrites ? PreviewTextRewriter() : GeminiTextRewriter()
+        improve = ImproveSession(rewriter: rewriter)
         guard configuration.showsSuggestions else { return }
         prediction.prepare()
         dictionaryObserver = NotificationCenter.default.addObserver(
@@ -183,7 +197,77 @@ final class KeyboardController {
         shift = Self.startsSentence(textInput.textBeforeCursor) ? .on : .off
     }
 
+    // MARK: - Toolbar and Improve
+
+    /// Hides the suggestions and shows the toolbar until the text is cleared.
+    func dismissSuggestions() {
+        feedback()
+        suggestionsDismissed = true
+        showsToolbar = true
+    }
+
+    /// Opens Improve on everything in the text field around the cursor.
+    func openImprove() {
+        guard let textInput else { return }
+        feedback()
+        let before = textInput.textBeforeCursor
+        let after = textInput.textAfterCursor
+        improveSource = (before, after)
+        panel = .improve
+        if hasNetworkAccess {
+            improve.start(text: before + after, selectedTones: KeyboardSharedState.selectedTones)
+        } else {
+            improve.showMessage(String(localized: "Allow Full Access for Neural Key in Settings to use Improve."))
+        }
+    }
+
+    func selectTone(_ tone: RewriteTone) {
+        feedback()
+        improve.select(tone)
+    }
+
+    func showImproveLanguages() {
+        feedback()
+        panel = .improveLanguages
+    }
+
+    func hideImproveLanguages() {
+        feedback()
+        panel = .improve
+    }
+
+    func selectImproveLanguage(_ language: RewriteLanguage) {
+        feedback()
+        improve.select(language)
+        panel = .improve
+    }
+
+    /// Puts `option` in place of the text Improve was opened on, and returns to the keys.
+    func applyRewrite(_ option: String) {
+        guard let textInput, let source = improveSource else { return }
+        feedback()
+        textInput.replace(charactersBefore: source.before.count, charactersAfter: source.after.count, with: option)
+        closePanel()
+        textDidChange()
+    }
+
+    func copyRewrite(_ option: String) {
+        feedback()
+        UIPasteboard.general.string = option
+    }
+
+    func closePanel() {
+        improve.stop()
+        improveSource = nil
+        panel = nil
+    }
+
     private func updateSuggestions() {
+        let isEmpty = (textInput?.textBeforeCursor.isEmpty ?? true) && (textInput?.textAfterCursor.isEmpty ?? true)
+        if isEmpty {
+            suggestionsDismissed = false
+        }
+        showsToolbar = isEmpty || suggestionsDismissed
         guard configuration.showsSuggestions, let textInput else {
             suggestions = []
             return
