@@ -28,6 +28,7 @@ struct ImprovePanel: View {
             .scrollBounceBehavior(.basedOnSize)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("keyboard.improve")
     }
 

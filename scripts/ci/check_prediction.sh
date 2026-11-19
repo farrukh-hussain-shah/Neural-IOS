@@ -28,6 +28,7 @@ if ! xcrun --sdk macosx swiftc -O -swift-version 5 -parse-as-library \
   -target "$(uname -m)-apple-macosx14.0" \
   "${sources[@]}" \
   Shared/Keyboard/Model/KeyboardSharedState.swift \
+  Shared/AI/Model/AITone.swift \
   scripts/ci/prediction_check/PredictionCheck.swift \
   -o "$output/prediction-check" 2>&1 | tee "$output/build.log"; then
   annotate "$output/build.log" "error:"

@@ -42,6 +42,7 @@ struct ImproveLanguageList: View {
             .scrollIndicators(.hidden)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("keyboard.improve.languages")
     }
 
