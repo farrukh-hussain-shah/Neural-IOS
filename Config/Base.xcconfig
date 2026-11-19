@@ -4,7 +4,7 @@
 //   - locally: create Config/Secrets.xcconfig (git-ignored) containing
 //         GEMINI_API_KEY = your-key
 //   - on CI: add a repository secret named GEMINI_API_KEY; the workflows pass it to xcodebuild.
-// Without a key the app still builds; Improve then shows that the AI is not configured.
+// Without one, the key built into Shared/AI/Gemini/GeminiAPIKey.swift is used.
 
 GEMINI_API_KEY =
 

@@ -11,13 +11,15 @@ enum AIConfiguration {
         /// Higher gives more varied options; 0.9 keeps the three options clearly different.
         static let temperature = 0.9
 
-        /// The API key, from the `NKGeminiAPIKey` Info.plist entry, which is filled from the
-        /// `GEMINI_API_KEY` build setting (see Config/Base.xcconfig). Nil when not configured.
+        /// The API key: the `GEMINI_API_KEY` build setting if one is set (it reaches the
+        /// `NKGeminiAPIKey` Info.plist entry, see Config/Base.xcconfig), else the built-in key.
         static var apiKey: String? {
             let value = (Bundle.main.object(forInfoDictionaryKey: "NKGeminiAPIKey") as? String)?
                 .trimmingCharacters(in: .whitespacesAndNewlines)
-            guard let value, !value.isEmpty, !value.hasPrefix("$(") else { return nil }
-            return value
+            if let value, !value.isEmpty, !value.hasPrefix("$(") {
+                return value
+            }
+            return GeminiAPIKey.builtIn.isEmpty ? nil : GeminiAPIKey.builtIn
         }
     }
 
