@@ -179,6 +179,11 @@ capture_agent() {
           echo "$(date +%T) captured $name"
           ;;
         video-start)
+          # The whole run is already being filmed; a second recording would compete with it.
+          if [[ "$RECORD_VIDEO" == "true" ]]; then
+            rm -f "$request"
+            continue
+          fi
           xcrun simctl io "$UDID" recordVideo --codec=h264 --force "$OUTPUT_DIR/video/$name-raw.mp4" \
             > "$OUTPUT_DIR/logs/$name-video.log" 2>&1 &
           clip_pid=$!

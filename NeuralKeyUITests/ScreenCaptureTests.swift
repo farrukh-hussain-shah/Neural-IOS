@@ -547,6 +547,75 @@ final class ScreenCaptureTests: XCTestCase {
         capture("60-improve-live")
     }
 
+    /// Improve inside the real Neural Key keyboard (the extension) with Full Access on, the only
+    /// way an extension may reach the network: the toolbar on an empty field, the wand in the
+    /// suggestions row, then Gemini's options put into the field. A build without an API key
+    /// shows "not configured" and the test is skipped after checking the panel.
+    @MainActor
+    func test19ExtensionImprove() throws {
+        enableNeuralKeyKeyboard()
+        enableFullAccess()
+
+        let app = makeApp()
+        app.launchArguments += [
+            "-NKInitialRoute", "home", "-NKUseSystemKeyboard", "YES", "-NKSelectedLanguage", Self.defaultLanguage
+        ]
+        app.launch()
+        let field = app.textFields[Identifier.testField]
+        XCTAssertTrue(field.waitForExistence(timeout: Timing.launchTimeout), "Test field is missing")
+        field.tap()
+        XCTAssertTrue(selectNeuralKeyKeyboard(in: app), "Could not switch to the Neural Key keyboard")
+
+        let toolbarImprove = element("keyboard.toolbar.improve", in: app)
+        XCTAssertTrue(toolbarImprove.waitForExistence(timeout: Timing.transitionTimeout), "The keyboard toolbar should show on an empty field")
+        for id in ["translate", "mic", "clipboard", "settings"] {
+            XCTAssertTrue(element("keyboard.toolbar.\(id)", in: app).exists, "Toolbar button \(id) is missing")
+        }
+        settle()
+        capture("61-extension-toolbar")
+
+        type("hey", in: app)
+        for word in ["how", "r", "u", "wanna", "meet", "tmrw"] {
+            keyElement("key.space", in: app).tap()
+            type(word, in: app)
+        }
+        let typed = fieldText(field)
+        let wand = element("keyboard.suggestions.improve", in: app)
+        XCTAssertTrue(wand.waitForExistence(timeout: Timing.transitionTimeout), "Typing should show the suggestions row with Improve")
+        wand.tap()
+
+        let message = element("keyboard.improve.message", in: app)
+        let firstOption = element("keyboard.improve.option.1", in: app)
+        let deadline = Date().addingTimeInterval(40)
+        while Date() < deadline, !firstOption.exists, !message.exists {
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+        if message.exists {
+            settle()
+            capture("62-extension-improve-message")
+            XCTAssertFalse(message.label.contains("Full Access"), "Full Access is on, but the keyboard says: \(message.label)")
+            if message.label.contains("not configured") {
+                throw XCTSkip("No Gemini API key in this build: \(message.label)")
+            }
+            XCTFail("Gemini returned an error: \(message.label)")
+            return
+        }
+        XCTAssertTrue(firstOption.exists, "Gemini did not answer within 40 seconds")
+        XCTAssertTrue(element("keyboard.improve.option.3", in: app).exists, "Gemini should give three options")
+        print("Extension Gemini options: \((1...3).map { element("keyboard.improve.option.\($0)", in: app).label })")
+        settle()
+        capture("62-extension-improve-options")
+
+        firstOption.tap()
+        XCTAssertTrue(waitForDisappearance(of: element("keyboard.improve", in: app)), "Picking an option should close Improve")
+        let applied = fieldText(field)
+        print("Field after applying option 1: \(applied)")
+        XCTAssertFalse(applied.isEmpty, "The option should be in the field")
+        XCTAssertNotEqual(applied, typed, "The field should hold the rewritten text, not the typed text")
+        settle()
+        capture("63-extension-improve-applied")
+    }
+
     @MainActor
     func test06InAppKeyboard() {
         let app = makeApp()
@@ -1078,6 +1147,24 @@ final class ScreenCaptureTests: XCTestCase {
         XCTAssertTrue(keyboardSwitch.waitForExistence(timeout: Timing.transitionTimeout), "NeuralKey keyboard switch is missing in Settings")
         turnOn(keyboardSwitch)
         XCTAssertTrue(waitUntilOn(keyboardSwitch), "NeuralKey keyboard did not turn on")
+    }
+
+    /// Turns on Allow Full Access for Neural Key (call after enableNeuralKeyKeyboard, which
+    /// leaves Settings on the keyboard's page) and confirms the system alert.
+    @MainActor
+    private func enableFullAccess() {
+        let settings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
+        openKeyboardSettings(in: settings)
+        let fullAccessSwitch = settings.switches["Allow Full Access"]
+        XCTAssertTrue(fullAccessSwitch.waitForExistence(timeout: Timing.transitionTimeout), "Allow Full Access switch is missing")
+        if switchIsOn(fullAccessSwitch) == false {
+            turnOn(fullAccessSwitch)
+            let allow = settings.alerts.buttons["Allow"]
+            if allow.waitForExistence(timeout: Timing.transitionTimeout) {
+                allow.tap()
+            }
+        }
+        XCTAssertTrue(waitUntilOn(fullAccessSwitch), "Full Access did not turn on")
     }
 
     /// Taps the system globe key until the NeuralKey keyboard is the active one.

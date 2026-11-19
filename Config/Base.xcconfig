@@ -4,7 +4,8 @@
 //   - locally: create Config/Secrets.xcconfig (git-ignored) containing
 //         GEMINI_API_KEY = your-key
 //   - on CI: add a repository secret named GEMINI_API_KEY; the workflows pass it to xcodebuild.
-// Without one, the key built into Shared/AI/Gemini/GeminiAPIKey.swift is used.
+// Without one, Improve shows "The AI is not configured". Never commit the key: Google
+// disables keys that show up in public repositories.
 
 GEMINI_API_KEY =
 

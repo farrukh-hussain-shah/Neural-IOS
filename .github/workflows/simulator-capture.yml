@@ -19,8 +19,11 @@ env:
   SCHEME: NeuralKey
   OUTPUT_DIR: ${{ github.workspace }}/simulator-captures
   CAPTURES_BRANCH: simulator-captures
-  CAPTURE_TESTS: NeuralKeyUITests/ScreenCaptureTests/test01SplashScreen,NeuralKeyUITests/ScreenCaptureTests/test02LanguageSelection,NeuralKeyUITests/ScreenCaptureTests/test03OnboardingToHomeFlow,NeuralKeyUITests/ScreenCaptureTests/test04PremiumScreen,NeuralKeyUITests/ScreenCaptureTests/test05SettingsAndAITones,NeuralKeyUITests/ScreenCaptureTests/test14Localization,NeuralKeyUITests/ScreenCaptureTests/test15HomeHeadlineRotates,NeuralKeyUITests/ScreenCaptureTests/test16ChangeLanguageFromSettings,NeuralKeyUITests/ScreenCaptureTests/test17ImproveFlow,NeuralKeyUITests/ScreenCaptureTests/test18ImproveLive,NeuralKeyUITests/ScreenCaptureTests/test08KeyboardSetupThroughSettings,NeuralKeyUITests/ScreenCaptureTests/test09NeuralKeyKeyboardExtension,NeuralKeyUITests/ScreenCaptureTests/test10KeyboardTour,NeuralKeyUITests/ScreenCaptureTests/test11ExtensionMatchesDesign,NeuralKeyUITests/ScreenCaptureTests/test12KeyTouchAreasCoverGaps,NeuralKeyUITests/ScreenCaptureTests/test13WordPrediction,NeuralKeyUITests/ScreenCaptureTests/test06InAppKeyboard
-  RECORD_VIDEO: "false"
+  # Keyboard tests only: the in-app keyboard, the Neural Key keyboard extension, word
+  # prediction and Improve (preview and live Gemini). Other screens are not tested here.
+  CAPTURE_TESTS: NeuralKeyUITests/ScreenCaptureTests/test06InAppKeyboard,NeuralKeyUITests/ScreenCaptureTests/test07KeyboardDesignStates,NeuralKeyUITests/ScreenCaptureTests/test09NeuralKeyKeyboardExtension,NeuralKeyUITests/ScreenCaptureTests/test10KeyboardTour,NeuralKeyUITests/ScreenCaptureTests/test11ExtensionMatchesDesign,NeuralKeyUITests/ScreenCaptureTests/test12KeyTouchAreasCoverGaps,NeuralKeyUITests/ScreenCaptureTests/test13WordPrediction,NeuralKeyUITests/ScreenCaptureTests/test17ImproveFlow,NeuralKeyUITests/ScreenCaptureTests/test18ImproveLive,NeuralKeyUITests/ScreenCaptureTests/test19ExtensionImprove
+  # Records the whole run to video/simulator-flow.mp4.
+  RECORD_VIDEO: "true"
 
 jobs:
   capture:
@@ -37,10 +40,27 @@ jobs:
       - name: Select Xcode ${{ env.XCODE_VERSION }}
         run: sudo xcode-select --switch "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
 
+      - name: Check the Gemini API key secret
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [[ -z "$GEMINI_API_KEY" ]]; then
+            echo "::warning::No GEMINI_API_KEY repository secret: the live Gemini tests (test18, test19) will be skipped."
+          else
+            code=$(curl -s -o /dev/null -w "%{http_code}" -H "x-goog-api-key: $GEMINI_API_KEY" -H "Content-Type: application/json" \
+              -d '{"contents":[{"parts":[{"text":"Say OK"}]}]}' \
+              "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent")
+            if [[ "$code" == "200" ]]; then
+              echo "Gemini API key secret works (HTTP 200)."
+            else
+              echo "::warning::The GEMINI_API_KEY secret was rejected by Gemini (HTTP $code); the live tests will fail."
+            fi
+          fi
+
       - name: Run UI tests on simulator and record video
         id: capture
         env:
-          # Optional repository secret: with it, test18 calls Gemini for real.
+          # Repository secret: with it, test18 and test19 call Gemini for real.
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: bash scripts/ci/run_simulator_capture.sh
 
