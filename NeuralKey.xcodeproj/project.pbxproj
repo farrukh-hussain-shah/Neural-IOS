@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18993BA730B0CC7100374253 /* FirebaseAILogic in Frameworks */ = {isa = PBXBuildFile; productRef = 18993BA630B0CC7100374253 /* FirebaseAILogic */; };
+		18993BA930B0CC7100374253 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 18993BA830B0CC7100374253 /* FirebaseAnalytics */; };
+		18993BAB30B0CC7100374253 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 18993BAA30B0CC7100374253 /* FirebaseCore */; };
+		18993BAD30B0CC7100374253 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 18993BAC30B0CC7100374253 /* FirebaseRemoteConfig */; };
 		4E4B00000000000000000030 /* NeuralKeyKeyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4E4B00000000000000000021 /* NeuralKeyKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -42,10 +46,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4E4B00000000000000000040 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		4E4B00000000000000000001 /* NeuralKey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeuralKey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4B00000000000000000011 /* NeuralKeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuralKeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4B00000000000000000021 /* NeuralKeyKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NeuralKeyKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E4B00000000000000000040 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -99,6 +103,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18993BA930B0CC7100374253 /* FirebaseAnalytics in Frameworks */,
+				18993BAB30B0CC7100374253 /* FirebaseCore in Frameworks */,
+				18993BA730B0CC7100374253 /* FirebaseAILogic in Frameworks */,
+				18993BAD30B0CC7100374253 /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,14 +127,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E4B00000000000000000041 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				4E4B00000000000000000040 /* Base.xcconfig */,
-			);
-			path = Config;
-			sourceTree = "<group>";
-		};
 		4E4B00000000000000000004 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +147,14 @@
 				4E4B00000000000000000021 /* NeuralKeyKeyboard.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		4E4B00000000000000000041 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				4E4B00000000000000000040 /* Base.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +180,10 @@
 			);
 			name = NeuralKey;
 			packageProductDependencies = (
+				18993BA630B0CC7100374253 /* FirebaseAILogic */,
+				18993BA830B0CC7100374253 /* FirebaseAnalytics */,
+				18993BAA30B0CC7100374253 /* FirebaseCore */,
+				18993BAC30B0CC7100374253 /* FirebaseRemoteConfig */,
 			);
 			productName = NeuralKey;
 			productReference = 4E4B00000000000000000001 /* NeuralKey.app */;
@@ -260,6 +272,9 @@
 			);
 			mainGroup = 4E4B00000000000000000004;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				18993BA530B0CC7100374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4E4B00000000000000000005 /* Products */;
 			projectDirPath = "";
@@ -632,15 +647,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E4B00000000000000000027 /* Build configuration list for PBXNativeTarget "NeuralKeyKeyboard" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4E4B0000000000000000002B /* Debug */,
-				4E4B0000000000000000002C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4E4B00000000000000000017 /* Build configuration list for PBXNativeTarget "NeuralKeyUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -650,7 +656,50 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		4E4B00000000000000000027 /* Build configuration list for PBXNativeTarget "NeuralKeyKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E4B0000000000000000002B /* Debug */,
+				4E4B0000000000000000002C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		18993BA530B0CC7100374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		18993BA630B0CC7100374253 /* FirebaseAILogic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18993BA530B0CC7100374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAILogic;
+		};
+		18993BA830B0CC7100374253 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18993BA530B0CC7100374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		18993BAA30B0CC7100374253 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18993BA530B0CC7100374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		18993BAC30B0CC7100374253 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18993BA530B0CC7100374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4E4B0000000000000000000A /* Project object */;
 }
