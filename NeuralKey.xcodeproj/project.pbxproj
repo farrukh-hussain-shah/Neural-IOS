@@ -7,6 +7,172 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1899390530AE380000374253 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1899390430AE380000374253 /* FirebaseAnalytics */; };
+		1899390730AE380000374253 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1899390630AE380000374253 /* FirebaseCore */; };
+		1899390930AE380000374253 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1899390830AE380000374253 /* FirebaseFirestore */; };
+		1899395930B0217700374253 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1899395430B0217700374253 /* Localizable.xcstrings */; };
+		1899395A30B0217700374253 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1899395630B0217700374253 /* Settings.bundle */; };
+		1899395B30B0217700374253 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899390D30B0217700374253 /* AppRootView.swift */; };
+		1899395C30B0217700374253 /* NeuralKeyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899390E30B0217700374253 /* NeuralKeyApp.swift */; };
+		1899395D30B0217700374253 /* AccessibilityID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899391030B0217700374253 /* AccessibilityID.swift */; };
+		1899395E30B0217700374253 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899391130B0217700374253 /* AppConfiguration.swift */; };
+		1899395F30B0217700374253 /* LaunchOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899391230B0217700374253 /* LaunchOverrides.swift */; };
+		1899396030B0217700374253 /* KeyboardSetupStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899391430B0217700374253 /* KeyboardSetupStatus.swift */; };
+		1899396130B0217700374253 /* AppLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899391630B0217700374253 /* AppLocalization.swift */; };
+		1899396230B0217700374253 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899391830B0217700374253 /* AppRouter.swift */; };
+		1899396330B0217700374253 /* OnboardingProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899391930B0217700374253 /* OnboardingProgress.swift */; };
+		1899396430B0217700374253 /* LanguageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899391B30B0217700374253 /* LanguageStore.swift */; };
+		1899396530B0217700374253 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899391C30B0217700374253 /* SettingsStore.swift */; };
+		1899396630B0217700374253 /* DictionarySync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899391E30B0217700374253 /* DictionarySync.swift */; };
+		1899396730B0217700374253 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899392130B0217700374253 /* HomeHeader.swift */; };
+		1899396830B0217700374253 /* HomeHeadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899392230B0217700374253 /* HomeHeadline.swift */; };
+		1899396930B0217700374253 /* HomeSettingsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899392330B0217700374253 /* HomeSettingsCard.swift */; };
+		1899396A30B0217700374253 /* KeyboardTestField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899392430B0217700374253 /* KeyboardTestField.swift */; };
+		1899396B30B0217700374253 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899392630B0217700374253 /* HomeView.swift */; };
+		1899396C30B0217700374253 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899392730B0217700374253 /* HomeViewModel.swift */; };
+		1899396D30B0217700374253 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899392930B0217700374253 /* AppLanguage.swift */; };
+		1899396E30B0217700374253 /* LanguageOptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899392B30B0217700374253 /* LanguageOptionRow.swift */; };
+		1899396F30B0217700374253 /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899392D30B0217700374253 /* LanguageSelectionView.swift */; };
+		1899397030B0217700374253 /* OnboardingContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899392F30B0217700374253 /* OnboardingContent.swift */; };
+		1899397130B0217700374253 /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899393030B0217700374253 /* OnboardingStep.swift */; };
+		1899397230B0217700374253 /* OnboardingScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899393230B0217700374253 /* OnboardingScaffold.swift */; };
+		1899397330B0217700374253 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899393330B0217700374253 /* OnboardingView.swift */; };
+		1899397430B0217700374253 /* SetupPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899393430B0217700374253 /* SetupPageView.swift */; };
+		1899397530B0217700374253 /* WelcomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899393530B0217700374253 /* WelcomePageView.swift */; };
+		1899397630B0217700374253 /* PremiumContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899393830B0217700374253 /* PremiumContent.swift */; };
+		1899397730B0217700374253 /* PremiumPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899393930B0217700374253 /* PremiumPlan.swift */; };
+		1899397830B0217700374253 /* PremiumBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899393B30B0217700374253 /* PremiumBackground.swift */; };
+		1899397930B0217700374253 /* PremiumFeatureGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899393C30B0217700374253 /* PremiumFeatureGrid.swift */; };
+		1899397A30B0217700374253 /* PremiumFooterLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899393D30B0217700374253 /* PremiumFooterLinks.swift */; };
+		1899397B30B0217700374253 /* PremiumPlanCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899393E30B0217700374253 /* PremiumPlanCard.swift */; };
+		1899397C30B0217700374253 /* PremiumRewardedAdButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899393F30B0217700374253 /* PremiumRewardedAdButton.swift */; };
+		1899397D30B0217700374253 /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899394130B0217700374253 /* PremiumView.swift */; };
+		1899397E30B0217700374253 /* PremiumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899394230B0217700374253 /* PremiumViewModel.swift */; };
+		1899397F30B0217700374253 /* AITone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899394430B0217700374253 /* AITone.swift */; };
+		1899398030B0217700374253 /* KeyboardAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899394530B0217700374253 /* KeyboardAppearance.swift */; };
+		1899398130B0217700374253 /* KeyboardAppearancePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899394730B0217700374253 /* KeyboardAppearancePicker.swift */; };
+		1899398230B0217700374253 /* SettingsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899394830B0217700374253 /* SettingsGroup.swift */; };
+		1899398330B0217700374253 /* SettingsUpgradeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899394930B0217700374253 /* SettingsUpgradeCard.swift */; };
+		1899398430B0217700374253 /* ToneChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899394A30B0217700374253 /* ToneChip.swift */; };
+		1899398530B0217700374253 /* AIToneSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899394C30B0217700374253 /* AIToneSelectionView.swift */; };
+		1899398630B0217700374253 /* SettingsDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899394D30B0217700374253 /* SettingsDrawer.swift */; };
+		1899398730B0217700374253 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899394E30B0217700374253 /* SettingsView.swift */; };
+		1899398830B0217700374253 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899395030B0217700374253 /* SplashView.swift */; };
+		189939CC30B0217E00374253 /* AppLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398930B0217E00374253 /* AppLogo.swift */; };
+		189939CD30B0217E00374253 /* AppSwitchToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398A30B0217E00374253 /* AppSwitchToggleStyle.swift */; };
+		189939CE30B0217E00374253 /* CircleIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398B30B0217E00374253 /* CircleIconButton.swift */; };
+		189939CF30B0217E00374253 /* DitherOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398C30B0217E00374253 /* DitherOverlay.swift */; };
+		189939D030B0217E00374253 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398D30B0217E00374253 /* FlowLayout.swift */; };
+		189939D130B0217E00374253 /* IconTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398E30B0217E00374253 /* IconTile.swift */; };
+		189939D230B0217E00374253 /* NativeAdBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398F30B0217E00374253 /* NativeAdBanner.swift */; };
+		189939D330B0217E00374253 /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399030B0217E00374253 /* PageIndicator.swift */; };
+		189939D430B0217E00374253 /* PressableButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399130B0217E00374253 /* PressableButtonStyle.swift */; };
+		189939D530B0217E00374253 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399230B0217E00374253 /* PrimaryButton.swift */; };
+		189939D630B0217E00374253 /* RadialGlowBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399330B0217E00374253 /* RadialGlowBackground.swift */; };
+		189939D730B0217E00374253 /* SingleLineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399430B0217E00374253 /* SingleLineLabel.swift */; };
+		189939D830B0217E00374253 /* TwoToneHeadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399530B0217E00374253 /* TwoToneHeadline.swift */; };
+		189939D930B0217E00374253 /* AppAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399730B0217E00374253 /* AppAssets.swift */; };
+		189939DA30B0217E00374253 /* FontRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399830B0217E00374253 /* FontRegistrar.swift */; };
+		189939DB30B0217E00374253 /* AppAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399A30B0217E00374253 /* AppAnimation.swift */; };
+		189939DC30B0217E00374253 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399B30B0217E00374253 /* AppColor.swift */; };
+		189939DD30B0217E00374253 /* AppMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399C30B0217E00374253 /* AppMetrics.swift */; };
+		189939DE30B0217E00374253 /* AppScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399D30B0217E00374253 /* AppScale.swift */; };
+		189939DF30B0217E00374253 /* AppShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399E30B0217E00374253 /* AppShadow.swift */; };
+		189939E030B0217E00374253 /* AppTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399F30B0217E00374253 /* AppTypography.swift */; };
+		189939E130B0217E00374253 /* InAppKeyboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A230B0217E00374253 /* InAppKeyboardPresenter.swift */; };
+		189939E230B0217E00374253 /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A330B0217E00374253 /* KeyboardInputView.swift */; };
+		189939E330B0217E00374253 /* NeuralKeyboardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A430B0217E00374253 /* NeuralKeyboardTextField.swift */; };
+		189939E430B0217E00374253 /* KeyboardConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A630B0217E00374253 /* KeyboardConfiguration.swift */; };
+		189939E530B0217E00374253 /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A730B0217E00374253 /* KeyboardLayout.swift */; };
+		189939E630B0217E00374253 /* KeyboardSharedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A830B0217E00374253 /* KeyboardSharedState.swift */; };
+		189939E730B0217E00374253 /* KeyboardTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A930B0217E00374253 /* KeyboardTextInput.swift */; };
+		189939E830B0217E00374253 /* SuggestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939AA30B0217E00374253 /* SuggestionProvider.swift */; };
+		189939E930B0217E00374253 /* KeyboardKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939AC30B0217E00374253 /* KeyboardKeyView.swift */; };
+		189939EA30B0217E00374253 /* KeyboardMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939AD30B0217E00374253 /* KeyboardMetrics.swift */; };
+		189939EB30B0217E00374253 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939AE30B0217E00374253 /* KeyboardView.swift */; };
+		189939EC30B0217E00374253 /* KeyPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939AF30B0217E00374253 /* KeyPopup.swift */; };
+		189939ED30B0217E00374253 /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939B130B0217E00374253 /* KeyboardController.swift */; };
+		189939EE30B0217E00374253 /* EditDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939B930B0217E00374253 /* EditDistance.swift */; };
+		189939EF30B0217E00374253 /* FrequencyListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939BA30B0217E00374253 /* FrequencyListParser.swift */; };
+		189939F030B0217E00374253 /* Lexicon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939BB30B0217E00374253 /* Lexicon.swift */; };
+		189939F130B0217E00374253 /* SymSpellIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939BC30B0217E00374253 /* SymSpellIndex.swift */; };
+		189939F230B0217E00374253 /* TextPredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939BD30B0217E00374253 /* TextPredictionEngine.swift */; };
+		189939F330B0217E00374253 /* TypoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939BE30B0217E00374253 /* TypoModel.swift */; };
+		189939F430B0217E00374253 /* UserDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939BF30B0217E00374253 /* UserDictionary.swift */; };
+		189939F530B0217E00374253 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C130B0217E00374253 /* Prediction.swift */; };
+		189939F630B0217E00374253 /* TextContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C230B0217E00374253 /* TextContext.swift */; };
+		189939F730B0217E00374253 /* WordNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C330B0217E00374253 /* WordNormalizer.swift */; };
+		189939F830B0217E00374253 /* DictionaryDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C530B0217E00374253 /* DictionaryDownloader.swift */; };
+		189939F930B0217E00374253 /* PredictionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C630B0217E00374253 /* PredictionStorage.swift */; };
+		189939FA30B0217E00374253 /* PredictionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C830B0217E00374253 /* PredictionService.swift */; };
+		189939FB30B0217E00374253 /* TextPredictionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C930B0217E00374253 /* TextPredictionConfiguration.swift */; };
+		189939FC30B0217E00374253 /* SpaceGrotesk-OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 189939B330B0217E00374253 /* SpaceGrotesk-OFL.txt */; };
+		189939FD30B0217E00374253 /* SpaceGrotesk-Variable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 189939B430B0217E00374253 /* SpaceGrotesk-Variable.ttf */; };
+		189939FE30B0217E00374253 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189939B630B0217E00374253 /* Assets.xcassets */; };
+		18993A0030B0217E00374253 /* SpaceGrotesk-OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 189939B330B0217E00374253 /* SpaceGrotesk-OFL.txt */; };
+		18993A0130B0217E00374253 /* SpaceGrotesk-Variable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 189939B430B0217E00374253 /* SpaceGrotesk-Variable.ttf */; };
+		18993A0230B0217E00374253 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189939B630B0217E00374253 /* Assets.xcassets */; };
+		18993A0330B0217E00374253 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 189939B730B0217E00374253 /* GoogleService-Info.plist */; };
+		18993A0430B0217E00374253 /* AppLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398930B0217E00374253 /* AppLogo.swift */; };
+		18993A0530B0217E00374253 /* AppSwitchToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398A30B0217E00374253 /* AppSwitchToggleStyle.swift */; };
+		18993A0630B0217E00374253 /* CircleIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398B30B0217E00374253 /* CircleIconButton.swift */; };
+		18993A0730B0217E00374253 /* DitherOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398C30B0217E00374253 /* DitherOverlay.swift */; };
+		18993A0830B0217E00374253 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398D30B0217E00374253 /* FlowLayout.swift */; };
+		18993A0930B0217E00374253 /* IconTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398E30B0217E00374253 /* IconTile.swift */; };
+		18993A0A30B0217E00374253 /* NativeAdBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899398F30B0217E00374253 /* NativeAdBanner.swift */; };
+		18993A0B30B0217E00374253 /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399030B0217E00374253 /* PageIndicator.swift */; };
+		18993A0C30B0217E00374253 /* PressableButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399130B0217E00374253 /* PressableButtonStyle.swift */; };
+		18993A0D30B0217E00374253 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399230B0217E00374253 /* PrimaryButton.swift */; };
+		18993A0E30B0217E00374253 /* RadialGlowBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399330B0217E00374253 /* RadialGlowBackground.swift */; };
+		18993A0F30B0217E00374253 /* SingleLineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399430B0217E00374253 /* SingleLineLabel.swift */; };
+		18993A1030B0217E00374253 /* TwoToneHeadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399530B0217E00374253 /* TwoToneHeadline.swift */; };
+		18993A1130B0217E00374253 /* AppAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399730B0217E00374253 /* AppAssets.swift */; };
+		18993A1230B0217E00374253 /* FontRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399830B0217E00374253 /* FontRegistrar.swift */; };
+		18993A1330B0217E00374253 /* AppAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399A30B0217E00374253 /* AppAnimation.swift */; };
+		18993A1430B0217E00374253 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399B30B0217E00374253 /* AppColor.swift */; };
+		18993A1530B0217E00374253 /* AppMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399C30B0217E00374253 /* AppMetrics.swift */; };
+		18993A1630B0217E00374253 /* AppScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399D30B0217E00374253 /* AppScale.swift */; };
+		18993A1730B0217E00374253 /* AppShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399E30B0217E00374253 /* AppShadow.swift */; };
+		18993A1830B0217E00374253 /* AppTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899399F30B0217E00374253 /* AppTypography.swift */; };
+		18993A1930B0217E00374253 /* InAppKeyboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A230B0217E00374253 /* InAppKeyboardPresenter.swift */; };
+		18993A1A30B0217E00374253 /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A330B0217E00374253 /* KeyboardInputView.swift */; };
+		18993A1B30B0217E00374253 /* NeuralKeyboardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A430B0217E00374253 /* NeuralKeyboardTextField.swift */; };
+		18993A1C30B0217E00374253 /* KeyboardConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A630B0217E00374253 /* KeyboardConfiguration.swift */; };
+		18993A1D30B0217E00374253 /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A730B0217E00374253 /* KeyboardLayout.swift */; };
+		18993A1E30B0217E00374253 /* KeyboardSharedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A830B0217E00374253 /* KeyboardSharedState.swift */; };
+		18993A1F30B0217E00374253 /* KeyboardTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939A930B0217E00374253 /* KeyboardTextInput.swift */; };
+		18993A2030B0217E00374253 /* SuggestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939AA30B0217E00374253 /* SuggestionProvider.swift */; };
+		18993A2130B0217E00374253 /* KeyboardKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939AC30B0217E00374253 /* KeyboardKeyView.swift */; };
+		18993A2230B0217E00374253 /* KeyboardMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939AD30B0217E00374253 /* KeyboardMetrics.swift */; };
+		18993A2330B0217E00374253 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939AE30B0217E00374253 /* KeyboardView.swift */; };
+		18993A2430B0217E00374253 /* KeyPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939AF30B0217E00374253 /* KeyPopup.swift */; };
+		18993A2530B0217E00374253 /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939B130B0217E00374253 /* KeyboardController.swift */; };
+		18993A2630B0217E00374253 /* EditDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939B930B0217E00374253 /* EditDistance.swift */; };
+		18993A2730B0217E00374253 /* FrequencyListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939BA30B0217E00374253 /* FrequencyListParser.swift */; };
+		18993A2830B0217E00374253 /* Lexicon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939BB30B0217E00374253 /* Lexicon.swift */; };
+		18993A2930B0217E00374253 /* SymSpellIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939BC30B0217E00374253 /* SymSpellIndex.swift */; };
+		18993A2A30B0217E00374253 /* TextPredictionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939BD30B0217E00374253 /* TextPredictionEngine.swift */; };
+		18993A2B30B0217E00374253 /* TypoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939BE30B0217E00374253 /* TypoModel.swift */; };
+		18993A2C30B0217E00374253 /* UserDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939BF30B0217E00374253 /* UserDictionary.swift */; };
+		18993A2D30B0217E00374253 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C130B0217E00374253 /* Prediction.swift */; };
+		18993A2E30B0217E00374253 /* TextContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C230B0217E00374253 /* TextContext.swift */; };
+		18993A2F30B0217E00374253 /* WordNormalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C330B0217E00374253 /* WordNormalizer.swift */; };
+		18993A3030B0217E00374253 /* DictionaryDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C530B0217E00374253 /* DictionaryDownloader.swift */; };
+		18993A3130B0217E00374253 /* PredictionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C630B0217E00374253 /* PredictionStorage.swift */; };
+		18993A3230B0217E00374253 /* PredictionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C830B0217E00374253 /* PredictionService.swift */; };
+		18993A3330B0217E00374253 /* TextPredictionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189939C930B0217E00374253 /* TextPredictionConfiguration.swift */; };
+		18993A3930B0219300374253 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18993A3630B0219300374253 /* KeyboardViewController.swift */; };
+		18993A3C30B021F100374253 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18993A3B30B021F100374253 /* AppConfig.swift */; };
+		18993A3F30B0221400374253 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18993A3E30B0221400374253 /* RemoteConfigManager.swift */; };
+		18993A4230B0222700374253 /* TrainingUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18993A4130B0222700374253 /* TrainingUsage.swift */; };
+		18993A4430B0223100374253 /* VoiceTrainingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18993A4330B0223100374253 /* VoiceTrainingData.swift */; };
+		18993A4630B0223800374253 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18993A4530B0223800374253 /* LanguageModel.swift */; };
+		18993A4830B0225200374253 /* KeyboardAiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18993A4730B0225200374253 /* KeyboardAiManager.swift */; };
+		18993A4A30B0226400374253 /* FirestoreLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18993A4930B0226400374253 /* FirestoreLogger.swift */; };
+		18993A4D30B022D600374253 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18993A3B30B021F100374253 /* AppConfig.swift */; };
+		18993A4E30B022D600374253 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18993A3B30B021F100374253 /* AppConfig.swift */; };
+		18993A5530B0B90F00374253 /* FirebaseAILogic in Frameworks */ = {isa = PBXBuildFile; productRef = 18993A5430B0B90F00374253 /* FirebaseAILogic */; };
+		18993A5730B0B9C000374253 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 18993A5630B0B9C000374253 /* FirebaseRemoteConfig */; };
 		4E4B00000000000000000030 /* NeuralKeyKeyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4E4B00000000000000000021 /* NeuralKeyKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -42,53 +208,127 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1899390D30B0217700374253 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
+		1899390E30B0217700374253 /* NeuralKeyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuralKeyApp.swift; sourceTree = "<group>"; };
+		1899391030B0217700374253 /* AccessibilityID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityID.swift; sourceTree = "<group>"; };
+		1899391130B0217700374253 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		1899391230B0217700374253 /* LaunchOverrides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOverrides.swift; sourceTree = "<group>"; };
+		1899391430B0217700374253 /* KeyboardSetupStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSetupStatus.swift; sourceTree = "<group>"; };
+		1899391630B0217700374253 /* AppLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocalization.swift; sourceTree = "<group>"; };
+		1899391830B0217700374253 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		1899391930B0217700374253 /* OnboardingProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProgress.swift; sourceTree = "<group>"; };
+		1899391B30B0217700374253 /* LanguageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageStore.swift; sourceTree = "<group>"; };
+		1899391C30B0217700374253 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		1899391E30B0217700374253 /* DictionarySync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionarySync.swift; sourceTree = "<group>"; };
+		1899392130B0217700374253 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
+		1899392230B0217700374253 /* HomeHeadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeadline.swift; sourceTree = "<group>"; };
+		1899392330B0217700374253 /* HomeSettingsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSettingsCard.swift; sourceTree = "<group>"; };
+		1899392430B0217700374253 /* KeyboardTestField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardTestField.swift; sourceTree = "<group>"; };
+		1899392630B0217700374253 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1899392730B0217700374253 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		1899392930B0217700374253 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
+		1899392B30B0217700374253 /* LanguageOptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageOptionRow.swift; sourceTree = "<group>"; };
+		1899392D30B0217700374253 /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
+		1899392F30B0217700374253 /* OnboardingContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContent.swift; sourceTree = "<group>"; };
+		1899393030B0217700374253 /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
+		1899393230B0217700374253 /* OnboardingScaffold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScaffold.swift; sourceTree = "<group>"; };
+		1899393330B0217700374253 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		1899393430B0217700374253 /* SetupPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPageView.swift; sourceTree = "<group>"; };
+		1899393530B0217700374253 /* WelcomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageView.swift; sourceTree = "<group>"; };
+		1899393830B0217700374253 /* PremiumContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumContent.swift; sourceTree = "<group>"; };
+		1899393930B0217700374253 /* PremiumPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlan.swift; sourceTree = "<group>"; };
+		1899393B30B0217700374253 /* PremiumBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumBackground.swift; sourceTree = "<group>"; };
+		1899393C30B0217700374253 /* PremiumFeatureGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumFeatureGrid.swift; sourceTree = "<group>"; };
+		1899393D30B0217700374253 /* PremiumFooterLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumFooterLinks.swift; sourceTree = "<group>"; };
+		1899393E30B0217700374253 /* PremiumPlanCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPlanCard.swift; sourceTree = "<group>"; };
+		1899393F30B0217700374253 /* PremiumRewardedAdButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumRewardedAdButton.swift; sourceTree = "<group>"; };
+		1899394130B0217700374253 /* PremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumView.swift; sourceTree = "<group>"; };
+		1899394230B0217700374253 /* PremiumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumViewModel.swift; sourceTree = "<group>"; };
+		1899394430B0217700374253 /* AITone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITone.swift; sourceTree = "<group>"; };
+		1899394530B0217700374253 /* KeyboardAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAppearance.swift; sourceTree = "<group>"; };
+		1899394730B0217700374253 /* KeyboardAppearancePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAppearancePicker.swift; sourceTree = "<group>"; };
+		1899394830B0217700374253 /* SettingsGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGroup.swift; sourceTree = "<group>"; };
+		1899394930B0217700374253 /* SettingsUpgradeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUpgradeCard.swift; sourceTree = "<group>"; };
+		1899394A30B0217700374253 /* ToneChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneChip.swift; sourceTree = "<group>"; };
+		1899394C30B0217700374253 /* AIToneSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIToneSelectionView.swift; sourceTree = "<group>"; };
+		1899394D30B0217700374253 /* SettingsDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDrawer.swift; sourceTree = "<group>"; };
+		1899394E30B0217700374253 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1899395030B0217700374253 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		1899395330B0217700374253 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1899395430B0217700374253 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		1899395530B0217700374253 /* NeuralKey.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NeuralKey.entitlements; sourceTree = "<group>"; };
+		1899395630B0217700374253 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		1899398930B0217E00374253 /* AppLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogo.swift; sourceTree = "<group>"; };
+		1899398A30B0217E00374253 /* AppSwitchToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSwitchToggleStyle.swift; sourceTree = "<group>"; };
+		1899398B30B0217E00374253 /* CircleIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleIconButton.swift; sourceTree = "<group>"; };
+		1899398C30B0217E00374253 /* DitherOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DitherOverlay.swift; sourceTree = "<group>"; };
+		1899398D30B0217E00374253 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		1899398E30B0217E00374253 /* IconTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTile.swift; sourceTree = "<group>"; };
+		1899398F30B0217E00374253 /* NativeAdBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAdBanner.swift; sourceTree = "<group>"; };
+		1899399030B0217E00374253 /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
+		1899399130B0217E00374253 /* PressableButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableButtonStyle.swift; sourceTree = "<group>"; };
+		1899399230B0217E00374253 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		1899399330B0217E00374253 /* RadialGlowBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGlowBackground.swift; sourceTree = "<group>"; };
+		1899399430B0217E00374253 /* SingleLineLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLineLabel.swift; sourceTree = "<group>"; };
+		1899399530B0217E00374253 /* TwoToneHeadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoToneHeadline.swift; sourceTree = "<group>"; };
+		1899399730B0217E00374253 /* AppAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssets.swift; sourceTree = "<group>"; };
+		1899399830B0217E00374253 /* FontRegistrar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontRegistrar.swift; sourceTree = "<group>"; };
+		1899399A30B0217E00374253 /* AppAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAnimation.swift; sourceTree = "<group>"; };
+		1899399B30B0217E00374253 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		1899399C30B0217E00374253 /* AppMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetrics.swift; sourceTree = "<group>"; };
+		1899399D30B0217E00374253 /* AppScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScale.swift; sourceTree = "<group>"; };
+		1899399E30B0217E00374253 /* AppShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShadow.swift; sourceTree = "<group>"; };
+		1899399F30B0217E00374253 /* AppTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTypography.swift; sourceTree = "<group>"; };
+		189939A230B0217E00374253 /* InAppKeyboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppKeyboardPresenter.swift; sourceTree = "<group>"; };
+		189939A330B0217E00374253 /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
+		189939A430B0217E00374253 /* NeuralKeyboardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuralKeyboardTextField.swift; sourceTree = "<group>"; };
+		189939A630B0217E00374253 /* KeyboardConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardConfiguration.swift; sourceTree = "<group>"; };
+		189939A730B0217E00374253 /* KeyboardLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLayout.swift; sourceTree = "<group>"; };
+		189939A830B0217E00374253 /* KeyboardSharedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSharedState.swift; sourceTree = "<group>"; };
+		189939A930B0217E00374253 /* KeyboardTextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardTextInput.swift; sourceTree = "<group>"; };
+		189939AA30B0217E00374253 /* SuggestionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionProvider.swift; sourceTree = "<group>"; };
+		189939AC30B0217E00374253 /* KeyboardKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardKeyView.swift; sourceTree = "<group>"; };
+		189939AD30B0217E00374253 /* KeyboardMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardMetrics.swift; sourceTree = "<group>"; };
+		189939AE30B0217E00374253 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		189939AF30B0217E00374253 /* KeyPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPopup.swift; sourceTree = "<group>"; };
+		189939B130B0217E00374253 /* KeyboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardController.swift; sourceTree = "<group>"; };
+		189939B330B0217E00374253 /* SpaceGrotesk-OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "SpaceGrotesk-OFL.txt"; sourceTree = "<group>"; };
+		189939B430B0217E00374253 /* SpaceGrotesk-Variable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-Variable.ttf"; sourceTree = "<group>"; };
+		189939B630B0217E00374253 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		189939B730B0217E00374253 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		189939B930B0217E00374253 /* EditDistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDistance.swift; sourceTree = "<group>"; };
+		189939BA30B0217E00374253 /* FrequencyListParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyListParser.swift; sourceTree = "<group>"; };
+		189939BB30B0217E00374253 /* Lexicon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lexicon.swift; sourceTree = "<group>"; };
+		189939BC30B0217E00374253 /* SymSpellIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymSpellIndex.swift; sourceTree = "<group>"; };
+		189939BD30B0217E00374253 /* TextPredictionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPredictionEngine.swift; sourceTree = "<group>"; };
+		189939BE30B0217E00374253 /* TypoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypoModel.swift; sourceTree = "<group>"; };
+		189939BF30B0217E00374253 /* UserDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDictionary.swift; sourceTree = "<group>"; };
+		189939C130B0217E00374253 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
+		189939C230B0217E00374253 /* TextContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextContext.swift; sourceTree = "<group>"; };
+		189939C330B0217E00374253 /* WordNormalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordNormalizer.swift; sourceTree = "<group>"; };
+		189939C530B0217E00374253 /* DictionaryDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDownloader.swift; sourceTree = "<group>"; };
+		189939C630B0217E00374253 /* PredictionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionStorage.swift; sourceTree = "<group>"; };
+		189939C830B0217E00374253 /* PredictionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionService.swift; sourceTree = "<group>"; };
+		189939C930B0217E00374253 /* TextPredictionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPredictionConfiguration.swift; sourceTree = "<group>"; };
+		18993A3530B0219300374253 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18993A3630B0219300374253 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		18993A3730B0219300374253 /* NeuralKeyKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NeuralKeyKeyboard.entitlements; sourceTree = "<group>"; };
+		18993A3B30B021F100374253 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		18993A3E30B0221400374253 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
+		18993A4130B0222700374253 /* TrainingUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingUsage.swift; sourceTree = "<group>"; };
+		18993A4330B0223100374253 /* VoiceTrainingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceTrainingData.swift; sourceTree = "<group>"; };
+		18993A4530B0223800374253 /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
+		18993A4730B0225200374253 /* KeyboardAiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAiManager.swift; sourceTree = "<group>"; };
+		18993A4930B0226400374253 /* FirestoreLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreLogger.swift; sourceTree = "<group>"; };
 		4E4B00000000000000000001 /* NeuralKey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeuralKey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4B00000000000000000011 /* NeuralKeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuralKeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4B00000000000000000021 /* NeuralKeyKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NeuralKeyKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		4E4B00000000000000000003 /* Exceptions for "NeuralKey" folder in "NeuralKey" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 4E4B00000000000000000009 /* NeuralKey */;
-		};
-		4E4B0000000000000000002A /* Exceptions for "NeuralKeyKeyboard" folder in "NeuralKeyKeyboard" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 4E4B00000000000000000029 /* NeuralKeyKeyboard */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		4E4B00000000000000000002 /* NeuralKey */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				4E4B00000000000000000003 /* Exceptions for "NeuralKey" folder in "NeuralKey" target */,
-			);
-			path = NeuralKey;
-			sourceTree = "<group>";
-		};
 		4E4B00000000000000000012 /* NeuralKeyUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = NeuralKeyUITests;
-			sourceTree = "<group>";
-		};
-		4E4B00000000000000000022 /* NeuralKeyKeyboard */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				4E4B0000000000000000002A /* Exceptions for "NeuralKeyKeyboard" folder in "NeuralKeyKeyboard" target */,
-			);
-			path = NeuralKeyKeyboard;
-			sourceTree = "<group>";
-		};
-		4E4B00000000000000000031 /* Shared */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -98,6 +338,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18993A5530B0B90F00374253 /* FirebaseAILogic in Frameworks */,
+				1899390730AE380000374253 /* FirebaseCore in Frameworks */,
+				1899390530AE380000374253 /* FirebaseAnalytics in Frameworks */,
+				1899390930AE380000374253 /* FirebaseFirestore in Frameworks */,
+				18993A5730B0B9C000374253 /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,13 +363,482 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1899390F30B0217700374253 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1899390D30B0217700374253 /* AppRootView.swift */,
+				1899390E30B0217700374253 /* NeuralKeyApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		1899391330B0217700374253 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				1899391030B0217700374253 /* AccessibilityID.swift */,
+				1899391130B0217700374253 /* AppConfiguration.swift */,
+				1899391230B0217700374253 /* LaunchOverrides.swift */,
+				18993A3B30B021F100374253 /* AppConfig.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		1899391530B0217700374253 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				1899391430B0217700374253 /* KeyboardSetupStatus.swift */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		1899391730B0217700374253 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				18993A4530B0223800374253 /* LanguageModel.swift */,
+				1899391630B0217700374253 /* AppLocalization.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		1899391A30B0217700374253 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				1899391830B0217700374253 /* AppRouter.swift */,
+				1899391930B0217700374253 /* OnboardingProgress.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		1899391D30B0217700374253 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				1899391B30B0217700374253 /* LanguageStore.swift */,
+				1899391C30B0217700374253 /* SettingsStore.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		1899391F30B0217700374253 /* TextPrediction */ = {
+			isa = PBXGroup;
+			children = (
+				1899391E30B0217700374253 /* DictionarySync.swift */,
+			);
+			path = TextPrediction;
+			sourceTree = "<group>";
+		};
+		1899392030B0217700374253 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				18993A4030B0222500374253 /* Training */,
+				18993A3D30B0221100374253 /* Manager */,
+				1899391330B0217700374253 /* Configuration */,
+				1899391530B0217700374253 /* Keyboard */,
+				1899391730B0217700374253 /* Localization */,
+				1899391A30B0217700374253 /* Navigation */,
+				1899391D30B0217700374253 /* Preferences */,
+				1899391F30B0217700374253 /* TextPrediction */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1899392530B0217700374253 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1899392130B0217700374253 /* HomeHeader.swift */,
+				1899392230B0217700374253 /* HomeHeadline.swift */,
+				1899392330B0217700374253 /* HomeSettingsCard.swift */,
+				1899392430B0217700374253 /* KeyboardTestField.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1899392830B0217700374253 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1899392530B0217700374253 /* Views */,
+				1899392630B0217700374253 /* HomeView.swift */,
+				1899392730B0217700374253 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1899392A30B0217700374253 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1899392930B0217700374253 /* AppLanguage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1899392C30B0217700374253 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1899392B30B0217700374253 /* LanguageOptionRow.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1899392E30B0217700374253 /* LanguageSelection */ = {
+			isa = PBXGroup;
+			children = (
+				1899392A30B0217700374253 /* Models */,
+				1899392C30B0217700374253 /* Views */,
+				1899392D30B0217700374253 /* LanguageSelectionView.swift */,
+			);
+			path = LanguageSelection;
+			sourceTree = "<group>";
+		};
+		1899393130B0217700374253 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1899392F30B0217700374253 /* OnboardingContent.swift */,
+				1899393030B0217700374253 /* OnboardingStep.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1899393630B0217700374253 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1899393230B0217700374253 /* OnboardingScaffold.swift */,
+				1899393330B0217700374253 /* OnboardingView.swift */,
+				1899393430B0217700374253 /* SetupPageView.swift */,
+				1899393530B0217700374253 /* WelcomePageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1899393730B0217700374253 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				1899393130B0217700374253 /* Models */,
+				1899393630B0217700374253 /* Views */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		1899393A30B0217700374253 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1899393830B0217700374253 /* PremiumContent.swift */,
+				1899393930B0217700374253 /* PremiumPlan.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1899394030B0217700374253 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1899393B30B0217700374253 /* PremiumBackground.swift */,
+				1899393C30B0217700374253 /* PremiumFeatureGrid.swift */,
+				1899393D30B0217700374253 /* PremiumFooterLinks.swift */,
+				1899393E30B0217700374253 /* PremiumPlanCard.swift */,
+				1899393F30B0217700374253 /* PremiumRewardedAdButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1899394330B0217700374253 /* Premium */ = {
+			isa = PBXGroup;
+			children = (
+				1899393A30B0217700374253 /* Models */,
+				1899394030B0217700374253 /* Views */,
+				1899394130B0217700374253 /* PremiumView.swift */,
+				1899394230B0217700374253 /* PremiumViewModel.swift */,
+			);
+			path = Premium;
+			sourceTree = "<group>";
+		};
+		1899394630B0217700374253 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1899394430B0217700374253 /* AITone.swift */,
+				1899394530B0217700374253 /* KeyboardAppearance.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1899394B30B0217700374253 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1899394730B0217700374253 /* KeyboardAppearancePicker.swift */,
+				1899394830B0217700374253 /* SettingsGroup.swift */,
+				1899394930B0217700374253 /* SettingsUpgradeCard.swift */,
+				1899394A30B0217700374253 /* ToneChip.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1899394F30B0217700374253 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1899394630B0217700374253 /* Models */,
+				1899394B30B0217700374253 /* Views */,
+				1899394C30B0217700374253 /* AIToneSelectionView.swift */,
+				1899394D30B0217700374253 /* SettingsDrawer.swift */,
+				1899394E30B0217700374253 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		1899395130B0217700374253 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				1899395030B0217700374253 /* SplashView.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		1899395230B0217700374253 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				1899392830B0217700374253 /* Home */,
+				1899392E30B0217700374253 /* LanguageSelection */,
+				1899393730B0217700374253 /* Onboarding */,
+				1899394330B0217700374253 /* Premium */,
+				1899394F30B0217700374253 /* Settings */,
+				1899395130B0217700374253 /* Splash */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		1899395730B0217700374253 /* NeuralKey */ = {
+			isa = PBXGroup;
+			children = (
+				1899390F30B0217700374253 /* App */,
+				1899392030B0217700374253 /* Core */,
+				1899395230B0217700374253 /* Features */,
+				1899395330B0217700374253 /* Info.plist */,
+				1899395430B0217700374253 /* Localizable.xcstrings */,
+				1899395530B0217700374253 /* NeuralKey.entitlements */,
+				1899395630B0217700374253 /* Settings.bundle */,
+			);
+			path = NeuralKey;
+			sourceTree = "<group>";
+		};
+		1899399630B0217E00374253 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1899398930B0217E00374253 /* AppLogo.swift */,
+				1899398A30B0217E00374253 /* AppSwitchToggleStyle.swift */,
+				1899398B30B0217E00374253 /* CircleIconButton.swift */,
+				1899398C30B0217E00374253 /* DitherOverlay.swift */,
+				1899398D30B0217E00374253 /* FlowLayout.swift */,
+				1899398E30B0217E00374253 /* IconTile.swift */,
+				1899398F30B0217E00374253 /* NativeAdBanner.swift */,
+				1899399030B0217E00374253 /* PageIndicator.swift */,
+				1899399130B0217E00374253 /* PressableButtonStyle.swift */,
+				1899399230B0217E00374253 /* PrimaryButton.swift */,
+				1899399330B0217E00374253 /* RadialGlowBackground.swift */,
+				1899399430B0217E00374253 /* SingleLineLabel.swift */,
+				1899399530B0217E00374253 /* TwoToneHeadline.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1899399930B0217E00374253 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1899399730B0217E00374253 /* AppAssets.swift */,
+				1899399830B0217E00374253 /* FontRegistrar.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		189939A030B0217E00374253 /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
+				1899399A30B0217E00374253 /* AppAnimation.swift */,
+				1899399B30B0217E00374253 /* AppColor.swift */,
+				1899399C30B0217E00374253 /* AppMetrics.swift */,
+				1899399D30B0217E00374253 /* AppScale.swift */,
+				1899399E30B0217E00374253 /* AppShadow.swift */,
+				1899399F30B0217E00374253 /* AppTypography.swift */,
+			);
+			path = Tokens;
+			sourceTree = "<group>";
+		};
+		189939A130B0217E00374253 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				1899399630B0217E00374253 /* Components */,
+				1899399930B0217E00374253 /* Resources */,
+				189939A030B0217E00374253 /* Tokens */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		189939A530B0217E00374253 /* Hosting */ = {
+			isa = PBXGroup;
+			children = (
+				189939A230B0217E00374253 /* InAppKeyboardPresenter.swift */,
+				189939A330B0217E00374253 /* KeyboardInputView.swift */,
+				189939A430B0217E00374253 /* NeuralKeyboardTextField.swift */,
+			);
+			path = Hosting;
+			sourceTree = "<group>";
+		};
+		189939AB30B0217E00374253 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				189939A630B0217E00374253 /* KeyboardConfiguration.swift */,
+				189939A730B0217E00374253 /* KeyboardLayout.swift */,
+				189939A830B0217E00374253 /* KeyboardSharedState.swift */,
+				189939A930B0217E00374253 /* KeyboardTextInput.swift */,
+				189939AA30B0217E00374253 /* SuggestionProvider.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		189939B030B0217E00374253 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				189939AC30B0217E00374253 /* KeyboardKeyView.swift */,
+				189939AD30B0217E00374253 /* KeyboardMetrics.swift */,
+				189939AE30B0217E00374253 /* KeyboardView.swift */,
+				189939AF30B0217E00374253 /* KeyPopup.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		189939B230B0217E00374253 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				189939A530B0217E00374253 /* Hosting */,
+				189939AB30B0217E00374253 /* Model */,
+				189939B030B0217E00374253 /* Views */,
+				189939B130B0217E00374253 /* KeyboardController.swift */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		189939B530B0217E00374253 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				189939B330B0217E00374253 /* SpaceGrotesk-OFL.txt */,
+				189939B430B0217E00374253 /* SpaceGrotesk-Variable.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		189939B830B0217E00374253 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				189939B530B0217E00374253 /* Fonts */,
+				189939B630B0217E00374253 /* Assets.xcassets */,
+				189939B730B0217E00374253 /* GoogleService-Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		189939C030B0217E00374253 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				189939B930B0217E00374253 /* EditDistance.swift */,
+				189939BA30B0217E00374253 /* FrequencyListParser.swift */,
+				189939BB30B0217E00374253 /* Lexicon.swift */,
+				189939BC30B0217E00374253 /* SymSpellIndex.swift */,
+				189939BD30B0217E00374253 /* TextPredictionEngine.swift */,
+				189939BE30B0217E00374253 /* TypoModel.swift */,
+				189939BF30B0217E00374253 /* UserDictionary.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		189939C430B0217E00374253 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				189939C130B0217E00374253 /* Prediction.swift */,
+				189939C230B0217E00374253 /* TextContext.swift */,
+				189939C330B0217E00374253 /* WordNormalizer.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		189939C730B0217E00374253 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				189939C530B0217E00374253 /* DictionaryDownloader.swift */,
+				189939C630B0217E00374253 /* PredictionStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		189939CA30B0217E00374253 /* TextPrediction */ = {
+			isa = PBXGroup;
+			children = (
+				189939C030B0217E00374253 /* Engine */,
+				189939C430B0217E00374253 /* Model */,
+				189939C730B0217E00374253 /* Storage */,
+				189939C830B0217E00374253 /* PredictionService.swift */,
+				189939C930B0217E00374253 /* TextPredictionConfiguration.swift */,
+			);
+			path = TextPrediction;
+			sourceTree = "<group>";
+		};
+		189939CB30B0217E00374253 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				189939A130B0217E00374253 /* DesignSystem */,
+				189939B230B0217E00374253 /* Keyboard */,
+				189939B830B0217E00374253 /* Resources */,
+				189939CA30B0217E00374253 /* TextPrediction */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		18993A3430B0218300374253 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		18993A3830B0219300374253 /* NeuralKeyKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				18993A3530B0219300374253 /* Info.plist */,
+				18993A3630B0219300374253 /* KeyboardViewController.swift */,
+				18993A3730B0219300374253 /* NeuralKeyKeyboard.entitlements */,
+			);
+			path = NeuralKeyKeyboard;
+			sourceTree = "<group>";
+		};
+		18993A3D30B0221100374253 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				18993A3E30B0221400374253 /* RemoteConfigManager.swift */,
+				18993A4730B0225200374253 /* KeyboardAiManager.swift */,
+				18993A4930B0226400374253 /* FirestoreLogger.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		18993A4030B0222500374253 /* Training */ = {
+			isa = PBXGroup;
+			children = (
+				18993A4330B0223100374253 /* VoiceTrainingData.swift */,
+				18993A4130B0222700374253 /* TrainingUsage.swift */,
+			);
+			path = Training;
+			sourceTree = "<group>";
+		};
+		18993A5330B0B90F00374253 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4E4B00000000000000000004 = {
 			isa = PBXGroup;
 			children = (
-				4E4B00000000000000000002 /* NeuralKey */,
-				4E4B00000000000000000031 /* Shared */,
-				4E4B00000000000000000022 /* NeuralKeyKeyboard */,
+				1899395730B0217700374253 /* NeuralKey */,
+				189939CB30B0217E00374253 /* Shared */,
+				18993A3830B0219300374253 /* NeuralKeyKeyboard */,
+				18993A3430B0218300374253 /* New Group */,
 				4E4B00000000000000000012 /* NeuralKeyUITests */,
+				18993A5330B0B90F00374253 /* Frameworks */,
 				4E4B00000000000000000005 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -156,12 +870,13 @@
 			dependencies = (
 				4E4B0000000000000000002D /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				4E4B00000000000000000002 /* NeuralKey */,
-				4E4B00000000000000000031 /* Shared */,
-			);
 			name = NeuralKey;
 			packageProductDependencies = (
+				1899390430AE380000374253 /* FirebaseAnalytics */,
+				1899390630AE380000374253 /* FirebaseCore */,
+				1899390830AE380000374253 /* FirebaseFirestore */,
+				18993A5430B0B90F00374253 /* FirebaseAILogic */,
+				18993A5630B0B9C000374253 /* FirebaseRemoteConfig */,
 			);
 			productName = NeuralKey;
 			productReference = 4E4B00000000000000000001 /* NeuralKey.app */;
@@ -202,10 +917,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				4E4B00000000000000000022 /* NeuralKeyKeyboard */,
-				4E4B00000000000000000031 /* Shared */,
-			);
 			name = NeuralKeyKeyboard;
 			packageProductDependencies = (
 			);
@@ -221,7 +932,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					4E4B00000000000000000009 = {
 						CreatedOnToolsVersion = 16.4;
@@ -250,6 +961,9 @@
 			);
 			mainGroup = 4E4B00000000000000000004;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1899390330AE380000374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4E4B00000000000000000005 /* Products */;
 			projectDirPath = "";
@@ -267,6 +981,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1899395930B0217700374253 /* Localizable.xcstrings in Resources */,
+				1899395A30B0217700374253 /* Settings.bundle in Resources */,
+				18993A0030B0217E00374253 /* SpaceGrotesk-OFL.txt in Resources */,
+				18993A0130B0217E00374253 /* SpaceGrotesk-Variable.ttf in Resources */,
+				18993A0230B0217E00374253 /* Assets.xcassets in Resources */,
+				18993A0330B0217E00374253 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +1001,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				189939FC30B0217E00374253 /* SpaceGrotesk-OFL.txt in Resources */,
+				189939FD30B0217E00374253 /* SpaceGrotesk-Variable.ttf in Resources */,
+				189939FE30B0217E00374253 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +1014,107 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1899395B30B0217700374253 /* AppRootView.swift in Sources */,
+				1899395C30B0217700374253 /* NeuralKeyApp.swift in Sources */,
+				1899395D30B0217700374253 /* AccessibilityID.swift in Sources */,
+				1899395E30B0217700374253 /* AppConfiguration.swift in Sources */,
+				1899395F30B0217700374253 /* LaunchOverrides.swift in Sources */,
+				1899396030B0217700374253 /* KeyboardSetupStatus.swift in Sources */,
+				1899396130B0217700374253 /* AppLocalization.swift in Sources */,
+				1899396230B0217700374253 /* AppRouter.swift in Sources */,
+				1899396330B0217700374253 /* OnboardingProgress.swift in Sources */,
+				1899396430B0217700374253 /* LanguageStore.swift in Sources */,
+				1899396530B0217700374253 /* SettingsStore.swift in Sources */,
+				1899396630B0217700374253 /* DictionarySync.swift in Sources */,
+				1899396730B0217700374253 /* HomeHeader.swift in Sources */,
+				1899396830B0217700374253 /* HomeHeadline.swift in Sources */,
+				1899396930B0217700374253 /* HomeSettingsCard.swift in Sources */,
+				1899396A30B0217700374253 /* KeyboardTestField.swift in Sources */,
+				1899396B30B0217700374253 /* HomeView.swift in Sources */,
+				18993A3F30B0221400374253 /* RemoteConfigManager.swift in Sources */,
+				1899396C30B0217700374253 /* HomeViewModel.swift in Sources */,
+				1899396D30B0217700374253 /* AppLanguage.swift in Sources */,
+				1899396E30B0217700374253 /* LanguageOptionRow.swift in Sources */,
+				1899396F30B0217700374253 /* LanguageSelectionView.swift in Sources */,
+				1899397030B0217700374253 /* OnboardingContent.swift in Sources */,
+				1899397130B0217700374253 /* OnboardingStep.swift in Sources */,
+				1899397230B0217700374253 /* OnboardingScaffold.swift in Sources */,
+				1899397330B0217700374253 /* OnboardingView.swift in Sources */,
+				1899397430B0217700374253 /* SetupPageView.swift in Sources */,
+				18993A3C30B021F100374253 /* AppConfig.swift in Sources */,
+				1899397530B0217700374253 /* WelcomePageView.swift in Sources */,
+				1899397630B0217700374253 /* PremiumContent.swift in Sources */,
+				1899397730B0217700374253 /* PremiumPlan.swift in Sources */,
+				1899397830B0217700374253 /* PremiumBackground.swift in Sources */,
+				18993A0430B0217E00374253 /* AppLogo.swift in Sources */,
+				18993A0530B0217E00374253 /* AppSwitchToggleStyle.swift in Sources */,
+				18993A0630B0217E00374253 /* CircleIconButton.swift in Sources */,
+				18993A0730B0217E00374253 /* DitherOverlay.swift in Sources */,
+				18993A4830B0225200374253 /* KeyboardAiManager.swift in Sources */,
+				18993A0830B0217E00374253 /* FlowLayout.swift in Sources */,
+				18993A0930B0217E00374253 /* IconTile.swift in Sources */,
+				18993A0A30B0217E00374253 /* NativeAdBanner.swift in Sources */,
+				18993A0B30B0217E00374253 /* PageIndicator.swift in Sources */,
+				18993A0C30B0217E00374253 /* PressableButtonStyle.swift in Sources */,
+				18993A0D30B0217E00374253 /* PrimaryButton.swift in Sources */,
+				18993A4230B0222700374253 /* TrainingUsage.swift in Sources */,
+				18993A0E30B0217E00374253 /* RadialGlowBackground.swift in Sources */,
+				18993A0F30B0217E00374253 /* SingleLineLabel.swift in Sources */,
+				18993A1030B0217E00374253 /* TwoToneHeadline.swift in Sources */,
+				18993A1130B0217E00374253 /* AppAssets.swift in Sources */,
+				18993A1230B0217E00374253 /* FontRegistrar.swift in Sources */,
+				18993A1330B0217E00374253 /* AppAnimation.swift in Sources */,
+				18993A1430B0217E00374253 /* AppColor.swift in Sources */,
+				18993A1530B0217E00374253 /* AppMetrics.swift in Sources */,
+				18993A1630B0217E00374253 /* AppScale.swift in Sources */,
+				18993A1730B0217E00374253 /* AppShadow.swift in Sources */,
+				18993A1830B0217E00374253 /* AppTypography.swift in Sources */,
+				18993A1930B0217E00374253 /* InAppKeyboardPresenter.swift in Sources */,
+				18993A1A30B0217E00374253 /* KeyboardInputView.swift in Sources */,
+				18993A1B30B0217E00374253 /* NeuralKeyboardTextField.swift in Sources */,
+				18993A1C30B0217E00374253 /* KeyboardConfiguration.swift in Sources */,
+				18993A1D30B0217E00374253 /* KeyboardLayout.swift in Sources */,
+				18993A1E30B0217E00374253 /* KeyboardSharedState.swift in Sources */,
+				18993A1F30B0217E00374253 /* KeyboardTextInput.swift in Sources */,
+				18993A2030B0217E00374253 /* SuggestionProvider.swift in Sources */,
+				18993A4A30B0226400374253 /* FirestoreLogger.swift in Sources */,
+				18993A2130B0217E00374253 /* KeyboardKeyView.swift in Sources */,
+				18993A2230B0217E00374253 /* KeyboardMetrics.swift in Sources */,
+				18993A4630B0223800374253 /* LanguageModel.swift in Sources */,
+				18993A2330B0217E00374253 /* KeyboardView.swift in Sources */,
+				18993A2430B0217E00374253 /* KeyPopup.swift in Sources */,
+				18993A4430B0223100374253 /* VoiceTrainingData.swift in Sources */,
+				18993A2530B0217E00374253 /* KeyboardController.swift in Sources */,
+				18993A2630B0217E00374253 /* EditDistance.swift in Sources */,
+				18993A2730B0217E00374253 /* FrequencyListParser.swift in Sources */,
+				18993A2830B0217E00374253 /* Lexicon.swift in Sources */,
+				18993A2930B0217E00374253 /* SymSpellIndex.swift in Sources */,
+				18993A2A30B0217E00374253 /* TextPredictionEngine.swift in Sources */,
+				18993A2B30B0217E00374253 /* TypoModel.swift in Sources */,
+				18993A2C30B0217E00374253 /* UserDictionary.swift in Sources */,
+				18993A2D30B0217E00374253 /* Prediction.swift in Sources */,
+				18993A2E30B0217E00374253 /* TextContext.swift in Sources */,
+				18993A2F30B0217E00374253 /* WordNormalizer.swift in Sources */,
+				18993A3030B0217E00374253 /* DictionaryDownloader.swift in Sources */,
+				18993A3130B0217E00374253 /* PredictionStorage.swift in Sources */,
+				18993A3230B0217E00374253 /* PredictionService.swift in Sources */,
+				18993A3330B0217E00374253 /* TextPredictionConfiguration.swift in Sources */,
+				1899397930B0217700374253 /* PremiumFeatureGrid.swift in Sources */,
+				1899397A30B0217700374253 /* PremiumFooterLinks.swift in Sources */,
+				1899397B30B0217700374253 /* PremiumPlanCard.swift in Sources */,
+				1899397C30B0217700374253 /* PremiumRewardedAdButton.swift in Sources */,
+				1899397D30B0217700374253 /* PremiumView.swift in Sources */,
+				1899397E30B0217700374253 /* PremiumViewModel.swift in Sources */,
+				1899397F30B0217700374253 /* AITone.swift in Sources */,
+				1899398030B0217700374253 /* KeyboardAppearance.swift in Sources */,
+				1899398130B0217700374253 /* KeyboardAppearancePicker.swift in Sources */,
+				1899398230B0217700374253 /* SettingsGroup.swift in Sources */,
+				1899398330B0217700374253 /* SettingsUpgradeCard.swift in Sources */,
+				1899398430B0217700374253 /* ToneChip.swift in Sources */,
+				1899398530B0217700374253 /* AIToneSelectionView.swift in Sources */,
+				1899398630B0217700374253 /* SettingsDrawer.swift in Sources */,
+				1899398730B0217700374253 /* SettingsView.swift in Sources */,
+				1899398830B0217700374253 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +1122,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18993A4E30B022D600374253 /* AppConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +1130,56 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				189939CC30B0217E00374253 /* AppLogo.swift in Sources */,
+				189939CD30B0217E00374253 /* AppSwitchToggleStyle.swift in Sources */,
+				189939CE30B0217E00374253 /* CircleIconButton.swift in Sources */,
+				189939CF30B0217E00374253 /* DitherOverlay.swift in Sources */,
+				189939D030B0217E00374253 /* FlowLayout.swift in Sources */,
+				189939D130B0217E00374253 /* IconTile.swift in Sources */,
+				189939D230B0217E00374253 /* NativeAdBanner.swift in Sources */,
+				189939D330B0217E00374253 /* PageIndicator.swift in Sources */,
+				189939D430B0217E00374253 /* PressableButtonStyle.swift in Sources */,
+				189939D530B0217E00374253 /* PrimaryButton.swift in Sources */,
+				189939D630B0217E00374253 /* RadialGlowBackground.swift in Sources */,
+				189939D730B0217E00374253 /* SingleLineLabel.swift in Sources */,
+				189939D830B0217E00374253 /* TwoToneHeadline.swift in Sources */,
+				189939D930B0217E00374253 /* AppAssets.swift in Sources */,
+				189939DA30B0217E00374253 /* FontRegistrar.swift in Sources */,
+				189939DB30B0217E00374253 /* AppAnimation.swift in Sources */,
+				189939DC30B0217E00374253 /* AppColor.swift in Sources */,
+				189939DD30B0217E00374253 /* AppMetrics.swift in Sources */,
+				18993A3930B0219300374253 /* KeyboardViewController.swift in Sources */,
+				189939DE30B0217E00374253 /* AppScale.swift in Sources */,
+				189939DF30B0217E00374253 /* AppShadow.swift in Sources */,
+				189939E030B0217E00374253 /* AppTypography.swift in Sources */,
+				189939E130B0217E00374253 /* InAppKeyboardPresenter.swift in Sources */,
+				189939E230B0217E00374253 /* KeyboardInputView.swift in Sources */,
+				189939E330B0217E00374253 /* NeuralKeyboardTextField.swift in Sources */,
+				189939E430B0217E00374253 /* KeyboardConfiguration.swift in Sources */,
+				189939E530B0217E00374253 /* KeyboardLayout.swift in Sources */,
+				18993A4D30B022D600374253 /* AppConfig.swift in Sources */,
+				189939E630B0217E00374253 /* KeyboardSharedState.swift in Sources */,
+				189939E730B0217E00374253 /* KeyboardTextInput.swift in Sources */,
+				189939E830B0217E00374253 /* SuggestionProvider.swift in Sources */,
+				189939E930B0217E00374253 /* KeyboardKeyView.swift in Sources */,
+				189939EA30B0217E00374253 /* KeyboardMetrics.swift in Sources */,
+				189939EB30B0217E00374253 /* KeyboardView.swift in Sources */,
+				189939EC30B0217E00374253 /* KeyPopup.swift in Sources */,
+				189939ED30B0217E00374253 /* KeyboardController.swift in Sources */,
+				189939EE30B0217E00374253 /* EditDistance.swift in Sources */,
+				189939EF30B0217E00374253 /* FrequencyListParser.swift in Sources */,
+				189939F030B0217E00374253 /* Lexicon.swift in Sources */,
+				189939F130B0217E00374253 /* SymSpellIndex.swift in Sources */,
+				189939F230B0217E00374253 /* TextPredictionEngine.swift in Sources */,
+				189939F330B0217E00374253 /* TypoModel.swift in Sources */,
+				189939F430B0217E00374253 /* UserDictionary.swift in Sources */,
+				189939F530B0217E00374253 /* Prediction.swift in Sources */,
+				189939F630B0217E00374253 /* TextContext.swift in Sources */,
+				189939F730B0217E00374253 /* WordNormalizer.swift in Sources */,
+				189939F830B0217E00374253 /* DictionaryDownloader.swift in Sources */,
+				189939F930B0217E00374253 /* PredictionStorage.swift in Sources */,
+				189939FA30B0217E00374253 /* PredictionService.swift in Sources */,
+				189939FB30B0217E00374253 /* TextPredictionConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +1204,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -382,6 +1258,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -392,6 +1269,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -438,6 +1316,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -620,15 +1499,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E4B00000000000000000027 /* Build configuration list for PBXNativeTarget "NeuralKeyKeyboard" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4E4B0000000000000000002B /* Debug */,
-				4E4B0000000000000000002C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4E4B00000000000000000017 /* Build configuration list for PBXNativeTarget "NeuralKeyUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -638,7 +1508,55 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		4E4B00000000000000000027 /* Build configuration list for PBXNativeTarget "NeuralKeyKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E4B0000000000000000002B /* Debug */,
+				4E4B0000000000000000002C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1899390330AE380000374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1899390430AE380000374253 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1899390330AE380000374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		1899390630AE380000374253 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1899390330AE380000374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		1899390830AE380000374253 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1899390330AE380000374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		18993A5430B0B90F00374253 /* FirebaseAILogic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1899390330AE380000374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAILogic;
+		};
+		18993A5630B0B9C000374253 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1899390330AE380000374253 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4E4B0000000000000000000A /* Project object */;
 }

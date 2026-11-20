@@ -195,7 +195,88 @@ private struct KeyboardRowView: View {
     }
 }
 
+
 private struct SuggestionBar: View {
+    let controller: KeyboardController
+
+    private var hasSuggestions: Bool {
+        !controller.suggestions.isEmpty
+    }
+
+    var body: some View {
+        HStack(spacing: 0) {
+            improveButton
+
+            ForEach(0..<SuggestionProvider.slotCount, id: \.self) { index in
+                if index > 0 {
+                    Rectangle()
+                        .fill(AppColor.keyboardDivider)
+                        .frame(width: 1, height: KeyboardMetrics.suggestionDividerHeight)
+                }
+
+                slot(at: index)
+            }
+        }
+        .padding(.top, KeyboardMetrics.rowSpacing / 2)
+        .animation(
+            .spring(response: 0.4, dampingFraction: 0.78),
+            value: hasSuggestions
+        )
+    }
+
+    private var improveButton: some View {
+        Button {
+            // TODO: Trigger improve action
+        } label: {
+            ZStack {
+                if hasSuggestions {
+                    Image(systemName: "wand.and.stars")
+                        .font(.system(size: 15, weight: .semibold))
+                        .transition(.opacity.combined(with: .scale))
+                } else {
+                    Text("Improve")
+                        .font(.system(size: 12, weight: .semibold))
+                        .transition(.opacity.combined(with: .scale))
+                }
+            }
+            .foregroundStyle(AppColor.keyboardSuggestion)
+            .frame(width: hasSuggestions ? 34 : 76, height: 30)
+            .background {
+                Capsule()
+                    .fill(AppColor.keyboardDivider.opacity(0.35))
+            }
+            .clipShape(Capsule())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("Improve")
+        .accessibilityIdentifier("keyboard.improve")
+    }
+
+    private func slot(at index: Int) -> some View {
+        let suggestion = index < controller.suggestions.count
+            ? controller.suggestions[index]
+            : nil
+
+        return Button {
+            if let suggestion {
+                controller.select(suggestion)
+            }
+        } label: {
+            Text(suggestion?.displayText ?? "")
+                .font(.system(size: KeyboardMetrics.suggestionFontSize))
+                .foregroundStyle(AppColor.keyboardSuggestion)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .disabled(suggestion == nil)
+        .accessibilityIdentifier("keyboard.suggestion.\(index)")
+    }
+}
+
+private struct SuggestionBarOld: View {
     let controller: KeyboardController
 
     var body: some View {
