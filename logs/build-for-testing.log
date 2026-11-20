@@ -1,0 +1,92 @@
+Command line invocation:
+    /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/xcodebuild build-for-testing -project NeuralKey.xcodeproj -scheme NeuralKey -configuration Debug -destination id=68DA6CEF-C252-4729-B3FF-66B56D57D80E -derivedDataPath /Users/runner/work/Neural-IOS/Neural-IOS/.build/DerivedData CODE_SIGNING_ALLOWED=NO GEMINI_API_KEY=
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+    GEMINI_API_KEY = 
+
+Resolve Package Graph
+
+Fetching from https://github.com/googleads/google-ads-on-device-conversion-ios-sdk
+
+Fetching from https://github.com/google/abseil-cpp-binary.git
+
+Fetching from https://github.com/google/GoogleDataTransport.git
+
+Fetching from https://github.com/google/interop-ios-for-google-sdks.git
+
+Fetching from https://github.com/firebase/leveldb.git
+
+Fetching from https://github.com/firebase/firebase-ios-sdk
+
+Fetching from https://github.com/firebase/nanopb.git
+
+Fetching from https://github.com/google/gtm-session-fetcher.git
+
+Fetching from https://github.com/google/grpc-binary.git
+
+Fetching from https://github.com/google/app-check.git
+
+Fetching from https://github.com/google/promises.git
+
+Fetching from https://github.com/google/GoogleAppMeasurement.git
+
+Fetching from https://github.com/google/GoogleUtilities.git
+
+Creating working copy of package ‘abseil-cpp-binary’
+
+Checking out 1.2025051202.0 of package ‘abseil-cpp-binary’
+
+Creating working copy of package ‘google-ads-on-device-conversion-ios-sdk’
+
+Checking out 3.8.0 of package ‘google-ads-on-device-conversion-ios-sdk’
+
+Creating working copy of package ‘GoogleDataTransport’
+
+Checking out 10.1.1 of package ‘GoogleDataTransport’
+
+Creating working copy of package ‘interop-ios-for-google-sdks’
+
+Checking out 101.0.0 of package ‘interop-ios-for-google-sdks’
+
+Creating working copy of package ‘leveldb’
+
+Checking out 1.22.5 of package ‘leveldb’
+
+Creating working copy of package ‘firebase-ios-sdk’
+
+Checking out 13.2.0 of package ‘firebase-ios-sdk’
+
+Creating working copy of package ‘nanopb’
+
+Checking out 2.30910.1 of package ‘nanopb’
+
+Creating working copy of package ‘promises’
+
+Checking out 2.4.1 of package ‘promises’
+
+Creating working copy of package ‘gtm-session-fetcher’
+
+Checking out 5.3.1 of package ‘gtm-session-fetcher’
+
+Creating working copy of package ‘grpc-binary’
+
+Checking out 1.83.1 of package ‘grpc-binary’
+
+Creating working copy of package ‘app-check’
+
+Checking out 12.1.0 of package ‘app-check’
+
+Creating working copy of package ‘GoogleAppMeasurement’
+
+Checking out 13.2.0 of package ‘GoogleAppMeasurement’
+
+Creating working copy of package ‘GoogleUtilities’
+
+Checking out 8.1.5 of package ‘GoogleUtilities’
+
+package 'firebase-ios-sdk' @ 13.2.0 is using Swift tools version 6.2.0 but the installed version is 6.1.0fatalError2026-11-20 18:57:16.629 xcodebuild[3255:15457] Writing error result bundle to /var/folders/9d/l02zfgrs7c16twd3wbpdmhkc0000gn/T/ResultBundle_2026-20-11_18-57-0016.xcresult
+xcodebuild: error: Could not resolve package dependencies:
+  package 'firebase-ios-sdk' @ 13.2.0 is using Swift tools version 6.2.0 but the installed version is 6.1.0
+  fatalError
+
